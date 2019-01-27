@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Hello World · Gem.js</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This describes the basics of sending a note to a&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Hello World · Gem.js"/><meta property="og:type" content="website"/><meta property="og:url" content="https://meleyal.github.io/gem/index.html"/><meta property="og:description" content="&lt;p&gt;This describes the basics of sending a note to a&lt;/p&gt;
+"/><meta property="og:image" content="https://meleyal.github.io/gem/img/gem.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://meleyal.github.io/gem/img/gem.png"/><link rel="shortcut icon" href="/gem/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"/><link rel="stylesheet" href="/gem/css/main.css"/><script src="/gem/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/gem/"><img class="logo" src="/gem/img/gem.svg" alt="Gem.js"/><h2 class="headerTitleWithLogo">Gem.js</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://github.com/meleyal/gem" target="_self">GitHub</a></li><li class="siteNavGroupActive"><a href="/gem/docs/api/midi" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/gem/docs/introduction" target="_self">Docs</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Examples</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Welcome</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/introduction">Introduction</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Primers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/generative">Generative</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/music">Music</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/javascript">JavaScript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Examples</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/gem/docs/hello-world">Hello World</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/walker">Walker</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/api/midi">midi</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Appendix</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/forms">Forms</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Hello World</h1></header><article><div><span><p>This describes the basics of sending a note to a
+<a href="https://en.wikipedia.org/wiki/Digital_audio_workstation">DAW</a> via the
+<a href="https://www.w3.org/TR/webmidi/">Web MIDI API</a> on macOS.</p>
+<p>First, we need to ensure that macOS' MIDI system is enabled. This is configured
+in the <em>Audio Midi Setup.app</em>. Go to <code>Window &gt; Show MIDI Studio</code>, double-click
+<code>IAC Driver</code>, and make sure <code>Device is online</code> is checked. With the default
+settings, there should be a single <code>Bus 1</code> under <code>Ports</code>.</p>
+<p>Next, we'll need an app that can receive MIDI and generate sounds. I'm using
+<a href="https://www.apple.com/uk/logic-pro/">Logic</a>, but
+<a href="https://www.ableton.com/en/live/">Live</a>,
+<a href="https://www.propellerheads.com/en/reason">Reason</a>, or
+<a href="https://www.reaper.fm/">Reaper</a> will work too. For debugging, a MIDI logger
+such as <a href="https://www.snoize.com/MIDIMonitor/">MIDI Monitor</a> is also useful.</p>
+<p>Next, we need to configure the app to recieve our MIDI messages. The following
+is specific to Logic Pro X (for other apps, Google &quot;multi track midi routing&quot;)</p>
+<p>Create a new project with a single software instrument channel (e.g. a Piano).
+Now, Under <code>Preferences &gt; MIDI &gt; Inputs</code> check <code>IAC Driver Bus 1</code>. Then under
+<code>File &gt; Project Settings &gt; Recording</code> check
+<code>Auto demix by channel if multitrack recording</code>.</p>
+<p>With that done, we're ready to send some MIDI. Wherever you can run JS in the
+browser (the console, a file, a script tag), enter the following.</p>
+<p><code>requestMIDIAccess</code> returns a <code>Promise</code> that we need to await, so we wrap
+everything in an async function.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">word</span>) </span>{ <span class="hljs-built_in">console</span>.log(word); }
+
+(<span class="hljs-keyword">async</span> () =&gt; { <span class="hljs-keyword">const</span> midi = <span class="hljs-keyword">await</span> navigator.requestMIDIAccess();
+
+<span class="hljs-comment">// We're only interested in a single output (the IAC Bus we just configured).</span>
+<span class="hljs-keyword">const</span> output = midi.outputs.values().next().value; <span class="hljs-built_in">console</span>.log(output.name); <span class="hljs-comment">//</span>
+<span class="hljs-string">'IAC Driver Bus 1'</span>
+
+<span class="hljs-comment">// A single note: middle C at full velocity on MIDI channel 1. output.send([144,</span>
+<span class="hljs-number">60</span>, <span class="hljs-number">127</span>]);
+
+<span class="hljs-comment">// You'll often see messages specified using hex notation (an old MIDI</span>
+convention). let note = <span class="hljs-number">60</span>; <span class="hljs-comment">// middle C let noteOn = 0x90; // 144 = channel 1</span>
+note on <span class="hljs-keyword">let</span> noteOff = <span class="hljs-number">0x80</span>; <span class="hljs-comment">// 128 = channel 1 note off let velocity = 0x7f; //</span>
+<span class="hljs-number">127</span> = maximum velocity <span class="hljs-keyword">let</span> length = <span class="hljs-number">1000</span>; <span class="hljs-comment">// 1 second = 1 beat at 60 bpm</span>
+
+<span class="hljs-comment">// A single note is actually 2 messages, a note on (`NON`), equivalent to //</span>
+pressing a key on the piano, and a note off (<span class="hljs-string">`NOF`</span>), equivalent to releasing <span class="hljs-comment">//</span>
+the key. output.send([noteOn, note, velocity]); output.send([noteOff, note,
+velocity], <span class="hljs-built_in">window</span>.performance.now() + length); })();
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-1-27</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/gem/docs/javascript"><span class="arrow-prev">← </span><span class="function-name-prevnext">JavaScript</span></a><a class="docs-next button" href="/gem/docs/walker"><span>Walker</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div></div></body></html>
