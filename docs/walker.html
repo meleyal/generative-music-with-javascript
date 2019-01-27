@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Walker · Gem.js</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;We&#x27;ll start out with a simple example. Making our first noises, randomness and&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Walker · Gem.js"/><meta property="og:type" content="website"/><meta property="og:url" content="https://meleyal.github.io/gem/index.html"/><meta property="og:description" content="&lt;p&gt;We&#x27;ll start out with a simple example. Making our first noises, randomness and&lt;/p&gt;
+"/><meta property="og:image" content="https://meleyal.github.io/gem/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://meleyal.github.io/gem/img/docusaurus.png"/><link rel="shortcut icon" href="/gem/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/gem/css/main.css"/><script src="/gem/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/gem/"><img class="logo" src="/gem/img/docusaurus.svg" alt="Gem.js"/><h2 class="headerTitleWithLogo">Gem.js</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/gem/docs/introduction" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/gem/docs/api/midi" target="_self">API</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Examples</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Welcome</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/introduction">Introduction</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Primers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/generative">Generative</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/music">Music</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/javascript">JavaScript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Examples</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/gem/docs/walker">Walker</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/api/midi">midi</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Appendix</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/forms">Forms</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Walker</h1></header><article><div><span><p>We'll start out with a simple example. Making our first noises, randomness and
+probability.</p>
+<p>A random walk. At each frame of the animation choose a random direction. A path
+defined as a series of random steps.</p>
+<p>Full size piano keyboard has 88 keys, these map to MIDI as follows:</p>
+<p><img src="http://www.midisolutions.com/Figure35.jpg" alt=""></p>
+<p>piano: [21, 108]</p>
+<h2><a class="anchor" aria-hidden="true" id="a-single-note"></a><a href="#a-single-note" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>A single note</h2>
+<p>As you can see in the above diagram, the MIDI number for middle C on the
+keyboard is 60.</p>
+<p>To trigger a single note we can do the following:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">let</span> note = <span class="hljs-number">60</span>; <span class="hljs-comment">// middle C</span>
+<span class="hljs-keyword">let</span> noteOn = <span class="hljs-number">0x90</span>; <span class="hljs-comment">// 144 = channel 1 note on</span>
+<span class="hljs-keyword">let</span> noteOff = <span class="hljs-number">0x80</span>; <span class="hljs-comment">// 128 = channel 1 note off</span>
+<span class="hljs-keyword">let</span> velocity = <span class="hljs-number">0x7f</span>; <span class="hljs-comment">// 127 = maximum velocity</span>
+<span class="hljs-keyword">let</span> length = <span class="hljs-number">4000</span>; <span class="hljs-comment">// 4 seconds = 4 beats at 60 bpm</span>
+
+output.send([noteOn, note, velocity]);
+output.send([noteOff, note, velocity], <span class="hljs-built_in">window</span>.performance.now() + length);
+</code></pre>
+<p>Record this in DAW:</p>
+<p>Set BPM to 60.</p>
+<p><img src="images/05_01_single_note.png" alt=""></p>
+<h2><a class="anchor" aria-hidden="true" id="repeating-notes"></a><a href="#repeating-notes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Repeating notes</h2>
+<p>To repeat the note we can simply trigger the note messages at set intervals:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">let</span> length = <span class="hljs-number">4000</span>; <span class="hljs-comment">// 4 seconds = 4 beats at 60 bpm</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">playNote</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">let</span> note = <span class="hljs-number">60</span>; <span class="hljs-comment">// middle C</span>
+  <span class="hljs-keyword">let</span> noteOn = <span class="hljs-number">0x90</span>; <span class="hljs-comment">// 144 = channel 1 note on</span>
+  <span class="hljs-keyword">let</span> noteOff = <span class="hljs-number">0x80</span>; <span class="hljs-comment">// 128 = channel 1 note off</span>
+  <span class="hljs-keyword">let</span> velocity = <span class="hljs-number">0x7f</span>; <span class="hljs-comment">// 127 = maximum velocity</span>
+
+  output.send([noteOn, note, velocity]);
+  output.send([noteOff, note, velocity], <span class="hljs-built_in">window</span>.performance.now() + length);
+}
+
+<span class="hljs-keyword">let</span> tick = setInterval(playNote, length);
+<span class="hljs-comment">// clearInterval(tick)</span>
+</code></pre>
+<p>Record this in DAW:</p>
+<p><img src="images/05_02_repeating_notes.png" alt=""></p>
+<h2><a class="anchor" aria-hidden="true" id="random-notes"></a><a href="#random-notes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Random notes</h2>
+<p>Not very interesting, but we now have a way to generate two key aspects of
+music: notes/pitch and rhythm/time, combined these give us melody.</p>
+<p>We can introduce some variation with randomness. Let's start simple and just
+select a random note. As we saw earlier, the piano has an 88 note range, from A0
+to C8, or 21-108 in MIDI note numbers.</p>
+<p>So we just need to pick a random number from 21 to 108. JS doesn't have a
+built-in function to generate a random number within a given range, so we'll</p>
+<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">randomNote</span>(<span class="hljs-params">min, max</span>) </span>{
+  min = <span class="hljs-built_in">Math</span>.ceil(min);
+  max = <span class="hljs-built_in">Math</span>.floor(max);
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * (max - min + <span class="hljs-number">1</span>)) + min;
+}
+
+<span class="hljs-keyword">let</span> length = <span class="hljs-number">4000</span>; <span class="hljs-comment">// 4 seconds = 4 beats at 60 bpm</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">playNote</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">let</span> note = randomNote(<span class="hljs-number">21</span>, <span class="hljs-number">108</span>);
+  <span class="hljs-keyword">let</span> noteOn = <span class="hljs-number">0x90</span>; <span class="hljs-comment">// 144 = channel 1 note on</span>
+  <span class="hljs-keyword">let</span> noteOff = <span class="hljs-number">0x80</span>; <span class="hljs-comment">// 128 = channel 1 note off</span>
+  <span class="hljs-keyword">let</span> velocity = <span class="hljs-number">0x7f</span>; <span class="hljs-comment">// 127 = maximum velocity</span>
+
+  output.send([noteOn, note, velocity]);
+  output.send([noteOff, note, velocity], <span class="hljs-built_in">window</span>.performance.now() + length);
+}
+
+<span class="hljs-keyword">let</span> tick = setInterval(playNote, length);
+<span class="hljs-comment">// clearInterval(tick)</span>
+</code></pre>
+<p><img src="images/05_03_random_notes.png" alt=""></p>
+<p>This gives us a random distribution.</p>
+<p>[DIAGRAM]</p>
+<h2><a class="anchor" aria-hidden="true" id="more-randomness"></a><a href="#more-randomness" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>More randomness</h2>
+<p>Now we have some variation. We could continue down this path, applying
+randomness to timing and velocity.</p>
+<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">random</span>(<span class="hljs-params">min, max</span>) </span>{
+  min = <span class="hljs-built_in">Math</span>.ceil(min);
+  max = <span class="hljs-built_in">Math</span>.floor(max);
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * (max - min + <span class="hljs-number">1</span>)) + min;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">playNote</span>(<span class="hljs-params">note, length, velocity</span>) </span>{
+  <span class="hljs-keyword">let</span> noteOn = <span class="hljs-number">0x90</span>; <span class="hljs-comment">// 144 = channel 1 note on</span>
+  <span class="hljs-keyword">let</span> noteOff = <span class="hljs-number">0x80</span>; <span class="hljs-comment">// 128 = channel 1 note off</span>
+
+  output.send([noteOn, note, velocity]);
+  output.send([noteOff, note, velocity], <span class="hljs-built_in">window</span>.performance.now() + length);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">play</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">let</span> note = random(<span class="hljs-number">21</span>, <span class="hljs-number">108</span>);
+  <span class="hljs-keyword">let</span> length = random(<span class="hljs-number">250</span>, <span class="hljs-number">2000</span>);
+  <span class="hljs-keyword">let</span> velocity = random(<span class="hljs-number">0</span>, <span class="hljs-number">127</span>);
+  <span class="hljs-keyword">let</span> timer = setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    playNote(note, length, velocity);
+    clearTimeout(timer);
+  }, length);
+}
+
+<span class="hljs-keyword">let</span> tick = setInterval(play, <span class="hljs-number">200</span>);
+
+<span class="hljs-comment">// clearInterval(tick);</span>
+</code></pre>
+<p><img src="images/05_04_random_timing.png" alt=""></p>
+<h2><a class="anchor" aria-hidden="true" id="relative-notes"></a><a href="#relative-notes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relative notes</h2>
+<p>Whilst initially quite interesting, pure randomness doesn't hold our attention
+for long as, by definition, it doesn't contain the patterns and structure that
+are a key aspect of our enjoyment of music.</p>
+<p>If we think about taking a walk, even if we're wandering aimlessly, we're not
+taking random steps and leaps or teleporting around. Our movements have
+direction, each step is related to the previous ones to keep us moving along a
+certain path.</p>
+<p>In a traditional random walk on a 2D plain, each step can be one of 4 directions
+(or 5 options if you include not moving as a choice).</p>
+<p>[DIAGRAM]</p>
+<p>In our case, our musical scale is a 1D plain, so our choice is either up or down
+(or left/right if thinking in terms of a keyboard).</p>
+<p>Rather than choosing randomly, what if we pick our next note relative to the
+current one?</p>
+<pre><code class="hljs css language-js">navigator.requestMIDIAccess().then(<span class="hljs-function"><span class="hljs-params">midi</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> outputs = midi.outputs.values();
+  <span class="hljs-keyword">let</span> output = outputs.next().value;
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">random</span>(<span class="hljs-params">min, max</span>) </span>{
+    min = <span class="hljs-built_in">Math</span>.ceil(min);
+    max = <span class="hljs-built_in">Math</span>.floor(max);
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * (max - min + <span class="hljs-number">1</span>)) + min;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">playNote</span>(<span class="hljs-params">note, length, velocity</span>) </span>{
+    <span class="hljs-keyword">let</span> noteOn = <span class="hljs-number">0x90</span>; <span class="hljs-comment">// 144 = channel 1 note on</span>
+    <span class="hljs-keyword">let</span> noteOff = <span class="hljs-number">0x80</span>; <span class="hljs-comment">// 128 = channel 1 note off</span>
+
+    output.send([noteOn, note, velocity]);
+    output.send([noteOff, note, velocity], <span class="hljs-built_in">window</span>.performance.now() + length);
+  }
+
+  <span class="hljs-keyword">let</span> startNote = random(<span class="hljs-number">21</span>, <span class="hljs-number">108</span>);
+  <span class="hljs-keyword">let</span> startVelocity = random(<span class="hljs-number">0</span>, <span class="hljs-number">127</span>);
+  <span class="hljs-keyword">let</span> step = <span class="hljs-number">5</span>;
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">play</span>(<span class="hljs-params">note, velocity</span>) </span>{
+    <span class="hljs-keyword">let</span> nextNote = random(
+      <span class="hljs-built_in">Math</span>.max(note - step, <span class="hljs-number">21</span>),
+      <span class="hljs-built_in">Math</span>.min(note + step, <span class="hljs-number">108</span>)
+    );
+    <span class="hljs-keyword">let</span> length = <span class="hljs-number">500</span>;
+    <span class="hljs-keyword">let</span> nextVelocity = random(
+      <span class="hljs-built_in">Math</span>.max(velocity - step, <span class="hljs-number">0</span>),
+      <span class="hljs-built_in">Math</span>.min(velocity + step, <span class="hljs-number">127</span>)
+    );
+    <span class="hljs-keyword">let</span> timer = setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      playNote(nextNote, length, nextVelocity);
+      clearTimeout(timer);
+      play(nextNote, nextVelocity);
+    }, length);
+  }
+
+  play(startNote, startVelocity);
+});
+</code></pre>
+<p><img src="images/05_05_relative_notes.png" alt=""></p>
+<p>This gives us something that has more of a flow, but we still have limited
+control.</p>
+<h2><a class="anchor" aria-hidden="true" id="probability"></a><a href="#probability" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Probability</h2>
+<p>We can still use randomness, but weigh the odds to favour specific outcomes.</p>
+<pre><code class="hljs css language-js">navigator.requestMIDIAccess().then(<span class="hljs-function"><span class="hljs-params">midi</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> outputs = midi.outputs.values();
+  <span class="hljs-keyword">let</span> output = outputs.next().value;
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">random</span>(<span class="hljs-params">min, max</span>) </span>{
+    min = <span class="hljs-built_in">Math</span>.ceil(min);
+    max = <span class="hljs-built_in">Math</span>.floor(max);
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * (max - min + <span class="hljs-number">1</span>)) + min;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">playNote</span>(<span class="hljs-params">note, length, velocity = <span class="hljs-number">127</span></span>) </span>{
+    <span class="hljs-keyword">let</span> noteOn = <span class="hljs-number">144</span>; <span class="hljs-comment">// channel 1 note on</span>
+    <span class="hljs-keyword">let</span> noteOff = <span class="hljs-number">128</span>; <span class="hljs-comment">// channel 1 note off</span>
+
+    output.send([noteOn, note, velocity]);
+    output.send([noteOff, note, velocity], <span class="hljs-built_in">window</span>.performance.now() + length);
+  }
+
+  <span class="hljs-keyword">let</span> startNote = random(<span class="hljs-number">21</span>, <span class="hljs-number">108</span>);
+  <span class="hljs-keyword">let</span> length = <span class="hljs-number">250</span>;
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">play</span>(<span class="hljs-params">note</span>) </span>{
+    <span class="hljs-keyword">let</span> prob = <span class="hljs-number">0.4</span>;
+    <span class="hljs-keyword">let</span> num = <span class="hljs-built_in">Math</span>.random();
+    <span class="hljs-keyword">let</span> nextNote;
+
+    <span class="hljs-keyword">if</span> (num &lt; prob) {
+      <span class="hljs-comment">// 40% chance of going down 7 steps</span>
+      nextNote = <span class="hljs-built_in">Math</span>.max(note - <span class="hljs-number">7</span>, <span class="hljs-number">21</span>);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-comment">// 60% chance of going up 5 steps</span>
+      nextNote = <span class="hljs-built_in">Math</span>.min(note + <span class="hljs-number">5</span>, <span class="hljs-number">108</span>);
+    }
+
+    <span class="hljs-keyword">let</span> timer = setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      playNote(nextNote, length);
+      clearTimeout(timer);
+      play(nextNote);
+    }, length);
+  }
+
+  play(startNote);
+});
+</code></pre>
+<p><img src="images/05_06_probability.png" alt=""></p>
+<h2><a class="anchor" aria-hidden="true" id="gaussian-normal-distribution"></a><a href="#gaussian-normal-distribution" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Gaussian / normal distribution</h2>
+<p>Probability is one way to reign in pure randomness. Another way is to emulate a
+common pattern found in nature, where values will tend to cluster around a
+certain range, otherwise known as normal distribution (in contrast to
+randomness, which aims for uniform distribution). This maps well to music, where
+melodies tend to use a fairly narrow range of notes and steps, rather than large
+jumps.</p>
+<ul>
+<li>Perlin noise</li>
+<li>Notes from scale</li>
+<li>Intervals?</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/gem/docs/javascript"><span class="arrow-prev">← </span><span class="function-name-prevnext">JavaScript</span></a><a class="docs-next button" href="/gem/docs/api/midi"><span>midi</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#a-single-note">A single note</a></li><li><a href="#repeating-notes">Repeating notes</a></li><li><a href="#random-notes">Random notes</a></li><li><a href="#more-randomness">More randomness</a></li><li><a href="#relative-notes">Relative notes</a></li><li><a href="#probability">Probability</a></li><li><a href="#gaussian-normal-distribution">Gaussian / normal distribution</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/gem/" class="nav-home"><img src="/gem/img/docusaurus.svg" alt="Gem.js" width="66" height="58"/></a><div><h5>Docs</h5><a href="/gem/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/gem/docs/en/doc2.html">Guides (or other categories)</a><a href="/gem/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/gem/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/gem/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/gem/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 Your Name or Your Company Name</section></footer></div></body></html>
