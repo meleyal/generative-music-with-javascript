@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 424 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>distributions</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="distributions" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <text id="Uniform-distribution" font-family="SFProDisplay-Bold, SF Pro Display" font-size="8" font-weight="bold" letter-spacing="0.0166666694" fill="#000000">
+            <tspan x="286" y="106">Uniform distribution</tspan>
+        </text>
+        <path d="M244,85 L402,85" id="Line" stroke="#D8D5D9" stroke-width="2" stroke-linecap="square" fill-rule="nonzero"></path>
+        <path d="M243,85 L243,13" id="Line-Copy" stroke="#D8D5D9" stroke-width="2" stroke-linecap="square" fill-rule="nonzero"></path>
+        <rect id="Rectangle-2" fill="#9B9B9B" fill-rule="nonzero" x="254" y="29" width="8" height="55"></rect>
+        <rect id="Rectangle-2-Copy" fill="#9B9B9B" fill-rule="nonzero" x="270" y="32" width="8" height="52"></rect>
+        <rect id="Rectangle-2-Copy-2" fill="#9B9B9B" fill-rule="nonzero" x="286" y="28" width="8" height="56"></rect>
+        <rect id="Rectangle-2-Copy-3" fill="#9B9B9B" fill-rule="nonzero" x="303" y="32" width="8" height="52"></rect>
+        <rect id="Rectangle-2-Copy-4" fill="#9B9B9B" fill-rule="nonzero" x="319" y="28" width="8" height="56"></rect>
+        <rect id="Rectangle-2-Copy-5" fill="#9B9B9B" fill-rule="nonzero" x="335" y="32" width="8" height="52"></rect>
+        <rect id="Rectangle-2-Copy-6" fill="#9B9B9B" fill-rule="nonzero" x="352" y="28" width="8" height="56"></rect>
+        <rect id="Rectangle-2-Copy-14" fill="#9B9B9B" fill-rule="nonzero" x="368" y="28" width="8" height="56"></rect>
+        <rect id="Rectangle-2-Copy-15" fill="#9B9B9B" fill-rule="nonzero" x="384" y="34" width="8" height="50"></rect>
+        <text id="Normal-distribution" font-family="SFProDisplay-Bold, SF Pro Display" font-size="8" font-weight="bold" letter-spacing="0.0166666694" fill="#000000">
+            <tspan x="67" y="106">Normal distribution</tspan>
+        </text>
+        <path d="M23,85 L182,85" id="Line-Copy-2" stroke="#D8D5D9" stroke-width="2" stroke-linecap="square" fill-rule="nonzero"></path>
+        <path d="M22,85 L22,13" id="Line-Copy-3" stroke="#D8D5D9" stroke-width="2" stroke-linecap="square" fill-rule="nonzero"></path>
+        <rect id="Rectangle-2-Copy-7" fill="#9B9B9B" fill-rule="nonzero" x="33" y="80" width="8" height="4"></rect>
+        <rect id="Rectangle-2-Copy-8" fill="#9B9B9B" fill-rule="nonzero" x="49" y="78" width="8" height="6"></rect>
+        <rect id="Rectangle-2-Copy-16" fill="#9B9B9B" fill-rule="nonzero" x="66" y="69" width="8" height="15"></rect>
+        <rect id="Rectangle-2-Copy-9" fill="#9B9B9B" fill-rule="nonzero" x="82" y="51" width="8" height="33"></rect>
+        <rect id="Rectangle-2-Copy-10" fill="#9B9B9B" fill-rule="nonzero" x="98" y="22" width="8" height="62"></rect>
+        <rect id="Rectangle-2-Copy-11" fill="#9B9B9B" fill-rule="nonzero" x="114" y="51" width="8" height="33"></rect>
+        <rect id="Rectangle-2-Copy-12" fill="#9B9B9B" fill-rule="nonzero" x="147" y="78" width="8" height="6"></rect>
+        <rect id="Rectangle-2-Copy-17" fill="#9B9B9B" fill-rule="nonzero" x="131" y="69" width="8" height="15"></rect>
+        <rect id="Rectangle-2-Copy-13" fill="#9B9B9B" fill-rule="nonzero" x="163" y="80" width="8" height="4"></rect>
+    </g>
+</svg>

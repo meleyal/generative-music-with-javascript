@@ -1,6 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Walker · Gem.js</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Using a random walk to generate music via the Web MIDI API. Inspired by&lt;/p&gt;
-"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Walker · Gem.js"/><meta property="og:type" content="website"/><meta property="og:url" content="https://meleyal.github.io/gem/index.html"/><meta property="og:description" content="&lt;p&gt;Using a random walk to generate music via the Web MIDI API. Inspired by&lt;/p&gt;
-"/><meta property="og:image" content="https://meleyal.github.io/gem/img/gem.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://meleyal.github.io/gem/img/gem.png"/><link rel="shortcut icon" href="/gem/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"/><link rel="stylesheet" href="/gem/css/main.css"/><script src="/gem/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/gem/"><img class="logo" src="/gem/img/gem.svg" alt="Gem.js"/><h2 class="headerTitleWithLogo">Gem.js</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://github.com/meleyal/gem" target="_self">GitHub</a></li><li class="siteNavGroupActive"><a href="/gem/docs/api/midi" target="_self">API</a></li><li class="siteNavGroupActive"><a href="/gem/docs/introduction" target="_self">Docs</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Examples</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Welcome</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/introduction">Introduction</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Primers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/primers/generative">Generative</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/primers/music">Music</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/primers/javascript">JavaScript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Examples</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/examples/hello-world">Hello World</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/gem/docs/examples/walker">Walker</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/api/midi">midi</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Appendix</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/appendix/platforms">Platforms</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/appendix/daws">DAWs</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/appendix/related">Related Projects</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/appendix/forms">Forms</a></li></ul></div></div></section></div><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Walker · Gem.js</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This example shows how to introduce variation to our music through the idea of a&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Walker · Gem.js"/><meta property="og:type" content="website"/><meta property="og:url" content="https://meleyal.github.io/gem/index.html"/><meta property="og:description" content="&lt;p&gt;This example shows how to introduce variation to our music through the idea of a&lt;/p&gt;
+"/><meta property="og:image" content="https://meleyal.github.io/gem/img/gem.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://meleyal.github.io/gem/img/gem.png"/><link rel="shortcut icon" href="/gem/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"/><link rel="stylesheet" href="/gem/css/main.css"/><script src="/gem/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/gem/"><img class="logo" src="/gem/img/gem.svg" alt="Gem.js"/><h2 class="headerTitleWithLogo">Gem.js</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/gem/docs/introduction" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/gem/docs/api/midi" target="_self">API</a></li><li class=""><a href="https://github.com/meleyal/gem" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Examples</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Welcome</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/introduction">Introduction</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Primers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/primers/generative">Generative</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/primers/music">Music</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/primers/javascript">JavaScript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Examples</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/examples/hello-world">Hello World</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/gem/docs/examples/walker">Walker</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/api/midi">midi</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/api/metronome">metronome</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/api/instrument">instrument</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Appendix</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gem/docs/appendix/platforms">Platforms</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/appendix/daws">DAWs</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/appendix/related">Related Projects</a></li><li class="navListItem"><a class="navItem" href="/gem/docs/appendix/forms">Forms</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -50,129 +50,83 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Walker</h1></header><article><div><span><p>Using a random walk to generate music via the Web MIDI API. Inspired by
-<a href="https://natureofcode.com/book/introduction/">The Nature of Code: Introduction</a>.</p>
-<p>We'll start out with a simple example. Making our first noises, randomness and
-probability.</p>
-<p>A random walk. At each frame of the animation choose a random direction. A path
-defined as a series of random steps.</p>
-<p>Full size piano keyboard has 88 keys, these map to MIDI as follows:</p>
-<p><img src="http://www.midisolutions.com/Figure35.jpg" alt=""></p>
-<p>piano: [21, 108]</p>
-<h2><a class="anchor" aria-hidden="true" id="a-single-note"></a><a href="#a-single-note" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>A single note</h2>
-<p>As you can see in the above diagram, the MIDI number for middle C on the
-keyboard is 60.</p>
-<p>To trigger a single note we can do the following:</p>
-<pre><code class="hljs css language-js"><span class="hljs-keyword">let</span> note = <span class="hljs-number">60</span>; <span class="hljs-comment">// middle C</span>
-<span class="hljs-keyword">let</span> noteOn = <span class="hljs-number">0x90</span>; <span class="hljs-comment">// 144 = channel 1 note on</span>
-<span class="hljs-keyword">let</span> noteOff = <span class="hljs-number">0x80</span>; <span class="hljs-comment">// 128 = channel 1 note off</span>
-<span class="hljs-keyword">let</span> velocity = <span class="hljs-number">0x7f</span>; <span class="hljs-comment">// 127 = maximum velocity</span>
-<span class="hljs-keyword">let</span> length = <span class="hljs-number">4000</span>; <span class="hljs-comment">// 4 seconds = 4 beats at 60 bpm</span>
-
-output.send([noteOn, note, velocity]);
-output.send([noteOff, note, velocity], <span class="hljs-built_in">window</span>.performance.now() + length);
-</code></pre>
-<p>Record this in DAW:</p>
-<p>Set BPM to 60.</p>
-<p><img src="images/05_01_single_note.png" alt=""></p>
-<h2><a class="anchor" aria-hidden="true" id="repeating-notes"></a><a href="#repeating-notes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Repeating notes</h2>
-<p>To repeat the note we can simply trigger the note messages at set intervals:</p>
-<pre><code class="hljs css language-js"><span class="hljs-keyword">let</span> length = <span class="hljs-number">4000</span>; <span class="hljs-comment">// 4 seconds = 4 beats at 60 bpm</span>
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">playNote</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">let</span> note = <span class="hljs-number">60</span>; <span class="hljs-comment">// middle C</span>
-  <span class="hljs-keyword">let</span> noteOn = <span class="hljs-number">0x90</span>; <span class="hljs-comment">// 144 = channel 1 note on</span>
-  <span class="hljs-keyword">let</span> noteOff = <span class="hljs-number">0x80</span>; <span class="hljs-comment">// 128 = channel 1 note off</span>
-  <span class="hljs-keyword">let</span> velocity = <span class="hljs-number">0x7f</span>; <span class="hljs-comment">// 127 = maximum velocity</span>
-
-  output.send([noteOn, note, velocity]);
-  output.send([noteOff, note, velocity], <span class="hljs-built_in">window</span>.performance.now() + length);
-}
-
-<span class="hljs-keyword">let</span> tick = setInterval(playNote, length);
-<span class="hljs-comment">// clearInterval(tick)</span>
-</code></pre>
-<p>Record this in DAW:</p>
-<p><img src="images/05_02_repeating_notes.png" alt=""></p>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Walker</h1></header><article><div><span><p>This example shows how to introduce variation to our music through the idea of a
+random walk.</p>
+<p>In 2D graphics, a random walk involves drawing a path by repeatedly choosing a
+random direction in which to move. On this 2D plane, each step can be one of 4
+directions (up, down, left, right, or 5 if you count not moving). Given a
+certain set of rules, this could look as follows:</p>
+<p><img src="/gem/docs/assets/walker/walk.png" alt=""></p>
+<p>How might we apply this idea to music? We know from our
+<a href="../primers/music#midi">music primer</a> that a piano has 88 keys, giving it a
+range from A0 to C8, which map to the MIDI numbers 21–108. We can treat this as
+a 1D plane, and say that at each moment we have 4 choices: 1) play a higher
+note; 2) play a lower note; 3) play the same note; 4) play nothing. The range
+21-108 and the 4 choices define the &quot;possibility space&quot; for our random walk.</p>
+<p><img src="/gem/docs/assets/walker/piano.svg" alt=""></p>
 <h2><a class="anchor" aria-hidden="true" id="random-notes"></a><a href="#random-notes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Random notes</h2>
-<p>Not very interesting, but we now have a way to generate two key aspects of
-music: notes/pitch and rhythm/time, combined these give us melody.</p>
-<p>We can introduce some variation with randomness. Let's start simple and just
-select a random note. As we saw earlier, the piano has an 88 note range, from A0
-to C8, or 21-108 in MIDI note numbers.</p>
-<p>So we just need to pick a random number from 21 to 108. JS doesn't have a
-built-in function to generate a random number within a given range, so we'll</p>
-<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">randomNote</span>(<span class="hljs-params">min, max</span>) </span>{
-  min = <span class="hljs-built_in">Math</span>.ceil(min);
-  max = <span class="hljs-built_in">Math</span>.floor(max);
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * (max - min + <span class="hljs-number">1</span>)) + min;
-}
+<p>Let's start simple and just play random notes by repeatedly picking a random
+number between 21 and 108. This gives us a random distribution, where each of
+the 88 notes have an equal chance of being played.</p>
+<p>For this example, we'll need a way to generate a random number within a given
+range, which JS doesn't have out-of-the-box. For this we'll use
+<a href="https://www.npmjs.com/package/lodash-es"><code>lodash</code></a>, which provides a bunch of
+useful functions we'll use throughout the book. See the
+<a href="../primers/javascript">JavaScript chapter</a> for help installing modules.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { random } <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash'</span>;
+<span class="hljs-keyword">import</span> { instrument, metronome, midi } <span class="hljs-keyword">from</span> <span class="hljs-string">'gem'</span>;
 
-<span class="hljs-keyword">let</span> length = <span class="hljs-number">4000</span>; <span class="hljs-comment">// 4 seconds = 4 beats at 60 bpm</span>
+midi().then(<span class="hljs-function"><span class="hljs-params">output</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> metro = metronome(<span class="hljs-number">10</span>);
+  <span class="hljs-keyword">const</span> inst = instrument({ output, metro });
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">playNote</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">let</span> note = randomNote(<span class="hljs-number">21</span>, <span class="hljs-number">108</span>);
-  <span class="hljs-keyword">let</span> noteOn = <span class="hljs-number">0x90</span>; <span class="hljs-comment">// 144 = channel 1 note on</span>
-  <span class="hljs-keyword">let</span> noteOff = <span class="hljs-number">0x80</span>; <span class="hljs-comment">// 128 = channel 1 note off</span>
-  <span class="hljs-keyword">let</span> velocity = <span class="hljs-number">0x7f</span>; <span class="hljs-comment">// 127 = maximum velocity</span>
-
-  output.send([noteOn, note, velocity]);
-  output.send([noteOff, note, velocity], <span class="hljs-built_in">window</span>.performance.now() + length);
-}
-
-<span class="hljs-keyword">let</span> tick = setInterval(playNote, length);
-<span class="hljs-comment">// clearInterval(tick)</span>
+  <span class="hljs-comment">// Play a random note between 21 (A0) and 108 (C8)</span>
+  metro.onTick(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> inst(rand(<span class="hljs-number">21</span>, <span class="hljs-number">108</span>)));
+  metro.start();
+});
 </code></pre>
-<p><img src="images/05_03_random_notes.png" alt=""></p>
-<p>This gives us a random distribution.</p>
-<p>[DIAGRAM]</p>
+<p><details>
+<summary>Listen</summary>
+<img src="/gem/docs/assets/walker/random.png" alt="">
+<audio src="/gem/docs/assets/walker/random.mp3" controls></audio>
+</details></p>
+<p>This probably sounds like the bleeps and bloops you imagine when you hear the
+phrase &quot;computer generated music&quot;. At strict intervals and constant velocity the
+results sound rather mechanical.</p>
 <h2><a class="anchor" aria-hidden="true" id="more-randomness"></a><a href="#more-randomness" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>More randomness</h2>
-<p>Now we have some variation. We could continue down this path, applying
-randomness to timing and velocity.</p>
-<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">random</span>(<span class="hljs-params">min, max</span>) </span>{
-  min = <span class="hljs-built_in">Math</span>.ceil(min);
-  max = <span class="hljs-built_in">Math</span>.floor(max);
+<p>By also applying some randomness to the timing and velocity, we can add more
+nuance.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { instrument, metronome, midi } <span class="hljs-keyword">from</span> <span class="hljs-string">'gem'</span>;
+
+<span class="hljs-keyword">const</span> rand = <span class="hljs-function">(<span class="hljs-params">min, max</span>) =&gt;</span> {
   <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * (max - min + <span class="hljs-number">1</span>)) + min;
-}
+};
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">playNote</span>(<span class="hljs-params">note, length, velocity</span>) </span>{
-  <span class="hljs-keyword">let</span> noteOn = <span class="hljs-number">0x90</span>; <span class="hljs-comment">// 144 = channel 1 note on</span>
-  <span class="hljs-keyword">let</span> noteOff = <span class="hljs-number">0x80</span>; <span class="hljs-comment">// 128 = channel 1 note off</span>
+midi().then(<span class="hljs-function"><span class="hljs-params">output</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> metro = metronome(<span class="hljs-number">10</span>);
+  <span class="hljs-keyword">const</span> inst = instrument({ output, metro });
 
-  output.send([noteOn, note, velocity]);
-  output.send([noteOff, note, velocity], <span class="hljs-built_in">window</span>.performance.now() + length);
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">play</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">let</span> note = random(<span class="hljs-number">21</span>, <span class="hljs-number">108</span>);
-  <span class="hljs-keyword">let</span> length = random(<span class="hljs-number">250</span>, <span class="hljs-number">2000</span>);
-  <span class="hljs-keyword">let</span> velocity = random(<span class="hljs-number">0</span>, <span class="hljs-number">127</span>);
-  <span class="hljs-keyword">let</span> timer = setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    playNote(note, length, velocity);
-    clearTimeout(timer);
-  }, length);
-}
-
-<span class="hljs-keyword">let</span> tick = setInterval(play, <span class="hljs-number">200</span>);
-
-<span class="hljs-comment">// clearInterval(tick);</span>
+  <span class="hljs-comment">// Play a random note, at a random velocity, for a random length of time</span>
+  metro.onTick(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> inst(rand(<span class="hljs-number">21</span>, <span class="hljs-number">108</span>), rand(<span class="hljs-number">0</span>, <span class="hljs-number">127</span>), rand(<span class="hljs-number">250</span>, <span class="hljs-number">2000</span>)));
+  metro.start();
+});
 </code></pre>
-<p><img src="images/05_04_random_timing.png" alt=""></p>
-<h2><a class="anchor" aria-hidden="true" id="relative-notes"></a><a href="#relative-notes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relative notes</h2>
-<p>Whilst initially quite interesting, pure randomness doesn't hold our attention
-for long as, by definition, it doesn't contain the patterns and structure that
+<p><details>
+<summary>Listen</summary>
+<img src="/gem/docs/assets/walker/more-random.png" alt="">
+<audio src="/gem/docs/assets/walker/more-random.mp3" controls></audio>
+</details></p>
+<p>This makes things feel more natural, emulating the variations of timing and
+touch of a human player.</p>
+<p>Whilst initially quite interesting though, pure randomness doesn't hold our
+attention for long, as, by definition, it lacks the patterns and structure that
 are a key aspect of our enjoyment of music.</p>
-<p>If we think about taking a walk, even if we're wandering aimlessly, we're not
-taking random steps and leaps or teleporting around. Our movements have
-direction, each step is related to the previous ones to keep us moving along a
-certain path.</p>
-<p>In a traditional random walk on a 2D plain, each step can be one of 4 directions
-(or 5 options if you include not moving as a choice).</p>
-<p>[DIAGRAM]</p>
-<p>In our case, our musical scale is a 1D plain, so our choice is either up or down
-(or left/right if thinking in terms of a keyboard).</p>
-<p>Rather than choosing randomly, what if we pick our next note relative to the
-current one?</p>
+<h2><a class="anchor" aria-hidden="true" id="relative-notes"></a><a href="#relative-notes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relative notes</h2>
+<p>If we think about taking a walk, even if we're just wandering, we're not taking
+random steps and leaps. Our movements have direction, each step is related to
+the previous ones to keep us moving along a certain path.</p>
+<p>Rather than choosing randomly, we can pick our next note relative to the current
+one.</p>
 <pre><code class="hljs css language-js">navigator.requestMIDIAccess().then(<span class="hljs-function"><span class="hljs-params">midi</span> =&gt;</span> {
   <span class="hljs-keyword">const</span> outputs = midi.outputs.values();
   <span class="hljs-keyword">let</span> output = outputs.next().value;
@@ -215,18 +169,24 @@ current one?</p>
   play(startNote, startVelocity);
 });
 </code></pre>
-<p><img src="images/05_05_relative_notes.png" alt=""></p>
-<p>This gives us something that has more of a flow, but we still have limited
-control.</p>
+<p><details>
+<summary>Listen</summary>
+<img src="/gem/docs/assets/walker/relative.png" alt="">
+<audio src="/gem/docs/assets/walker/relative.mp3" controls></audio>
+</details></p>
+<p>This gives us something that has more of a flow and sense of direction. We've
+constrained the options from all possible notes, to just those that are 5 notes
+(a 5th) either up or down from the current note. This gives us some control, but
+we're still very much at the whim of chaos to determine our path.</p>
 <h2><a class="anchor" aria-hidden="true" id="probability"></a><a href="#probability" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Probability</h2>
-<p>We can still use randomness, but weigh the odds to favour specific outcomes.</p>
+<p>By applying probability, we can still employ randomness, but weigh the odds to
+favour specific outcomes. Adjusting the weights, we can influence how our
+program behaves.</p>
 <pre><code class="hljs css language-js">navigator.requestMIDIAccess().then(<span class="hljs-function"><span class="hljs-params">midi</span> =&gt;</span> {
   <span class="hljs-keyword">const</span> outputs = midi.outputs.values();
   <span class="hljs-keyword">let</span> output = outputs.next().value;
 
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">random</span>(<span class="hljs-params">min, max</span>) </span>{
-    min = <span class="hljs-built_in">Math</span>.ceil(min);
-    max = <span class="hljs-built_in">Math</span>.floor(max);
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * (max - min + <span class="hljs-number">1</span>)) + min;
   }
 
@@ -264,17 +224,62 @@ control.</p>
   play(startNote);
 });
 </code></pre>
-<p><img src="images/05_06_probability.png" alt=""></p>
-<h2><a class="anchor" aria-hidden="true" id="gaussian-normal-distribution"></a><a href="#gaussian-normal-distribution" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Gaussian / normal distribution</h2>
-<p>Probability is one way to reign in pure randomness. Another way is to emulate a
-common pattern found in nature, where values will tend to cluster around a
-certain range, otherwise known as normal distribution (in contrast to
+<p><details>
+<summary>Listen</summary>
+<img src="/gem/docs/assets/walker/probability.png" alt="">
+<audio src="/gem/docs/assets/walker/probability.mp3" controls></audio>
+</details></p>
+<p>Here, we've weighed the odds to favour going up the scale. We'll sometimes dip
+downwards, but the results will always trend upwards over time.</p>
+<p>This is the first example where we start to see some of the creative decisions
+and tradeoffs we can make, e.g. how do we balance things so we don't always end
+up playing only the highest notes?</p>
+<h2><a class="anchor" aria-hidden="true" id="normal-distribution"></a><a href="#normal-distribution" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Normal distribution</h2>
+<p>Probability is one way to reign pure randomness. Another way is to emulate a
+common pattern found in nature, where values tend to cluster around a certain
+range, otherwise known as normal (or Gaussian) distribution (in contrast to pure
 randomness, which aims for uniform distribution). This maps well to music, where
-melodies tend to use a fairly narrow range of notes and steps, rather than large
-jumps.</p>
+melodies tend to use a narrow range of notes and steps.</p>
+<p><img src="/gem/docs/assets/walker/distributions.svg" alt=""></p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> random <span class="hljs-keyword">from</span> <span class="hljs-string">'random'</span>;
+<span class="hljs-keyword">import</span> clamp <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash'</span>;
+<span class="hljs-keyword">import</span> { instrument, metronome, midi } <span class="hljs-keyword">from</span> <span class="hljs-string">'gem'</span>;
+
+midi().then(<span class="hljs-function"><span class="hljs-params">output</span> =&gt;</span> {
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">playNote</span>(<span class="hljs-params">note, length, velocity</span>) </span>{
+    <span class="hljs-keyword">let</span> noteOn = <span class="hljs-number">144</span>;
+    <span class="hljs-keyword">let</span> noteOff = <span class="hljs-number">128</span>;
+
+    output.send([noteOn, note, velocity]);
+    output.send([noteOff, note, velocity], <span class="hljs-built_in">window</span>.performance.now() + length);
+  }
+
+  <span class="hljs-comment">// A mean of middle C with a small deviation</span>
+  <span class="hljs-keyword">let</span> noteGen = random.normal(<span class="hljs-number">60</span>, <span class="hljs-number">3</span>);
+
+  <span class="hljs-comment">// A mean of half velocity with a large deviation</span>
+  <span class="hljs-keyword">let</span> velGen = random.normal(<span class="hljs-number">64</span>, <span class="hljs-number">20</span>);
+
+  <span class="hljs-keyword">let</span> length = <span class="hljs-number">200</span>;
+
+  setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-comment">// We need to 'clamp' these values to prevent them straying out of range</span>
+    <span class="hljs-keyword">let</span> note = clamp(<span class="hljs-built_in">Math</span>.round(noteGen()), <span class="hljs-number">21</span>, <span class="hljs-number">108</span>);
+    <span class="hljs-keyword">let</span> velocity = clamp(<span class="hljs-built_in">Math</span>.round(velGen()), <span class="hljs-number">0</span>, <span class="hljs-number">127</span>);
+    playNote(note, length, velocity);
+  }, length);
+});
+</code></pre>
+<p><details>
+<summary>Listen</summary>
+<img src="/gem/docs/assets/walker/normal.png" alt="">
+<audio src="/gem/docs/assets/walker/normal.mp3" controls></audio>
+</details></p>
+<p>Here, the notes cluster around middle C and medium velocity. By increasing the
+deviation from the mean we can introduce more variation.</p>
 <ul>
 <li>Perlin noise</li>
 <li>Notes from scale</li>
 <li>Intervals?</li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-1-27</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/gem/docs/examples/hello-world"><span class="arrow-prev">← </span><span>Hello World</span></a><a class="docs-next button" href="/gem/docs/api/midi"><span>midi</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#a-single-note">A single note</a></li><li><a href="#repeating-notes">Repeating notes</a></li><li><a href="#random-notes">Random notes</a></li><li><a href="#more-randomness">More randomness</a></li><li><a href="#relative-notes">Relative notes</a></li><li><a href="#probability">Probability</a></li><li><a href="#gaussian-normal-distribution">Gaussian / normal distribution</a></li></ul></nav></div></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-2-16</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/gem/docs/examples/hello-world"><span class="arrow-prev">← </span><span>Hello World</span></a><a class="docs-next button" href="/gem/docs/api/midi"><span>midi</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#random-notes">Random notes</a></li><li><a href="#more-randomness">More randomness</a></li><li><a href="#relative-notes">Relative notes</a></li><li><a href="#probability">Probability</a></li><li><a href="#normal-distribution">Normal distribution</a></li></ul></nav></div></div></body></html>
