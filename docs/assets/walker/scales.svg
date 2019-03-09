@@ -1,0 +1,71 @@
+<svg height="300" viewBox="0 0 90 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="scales">
+<rect width="90" height="41" fill="white"/>
+<rect id="Rectangle-path" x="85" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_2" x="33" y="1" width="4" height="30" stroke="black" stroke-width="0.125"/>
+<rect id="Rectangle-path_3" x="37" y="1" width="4" height="30" stroke="black" stroke-width="0.125"/>
+<rect id="Rectangle-path_4" x="41" y="1" width="4" height="30" stroke="black" stroke-width="0.125"/>
+<rect id="Rectangle-path_5" x="45" y="1" width="4" height="30" stroke="black" stroke-width="0.125"/>
+<rect id="Rectangle-path_6" x="49" y="1" width="4" height="30" stroke="black" stroke-width="0.125"/>
+<rect id="Rectangle-path_7" x="53" y="1" width="4" height="30" stroke="black" stroke-width="0.125"/>
+<rect id="Rectangle-path_8" x="36" y="1" width="2" height="20" fill="black"/>
+<rect id="Rectangle-path_9" x="44" y="1" width="2" height="20" fill="black"/>
+<rect id="Rectangle-path_10" x="48" y="1" width="2" height="20" fill="black"/>
+<rect id="Rectangle-path_11" x="52" y="1" width="2" height="20" fill="black"/>
+<rect id="Rectangle-path_12" x="69" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_13" x="73" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_14" x="77" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_15" x="81" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_16" x="72" y="1" width="2" height="20" fill="#F2F2F2"/>
+<rect id="Rectangle-path_17" x="76" y="1" width="2" height="20" fill="#F2F2F2"/>
+<rect id="Rectangle-path_18" x="80" y="1" width="2" height="20" fill="#F2F2F2"/>
+<rect id="Rectangle-path_19" x="1" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_20" x="5" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_21" x="9" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_22" x="13" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_23" x="17" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_24" x="21" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_25" x="25" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_26" x="4" y="1" width="2" height="20" fill="#F2F2F2"/>
+<rect id="Rectangle-path_27" x="8" y="1" width="2" height="20" fill="#F2F2F2"/>
+<rect id="Rectangle-path_28" x="16" y="1" width="2" height="20" fill="#F2F2F2"/>
+<rect id="Rectangle-path_29" x="20" y="1" width="2" height="20" fill="#F2F2F2"/>
+<rect id="Rectangle-path_30" x="24" y="1" width="2" height="20" fill="#F2F2F2"/>
+<rect id="Rectangle-path_31" x="61" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_32" x="65" y="1" width="4" height="30" stroke="#F2F2F2" stroke-width="0.125"/>
+<rect id="Rectangle-path_33" x="64" y="1" width="2" height="20" fill="#F2F2F2"/>
+<path id="Line" d="M29 38L61 38" stroke="#E0E0E0" stroke-width="0.5" stroke-linecap="square"/>
+<g id="Group">
+<rect id="Rectangle" x="40" y="36" width="11" height="4" fill="white"/>
+<path id="88 keys" d="M42.2123 37.1363C41.6689 37.1363 41.3287 37.5007 41.3287 38.0847C41.3287 38.6674 41.6689 39.0317 42.2123 39.0317C42.7544 39.0317 43.0959 38.6674 43.0959 38.0847C43.0959 37.5007 42.7544 37.1363 42.2123 37.1363ZM42.2123 37.4563C42.5119 37.4563 42.7036 37.7 42.7036 38.0847C42.7036 38.4681 42.5119 38.7105 42.2123 38.7105C41.9114 38.7105 41.7197 38.4681 41.7197 38.0847C41.7197 37.7 41.9127 37.4563 42.2123 37.4563ZM44.5566 38.1456C44.5401 37.8371 44.3065 37.6099 43.9383 37.6099C43.5308 37.6099 43.2705 37.8815 43.2705 38.3183C43.2705 38.7626 43.5308 39.0292 43.9409 39.0292C44.2989 39.0292 44.5388 38.8223 44.5578 38.5011H44.2125C44.1897 38.6496 44.0932 38.7385 43.9447 38.7385C43.7606 38.7385 43.6463 38.5861 43.6463 38.3183C43.6463 38.0555 43.7606 37.9006 43.9434 37.9006C44.0957 37.9006 44.191 38.0021 44.2125 38.1456H44.5566ZM44.8442 37.3255V37.6391H44.6525V37.9184H44.8442V38.6331C44.8442 38.8984 44.9686 39.0051 45.2885 39.0051C45.3634 39.0051 45.4269 38.9987 45.465 38.9898V38.7169C45.4422 38.7207 45.4079 38.7232 45.3749 38.7232C45.2657 38.7232 45.2149 38.6737 45.2149 38.5696V37.9184H45.4663V37.6391H45.2149V37.3255H44.8442ZM46.1906 38.7537C46.0649 38.7537 45.9812 38.6902 45.9812 38.5887C45.9812 38.4922 46.0599 38.43 46.1982 38.4198L46.4852 38.4021V38.5011C46.4852 38.6483 46.3519 38.7537 46.1906 38.7537ZM46.0687 39.0216C46.2389 39.0216 46.4077 38.9365 46.4839 38.7918H46.4915V39H46.8495V38.0644C46.8495 37.7901 46.6223 37.6099 46.2731 37.6099C45.9126 37.6099 45.6879 37.7914 45.6739 38.0555H46.0129C46.0307 37.9552 46.1183 37.8866 46.2566 37.8866C46.3963 37.8866 46.4852 37.9603 46.4852 38.0872V38.1773L46.1424 38.1977C45.8034 38.218 45.613 38.3614 45.613 38.609C45.613 38.854 45.8098 39.0216 46.0687 39.0216ZM48.3343 37.6391H47.9471L47.6653 38.6725H47.6576L47.3745 37.6391H46.9772L47.4482 39H47.8671L48.3343 37.6391ZM49.0447 37.8841C49.2097 37.8841 49.3227 38.0034 49.3303 38.1773H48.7527C48.7654 38.0072 48.8822 37.8841 49.0447 37.8841ZM49.3354 38.5836C49.3011 38.6877 49.197 38.755 49.0612 38.755C48.872 38.755 48.7489 38.6217 48.7489 38.4274V38.4046H49.6871V38.2916C49.6871 37.8777 49.437 37.6099 49.0409 37.6099C48.6384 37.6099 48.3845 37.8917 48.3845 38.3259C48.3845 38.7613 48.6359 39.0292 49.0549 39.0292C49.3913 39.0292 49.635 38.8502 49.6757 38.5836H49.3354Z" fill="black"/>
+</g>
+<path id="A0" d="M31.1104 35.0366C31.6289 35.0366 31.9907 34.7378 32.0405 34.2661H31.6099C31.563 34.5166 31.374 34.6704 31.1118 34.6704C30.7734 34.6704 30.561 34.3921 30.561 33.9409C30.561 33.4956 30.7764 33.2158 31.1104 33.2158C31.3682 33.2158 31.5674 33.3857 31.6084 33.645H32.0391C32.0054 33.1719 31.6187 32.8496 31.1104 32.8496C30.498 32.8496 30.1099 33.2612 30.1099 33.9424C30.1099 34.625 30.4951 35.0366 31.1104 35.0366Z" fill="black"/>
+<path id="A0_2" d="M59.1104 35.0366C59.6289 35.0366 59.9907 34.7378 60.0405 34.2661H59.6099C59.563 34.5166 59.374 34.6704 59.1118 34.6704C58.7734 34.6704 58.561 34.3921 58.561 33.9409C58.561 33.4956 58.7764 33.2158 59.1104 33.2158C59.3682 33.2158 59.5674 33.3857 59.6084 33.645H60.0391C60.0054 33.1719 59.6187 32.8496 59.1104 32.8496C58.498 32.8496 58.1099 33.2612 58.1099 33.9424C58.1099 34.625 58.4951 35.0366 59.1104 35.0366Z" fill="black"/>
+<circle id="Ellipse" cx="35" cy="29" r="1" fill="#BDBDBD"/>
+<circle id="Ellipse_2" cx="39" cy="29" r="1" fill="#BDBDBD"/>
+<circle id="Ellipse_3" cx="43" cy="29" r="1" fill="#BDBDBD"/>
+<circle id="Ellipse_4" cx="47" cy="29" r="1" fill="#BDBDBD"/>
+<circle id="Ellipse_5" cx="51" cy="29" r="1" fill="#BDBDBD"/>
+<circle id="Ellipse_6" cx="55" cy="29" r="1" fill="#BDBDBD"/>
+<circle id="Ellipse_7" cx="63" cy="29" r="1" fill="#F2F2F2"/>
+<circle id="Ellipse_8" cx="67" cy="29" r="1" fill="#F2F2F2"/>
+<circle id="Ellipse_9" cx="71" cy="29" r="1" fill="#F2F2F2"/>
+<circle id="Ellipse_10" cx="75" cy="29" r="1" fill="#F2F2F2"/>
+<circle id="Ellipse_11" cx="79" cy="29" r="1" fill="#F2F2F2"/>
+<circle id="Ellipse_12" cx="83" cy="29" r="1" fill="#F2F2F2"/>
+<circle id="Ellipse_13" cx="87" cy="29" r="1" fill="#F2F2F2"/>
+<circle id="Ellipse_14" cx="3" cy="29" r="1" fill="#F2F2F2"/>
+<circle id="Ellipse_15" cx="7" cy="29" r="1" fill="#F2F2F2"/>
+<circle id="Ellipse_16" cx="11" cy="29" r="1" fill="#F2F2F2"/>
+<circle id="Ellipse_17" cx="15" cy="29" r="1" fill="#F2F2F2"/>
+<circle id="Ellipse_18" cx="19" cy="29" r="1" fill="#F2F2F2"/>
+<circle id="Ellipse_19" cx="23" cy="29" r="1" fill="#F2F2F2"/>
+<circle id="Ellipse_20" cx="27" cy="29" r="1" fill="#F2F2F2"/>
+<rect id="Rectangle-path_34" x="29" y="1" width="4" height="30" stroke="black" stroke-width="0.125"/>
+<rect id="Rectangle-path_35" x="32" y="1" width="2" height="20" fill="black"/>
+<circle id="Ellipse_21" cx="31" cy="29" r="1" fill="#BDBDBD"/>
+<circle id="Ellipse_22" cx="59" cy="29" r="1" fill="#BDBDBD"/>
+<rect id="Rectangle-path_36" x="60" y="1" width="2" height="20" fill="#F2F2F2"/>
+<rect id="Rectangle-path_37" x="57" y="1" width="4" height="30" stroke="black" stroke-width="0.125"/>
+</g>
+</svg>

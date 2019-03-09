@@ -1,118 +1,104 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 218 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
-    <title>piano</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="piano" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Group" transform="translate(5.000000, 5.000000)" fill-rule="nonzero" stroke="#111111" stroke-width="0.125">
-            <rect id="Rectangle-path" fill="#FFFFFF" x="0" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="4" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="2" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="8" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="12" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="16" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="20" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="24" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="28" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="32" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="10" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="15" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="22" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="27" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="31" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="36" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="40" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="44" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="48" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="52" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="56" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="60" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="38" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="43" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="50" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="55" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="59" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="64" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="68" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="72" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="76" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="80" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="84" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="88" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="66" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="71" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="78" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="83" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="87" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="92" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="96" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="100" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="104" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="108" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="112" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="116" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="94" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="99" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="106" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="111" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="115" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="120" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="124" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="128" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="132" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="136" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="140" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="144" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="122" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="127" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="134" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="139" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="143" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="148" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="152" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="156" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="160" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="164" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="168" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="172" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="150" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="155" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="162" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="167" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="171" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="176" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="180" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="184" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="188" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="192" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="196" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="200" y="0" width="4" height="30"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="178" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="183" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="190" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="195" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#000000" x="199" y="0" width="3" height="20"></rect>
-            <rect id="Rectangle-path" fill="#FFFFFF" x="204" y="0" width="4" height="30"></rect>
-        </g>
-        <path d="M5.5,43.5 L212.5,43.5" id="Line" stroke="#D8D5D9" stroke-width="0.5" stroke-linecap="square" fill-rule="nonzero"></path>
-        <g id="Group-2" transform="translate(96.000000, 39.000000)">
-            <rect id="Rectangle" fill="#FFFFFF" fill-rule="nonzero" x="0" y="0" width="27" height="9"></rect>
-            <text id="88-keys" font-family="SFProDisplay-Bold, SF Pro Display" font-size="4" font-weight="bold" letter-spacing="0.00833333377" fill="#000000">
-                <tspan x="6" y="6">88 keys</tspan>
-            </text>
-        </g>
-        <text id="A0" font-family="SFProDisplay-Bold, SF Pro Display" font-size="3" font-weight="bold" letter-spacing="0.00625000056" fill="#000000">
-            <tspan x="5" y="40">A0</tspan>
-        </text>
-        <text id="21" font-family="SFProDisplay-Bold, SF Pro Display" font-size="3" font-weight="bold" letter-spacing="0.00625000056" fill="#000000">
-            <tspan x="5" y="49">21</tspan>
-        </text>
-        <text id="C8" font-family="SFProDisplay-Bold, SF Pro Display" font-size="3" font-weight="bold" letter-spacing="0.00625000056" fill="#000000">
-            <tspan x="208.893262" y="40">C8</tspan>
-        </text>
-        <text id="108" font-family="SFProDisplay-Bold, SF Pro Display" font-size="3" font-weight="bold" letter-spacing="0.00625000056" fill="#000000">
-            <tspan x="207.631641" y="49">108</tspan>
-        </text>
-    </g>
+<svg viewBox="0 0 218 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="piano">
+<rect width="218" height="54" fill="white"/>
+<g id="Group">
+<rect id="Rectangle-path" x="5" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_2" x="9" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_3" x="8" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_4" x="13" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_5" x="17" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_6" x="21" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_7" x="25" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_8" x="29" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_9" x="33" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_10" x="37" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_11" x="16" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_12" x="20" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_13" x="28" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_14" x="32" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_15" x="36" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_16" x="41" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_17" x="45" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_18" x="49" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_19" x="53" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_20" x="57" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_21" x="61" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_22" x="65" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_23" x="44" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_24" x="48" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_25" x="56" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_26" x="60" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_27" x="64" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_28" x="69" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_29" x="73" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_30" x="77" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_31" x="81" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_32" x="85" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_33" x="89" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_34" x="93" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_35" x="72" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_36" x="76" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_37" x="84" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_38" x="88" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_39" x="92" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_40" x="97" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_41" x="101" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_42" x="105" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_43" x="109" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_44" x="113" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_45" x="117" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_46" x="121" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_47" x="100" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_48" x="104" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_49" x="112" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_50" x="116" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_51" x="120" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_52" x="125" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_53" x="129" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_54" x="133" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_55" x="137" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_56" x="141" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_57" x="145" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_58" x="149" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_59" x="128" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_60" x="132" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_61" x="140" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_62" x="144" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_63" x="148" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_64" x="153" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_65" x="157" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_66" x="161" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_67" x="165" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_68" x="169" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_69" x="173" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_70" x="177" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_71" x="156" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_72" x="160" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_73" x="168" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_74" x="172" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_75" x="176" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_76" x="181" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_77" x="185" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_78" x="189" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_79" x="193" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_80" x="197" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_81" x="201" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_82" x="205" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_83" x="184" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_84" x="188" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_85" x="196" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_86" x="200" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_87" x="204" y="5" width="2" height="20" fill="black" stroke="#111111" stroke-width="0.125"/>
+<rect id="Rectangle-path_88" x="209" y="5" width="4" height="30" fill="white" stroke="#111111" stroke-width="0.125"/>
+</g>
+<path id="Line" d="M5.5 43.5H212.5" stroke="#D8D5D9" stroke-width="0.5" stroke-linecap="square"/>
+<g id="Group 2">
+<rect id="Rectangle" x="96" y="39" width="27" height="9" fill="white"/>
+<path id="88 keys" d="M103.305 45.0625C103.982 45.0625 104.447 44.7266 104.447 44.2383C104.447 43.8672 104.18 43.5801 103.785 43.5137V43.502C104.113 43.4238 104.332 43.1719 104.332 42.8652C104.332 42.4316 103.91 42.1191 103.305 42.1191C102.701 42.1191 102.275 42.4336 102.275 42.8633C102.275 43.1738 102.496 43.4258 102.824 43.502V43.5137C102.432 43.5781 102.162 43.8652 102.162 44.2363C102.162 44.7246 102.621 45.0625 103.305 45.0625ZM103.305 44.6328C102.994 44.6328 102.777 44.4473 102.777 44.1934C102.777 43.9395 102.994 43.7539 103.305 43.7539C103.615 43.7539 103.83 43.9395 103.83 44.1934C103.83 44.4473 103.615 44.6328 103.305 44.6328ZM103.305 43.3242C103.043 43.3242 102.859 43.1602 102.859 42.9355C102.859 42.7109 103.043 42.5449 103.305 42.5449C103.564 42.5449 103.75 42.709 103.75 42.9355C103.75 43.1602 103.564 43.3242 103.305 43.3242ZM105.922 45.0625C106.6 45.0625 107.065 44.7266 107.065 44.2383C107.065 43.8672 106.797 43.5801 106.403 43.5137V43.502C106.731 43.4238 106.95 43.1719 106.95 42.8652C106.95 42.4316 106.528 42.1191 105.922 42.1191C105.319 42.1191 104.893 42.4336 104.893 42.8633C104.893 43.1738 105.114 43.4258 105.442 43.502V43.5137C105.049 43.5781 104.78 43.8652 104.78 44.2363C104.78 44.7246 105.239 45.0625 105.922 45.0625ZM105.922 44.6328C105.612 44.6328 105.395 44.4473 105.395 44.1934C105.395 43.9395 105.612 43.7539 105.922 43.7539C106.233 43.7539 106.448 43.9395 106.448 44.1934C106.448 44.4473 106.233 44.6328 105.922 44.6328ZM105.922 43.3242C105.661 43.3242 105.477 43.1602 105.477 42.9355C105.477 42.7109 105.661 42.5449 105.922 42.5449C106.182 42.5449 106.368 42.709 106.368 42.9355C106.368 43.1602 106.182 43.3242 105.922 43.3242ZM108.814 43.7461H108.806V42.1816H108.236V45H108.806V44.3086L108.955 44.1484L109.554 45H110.211L109.373 43.8047L110.171 42.9062H109.525L108.814 43.7461ZM111.225 43.2832C111.479 43.2832 111.652 43.4668 111.664 43.7344H110.776C110.795 43.4727 110.975 43.2832 111.225 43.2832ZM111.672 44.3594C111.619 44.5195 111.459 44.623 111.25 44.623C110.959 44.623 110.77 44.418 110.77 44.1191V44.084H112.213V43.9102C112.213 43.2734 111.828 42.8613 111.219 42.8613C110.6 42.8613 110.209 43.2949 110.209 43.9629C110.209 44.6328 110.596 45.0449 111.24 45.0449C111.758 45.0449 112.133 44.7695 112.195 44.3594H111.672ZM112.753 45.7754C113.288 45.7754 113.549 45.584 113.729 45.0469L114.45 42.9062H113.848L113.403 44.543H113.393L112.948 42.9062H112.321L113.049 45.002C113.053 45.0098 113.032 45.0938 113.032 45.1016C112.993 45.2676 112.889 45.334 112.68 45.334C112.659 45.334 112.555 45.334 112.538 45.3301V45.7695C112.555 45.7734 112.733 45.7754 112.753 45.7754ZM114.618 43.5215C114.618 43.8301 114.821 44.0371 115.218 44.127L115.605 44.2129C115.792 44.2578 115.863 44.3164 115.863 44.4219C115.863 44.5586 115.732 44.6445 115.515 44.6445C115.288 44.6445 115.15 44.543 115.122 44.3672H114.566C114.597 44.7754 114.941 45.0449 115.499 45.0449C116.052 45.0449 116.431 44.7734 116.431 44.3613C116.431 44.0488 116.261 43.8828 115.841 43.7891L115.441 43.7031C115.257 43.6602 115.167 43.5898 115.167 43.4863C115.167 43.3516 115.296 43.2617 115.493 43.2617C115.704 43.2617 115.839 43.3652 115.851 43.5332H116.376C116.368 43.127 116.027 42.8613 115.501 42.8613C114.964 42.8613 114.618 43.123 114.618 43.5215Z" fill="black"/>
+</g>
+<path id="A0" d="M6.56006 40H7.03027L6.29492 37.8862H5.7749L5.04102 40H5.49512L5.65625 39.4873H6.39893L6.56006 40ZM6.02246 38.2905H6.03271L6.30371 39.1562H5.75146L6.02246 38.2905ZM8.01064 40.0469C8.54238 40.0469 8.86465 39.6206 8.86465 38.938C8.86465 38.2554 8.53945 37.8379 8.01064 37.8379C7.48184 37.8379 7.15518 38.2568 7.15518 38.9395C7.15518 39.6235 7.47891 40.0469 8.01064 40.0469ZM8.01064 39.6924C7.75869 39.6924 7.60488 39.4199 7.60488 38.9395C7.60488 38.4634 7.76162 38.1924 8.01064 38.1924C8.26113 38.1924 8.41494 38.4619 8.41494 38.9395C8.41494 39.4214 8.2626 39.6924 8.01064 39.6924Z" fill="black"/>
+<path id="21" d="M5.12451 47.522V47.5293H5.53467V47.522C5.53467 47.3271 5.68555 47.1836 5.89062 47.1836C6.08691 47.1836 6.22607 47.3096 6.22607 47.4678C6.22607 47.6143 6.16016 47.7212 5.94629 47.9351L5.14941 48.7026V49H6.68604V48.6484H5.73242V48.6396L6.24805 48.1431C6.48096 47.9116 6.65674 47.7139 6.65674 47.4502C6.65674 47.0972 6.35059 46.8394 5.90527 46.8394C5.44385 46.8394 5.12451 47.1221 5.12451 47.522ZM7.49502 49H7.93301V46.8862H7.49355L6.94717 47.2656V47.6641L7.48623 47.292H7.49502V49Z" fill="black"/>
+<path id="C8" d="M210.002 40.0366C210.521 40.0366 210.883 39.7378 210.932 39.2661H210.502C210.455 39.5166 210.266 39.6704 210.004 39.6704C209.665 39.6704 209.453 39.3921 209.453 38.9409C209.453 38.4956 209.668 38.2158 210.002 38.2158C210.26 38.2158 210.459 38.3857 210.5 38.645H210.931C210.897 38.1719 210.51 37.8496 210.002 37.8496C209.39 37.8496 209.002 38.2612 209.002 38.9424C209.002 39.625 209.387 40.0366 210.002 40.0366ZM212.015 40.0469C212.524 40.0469 212.872 39.7949 212.872 39.4287C212.872 39.1504 212.671 38.9351 212.376 38.8853V38.8765C212.622 38.8179 212.786 38.6289 212.786 38.3989C212.786 38.0737 212.469 37.8394 212.015 37.8394C211.563 37.8394 211.243 38.0752 211.243 38.3975C211.243 38.6304 211.409 38.8193 211.655 38.8765V38.8853C211.36 38.9336 211.158 39.1489 211.158 39.4272C211.158 39.7935 211.503 40.0469 212.015 40.0469ZM212.015 39.7246C211.782 39.7246 211.62 39.5854 211.62 39.395C211.62 39.2046 211.782 39.0654 212.015 39.0654C212.248 39.0654 212.409 39.2046 212.409 39.395C212.409 39.5854 212.248 39.7246 212.015 39.7246ZM212.015 38.7432C211.819 38.7432 211.681 38.6201 211.681 38.4517C211.681 38.2832 211.819 38.1587 212.015 38.1587C212.21 38.1587 212.349 38.2817 212.349 38.4517C212.349 38.6201 212.21 38.7432 212.015 38.7432Z" fill="black"/>
+<path id="108" d="M208.307 49H208.745V46.8862H208.305L207.759 47.2656V47.6641L208.298 47.292H208.307V49ZM210.053 49.0469C210.585 49.0469 210.907 48.6206 210.907 47.938C210.907 47.2554 210.582 46.8379 210.053 46.8379C209.525 46.8379 209.198 47.2568 209.198 47.9395C209.198 48.6235 209.522 49.0469 210.053 49.0469ZM210.053 48.6924C209.801 48.6924 209.648 48.4199 209.648 47.9395C209.648 47.4634 209.804 47.1924 210.053 47.1924C210.304 47.1924 210.458 47.4619 210.458 47.9395C210.458 48.4214 210.305 48.6924 210.053 48.6924ZM212.015 49.0469C212.524 49.0469 212.872 48.7949 212.872 48.4287C212.872 48.1504 212.671 47.9351 212.376 47.8853V47.8765C212.622 47.8179 212.786 47.6289 212.786 47.3989C212.786 47.0737 212.469 46.8394 212.015 46.8394C211.563 46.8394 211.243 47.0752 211.243 47.3975C211.243 47.6304 211.409 47.8193 211.655 47.8765V47.8853C211.36 47.9336 211.158 48.1489 211.158 48.4272C211.158 48.7935 211.503 49.0469 212.015 49.0469ZM212.015 48.7246C211.782 48.7246 211.62 48.5854 211.62 48.395C211.62 48.2046 211.782 48.0654 212.015 48.0654C212.248 48.0654 212.409 48.2046 212.409 48.395C212.409 48.5854 212.248 48.7246 212.015 48.7246ZM212.015 47.7432C211.819 47.7432 211.681 47.6201 211.681 47.4517C211.681 47.2832 211.819 47.1587 212.015 47.1587C212.21 47.1587 212.349 47.2817 212.349 47.4517C212.349 47.6201 212.21 47.7432 212.015 47.7432Z" fill="black"/>
+</g>
 </svg>
