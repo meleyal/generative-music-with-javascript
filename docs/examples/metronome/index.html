@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Metronome · Gen.js</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;repeating-note&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#repeating-note&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Repeating note&lt;/h2&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Metronome · Gen.js"/><meta property="og:type" content="website"/><meta property="og:url" content="https://meleyal.github.io/gen/index.html"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;repeating-note&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#repeating-note&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Repeating note&lt;/h2&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/gen/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"/><script type="text/javascript" src="/gen/js/index.js"></script><link rel="stylesheet" href="/gen/css/main.css"/><script src="/gen/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/gen/"><h2 class="headerTitle">Gen.js</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/gen/docs/introduction" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/gen/docs/api/" target="_self">API</a></li><li class=""><a href="https://github.com/meleyal/gen" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Examples</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Welcome</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/introduction">Introduction</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Primers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/primers/generative">Generative</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/primers/music">Music</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/primers/javascript">JavaScript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Examples</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/examples/sampler">Sampler</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/gen/docs/examples/metronome">Metronome</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/examples/walker">Walker</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/examples/matrix">Matrix</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/api/">API Reference</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Appendix</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/appendix/links">Links</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/appendix/forms">Forms</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Metronome</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="repeating-note"></a><a href="#repeating-note" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Repeating note</h2>
+<h3><a class="anchor" aria-hidden="true" id="setinterval-settimeout"></a><a href="#setinterval-settimeout" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>setInterval</code> &amp; <code>setTimeout</code></h3>
+<p>To repeat a note we <em>could</em> do the following:</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Repeat every 1 second</span>
+setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> sourceNode = context.createBufferSource()
+  sourceNode.buffer = audioBuffer
+  sourceNode.connect(context.destination)
+  sourceNode.start()
+}, <span class="hljs-number">1000</span>)
+</code></pre>
+<p>The problem with JavaScript's standard <code>setInterval</code> and <code>setTimeout</code> functions
+is that they are not guaranteed to run exactly on schedule. Depending what else
+is happening on the page, they may be delayed while the browser catches up. This
+is fine for most use-cases, where millisecond delays in e.g. showing a
+notification would be unnoticeable, but with music these lags can be very
+obvious.</p>
+<h3><a class="anchor" aria-hidden="true" id="scheduling"></a><a href="#scheduling" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Scheduling</h3>
+<p>Instead, the Web Audio API has the concept of scheduling. When you create an
+<code>AudioContext</code>, it begins counting from 0. We can check it's current time as
+follows:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> context = <span class="hljs-keyword">new</span> AudioContext()
+
+<span class="hljs-built_in">console</span>.log(context.currentTime) <span class="hljs-comment">// =&gt; 0</span>
+
+setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(context.currentTime) <span class="hljs-comment">// =&gt; 0.9984580498866213</span>
+}, <span class="hljs-number">1000</span>)
+</code></pre>
+<blockquote>
+<h4><a class="anchor" aria-hidden="true" id="contextcurrenttime-uses-seconds-not-milliseconds"></a><a href="#contextcurrenttime-uses-seconds-not-milliseconds" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>context.currentTime</code> uses seconds <em>not</em> milliseconds</h4>
+<p>Unlike most timing-related features in JavaScript, the audio clock uses
+seconds, not milliseconds, with all scheduling happening relative to
+<code>currentTime</code>.</p>
+</blockquote>
+<p>We can't control this internal clock, but we can schedule events relative to it:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> context = <span class="hljs-keyword">new</span> AudioContext()
+<span class="hljs-keyword">const</span> now = context.currentTime
+
+<span class="hljs-comment">// Play immediately</span>
+<span class="hljs-keyword">const</span> sourceNode1 = context.createBufferSource()
+sourceNode1.buffer = audioBuffer
+sourceNode1.connect(context.destination)
+sourceNode1.start(now)
+
+<span class="hljs-comment">// Play after 1 second</span>
+<span class="hljs-keyword">const</span> sourceNode2 = context.createBufferSource()
+sourceNode2.buffer = audioBuffer
+sourceNode2.connect(context.destination)
+sourceNode2.start(now + <span class="hljs-number">1</span>)
+
+<span class="hljs-comment">// Play after 2 seconds</span>
+<span class="hljs-keyword">const</span> sourceNode3 = context.createBufferSource()
+sourceNode3.buffer = audioBuffer
+sourceNode3.connect(context.destination)
+sourceNode3.start(now + <span class="hljs-number">2</span>)
+</code></pre>
+<blockquote>
+<h4><a class="anchor" aria-hidden="true" id="audiobuffersourcenode-s-can-only-be-played-once"></a><a href="#audiobuffersourcenode-s-can-only-be-played-once" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>AudioBufferSourceNode</code>s can only be played once</h4>
+<p>It's worthing noting that in the above code we create three separate
+<code>sourceNode</code>s, each using the same <code>audioBuffer</code>. Once started, an
+<code>AudioBufferSourceNode</code> cannot be played again. The expensive part of working
+with samples is loading and decoding them, so the idea is to keep around
+<code>AudioBuffer</code>s, while freely creating and discarding <code>AudioBufferSourceNode</code>s.
+They are intended to be &quot;fire and forget&quot;, and are automatically garbage
+collected when they finish playing.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="metronome"></a><a href="#metronome" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Metronome</h3>
+<p>Most music-making apps have some form of metronome, something that emits a
+steady pulse given a BPM (beats per minute). Instruments and effects sync to
+this pulse, ensuring that everything plays back in time.</p>
+<p>We can create a basic metronome that emits a sound every beat using an
+<code>OscillatorNode</code> and taking advantage of its
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode/onended"><code>onended</code></a>
+event. Passing in a callback, we can then schedule anything we want relative to
+the beat.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> context = <span class="hljs-keyword">new</span> AudioContext()
+
+<span class="hljs-keyword">const</span> metronome = <span class="hljs-function">(<span class="hljs-params">bpm = <span class="hljs-number">60</span>, callback, currentBeat = <span class="hljs-number">1</span></span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> now = context.currentTime
+
+  <span class="hljs-comment">// How many beats fit in a single second at the given bpm? e.g.</span>
+  <span class="hljs-comment">// 60 bpm = 1 beat per second</span>
+  <span class="hljs-comment">// 120 bpm = 2 beats per second</span>
+  <span class="hljs-comment">// 240 bpm = 4 beats per second</span>
+  <span class="hljs-keyword">const</span> beatsPerSecond = bpm / <span class="hljs-number">60.0</span>
+
+  <span class="hljs-comment">// Our base unit is a quarter note. This defines how many quarter notes fit</span>
+  <span class="hljs-comment">// in a single bar. For now let's use common 4/4 time.</span>
+  <span class="hljs-keyword">const</span> quarterBeatsPerBar = <span class="hljs-number">4</span>
+
+  <span class="hljs-comment">// Multiplying the number of beats in 1 second by the number of quarter</span>
+  <span class="hljs-comment">// beats in a bar, we get the actual number of beats we want in a single bar e.g.</span>
+  <span class="hljs-comment">// 1 beat per second * 4 = 4 beats per bar</span>
+  <span class="hljs-comment">// 2 beat per second * 4 = 8 beats per bar</span>
+  <span class="hljs-comment">// 4 beat per second * 4 = 16 beats per bar</span>
+  <span class="hljs-keyword">const</span> beatsPerBar = beatsPerSecond * quarterBeatsPerBar
+
+  <span class="hljs-comment">// Dividing the number of quarter beats by our actual beats per bar gives us</span>
+  <span class="hljs-comment">// the length of a single beat in milliseconds.</span>
+  <span class="hljs-keyword">const</span> beatLength = quarterBeatsPerBar / beatsPerBar
+
+  <span class="hljs-comment">// console.log(beatsPerSecond, beatsPerBar, beatLength)</span>
+  <span class="hljs-comment">// return</span>
+
+  <span class="hljs-keyword">const</span> freq = currentBeat % beatsPerBar == <span class="hljs-number">1</span> ? <span class="hljs-number">440</span> : <span class="hljs-number">880</span>
+  <span class="hljs-keyword">const</span> zero = <span class="hljs-number">0.00001</span>
+
+  <span class="hljs-keyword">let</span> gainNode = context.createGain()
+  <span class="hljs-keyword">let</span> osc = context.createOscillator()
+  gainNode.connect(context.destination)
+  osc.connect(gainNode)
+
+  gainNode.gain.exponentialRampToValueAtTime(zero, now + beatLength / <span class="hljs-number">16</span>)
+
+  osc.frequency.value = freq
+  osc.start(now)
+  osc.stop(now + beatLength)
+
+  callback(now)
+
+  osc.onended = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    metronome(bpm, callback, (currentBeat += <span class="hljs-number">1</span>))
+    osc = <span class="hljs-literal">null</span>
+    gainNode = <span class="hljs-literal">null</span>
+  }
+}
+
+metronome(<span class="hljs-number">60</span>, now =&gt; {
+  <span class="hljs-comment">// Here we can trigger any audio we want</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'boop!'</span>, now)
+})
+<span class="hljs-comment">// metronome(120)</span>
+<span class="hljs-comment">// metronome(240)</span>
+</code></pre>
+<p>For more details on how we derive the note length from the BPM, refer to the
+<a href="../primers/music#rhythm">Music Primer</a> chapter, which breaks this down with
+illustrations.</p>
+<p>While the musical results are less than inspiring, we now have a way to generate
+two key aspects of music: notes/pitch and rhythm/time, which combined can give
+us melody. With that in mind, we're ready to move on to a more interesting
+example.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-3</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/gen/docs/examples/sampler"><span class="arrow-prev">← </span><span>Sampler</span></a><a class="docs-next button" href="/gen/docs/examples/walker"><span>Walker</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#repeating-note">Repeating note</a><ul class="toc-headings"><li><a href="#setinterval-settimeout"><code>setInterval</code> &amp; <code>setTimeout</code></a></li><li><a href="#scheduling">Scheduling</a></li><li><a href="#metronome">Metronome</a></li></ul></li></ul></nav></div></div></body></html>
