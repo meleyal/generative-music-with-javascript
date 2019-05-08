@@ -1,0 +1,7 @@
+node_modules
+website/build/
+website/yarn.lock
+website/i18n/*
+
+*.mid
+.DS_Store

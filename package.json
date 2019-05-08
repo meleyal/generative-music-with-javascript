@@ -1,0 +1,10 @@
+{
+  "name": "@meleyal/gen-book",
+  "version": "0.0.4",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/meleyal/gen-book.git"
+  },
+  "author": "William Meleyal <william.meleyal@gmail.com>",
+  "license": "MIT"
+}

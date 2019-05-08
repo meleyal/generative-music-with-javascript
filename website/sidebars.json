@@ -1,0 +1,14 @@
+{
+  "docs": {
+    "Welcome": ["introduction"],
+    "Primers": ["primers/generative", "primers/music", "primers/javascript"],
+    "Examples": [
+      "examples/sampler",
+      "examples/metronome",
+      "examples/sequencer",
+      "examples/walker"
+    ],
+    "API": ["api/index"],
+    "Appendix": ["appendix/links", "appendix/forms"]
+  }
+}
