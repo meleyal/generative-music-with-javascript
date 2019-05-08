@@ -4,7 +4,7 @@ window.onload = () => {
   codeBlocks.forEach(block => {
     const btn = document.createElement('button')
     const code = block.textContent
-    btn.innerHTML = 'Play'
+    btn.innerHTML = 'Run'
     btn.onclick = () => {
       eval(code)
 
