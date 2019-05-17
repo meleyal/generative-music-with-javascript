@@ -1,10 +1,17 @@
 ---
-title: Metronome
+title: Timing
 ---
 
-## Repeating note
+The next step is to look at rhythm/tempo. Or how to play our notes over time. If
+we think of music in terms of axes, pitch is on the y axis, with time stretching
+out ahead on the x axis. This gives us the building block of rhythm, which is a
+foundation of melody.
 
-### `setInterval` & `setTimeout`
+## Timing models
+
+### Standard JavaScript timing
+
+JS has `setInterval` & `setTimeout`.
 
 To repeat a note we _could_ do the following:
 
@@ -25,7 +32,7 @@ is fine for most use-cases, where millisecond delays in e.g. showing a
 notification would be unnoticeable, but with music these lags can be very
 obvious.
 
-### Scheduling
+### Web Audio API timing
 
 Instead, the Web Audio API has the concept of scheduling. When you create an
 `AudioContext`, it begins counting from 0. We can check it's current time as
@@ -82,11 +89,13 @@ sourceNode3.start(now + 2)
 > They are intended to be "fire and forget", and are automatically garbage
 > collected when they finish playing.
 
-### Metronome
+## Metronome
 
 Most music-making apps have some form of metronome, something that emits a
 steady pulse given a BPM (beats per minute). Instruments and effects sync to
 this pulse, ensuring that everything plays back in time.
+
+### Version 1
 
 We can create a basic metronome that emits a sound every beat using an
 `OscillatorNode` and taking advantage of its
@@ -97,7 +106,7 @@ the beat.
 ```js
 const context = new AudioContext()
 
-const metronome = (bpm = 60, callback, currentBeat = 1) => {
+const metronome = (bpm = 60, callback, currentBeat = 0) => {
   const now = context.currentTime
 
   // How many beats fit in a single second at the given bpm? e.g.
@@ -124,15 +133,12 @@ const metronome = (bpm = 60, callback, currentBeat = 1) => {
   // console.log(beatsPerSecond, beatsPerBar, beatLength)
   // return
 
-  const freq = currentBeat % beatsPerBar == 1 ? 440 : 880
-  const zero = 0.00001
-
-  let gainNode = context.createGain()
-  let osc = context.createOscillator()
+  const freq = currentBeat % beatsPerBar == 1 ? 440 : 880const zero = 0const gainNode = context.createGain()
+  const osc = context.createOscillator()
   gainNode.connect(context.destination)
   osc.connect(gainNode)
 
-  gainNode.gain.exponentialRampToValueAtTime(zero, now + beatLength / 16)
+  gainNode.gain.linearRampToValueAtTime(zero, now + beatLength / 16)
 
   osc.frequency.value = freq
   osc.start(now)
@@ -158,6 +164,132 @@ metronome(60, now => {
 For more details on how we derive the note length from the BPM, refer to the
 [Music Primer](../primers/music#rhythm) chapter, which breaks this down with
 illustrations.
+
+### Version 2
+
+Currently our metronome only enables us to schedule notes to occur exactly on
+the beat. To increase our options we need to increase the resolution of the
+events the metronome emits.
+
+If we think of time as the x axis of a grid, resolution means how we subdivide
+that grid.
+
+As we saw in the [Music chapter](../primers/music), in traditional music
+notation we might call these divisions a "half note" or "quarter note", (or
+"minim" or "crotchet"), while in a pattern sequencer they are usually
+represented as fractions. Both refer to the same thing: how to subdivide a bar.
+
+Common subdivisions are 1/2, 1/4, 1/8, 1/16, 1/32, 1/64 and 1/128 (plus some
+tripconst divisions which we'll ignore for now).
+
+![](assets/sequencer/resolution.svg)
+
+Rather than passing in a callback to be triggered on the beat, we can instead
+extend our metronome to emit events at each subdivision and listen for those.
+
+```js
+const metronome = (context, bpm = 60) => {
+  const secondsPerBeat = 60.0 / bpm
+  const beatsPerBar = 4
+
+  const wholeNote = secondsPerBeat * beatsPerBar
+  const sixtyFourthNote = wholeNote / 64
+
+  const gainNode = context.createGain()
+  gainNode.connect(context.destination)
+  let osc
+
+  const tick = (currentBeat = 1) => {
+    const resolution = sixtyFourthNote
+    const now = context.currentTime
+
+    gainNode.gain.value = 0
+
+    osc = context.createOscillator()
+    osc.connect(gainNode)
+    osc.start()
+    osc.stop(now + resolution)
+
+    if (currentBeat === 1 || currentBeat % 16 === 0) {
+      gainNode.gain.value = 1
+      gainNode.gain.linearRampToValueAtTime(0, now + resolution)
+      osc.frequency.value = 400
+      callbacks['beat']()
+      callbacks['beat/4']()
+    } else if (currentBeat % 8 === 0) {
+      gainNode.gain.value = 1
+      gainNode.gain.linearRampToValueAtTime(0, now + resolution)
+      osc.frequency.value = 800
+      callbacks['beat/8']()
+    } else if (currentBeat % 4 === 0) {
+      gainNode.gain.value = 1
+      gainNode.gain.linearRampToValueAtTime(0, now + resolution)
+      osc.frequency.value = 1600
+      callbacks['beat/16']()
+    } else if (currentBeat % 2 === 0) {
+      gainNode.gain.value = 1
+      gainNode.gain.linearRampToValueAtTime(0, now + resolution)
+      osc.frequency.value = 3200
+      callbacks['beat/32']()
+    } else {
+      gainNode.gain.value = 1
+      gainNode.gain.linearRampToValueAtTime(0, now + resolution)
+      osc.frequency.value = 6400
+      callbacks['beat/64']()
+    }
+
+    osc.onended = () => {
+      tick((currentBeat += 1))
+    }
+  }
+
+  const stop = () => {
+    osc.onended = null
+    osc = null
+  }
+
+  const callbacks = {
+    beat: () => null,
+    'beat/4': () => null,
+    'beat/8': () => null,
+    'beat/16': () => null,
+    'beat/32': () => null,
+    'beat/64': () => null
+  }
+
+  const on = (event, fn) => {
+    callbacks[event] = fn
+  }
+
+  return {
+    start: tick,
+    stop,
+    on
+  }
+}
+
+const context = new AudioContext()
+
+const metro = metronome(context, 60)
+
+metro.on('beat', () => {
+  console.log('beat')
+})
+
+metro.on('beat/64', () => {
+  console.log('beat/64')
+})
+
+metro.start()
+
+setTimeout(() => {
+  metro.stop()
+}, 4000)
+```
+
+## Learning
+
+TODO: `metronome` is part of `gen` package, see API docs.
 
 While the musical results are less than inspiring, we now have a way to generate
 two key aspects of music: notes/pitch and rhythm/time, which combined can give

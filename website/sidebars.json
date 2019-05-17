@@ -3,9 +3,9 @@
     "Welcome": ["introduction"],
     "Primers": ["primers/generative", "primers/music", "primers/javascript"],
     "Examples": [
-      "examples/sampler",
-      "examples/metronome",
-      "examples/sequencer",
+      "examples/notes",
+      "examples/timing",
+      "examples/sequencing",
       "examples/walker"
     ],
     "API": ["api/index"],

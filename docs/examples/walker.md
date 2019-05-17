@@ -5,6 +5,8 @@ title: Walker
 This example shows how to introduce variation to our music through the idea of a
 random walk.
 
+## Definition
+
 In 2D graphics, a random walk involves drawing a path by repeatedly choosing a
 random direction in which to move. On this 2D plane, each step can be one of 4
 directions: up; down; left; right; (plus a 5th choice if you include not moving

@@ -53,14 +53,13 @@ these ideas to making some noise, and potentially, music! We begin by making
 some useful musical building blocks, and progress to explore the musical
 potential of different generative ideas:
 
-1. [**Sampler:**](examples/sampler) TODO: Summary
+1. [**Notes:**](examples/notes) TODO: Summary
 
-2. [**Metronome:**](examples/metronome) TODO: Summary
+2. [**Timing:**](examples/timing) TODO: Summary
 
-3. [**Walker:**](examples/walker) Taking a random walk around the keyboard.
+3. [**Sequencing:**](examples/sequencing) TODO: Summary
 
-4. [**Matrix:**](examples/matrix) Building a pattern sequencer. Transforming
-   patterns.
+4. [**Walker:**](examples/walker) Taking a random walk around the keyboard.
 
 5. More...
 
