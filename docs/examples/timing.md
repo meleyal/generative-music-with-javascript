@@ -133,7 +133,9 @@ const metronome = (bpm = 60, callback, currentBeat = 0) => {
   // console.log(beatsPerSecond, beatsPerBar, beatLength)
   // return
 
-  const freq = currentBeat % beatsPerBar == 1 ? 440 : 880const zero = 0const gainNode = context.createGain()
+  const freq = currentBeat % beatsPerBar == 1 ? 440 : 880
+  const zero = 0
+  const gainNode = context.createGain()
   const osc = context.createOscillator()
   gainNode.connect(context.destination)
   osc.connect(gainNode)
@@ -180,7 +182,10 @@ notation we might call these divisions a "half note" or "quarter note", (or
 represented as fractions. Both refer to the same thing: how to subdivide a bar.
 
 Common subdivisions are 1/2, 1/4, 1/8, 1/16, 1/32, 1/64 and 1/128 (plus some
-tripconst divisions which we'll ignore for now).
+triplet divisions which we'll ignore for now).
+
+If we presume a time signature of 4/4 (4 beats per bar), these resolutions break
+down as follows:
 
 ![](assets/sequencer/resolution.svg)
 
@@ -188,7 +193,7 @@ Rather than passing in a callback to be triggered on the beat, we can instead
 extend our metronome to emit events at each subdivision and listen for those.
 
 ```js
-const metronome = (context, bpm = 60) => {
+const metronome = (context, bpm = 60, options = { audible: false }) => {
   const secondsPerBeat = 60.0 / bpm
   const beatsPerBar = 4
 
@@ -199,7 +204,7 @@ const metronome = (context, bpm = 60) => {
   gainNode.connect(context.destination)
   let osc
 
-  const tick = (currentBeat = 1) => {
+  const tick = (currentBeat = 1, wholeBeat = 1) => {
     const resolution = sixtyFourthNote
     const now = context.currentTime
 
@@ -214,8 +219,9 @@ const metronome = (context, bpm = 60) => {
       gainNode.gain.value = 1
       gainNode.gain.linearRampToValueAtTime(0, now + resolution)
       osc.frequency.value = 400
-      callbacks['beat']()
-      callbacks['beat/4']()
+      callbacks['beat'](wholeBeat)
+      wholeBeat += 1
+      // callbacks['beat/4'](currentBeat)
     } else if (currentBeat % 8 === 0) {
       gainNode.gain.value = 1
       gainNode.gain.linearRampToValueAtTime(0, now + resolution)
@@ -239,7 +245,7 @@ const metronome = (context, bpm = 60) => {
     }
 
     osc.onended = () => {
-      tick((currentBeat += 1))
+      tick((currentBeat += 1), wholeBeat)
     }
   }
 
@@ -272,19 +278,63 @@ const context = new AudioContext()
 
 const metro = metronome(context, 60)
 
-metro.on('beat', () => {
-  console.log('beat')
+metro.on('beat', beat => {
+  console.log('beat', beat)
 })
 
-metro.on('beat/64', () => {
-  console.log('beat/64')
-})
+// metro.on('beat/64', beat => {
+//   console.log('beat/64')
+// })
 
 metro.start()
 
 setTimeout(() => {
   metro.stop()
 }, 4000)
+```
+
+### Note length
+
+If our metronome is ticking away at 60 bpm, we know that each beat lasts 1
+second. A bar of 4 beats will therefore last 4 seconds. Knowing this, we just
+need to divide the bar length by the resolution to give us our note length.
+
+We can encapsulate this knowledge into a `resolution()` function that given a
+bpm and resolution, returns the length of our note:
+
+Our `metronome()` function tells us the current bpm at each tick...
+
+```js
+const resolution = (bpm, res) => {
+  const beat = bpm / 60 // 1 second
+  const bar = beat * 4 // 4 seconds
+  return bar / res
+}
+const bpm = 60
+
+resolution(bpm, 1) // => 4 seconds
+resolution(bpm, 2) // => 2 seconds
+resolution(bpm, 4) // => 1 second
+resolution(bpm, 8) // => 0.5 seconds
+resolution(bpm, 16) // => 0.25 seconds
+resolution(bpm, 32) // => 0.125 seconds
+resolution(bpm, 64) // => 0.0625 seconds
+resolution(bpm, 128) // => 0.03125 seconds
+```
+
+```js
+const bpm = 60
+const beat = bpm / 60 // 1 second
+const bar = beat * 4 // 4 seconds
+
+bar / 1 // => 4 seconds
+bar / 2 // => 2 seconds
+bar / 4 // => 1 second
+bar / 8 // => 0.5 seconds
+bar / 16 // => 0.25 seconds
+bar / 32 // => 0.125 seconds
+bar / 64 // => 0.0625 seconds
+bar / 128 // => 0.03125 seconds
 ```
 
 ## Learning

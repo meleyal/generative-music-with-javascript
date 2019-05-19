@@ -193,6 +193,107 @@ our keyboard, we can see that these are actually the same note:
 These are known as "enharmonic" notes, which just means they are the same note
 written in a different way.
 
+### Note numbers
+
+> TODO: Show mapping note names to MIDI numbers and why that's useful.
+
+When we get into generating notes and patterns later in the book, it will be
+useful to be able to translate between note names and numbers.
+
+MIDI already has a simple convention, so we'll use that.
+
+A piano keyboard has 88 keys (52 white, 36 black) spanning 7 octaves, going from
+A0 to C8.
+
+MIDI note numbers go from 0 (C-1) to 127 (G9) to encompasses the full range of
+notes produced by most instruments: https://en.wikipedia.org/wiki/Range_(music).
+
+Let's write two functions `noteNumber()` to get the MIDI note number given a
+note name, and `noteName()` to get the the note name from the MIDI note number.
+
+```js
+const noteNumber = name => {
+  const re = /(?<note>\w(\w|\W)?)(?<octave>\d{1})/u
+  const {
+    groups: { note, octave }
+  } = re.exec(name)
+
+  const notes = {
+    C: 0,
+    'C#': 1,
+    Db: 1,
+    D: 2,
+    'D#': 3,
+    Eb: 3,
+    E: 4,
+    F: 5,
+    'F#': 6,
+    Gb: 6,
+    G: 7,
+    'G#': 8,
+    Ab: 8,
+    A: 9,
+    'A#': 10,
+    Bb: 10,
+    B: 11
+  }
+
+  return notes[note] + 12 + 12 * octave
+}
+
+console.log(noteNumber('C0')) // => 12
+console.log(noteNumber('C4')) // => 60
+console.log(noteNumber('Gb4')) // => 66
+console.log(noteNumber('G4')) // => 67
+console.log(noteNumber('A4')) // => 69
+console.log(noteNumber('A#4')) // => 70
+console.log(noteNumber('Bb4')) // => 70
+console.log(noteNumber('B4')) // => 71
+```
+
+```js
+const noteName = num => {
+  const numbers = {
+    0: 'C',
+    1: 'C#/Db',
+    2: 'D',
+    3: 'D#/Eb',
+    4: 'E',
+    5: 'F',
+    6: 'F#/Gb',
+    7: 'G',
+    8: 'G#/Ab',
+    9: 'A',
+    10: 'A#/Bb',
+    11: 'B'
+  }
+
+  // Normalize the note number so it maps to our 0-indexed `numbers` map
+  const norm = num - 12
+
+  // Dividing the note number by 12 (the number of notes in an octave) gives us
+  // the octave that the note falls into.
+  const octave = Math.floor(norm / 12)
+
+  // Remove the octaves to get a valid index into our numbers map
+  const note = norm - 12 * octave
+
+  return numbers[note]
+    .split('/')
+    .map(name => name + octave)
+    .join('/')
+}
+
+// console.log(noteName(0)) // => C0
+console.log(noteName(12)) // => C0
+console.log(noteName(14)) // => D0
+console.log(noteName(21)) // => A0
+console.log(noteName(24)) // => C1
+console.log(noteName(60)) // => C4
+console.log(noteName(80)) // => G#5/Ab5
+console.log(noteName(107)) // => B7
+```
+
 ## Note control
 
 This is a pretty good start, but our sampler is missing a few essential

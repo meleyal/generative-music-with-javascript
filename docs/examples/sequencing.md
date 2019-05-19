@@ -6,26 +6,29 @@ In this chapter we're going to look at the concept of sequencing, or, how to
 combine notes into patterns and play them back. It combines what we've learned
 so far about notes and timing to help us build more complete musical structures.
 
+## Sequencers
+
 Most music apps include some form of sequencer, often called a "pattern
 sequencer" or "step sequencer". At a minimum, they usually have the following
 features:
 
-- You can draw or record a sequence or "pattern" of notes and their velocities.
-- A rest (no note) is a note with 0 velocity.
-- The number of steps (i.e. length) of the pattern can be adjusted (4 beats, 8
-  beats, etc.).
+- Draw or record a sequence or "pattern" of notes and their velocities.
+- The number of steps (i.e. length) of the pattern can be adjusted (4 steps, 8
+  steps, etc.).
 - When played back, the sequencer "steps" through the pattern note by note,
-  looping back around when it reaches the end.
-- The "resolution" of the pattern can be adjusted. This defines how fast the
-  sequencer steps through the pattern.
-- Patterns can also be sequenced, meaning you can cycle through or alternate
-  between different patterns.
+  looping back around when it reaches the end of the pattern.
+- The rate or "resolution" of the pattern can be adjusted. This defines how fast
+  the sequencer steps through the pattern.
+- Patterns themselves can also be sequenced, meaning you can cycle through or
+  alternate between different patterns.
 - Patterns can be copied to serve as the basis for new patterns.
+- TODO: Mention pattern "banks"
 
-A good example is the
+An example is the
 ["Matrix"](https://www.propellerheads.com/en/reason/recording/matrix) pattern
-sequencer found in Reason, which we're going to try and emulate in this chapter.
-The relevant parts of the interface are highlighted below:
+sequencer found in Reason, which has all the features listed above. We're going
+to build a basic emulation of the Matrix sequencer in this chapter, so let's
+take a look at it:
 
 ![](assets/sequencer/matrix.png)
 
@@ -155,13 +158,17 @@ back around:
   // const metronome = await import('https://unpkg.com/@meleyal/gen/src/metro.js')
   const { metronome, ring } = await import('http://localhost:8081/src/index.js')
 
-  const context = new AudioContext()
-
   const pattern = ring(['a', 'b', 'c', 'd'])
 
-  metronome(context, 60, (now, beat) => {
-    console.log(pattern(beat))
+  const context = new AudioContext()
+
+  const metro = metronome(context, 60)
+
+  metro.on('beat', beat => {
+    console.log(pattern(beat)) // => a, b, c, d, a, b...
   })
+
+  metro.start()
 })()
 ```
 
@@ -169,131 +176,65 @@ back around:
 
 Resolution defines how fast a pattern plays back, relative to the current bpm,
 giving you a way to control the speed of a pattern without altering the overall
-speed of the music. This is useful if you want to hear how a pattern sounds at
-double speed, or half speed, or any resolution the sequencer supports.
+speed of the music. This is useful to hear how a pattern sounds at double speed,
+half speed, or any resolution the sequencer supports.
 
-The Matrix sequencer supports the following resolutions: 1/2, 1/4, 1/8, 1/16,
-1/32, 1/64 and 1/128 (plus some triplet divisions which we'll ignore for now).
-
-If we presume a time signature of 4/4 (4 beats per bar), these resolutions break
-down as follows:
-
-![](assets/sequencer/resolution.svg)
-
-As we saw in the [Music chapter](../primers/music), in traditional music
-notation we might call these divisions a "half note" or "quarter note", (or
-"minim" or "crotchet"), while in a pattern sequencer they are usually
-represented as fractions. Both refer to the same thing: how to subdivide a bar.
-
-Let's say our metronome is ticking away at 60 bpm, meaning each beat lasts 1
-second. A bar of 4 beats will therefore last 4 seconds. Knowing this, we just
-need to divide the bar length by the resolution to give us the length of our
-notes.
-
-We can encapsulate this knowledge into a `resolution()` function that given a
-bpm and resolution, returns the length of our note:
+Our `metronome()` function already supports different resolutions. We can use
+this to sequence two patterns at different speeds:
 
 ```js
-const resolution = (bpm, res) => {
-  const beat = bpm / 60 // 1 second
-  const bar = beat * 4 // 4 seconds
-  return bar / res
-}
-const bpm = 60
+;(async () => {
+  // const metronome = await import('https://unpkg.com/@meleyal/gen/src/metro.js')
+  const { metronome, ring } = await import('http://localhost:8081/src/index.js')
+  const context = new AudioContext()
 
-resolution(bpm, 1) // => 4 seconds
-resolution(bpm, 2) // => 2 seconds
-resolution(bpm, 4) // => 1 second
-resolution(bpm, 8) // => 0.5 seconds
-resolution(bpm, 16) // => 0.25 seconds
-resolution(bpm, 32) // => 0.125 seconds
-resolution(bpm, 64) // => 0.0625 seconds
-resolution(bpm, 128) // => 0.03125 seconds
+  const metro = metronome(context, 60)
+
+  const pattern1 = ring(['a', 'b', 'c', 'd'])
+  const pattern2 = ring([1, 2, 3, 4])
+
+  metro.on('tick', tick => {
+    console.log(pattern1(tick)) // => a, b, c, d, a, b...
+  })
+
+  metro.on('tick/16', tick => {
+    console.log(pattern2(tick)) // => 1, 2, 3, 4, 1, 2...
+  })
+
+  metro.start()
+
+  // => a, 1, 2, 3, 4, b, 1, 2, 3, 4, c, 1, 2...
+})()
 ```
-
-```js
-const bpm = 60
-const beat = bpm / 60 // 1 second
-const bar = beat * 4 // 4 seconds
-
-bar / 1 // => 4 seconds
-bar / 2 // => 2 seconds
-bar / 4 // => 1 second
-bar / 8 // => 0.5 seconds
-bar / 16 // => 0.25 seconds
-bar / 32 // => 0.125 seconds
-bar / 64 // => 0.0625 seconds
-bar / 128 // => 0.03125 seconds
-```
-
-Our `metronome()` function tells us the current bpm at each tick...
 
 ## Sequencing
 
 ### Patterns
 
-If we define our pattern "bank" as just an array of patterns, then moving
-between patterns is similar to progressing through the individual steps of a
-pattern:
+If we define a pattern "bank" as just an array of patterns, then moving between
+patterns is similar to progressing through the individual steps of a pattern,
+and we can use the same `ring()` trick.
 
 ```js
-let pattern = 0
-let step = 0
-const patterns = [
-  [
-    [60, 127],
-    [60, 127],
-    [62, 127],
-    [62, 127],
-    [62, 127],
-    [60, 127],
-    [62, 127],
-    [62, 127]
-  ],
-  [
-    [62, 127],
-    [64, 127],
-    [66, 127],
-    [68, 127],
-    [68, 127],
-    [68, 127],
-    [68, 127],
-    [68, 127]
-  ]
-]
+;(async () => {
+  // const metronome = await import('https://unpkg.com/@meleyal/gen/src/metro.js')
+  const { metronome, ring } = await import('http://localhost:8081/src/index.js')
+  const context = new AudioContext()
 
-setInterval(() => {
-  console.log(`p${pattern + 1} : s${step + 1} : ${patterns[pattern][step]}`)
-  if (step < patterns[pattern].length - 1) {
-    step += 1
-  } else {
-    step = 0
-    if (pattern < patterns.length - 1) {
-      pattern += 1
-    } else {
-      pattern = 0
-    }
-  }
-}, 1000)
+  const metro = metronome(context, 60)
 
-/*
+  const pattern1 = ring(['a', 'b', 'c', 'd'])
+  const pattern2 = ring(['e', 'f', 'g', 'h'])
+  const bankA = ring([pattern1, pattern2])
 
-Output:
+  metro.on('tock', tock => {
+    metro.on('tick', tick => {
+      console.log(bankA(tock)(tick)) // a, b, c, d, e, f, g, h, a, b...
+    })
+  })
 
-p1 : s1 : 60,127
-p1 : s2 : 60,127
-p1 : s3 : 62,127
-p1 : s4 : 62,127
-p1 : s5 : 62,127
-p1 : s6 : 60,127
-p1 : s7 : 62,127
-p1 : s8 : 62,127
-p2 : s1 : 62,127
-p2 : s2 : 64,127
-p2 : s3 : 66,127
-...
-
-*/
+  metro.start()
+})()
 ```
 
 ## Generating patterns
@@ -536,72 +477,28 @@ book.
 
 ## Sequencer
 
-Putting this all together, we can already build a basic version of our pattern
-sequencer:
+Putting this all together, let's build a `sequencer()` function that does..?
+
+- Has it's own metronome (or argument)?
+- Has it's own sampler (or argument)?
+
+> Not sure we need this
 
 ```js
-const bpm = 60
-const beat = (bpm / 60) * 1000 // 1000ms = 1s
-const bar = beat * 4 // 4000ms = 4s
-const resolution = 4
-const length = bar / resolution
+const metro = metronome(context, 60)
 
-let pattern = 0
-let step = 0
-const patterns = [
-  [
-    [60, 127],
-    [60, 127],
-    [62, 127],
-    [62, 127],
-    [62, 127],
-    [60, 127],
-    [62, 127],
-    [62, 127]
-  ],
-  [
-    [62, 127],
-    [64, 127],
-    [66, 127],
-    [68, 127],
-    [68, 127],
-    [68, 127],
-    [68, 127],
-    [68, 127]
-  ]
-]
+const piano = sampler(context, 'piano')
+const cello = sampler(context, 'cello')
 
-navigator.requestMIDIAccess().then(midi => {
-  const outputs = midi.outputs.values()
-  const output = outputs.next().value
+const pianoPattern = somePatternGenerator()
+const celloPattern = someOtherPatternGenerator(pianoPattern?)
 
-  setInterval(() => {
-    console.log(`p${pattern + 1} : s${step + 1} : ${patterns[pattern][step]}`)
+const sequencer = (met, samp) => {}
 
-    const [note, velocity] = patterns[pattern][step]
-    output.send([0x90, note, velocity])
-    output.send([0x80, note, velocity], window.performance.now() + length)
+const pianoSeq = sequencer(metro, piano)
+const celloSeq = sequencer(metro, cello)
 
-    if (step < patterns[pattern].length - 1) {
-      step += 1
-    } else {
-      step = 0
-      if (pattern < patterns.length - 1) {
-        pattern += 1
-      } else {
-        pattern = 0
-      }
-    }
-  }, length)
-})
-```
-
-### Sequencer v2
-
-Let's combine the above ideas into a new and improved version of our pattern
-sequencer.
-
-```js
+// console.log(seq)
 ```
 
 ## Learning

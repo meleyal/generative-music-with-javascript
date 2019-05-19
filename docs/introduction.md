@@ -21,7 +21,8 @@ To help us focus, the book has a few guiding principles:
   take some artistic license along the way.
 
 - **Composition over sound design:** The focus will be on creating musical
-  structures, with sound generation delegated to instrument samples.
+  structures, with sound generation delegated to instrument samples. (Note level
+  vs. sample level).
 
 - **Systems over performance:** We're aiming for music that is self evolving and
   requires no interaction from us or the listener (i.e.

@@ -30,30 +30,41 @@ number between 21 and 108. This gives us a random distribution, where each of
 the 88 notes have an equal chance of being played.
 
 For this example, we'll need a way to generate a random number within a given
-range, which JS doesn't have out-of-the-box. For this we'll use
-[`lodash`](https://lodash.com/), which provides a bunch of useful functions
-we'll use throughout the book. See the
+range, which JS doesn't have out-of-the-box. So let's create one:
+
+For this we'll use [`lodash`](https://lodash.com/), which provides a bunch of
+useful functions we'll use throughout the book. See the
 [JavaScript chapter](../primers/javascript) for help installing modules.
 
 ```js
-import { random } from 'lodash'
-import { instrument, metronome, midi } from 'gen'
+// Play a random note between 21 (A0) and 108 (C8)
 
-midi().then(output => {
-  const metro = metronome(10)
-  const inst = instrument({ output, metro })
+;(async () => {
+  const {
+    sampler,
+    sampleMap,
+    noteName,
+    metronome,
+    random
+  } = await import('http://localhost:8080/src/index.js')
 
-  // Play a random note between 21 (A0) and 108 (C8)
-  metro.onTick(() => inst(rand(21, 108)))
+  const context = new AudioContext()
+  const metro = metronome(context, 240)
+  // const rng = random(21, 108)
+  const rng = random(24, 107)
+
+  const piano = await sampler(
+    context,
+    sampleMap('http://localhost:8081/piano/')
+  )
+
+  metro.on('tick', () => {
+    piano(noteName(rng()))
+  })
+
   metro.start()
-})
+})()
 ```
-
-<details>
-  <summary>Listen</summary>
-  ![](assets/walker/random.png)
-  <audio src="/gen/docs/assets/walker/random.mp3" controls></audio>
-</details>
 
 This probably sounds like the bleeps and bloops you imagine when you hear the
 phrase "computer generated music". At strict intervals and constant velocity the
