@@ -35,6 +35,7 @@ pattern() // => ['a', 'b', 'c', 'd']
 ## metronome()
 
 TODO: Summary
+https://github.com/overtone/overtone/blob/f6d414f884f1b6d3166195b49276174efddf2cf2/src/overtone/music/rhythm.clj
 
 ```js
 const context = new AudioContext()
@@ -66,13 +67,13 @@ enharmonic('Db') // => C#
 TODO: Summary
 
 ```js
-console.log(noteName(12)) // => C0
-console.log(noteName(14)) // => D0
-console.log(noteName(21)) // => A0
-console.log(noteName(24)) // => C1
-console.log(noteName(60)) // => C4
-console.log(noteName(80)) // => G#5/Ab5
-console.log(noteName(107)) // => B7
+noteName(12) // => C0
+noteName(14) // => D0
+noteName(21) // => A0
+noteName(24) // => C1
+noteName(60) // => C4
+noteName(80) // => G#5/Ab5
+noteName(107) // => B7
 ```
 
 ## noteNumber()
@@ -80,14 +81,14 @@ console.log(noteName(107)) // => B7
 TODO: Summary
 
 ```js
-console.log(noteNumber('C0')) // => 12
-console.log(noteNumber('C4')) // => 60
-console.log(noteNumber('Gb4')) // => 66
-console.log(noteNumber('G4')) // => 67
-console.log(noteNumber('A4')) // => 69
-console.log(noteNumber('A#4')) // => 70
-console.log(noteNumber('Bb4')) // => 70
-console.log(noteNumber('B4')) // => 71
+noteNumber('C0') // => 12
+noteNumber('C4') // => 60
+noteNumber('Gb4') // => 66
+noteNumber('G4') // => 67
+noteNumber('A4') // => 69
+noteNumber('A#4') // => 70
+noteNumber('Bb4') // => 70
+noteNumber('B4') // => 71
 ```
 
 ## sampler()
