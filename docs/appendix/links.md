@@ -10,6 +10,7 @@ title: Links
 - [JavaScript Allongé](https://leanpub.com/javascriptallongesix)
 - [Functional JavaScript](http://shop.oreilly.com/product/0636920028857.do)
 - [Eloquent JavaScript](https://eloquentjavascript.net/)
+- [Reactive Programming with RxJS 5](https://pragprog.com/book/smreactjs5/reactive-programming-with-rxjs-5)
 
 ## Articles
 
