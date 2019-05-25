@@ -1,11 +1,11 @@
-import { context } from './env.js'
-import { random } from './number.js'
-import { noteNumber, noteName, enharmonic } from './music.js'
-import { ring } from './pattern.js'
-import { metronome } from './metronome.js'
-import { sampler, sampleMap } from './sampler.js'
+import { context } from './env'
+import { random } from './number'
+import { noteNumber, noteName, enharmonic } from './music'
+import { ring } from './pattern'
+import { metronome } from './metronome'
+import { sampleMap } from './sampler'
 
-export {
+const gen = {
   context,
   noteNumber,
   noteName,
@@ -13,6 +13,9 @@ export {
   random,
   ring,
   metronome,
-  sampler,
   sampleMap
 }
+
+window.gen = gen
+
+export default gen

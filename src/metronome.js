@@ -1,7 +1,7 @@
 import { Observable, Observer } from 'rxjs'
 import { filter, map } from 'rxjs/operators'
 
-const metronome = (context, bpm) => {
+export const metronome = (context, bpm) => {
   const secondsPerBeat = 60.0 / bpm
   const beatsPerBar = 4
 
@@ -50,52 +50,52 @@ const metronome = (context, bpm) => {
   return observable
 }
 
-const context = new AudioContext()
-
-const metro = metronome(context, 60)
-
-// debugger
-
-const myFilter = n => source => {
-  return new Observable(observer => {
-    return source.subscribe(
-      x => {
-        if (x % n === 0) {
-          observer.next(x)
-        }
-      },
-      err => {
-        observer.error(err)
-      },
-      () => {
-        observer.complete()
-      }
-    )
-  })
-}
-
-const myFilter2 = n =>
-  filter(x => {
-    return x % 16 === 0
-  })
-
-const tickFilter = n => {
-  let foo
-
-  switch (n) {
-    case 4:
-      foo = 16
-      break
-    default:
-      foo = 0
-  }
-
-  // return foo
-
-  return filter(x => {
-    return x % foo === 0
-  })
-}
+// const context = new AudioContext()
+//
+// const metro = metronome(context, 60)
+//
+// // debugger
+//
+// const myFilter = n => source => {
+//   return new Observable(observer => {
+//     return source.subscribe(
+//       x => {
+//         if (x % n === 0) {
+//           observer.next(x)
+//         }
+//       },
+//       err => {
+//         observer.error(err)
+//       },
+//       () => {
+//         observer.complete()
+//       }
+//     )
+//   })
+// }
+//
+// const myFilter2 = n =>
+//   filter(x => {
+//     return x % 16 === 0
+//   })
+//
+// const tickFilter = n => {
+//   let foo
+//
+//   switch (n) {
+//     case 4:
+//       foo = 16
+//       break
+//     default:
+//       foo = 0
+//   }
+//
+//   // return foo
+//
+//   return filter(x => {
+//     return x % foo === 0
+//   })
+// }
 
 // console.log(tickFilter(4))
 
@@ -115,11 +115,11 @@ const tickFilter = n => {
 //   console.log('tick4')
 // })
 
-const tick4 = metro.pipe(tickFilter(4))
-
-tick4.subscribe(x => {
-  console.log('tick4')
-})
+// const tick4 = metro.pipe(tickFilter(4))
+//
+// tick4.subscribe(x => {
+//   console.log('tick4')
+// })
 //
 // const tick8 = metro.pipe(myFilter(8))
 //

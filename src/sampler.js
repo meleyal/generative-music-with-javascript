@@ -1,55 +1,73 @@
-import { sample } from 'lodash'
-import { context, sampler } from 'gen'
+export const sampleMap = baseUrl => {
+  const notes = 'C,C#,D,D#,E,F,F#,G,G#,A,A#,B'.split(',')
+  const octaves = [1, 2, 3, 4, 5, 6, 7]
+  const extension = '.mp3'
 
-export const sampler = async (context, samples) => {
-  const buffers = await Promise.all(
-    Object.keys(samples).map(note =>
-      fetch(samples[note])
-        .then(response => response.arrayBuffer())
-        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
-        .then(buffer => Object.create({ note, buffer }))
-    )
-  )
-
-  return note => {
-    const now = context.currentTime
-    const buffer = buffers.find(b => b.note == note).buffer
-    const sourceNode = context.createBufferSource()
-    sourceNode.buffer = buffer
-    sourceNode.start(now)
-    sourceNode.stop(now + buffer.duration)
-    sourceNode.connect(context.destination)
+  const enharmonic = note => {
+    switch (note) {
+      case 'A#':
+        return 'bb'
+      case 'C#':
+        return 'db'
+      case 'D#':
+        return 'eb'
+      case 'F#':
+        return 'bb'
+      case 'G#':
+        return 'ab'
+      default:
+        return note.toLowerCase()
+    }
   }
+
+  return notes
+    .flatMap(note =>
+      octaves.map(octave => {
+        const name = `${note}${octave}`
+        const path = `${baseUrl}${enharmonic(note)}${octave}${extension}`
+        return { [name]: path }
+      })
+    )
+    .reduce((a, b) => Object.assign(a, b), {})
 }
-;(async () => {
-  const context = new AudioContext()
 
-  const piano = await sampler(context, {
-    C4: 'http://localhost:8081/piano/c4.mp3',
-    D1: 'http://localhost:8081/piano/d4.mp3',
-    E4: 'http://localhost:8081/piano/e4.mp3',
-    F4: 'http://localhost:8081/piano/f4.mp3',
-    G4: 'http://localhost:8081/piano/g4.mp3'
-    // ...etc.
-  })
-
-  // C major chord
-  piano('C4')
-  piano('E4')
-  piano('G4')
-})()
-
-context(async ac => {
-  // const piano = await sampler(ac, 'piano')
-  // piano('A#1')
-  // piano('A#4')
-  // piano('C7')
-  // const notes = ['A4', 'C2', 'D3', 'E7', 'B5']
-  //
-  // setInterval(() => {
-  //   piano(sample(notes))
-  // }, 200)
-})
+// export const sampler = async (context, samples) => {
+//   const buffers = await Promise.all(
+//     Object.keys(samples).map(note =>
+//       fetch(samples[note])
+//         .then(response => response.arrayBuffer())
+//         .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+//         .then(buffer => Object.create({ note, buffer }))
+//     )
+//   )
+//
+//   return note => {
+//     const now = context.currentTime
+//     const buffer = buffers.find(b => b.note == note).buffer
+//     const sourceNode = context.createBufferSource()
+//     sourceNode.buffer = buffer
+//     sourceNode.start(now)
+//     sourceNode.stop(now + buffer.duration)
+//     sourceNode.connect(context.destination)
+//   }
+// }
+// ;(async () => {
+//   const context = new AudioContext()
+//
+//   const piano = await sampler(context, {
+//     C4: 'http://localhost:8081/piano/c4.mp3',
+//     D1: 'http://localhost:8081/piano/d4.mp3',
+//     E4: 'http://localhost:8081/piano/e4.mp3',
+//     F4: 'http://localhost:8081/piano/f4.mp3',
+//     G4: 'http://localhost:8081/piano/g4.mp3'
+//     // ...etc.
+//   })
+//
+//   // C major chord
+//   piano('C4')
+//   piano('E4')
+//   piano('G4')
+// })()
 
 // export const sampler = async (context, samples) => {
 //   const buffers = await Promise.all(
@@ -88,44 +106,12 @@ context(async ac => {
 //   }
 // }
 //
-// export const sampleMap = baseUrl => {
-//   const notes = 'C,C#,D,D#,E,F,F#,G,G#,A,A#,B'.split(',')
-//   const octaves = [1, 2, 3, 4, 5, 6, 7]
-//   const extension = '.mp3'
-//
-//   const enharmonic = note => {
-//     switch (note) {
-//       case 'A#':
-//         return 'bb'
-//       case 'C#':
-//         return 'db'
-//       case 'D#':
-//         return 'eb'
-//       case 'F#':
-//         return 'bb'
-//       case 'G#':
-//         return 'ab'
-//       default:
-//         return note.toLowerCase()
-//     }
-//   }
-//
-//   return notes
-//     .flatMap(note =>
-//       octaves.map(octave => {
-//         const name = `${note}${octave}`
-//         const path = `${baseUrl}${enharmonic(note)}${octave}${extension}`
-//         return { [name]: path }
-//       })
-//     )
-//     .reduce((a, b) => Object.assign(a, b), {})
-// }
 
 // import { map, find, isString, defaults } from 'lodash'
 // import { instruments as instrumentSamples } from 'gen-samples'
 // import { reverbs as reverbSamples } from 'gen-samples'
 //
-// export const sampler = async (context, samples, globalOptions = {}) => {
+// const sampler = async (context, samples, globalOptions = {}) => {
 //   const { pan, volume, reverb } = defaults(globalOptions, {
 //     volume: 0.8,
 //     pan: 0,
@@ -229,3 +215,19 @@ context(async ac => {
 //   const envelopeNode = createEnvelope(context, output, volume, attack, release)
 //   createSource(context, envelopeNode, buffer)
 // }
+//
+// ;(async () => {
+//   const context = new AudioContext()
+//
+//   const piano = await sampler(
+//     context,
+//     sampleMap('https://unpkg.com/@meleyal/gen-samples/piano/')
+//   )
+//
+//   // Single C note
+//   piano('C4')
+//
+//   // C major chord
+//   piano(['C4', 'E4', 'G4'])
+// })()
+//

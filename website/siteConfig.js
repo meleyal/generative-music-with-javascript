@@ -3,9 +3,9 @@ const { inject } = require('./plugins/markdown.js')
 const isDev = process.env.NODE_ENV === 'development'
 
 const siteVariables = {
-  SAMPLES_URL: isDev
+  PACKAGE_URL: isDev
     ? 'http://localhost:3001'
-    : 'https://unpkg.com/@meleyal/gen-samples'
+    : 'https://unpkg.com/@meleyal/gen'
 }
 
 const siteConfig = {
@@ -36,7 +36,7 @@ const siteConfig = {
   docsSideNavCollapsible: false,
   cleanUrl: true,
   enableUpdateTime: true,
-  scripts: ['/gen/js/custom.js'],
+  scripts: ['/gen/js/custom.js', `${siteVariables.PACKAGE_URL}/gen.js`],
   markdownPlugins: [inject(siteVariables)]
 }
 

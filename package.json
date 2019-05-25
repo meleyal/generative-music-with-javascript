@@ -3,9 +3,9 @@
   "version": "0.0.5",
   "main": "src/index.js",
   "scripts": {
-    "start": "yarn run website & yarn run server",
+    "start": "yarn run website & yarn run serve",
     "website": "cd website && yarn start",
-    "server": "http-server ./src -p 3001 --cors --silent"
+    "serve": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -14,9 +14,12 @@
   "author": "William Meleyal <william.meleyal@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "lodash-es": "^4.17.11"
+    "lodash-es": "^4.17.11",
+    "rxjs": "^6.5.2"
   },
   "devDependencies": {
-    "http-server": "^0.11.1"
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.4.1"
   }
 }

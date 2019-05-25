@@ -1,5 +1,5 @@
-import { random } from './number.js'
-import chain from '../node_modules/lodash-es/chain.js'
+import { random } from './number'
+import { chain } from 'lodash-es'
 
 export const ring = arr => {
   const len = arr.length
