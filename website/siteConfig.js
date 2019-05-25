@@ -4,7 +4,7 @@ const isDev = process.env.NODE_ENV === 'development'
 
 const siteVariables = {
   SAMPLES_URL: isDev
-    ? 'http://localhost:8081'
+    ? 'http://localhost:3001'
     : 'https://unpkg.com/@meleyal/gen-samples'
 }
 
