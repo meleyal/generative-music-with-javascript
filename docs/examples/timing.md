@@ -293,6 +293,17 @@ setTimeout(() => {
 }, 4000)
 ```
 
+### Version 3
+
+Async: Callbacks, Promises, Event Emitters, Observables
+
+|            | Sync     | Async      |
+| ---------- | -------- | ---------- |
+| Single     | Variable | Promise    |
+| Collection | Array    | Observable |
+
+Observable (spec, RxJS)
+
 ### Note length
 
 If our metronome is ticking away at 60 bpm, we know that each beat lasts 1

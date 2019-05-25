@@ -49,7 +49,7 @@ useful functions we'll use throughout the book. See the
   } = await import('http://localhost:8080/src/index.js')
 
   const context = new AudioContext()
-  const metro = metronome(context, 240)
+  const metro = metronome(context, 120)
   // const rng = random(21, 108)
   const rng = random(24, 107)
 
@@ -508,3 +508,138 @@ midi.then(output => {
 Right now our music is basically just streams of notes. To take it further, we
 need a way to generate cohesive patterns of notes, and sequence them with other
 patterns. As it happens, that's just the goal of the next chapter!
+
+### Notes
+
+```js
+import {
+  chain,
+  range,
+  drop,
+  dropRight,
+  chunk,
+  filter,
+  includes,
+  random,
+  sample
+} from 'lodash'
+import { inst, midi } from 'gen'
+
+const allNotes = range(21, 109)
+
+const cmaj = [0, 2, 4, 5, 7, 9, 11]
+
+const octaves = chain(allNotes)
+  .drop(3) // start at first C
+  .dropRight(1) // drop last C
+  .chunk(12) // split into octaves
+  .value()
+
+const notes = chain(octaves)
+  .map(o => {
+    // select only the notes in the scale
+    return filter(o, (n, idx) => {
+      return includes(cmaj, idx)
+    })
+  })
+  .flatten() // flatten the octaves
+  .value()
+
+navigator.requestMIDIAccess().then(midi => {
+  const outputs = midi.outputs.values()
+  const output = outputs.next().value
+
+  const length = 300
+
+  setInterval(() => {
+    const note = sample(notes)
+    const velocity = random(64, 96)
+
+    output.send([0x90, note, velocity])
+    output.send([0x80, note, velocity], window.performance.now() + length)
+  }, length)
+})
+```
+
+```js
+import { output } from 'midi'
+import { Piano } from 'inst/piano'
+import random from 'random'
+
+export default class {
+  constructor() {
+    console.log('Walker')
+  }
+
+  async walk() {
+    const midi = await output()
+    const piano = new Piano(midi)
+    const length = 200
+
+    const mean = 0
+    const sd = 1
+
+    const normal = random.normal(mean, sd)
+
+    console.log(normal())
+
+    function play(note) {
+      let nextNote = normal()
+
+      const timer = setTimeout(() => {
+        piano.play(nextNote, length)
+        clearTimeout(timer)
+        play(nextNote)
+      }, length)
+    }
+
+    // play(normal());
+  }
+}
+```
+
+```js
+navigator.requestMIDIAccess().then(midi => {
+  const outputs = midi.outputs.values()
+  let output = outputs.next().value
+
+  function random(min, max) {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+
+  function playNote(note, length, velocity = random(0, 127)) {
+    let noteOn = 144 // channel 1 note on
+    let noteOff = 128 // channel 1 note off
+
+    output.send([noteOn, note, velocity])
+    output.send([noteOff, note, velocity], window.performance.now() + length)
+  }
+
+  let startNote = random(21, 108)
+  let length = 250
+
+  function play(note) {
+    let prob = 0.4
+    let num = Math.random()
+    let nextNote
+
+    if (num < prob) {
+      // 40% chance of going down 7 steps
+      nextNote = Math.max(note - 7, 21)
+    } else {
+      // 60% chance of going up 5 steps
+      nextNote = Math.min(note + 5, 108)
+    }
+
+    let timer = setTimeout(() => {
+      playNote(nextNote, length)
+      clearTimeout(timer)
+      play(nextNote)
+    }, length)
+  }
+
+  // play(startNote);
+})
+```

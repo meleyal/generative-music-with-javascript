@@ -3,11 +3,11 @@ title: Notes
 ---
 
 An obvious place to start is to understand how to create musical notes. This
-example covers how to generate notes, first using synthesis, then using samples,
+chapter covers how to generate notes, first using synthesis, then using samples,
 before building a general purpose sampler we can use to load and play back a
 whole set of sampled notes.
 
-## Single note
+## Playing a single note
 
 ### Synthesised
 
@@ -26,19 +26,10 @@ Here, we set the oscillator to 440 Hz, which is the frequency of the middle C
 this code we hear a pure sine wave tone at middle C.
 
 ```js
-// Create our global AudioContext
 const context = new AudioContext()
-
-// Create an OscillatorNode
 const osc = context.createOscillator()
-
-// Set its frequency to 440 Hz = middle C
 osc.frequency.value = 440
-
-// Connect it to the default destination (our speakers)
 osc.connect(context.destination)
-
-// Start (play) the oscillator
 osc.start()
 ```
 
@@ -69,32 +60,21 @@ but this time using our pre-recorded sample. When running this code, we hear our
 piano sample play from start to finish.
 
 ```js
-// Create our global AudioContext
 const context = new AudioContext()
 
-// Fetch the sample from the server (the file must be hosted somewhere)
-fetch('https://unpkg.com/@meleyal/gen-samples/piano/c4.mp3')
-  // Get the arrayBuffer representation of the file from the response
+fetch('{{SAMPLES_URL}}/piano/c4.mp3')
   .then(response => response.arrayBuffer())
   .then(arrayBuffer =>
-    // Decode the arrayBuffer into an audioBuffer
     context.decodeAudioData(arrayBuffer).then(audioBuffer => {
-      // Create an AudioBufferSourceNode
       const sourceNode = context.createBufferSource()
-
-      // Set its buffer property to our returned audioBuffer
       sourceNode.buffer = audioBuffer
-
-      // Connect it to the default destination (our speakers)
       sourceNode.connect(context.destination)
-
-      // Start (play) the sample
       sourceNode.start()
     })
   )
 ```
 
-## Different notes
+## Playing different notes
 
 Our musical options would be quite limited if we could only play middle C, so
 let's explore ways to make other notes.
@@ -106,49 +86,35 @@ different notes. Thanks to the intricacies of frequency and the human ear, we
 perceive a sample played at twice the speed to be twice the pitch.
 
 ```js
-const context = new AudioContext()
+// Half speed = 22,050 Hz = -1 octave = C3
+const c3 = context.createBufferSource()
+c3.buffer = audioBuffer
+c3.playbackRate.value = 0.5
 
-fetch('https://unpkg.com/@meleyal/gen-samples/piano/c4.mp3')
-  .then(response => response.arrayBuffer())
-  .then(arrayBuffer =>
-    context.decodeAudioData(arrayBuffer).then(audioBuffer => {
-      // Half speed = 22,050 Hz = -1 octave = C3
-      const c3 = context.createBufferSource()
-      c3.buffer = audioBuffer
-      c3.playbackRate.value = 0.5
+// Full speed = 44,100 Hz = C4
+const c4 = context.createBufferSource()
+c4.buffer = audioBuffer
+c4.playbackRate.value = 1.0
 
-      // Full speed = 44,100 Hz = C4
-      const c4 = context.createBufferSource()
-      c4.buffer = audioBuffer
-      c4.playbackRate.value = 1.0
-
-      // Double speed = 88,200 Hz = +1 octave = C5
-      const c5 = context.createBufferSource()
-      c5.buffer = audioBuffer
-      c5.playbackRate.value = 2.0
-
-      c3.connect(context.destination)
-      c4.connect(context.destination)
-      c5.connect(context.destination)
-
-      c3.start()
-      c4.start()
-      c5.start()
-    })
-  )
+// Double speed = 88,200 Hz = +1 octave = C5
+const c5 = context.createBufferSource()
+c5.buffer = audioBuffer
+c5.playbackRate.value = 2.0
 ```
 
 This works surprisingly well within a limited range, but pitch shifting too much
 can start to sound unnatural, especially for real instruments, where we have an
 expectation of how they should sound at different pitches.
 
-### Samplers & sample libraries
+### Sample libraries
+
+A better approach is to have a sample for each note.
 
 A sampler, in it's basic form, is an instrument that can load and play back
 samples. You can assign samples to physical triggers such as the keys of a
 keyboard, so that when pressing the key, the assigned sample is played.
 
-Sample libraries (or sample packs) are just bundles of samples, usually with a
+Sample libraries (or sample packs) are bundles of samples, usually with a
 metadata file that tells the sampler how the individual sample files map to
 keyboard notes. A library maker records each individual note of an instrument,
 often at various velocities (e.g. how hard a piano key is hit) and with
@@ -161,15 +127,96 @@ composition.
 > combine a subset of samples with the pitch shifting trick mentioned above.
 
 Most sample libraries are commercial products, often bundled with software
-samplers, but there are several libraries available for free use.
-
-The [`gen-samples`](https://www.npmjs.com/package/@meleyal/gen-samples) npm
-package includes a range of samples for different instruments, which we'll be
-using throughout this book. It includes the
+samplers, but there are several libraries available for free use. The
+[`gen-samples`](https://www.npmjs.com/package/@meleyal/gen-samples) npm package
+includes a range of samples for different instruments, which we'll be using
+throughout this book. It includes the
 [MISStereoPiano](https://freesound.org/people/neatonk/packs/9133/) sample pack
 from Freesound, which contains recordings of all the notes of a piano (A0–C8).
 
-### Enharmonic notes
+### Sampler v1
+
+```js
+export const sampler = async (context, samples) => {
+  const buffers = await Promise.all(
+    Object.keys(samples).map(note =>
+      fetch(samples[note])
+        .then(response => response.arrayBuffer())
+        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+        .then(buffer => Object.create({ note, buffer }))
+    )
+  )
+
+  return note => {
+    const now = context.currentTime
+    const buffer = buffers.find(b => b.note == note).buffer
+    const sourceNode = context.createBufferSource()
+    sourceNode.buffer = buffer
+    sourceNode.start(now)
+    sourceNode.stop(now + buffer.duration)
+    sourceNode.connect(context.destination)
+  }
+}
+;(async () => {
+  const context = new AudioContext()
+
+  const piano = await sampler(context, {
+    C4: '{{SAMPLES_URL}}/piano/c4.mp3',
+    D1: '{{SAMPLES_URL}}/piano/d4.mp3',
+    E4: '{{SAMPLES_URL}}/piano/e4.mp3',
+    F4: '{{SAMPLES_URL}}/piano/f4.mp3',
+    G4: '{{SAMPLES_URL}}/piano/g4.mp3'
+    // ...etc.
+  })
+
+  // C major chord
+  piano('C4')
+  piano('E4')
+  piano('G4')
+})()
+```
+
+## Mapping notes to samples
+
+A `sampleMap()` function that maps the 86 note names to their respective sample
+files, taking into account enharmonic naming (e.g. `C#4` maps to `db4.mp3`).
+
+```js
+const sampleMap = baseUrl => {
+  const notes = 'C,C#,D,D#,E,F,F#,G,G#,A,A#,B'.split(',')
+  const octaves = [1, 2, 3, 4, 5, 6, 7]
+  const extension = '.mp3'
+
+  const enharmonic = note => {
+    switch (note) {
+      case 'A#':
+        return 'bb'
+      case 'C#':
+        return 'db'
+      case 'D#':
+        return 'eb'
+      case 'F#':
+        return 'bb'
+      case 'G#':
+        return 'ab'
+      default:
+        return note.toLowerCase()
+    }
+  }
+
+  return notes
+    .flatMap(note =>
+      octaves.map(octave => {
+        const name = `${note}${octave}`
+        const path = `${baseUrl}${enharmonic(note)}${octave}${extension}`
+        return { [name]: path }
+      })
+    )
+    .reduce((a, b) => Object.assign(a, b), {})
+}
+```
+
+#### Enharmonic notes
 
 If you download and inspect the sample pack, you might notice that it doesn't
 seem to actually contain _all_ of the notes we need:
@@ -184,7 +231,7 @@ seem to actually contain _all_ of the notes we need:
 ├── ...
 ```
 
-Recall from the [Music](../primers/music) chapter that some notes can be sharp
+Recall from the [music chapter](../primers/music) that some notes can be sharp
 (C#, half a semitone above C) or flat (Db, half a semitone below D). Looking at
 our keyboard, we can see that these are actually the same note:
 
@@ -193,9 +240,38 @@ our keyboard, we can see that these are actually the same note:
 These are known as "enharmonic" notes, which just means they are the same note
 written in a different way.
 
-### Note numbers
+We can write a function to convert in either direction:
 
-> TODO: Show mapping note names to MIDI numbers and why that's useful.
+```js
+const enharmonic = note => {
+  switch (note) {
+    case 'A#':
+      return 'Bb'
+    case 'Bb':
+      return 'A#'
+    case 'C#':
+      return 'Db'
+    case 'Db':
+      return 'C#'
+    case 'D#':
+      return 'Eb'
+    case 'Eb':
+      return 'D#'
+    case 'F#':
+      return 'Gb'
+    case 'Gb':
+      return 'F#'
+    case 'G#':
+      return 'Ab'
+    case 'Ab':
+      return 'G#'
+    default:
+      return note
+  }
+}
+```
+
+#### Note numbers
 
 When we get into generating notes and patterns later in the book, it will be
 useful to be able to translate between note names and numbers.
@@ -241,14 +317,14 @@ const noteNumber = name => {
   return notes[note] + 12 + 12 * octave
 }
 
-console.log(noteNumber('C0')) // => 12
-console.log(noteNumber('C4')) // => 60
-console.log(noteNumber('Gb4')) // => 66
-console.log(noteNumber('G4')) // => 67
-console.log(noteNumber('A4')) // => 69
-console.log(noteNumber('A#4')) // => 70
-console.log(noteNumber('Bb4')) // => 70
-console.log(noteNumber('B4')) // => 71
+noteNumber('C0') // => 12
+noteNumber('C4') // => 60
+noteNumber('Gb4') // => 66
+noteNumber('G4') // => 67
+noteNumber('A4') // => 69
+noteNumber('A#4') // => 70
+noteNumber('Bb4') // => 70
+noteNumber('B4') // => 71
 ```
 
 ```js
@@ -284,17 +360,67 @@ const noteName = num => {
     .join('/')
 }
 
-// console.log(noteName(0)) // => C0
-console.log(noteName(12)) // => C0
-console.log(noteName(14)) // => D0
-console.log(noteName(21)) // => A0
-console.log(noteName(24)) // => C1
-console.log(noteName(60)) // => C4
-console.log(noteName(80)) // => G#5/Ab5
-console.log(noteName(107)) // => B7
+noteName(12) // => C0
+noteName(14) // => D0
+noteName(21) // => A0
+noteName(24) // => C1
+noteName(60) // => C4
+noteName(80) // => G#5/Ab5
+noteName(107) // => B7
 ```
 
-## Note control
+### Sampler v2
+
+We've already seen how we can load and play back a single sample. We can use the
+same principles to load and play back an entire set of samples.
+
+Let's create the following:
+
+- A `sampler()` function that takes a map of samples we want to load, and
+  returns a function for playing them back
+
+```js
+const sampler = async (context, samples) => {
+  const buffers = await Promise.all(
+    Object.keys(samples).map(note =>
+      fetch(samples[note])
+        .then(response => response.arrayBuffer())
+        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+        .then(buffer => Object.create({ note, buffer }))
+    )
+  )
+
+  return note => {
+    const notes = typeof note == 'string' ? [note] : note
+    const now = context.currentTime
+    notes.map(n => {
+      const buffer = buffers.find(b => b.note == n).buffer
+      const sourceNode = context.createBufferSource()
+      sourceNode.buffer = buffer
+      sourceNode.start(now)
+      sourceNode.stop(now + buffer.duration)
+      sourceNode.connect(context.destination)
+    })
+  }
+}
+
+;(async () => {
+  const context = new AudioContext()
+
+  const piano = await sampler(
+    context,
+    sampleMap('https://unpkg.com/@meleyal/gen-samples/piano/')
+  )
+
+  // Single C note
+  piano('C4')
+
+  // C major chord
+  piano(['C4', 'E4', 'G4'])
+})()
+```
+
+## Controlling notes
 
 This is a pretty good start, but our sampler is missing a few essential
 features.
@@ -333,98 +459,15 @@ osc.start()
 
 TODO
 
+### Compression
+
+TODO
+
 ### Reverb
 
 TODO
 
-## Sampler v1
-
-We've already seen how we can load and play back a single sample. We can use the
-same principles to load and play back an entire set of samples.
-
-Let's create the following:
-
-- A `sampler()` function that takes a map of samples we want to load, and
-  returns a function for playing them back
-- A `sampleMap()` function that maps the 86 note names to their respective
-  sample files, taking into account enharmonic naming (e.g. `C#4` maps to
-  `db4.mp3`).
-
-```js
-const sampler = async (context, samples) => {
-  const buffers = await Promise.all(
-    Object.keys(samples).map(note =>
-      fetch(samples[note])
-        .then(response => response.arrayBuffer())
-        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
-        .then(buffer => Object.create({ note, buffer }))
-    )
-  )
-
-  return note => {
-    const notes = typeof note == 'string' ? [note] : note
-    const now = context.currentTime
-    notes.map(n => {
-      const buffer = buffers.find(b => b.note == n).buffer
-      const sourceNode = context.createBufferSource()
-      sourceNode.buffer = buffer
-      sourceNode.start(now)
-      sourceNode.stop(now + buffer.duration)
-      sourceNode.connect(context.destination)
-    })
-  }
-}
-
-const sampleMap = baseUrl => {
-  const notes = 'C,C#,D,D#,E,F,F#,G,G#,A,A#,B'.split(',')
-  const octaves = [1, 2, 3, 4, 5, 6, 7]
-  const extension = '.mp3'
-
-  const enharmonic = note => {
-    switch (note) {
-      case 'A#':
-        return 'bb'
-      case 'C#':
-        return 'db'
-      case 'D#':
-        return 'eb'
-      case 'F#':
-        return 'bb'
-      case 'G#':
-        return 'ab'
-      default:
-        return note.toLowerCase()
-    }
-  }
-
-  return notes
-    .flatMap(note =>
-      octaves.map(octave => {
-        const name = `${note}${octave}`
-        const path = `${baseUrl}${enharmonic(note)}${octave}${extension}`
-        return { [name]: path }
-      })
-    )
-    .reduce((a, b) => Object.assign(a, b), {})
-}
-
-;(async () => {
-  const context = new AudioContext()
-
-  const piano = await sampler(
-    context,
-    sampleMap('https://unpkg.com/@meleyal/gen-samples/piano/')
-  )
-
-  // Single C note
-  piano('C4')
-
-  // C major chord
-  piano(['C4', 'E4', 'G4'])
-})()
-```
-
-## Sampler v2
+### Sampler v3
 
 ```js
 import { map, find, isString, defaults } from 'lodash'
@@ -535,6 +578,21 @@ const play = (context, output, buffer, options = {}) => {
   const envelopeNode = createEnvelope(context, output, volume, attack, release)
   createSource(context, envelopeNode, buffer)
 }
+
+;(async () => {
+  const context = new AudioContext()
+
+  const piano = await sampler(
+    context,
+    sampleMap('https://unpkg.com/@meleyal/gen-samples/piano/')
+  )
+
+  // Single C note
+  piano('C4')
+
+  // C major chord
+  piano(['C4', 'E4', 'G4'])
+})()
 ```
 
 ## Learning
