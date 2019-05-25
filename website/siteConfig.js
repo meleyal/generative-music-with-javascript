@@ -1,3 +1,13 @@
+const { inject } = require('./plugins/markdown.js')
+
+const isDev = process.env.NODE_ENV === 'development'
+
+const siteVariables = {
+  SAMPLES_URL: isDev
+    ? 'http://localhost:8081'
+    : 'https://unpkg.com/@meleyal/gen-samples'
+}
+
 const siteConfig = {
   title: 'Gen.js',
   tagline: 'Generative Music with JavaScript',
@@ -26,7 +36,8 @@ const siteConfig = {
   docsSideNavCollapsible: false,
   cleanUrl: true,
   enableUpdateTime: true,
-  scripts: ['/gen/js/custom.js']
+  scripts: ['/gen/js/custom.js'],
+  markdownPlugins: [inject(siteVariables)]
 }
 
 module.exports = siteConfig
