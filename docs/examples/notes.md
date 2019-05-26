@@ -178,6 +178,8 @@ const sampler = async (context, samples) => {
 
 ## Mapping notes to samples
 
+> TODO: Support custom mapping functions for key/value.
+
 A `sampleMap()` function that maps the 86 note names to their respective sample
 files, taking into account enharmonic naming (e.g. `C#4` maps to `db4.mp3`).
 
@@ -494,13 +496,13 @@ TODO: Compression of multiple samples to avoid distortion.
 
 ```js
 const now = context.currentTime
-const compressor = context.createDynamicsCompressor()
+const compressorNode = context.createDynamicsCompressor()
 
-compressor.threshold.setValueAtTime(-50, now)
-compressor.knee.setValueAtTime(40, now)
-compressor.ratio.setValueAtTime(12, now)
-compressor.attack.setValueAtTime(0, now)
-compressor.release.setValueAtTime(0.25, now)
+compressorNode.threshold.setValueAtTime(-50, now)
+compressorNode.knee.setValueAtTime(40, now)
+compressorNode.ratio.setValueAtTime(12, now)
+compressorNode.attack.setValueAtTime(0, now)
+compressorNode.release.setValueAtTime(0.25, now)
 ```
 
 ### Reverb
@@ -534,33 +536,53 @@ const sampler = async (context, samples) => {
     )
   )
 
-  return note => {
+  const compressorNode = context.createDynamicsCompressor()
+  compressorNode.threshold.value = -50
+  compressorNode.knee.value = 40
+  compressorNode.ratio.value = 12
+  compressorNode.attack.value = 0
+  compressorNode.release.value = 0.25
+
+  const gainNode = context.createGain()
+
+  return (note, options) => {
     const now = context.currentTime
-    const buffer = buffers.find(b => b.note == note).buffer
-    const sourceNode = context.createBufferSource()
-    sourceNode.buffer = buffer
-    sourceNode.start(now)
-    sourceNode.stop(now + buffer.duration)
-    sourceNode.connect(context.destination)
+    const notes = typeof note == 'string' ? [note] : note
+    const defaults = { volume: 1, duration: Infinity }
+    const { volume, duration } = Object.assign(defaults, options)
+
+    notes.map(n => {
+      const buffer = buffers.find(b => b.note == n).buffer
+      const sourceNode = context.createBufferSource()
+      sourceNode.buffer = buffer
+      sourceNode.start()
+
+      const zero = 0.00001 // value must be positive for exponentialRamp
+      gainNode.gain.value = volume
+      gainNode.gain.exponentialRampToValueAtTime(
+        zero,
+        now + Math.min(duration, buffer.duration)
+      )
+
+      sourceNode.connect(gainNode)
+      gainNode.connect(compressorNode)
+      compressorNode.connect(context.destination)
+    })
   }
 }
-;(async () => {
-  const context = new AudioContext()
 
-  const piano = await sampler(context, {
-    C4: 'http://localhost:8081/piano/c4.mp3',
-    D1: 'http://localhost:8081/piano/d4.mp3',
-    E4: 'http://localhost:8081/piano/e4.mp3',
-    F4: 'http://localhost:8081/piano/f4.mp3',
-    G4: 'http://localhost:8081/piano/g4.mp3'
-    // ...etc.
-  })
+gen.run(async context => {
+  const piano = await sampler(
+    context,
+    gen.sampleMap('{{PACKAGE_URL}}/samples/piano/')
+  )
+
+  // Single C note
+  piano('C4', { volume: 0.5 })
 
   // C major chord
-  piano('C4')
-  piano('E4')
-  piano('G4')
-})()
+  piano(['C4', 'E4', 'G4'], { volume: 0.8, duration: 2 })
+})
 ```
 
 ## Learning

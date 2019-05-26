@@ -32,38 +32,24 @@ the 88 notes have an equal chance of being played.
 For this example, we'll need a way to generate a random number within a given
 range, which JS doesn't have out-of-the-box. So let's create one:
 
-For this we'll use [`lodash`](https://lodash.com/), which provides a bunch of
-useful functions we'll use throughout the book. See the
-[JavaScript chapter](../primers/javascript) for help installing modules.
-
 ```js
 // Play a random note between 21 (A0) and 108 (C8)
 
-;(async () => {
-  const {
-    sampler,
-    sampleMap,
-    noteName,
-    metronome,
-    random
-  } = await import('http://localhost:8080/src/index.js')
+const { run, sampleMap, sampler, metronome, random, resolution, noteName } = gen
 
-  const context = new AudioContext()
-  const metro = metronome(context, 120)
-  // const rng = random(21, 108)
-  const rng = random(24, 107)
+run(async context => {
+  const samples = sampleMap('{{PACKAGE_URL}}/samples/piano/')
+  const piano = await sampler(context, samples)
+  const rng = random(24, 107) // TODO: our piano samples only support this range
 
-  const piano = await sampler(
-    context,
-    sampleMap('http://localhost:8081/piano/')
-  )
+  const metro = metronome(context, 240)
+  const metro4 = resolution(metro, 4)
 
-  metro.on('tick', () => {
-    piano(noteName(rng()))
+  metro4.subscribe(tick => {
+    const note = noteName(rng())
+    piano(note, { duration: 2 })
   })
-
-  metro.start()
-})()
+})
 ```
 
 This probably sounds like the bleeps and bloops you imagine when you hear the
@@ -91,12 +77,6 @@ midi().then(output => {
   metro.start()
 })
 ```
-
-<details>
-  <summary>Listen</summary>
-  ![](assets/walker/more-random.png)
-  <audio src="/gen/docs/assets/walker/more-random.mp3" controls></audio>
-</details>
 
 This makes things feel more natural, emulating the variations of timing and
 touch of a human player.
@@ -154,12 +134,6 @@ navigator.requestMIDIAccess().then(midi => {
   play(startNote, startVelocity)
 })
 ```
-
-<details>
-  <summary>Listen</summary>
-  ![](assets/walker/relative.png)
-  <audio src="/gen/docs/assets/walker/relative.mp3" controls></audio>
-</details>
 
 This gives us something that has more of a flow and sense of direction. We've
 constrained the options from all possible notes, to just those that are 5 notes
@@ -221,12 +195,6 @@ navigator.requestMIDIAccess().then(midi => {
 })
 ```
 
-<details>
-  <summary>Listen</summary>
-  ![](assets/walker/probability.png)
-  <audio src="/gen/docs/assets/walker/probability.mp3" controls></audio>
-</details>
-
 Here, we've weighed the odds to favour going up the scale. We'll sometimes dip
 downwards, but the results will always trend upwards over time.
 
@@ -275,12 +243,6 @@ midi().then(output => {
 })
 ```
 
-<details>
-  <summary>Listen</summary>
-  ![](assets/walker/normal.png)
-  <audio src="/gen/docs/assets/walker/normal.mp3" controls></audio>
-</details>
-
 Here, the notes cluster around middle C and medium velocity. By increasing the
 deviation from the mean we can introduce more variation.
 
@@ -307,12 +269,6 @@ midi().then(output => {
   }, length)
 })
 ```
-
-<details>
-  <summary>Listen</summary>
-  ![](assets/walker/perlin.png)
-  <audio src="/gen/docs/assets/walker/perlin.mp3" controls></audio>
-</details>
 
 The point so far is that there are many ways to generate streams of notes.
 What's lacking is any musical order.
@@ -413,12 +369,6 @@ navigator.requestMIDIAccess().then(midi => {
 })
 ```
 
-<details>
-  <summary>Listen</summary>
-  ![](assets/walker/scales.png)
-  <audio src="/gen/docs/assets/walker/scales.mp3" controls></audio>
-</details>
-
 Now all the notes are in the same scale so things sound a little less random /
 more cohesive. Given a single stream of notes this is less jarring than total
 randomness.
@@ -457,12 +407,6 @@ navigator.requestMIDIAccess().then(midi => {
   }, 1200)
 })
 ```
-
-<details>
-  <summary>Listen</summary>
-  ![](assets/walker/polyphony.png)
-  <audio src="/gen/docs/assets/walker/polyphony.mp3" controls></audio>
-</details>
 
 Here we're dividing the notes and sending the high notes to one channel, and the
 low notes to a second channel. We're sampling from the same set of notes so we

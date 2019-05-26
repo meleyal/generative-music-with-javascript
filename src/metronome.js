@@ -38,6 +38,7 @@ export const metronome = (context, bpm) => {
 
       // callbacks['tick/64']()
 
+      // TODO: Also return the length of the tick
       subscriber.next(currentTick)
 
       osc.onended = () => {
@@ -48,6 +49,14 @@ export const metronome = (context, bpm) => {
   })
 
   return observable
+}
+
+export const resolution = (metro, res) => {
+  return metro.pipe(
+    filter(x => {
+      return x % 16 === 0
+    })
+  )
 }
 
 // const context = new AudioContext()

@@ -5,15 +5,15 @@ title: API Reference
 This page documents all of the functions available in the
 [`gen`](https://www.npmjs.com/package/@meleyal/gen) library.
 
-## context()
+## run()
 
 Creates an `AudioContext`, the canvas for all the nodes you create. Repeated
-calls to `context()` will always return the same one. If the passed in function
-is `async`, we can use `await` in the rest of our code.
+calls to `run()` will always return the same one. If the passed in function is
+`async`, we can use `await` in the rest of our code.
 
 ```js
-context(async audioContext => {
-  const foo = await someThing(audioContext)
+run(async context => {
+  const foo = await someThing(context)
 })
 ```
 
@@ -95,7 +95,20 @@ noteNumber('B4') // => 71
 
 TODO: Summary
 
-TODO: Example
+```js
+gen.run(async context => {
+  const piano = await gen.sampler(
+    context,
+    gen.sampleMap('{{PACKAGE_URL}}/samples/piano/')
+  )
+
+  // Single C note
+  piano('C4', { volume: 0.5 })
+
+  // C major chord
+  piano(['C4', 'E4', 'G4'], { volume: 0.8, duration: 2 })
+})
+```
 
 ## sampleMap()
 

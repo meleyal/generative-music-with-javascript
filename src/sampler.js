@@ -1,3 +1,49 @@
+export const sampler = async (context, samples) => {
+  const buffers = await Promise.all(
+    Object.keys(samples).map(note =>
+      fetch(samples[note])
+        .then(response => response.arrayBuffer())
+        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+        .then(buffer => Object.create({ note, buffer }))
+    )
+  )
+
+  const compressorNode = context.createDynamicsCompressor()
+  compressorNode.threshold.value = -50
+  compressorNode.knee.value = 40
+  compressorNode.ratio.value = 12
+  compressorNode.attack.value = 0
+  compressorNode.release.value = 0.25
+
+  return (note, options) => {
+    const now = context.currentTime
+    const notes = typeof note == 'string' ? [note] : note
+    const defaults = { volume: 1, duration: Infinity }
+    const { volume, duration } = Object.assign(defaults, options)
+
+    const gainNode = context.createGain()
+
+    notes.map(n => {
+      const buffer = buffers.find(b => b.note == n).buffer
+      const sourceNode = context.createBufferSource()
+      sourceNode.buffer = buffer
+
+      const zero = 0.00001 // value must be positive for exponentialRamp
+      gainNode.gain.value = volume
+      gainNode.gain.exponentialRampToValueAtTime(
+        zero,
+        now + Math.min(duration, buffer.duration)
+      )
+
+      sourceNode.connect(gainNode)
+      gainNode.connect(compressorNode)
+      compressorNode.connect(context.destination)
+
+      sourceNode.start()
+    })
+  }
+}
+
 export const sampleMap = baseUrl => {
   const notes = 'C,C#,D,D#,E,F,F#,G,G#,A,A#,B'.split(',')
   const octaves = [1, 2, 3, 4, 5, 6, 7]
@@ -30,82 +76,6 @@ export const sampleMap = baseUrl => {
     )
     .reduce((a, b) => Object.assign(a, b), {})
 }
-
-// export const sampler = async (context, samples) => {
-//   const buffers = await Promise.all(
-//     Object.keys(samples).map(note =>
-//       fetch(samples[note])
-//         .then(response => response.arrayBuffer())
-//         .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
-//         .then(buffer => Object.create({ note, buffer }))
-//     )
-//   )
-//
-//   return note => {
-//     const now = context.currentTime
-//     const buffer = buffers.find(b => b.note == note).buffer
-//     const sourceNode = context.createBufferSource()
-//     sourceNode.buffer = buffer
-//     sourceNode.start(now)
-//     sourceNode.stop(now + buffer.duration)
-//     sourceNode.connect(context.destination)
-//   }
-// }
-// ;(async () => {
-//   const context = new AudioContext()
-//
-//   const piano = await sampler(context, {
-//     C4: 'http://localhost:8081/piano/c4.mp3',
-//     D1: 'http://localhost:8081/piano/d4.mp3',
-//     E4: 'http://localhost:8081/piano/e4.mp3',
-//     F4: 'http://localhost:8081/piano/f4.mp3',
-//     G4: 'http://localhost:8081/piano/g4.mp3'
-//     // ...etc.
-//   })
-//
-//   // C major chord
-//   piano('C4')
-//   piano('E4')
-//   piano('G4')
-// })()
-
-// export const sampler = async (context, samples) => {
-//   const buffers = await Promise.all(
-//     Object.keys(samples).map(note =>
-//       fetch(samples[note])
-//         .then(response => response.arrayBuffer())
-//         .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
-//         .then(buffer => Object.create({ note, buffer }))
-//     )
-//   )
-//
-//   const compressor = context.createDynamicsCompressor()
-//
-//   return note => {
-//     const notes = typeof note == 'string' ? [note] : note
-//     const now = context.currentTime
-//
-//     // const gainNode = context.createGain()
-//     // gainNode.gain.value = 0.5
-//
-//     compressor.threshold.setValueAtTime(-50, now)
-//     compressor.knee.setValueAtTime(40, now)
-//     compressor.ratio.setValueAtTime(12, now)
-//     compressor.attack.setValueAtTime(0, now)
-//     compressor.release.setValueAtTime(0.25, now)
-//
-//     notes.map(n => {
-//       const buffer = buffers.find(b => b.note == n).buffer
-//       const sourceNode = context.createBufferSource()
-//       sourceNode.buffer = buffer
-//       sourceNode.start(now)
-//       sourceNode.stop(now + buffer.duration)
-//       sourceNode.connect(compressor)
-//       compressor.connect(context.destination)
-//     })
-//   }
-// }
-//
 
 // import { map, find, isString, defaults } from 'lodash'
 // import { instruments as instrumentSamples } from 'gen-samples'
@@ -215,19 +185,3 @@ export const sampleMap = baseUrl => {
 //   const envelopeNode = createEnvelope(context, output, volume, attack, release)
 //   createSource(context, envelopeNode, buffer)
 // }
-//
-// ;(async () => {
-//   const context = new AudioContext()
-//
-//   const piano = await sampler(
-//     context,
-//     sampleMap('https://unpkg.com/@meleyal/gen-samples/piano/')
-//   )
-//
-//   // Single C note
-//   piano('C4')
-//
-//   // C major chord
-//   piano(['C4', 'E4', 'G4'])
-// })()
-//
