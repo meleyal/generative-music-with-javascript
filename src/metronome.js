@@ -59,6 +59,33 @@ export const resolution = (metro, res) => {
   )
 }
 
+// --------------------------------
+
+// Example custom operator
+// Src: https://rxviz.com/examples/custom-operator
+
+// const { Observable, interval } = Rx;
+//
+// const sqrt = source$ => Observable.create(observer =>
+//   source$.subscribe(
+//     value => {
+//       const result = Math.sqrt(value);
+//
+//       if (typeof value !== 'number' || isNaN(result)) {
+//         observer.error(`Square root of ${value} doesn't exist`);
+//       } else {
+//         observer.next(result);
+//       }
+//     },
+//     err => observer.error(err),
+//     () => observer.complete()
+//   )
+// );
+//
+// interval(1000).pipe(sqrt)
+
+// --------------------------------
+
 // const context = new AudioContext()
 //
 // const metro = metronome(context, 60)

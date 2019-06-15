@@ -2,3 +2,7 @@
 export const run = fn => {
   return fn(new AudioContext())
 }
+
+export const createContext = () => {
+  return new AudioContext()
+}

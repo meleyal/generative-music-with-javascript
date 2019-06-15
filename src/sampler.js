@@ -1,3 +1,80 @@
+import { Observable, from, of, forkJoin } from 'rxjs'
+import { fromFetch } from 'rxjs/fetch'
+import { map, flatMap } from 'rxjs/operators'
+
+export const sampler3 = (context, samples) => {
+  // return new Observable()
+
+  const buffers = forkJoin(
+    Object.keys(samples).map(note =>
+      fetch(samples[note])
+        .then(response => response.arrayBuffer())
+        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+        .then(buffer => Object.create({ note, buffer }))
+    )
+  )
+
+  return buffers
+  // return of(samples)
+
+  // const buffers = await Promise.all(
+  //   Object.keys(samples).map(note =>
+  //     fetch(samples[note])
+  //       .then(response => response.arrayBuffer())
+  //       .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+  //       .then(buffer => Object.create({ note, buffer }))
+  //   )
+  // )
+  //
+  // const compressorNode = context.createDynamicsCompressor()
+  // compressorNode.threshold.value = -50
+  // compressorNode.knee.value = 40
+  // compressorNode.ratio.value = 12
+  // compressorNode.attack.value = 0
+  // compressorNode.release.value = 0.25
+
+  // return (note, options) => {
+  //   const now = context.currentTime
+  //   const notes = typeof note == 'string' ? [note] : note
+  //   const defaults = { volume: 1, duration: Infinity }
+  //   const { volume, duration } = Object.assign(defaults, options)
+  //
+  //   const gainNode = context.createGain()
+  //
+  //   notes.map(n => {
+  //     const buffer = buffers.find(b => b.note == n).buffer
+  //     const sourceNode = context.createBufferSource()
+  //     sourceNode.buffer = buffer
+  //
+  //     const zero = 0.00001 // value must be positive for exponentialRamp
+  //     gainNode.gain.value = volume
+  //     gainNode.gain.exponentialRampToValueAtTime(
+  //       zero,
+  //       now + Math.min(duration, buffer.duration)
+  //     )
+  //
+  //     sourceNode.connect(gainNode)
+  //     gainNode.connect(compressorNode)
+  //     compressorNode.connect(context.destination)
+  //
+  //     sourceNode.start()
+  //   })
+  // }
+}
+
+export const loadSample = (context, path) => {
+  return fromFetch(path).pipe(
+    flatMap(response => from(response.arrayBuffer())),
+    flatMap(arrayBuffer => from(context.decodeAudioData(arrayBuffer))),
+    map(audioBuffer => {
+      const sourceNode = context.createBufferSource()
+      sourceNode.buffer = audioBuffer
+      sourceNode.connect(context.destination)
+      return sourceNode
+    })
+  )
+}
+
 export const sampler = async (context, samples) => {
   const buffers = await Promise.all(
     Object.keys(samples).map(note =>
@@ -44,7 +121,60 @@ export const sampler = async (context, samples) => {
   }
 }
 
-export const sampleMap = baseUrl => {
+export const sampler2 = (context, buffers) => {
+  const compressorNode = context.createDynamicsCompressor()
+  compressorNode.threshold.value = -50
+  compressorNode.knee.value = 40
+  compressorNode.ratio.value = 12
+  compressorNode.attack.value = 0
+  compressorNode.release.value = 0.25
+
+  return (note, options) => {
+    const now = context.currentTime
+    const notes = typeof note == 'string' ? [note] : note
+    const defaults = { volume: 1, duration: Infinity }
+    const { volume, duration } = Object.assign(defaults, options)
+
+    const gainNode = context.createGain()
+
+    notes.map(n => {
+      const buffer = buffers.find(b => b.note == n).buffer
+      const sourceNode = context.createBufferSource()
+      sourceNode.buffer = buffer
+
+      const zero = 0.00001 // value must be positive for exponentialRamp
+      gainNode.gain.value = volume
+      gainNode.gain.exponentialRampToValueAtTime(
+        zero,
+        now + Math.min(duration, buffer.duration)
+      )
+
+      sourceNode.connect(gainNode)
+      gainNode.connect(compressorNode)
+      compressorNode.connect(context.destination)
+
+      sourceNode.start()
+    })
+  }
+}
+
+export const sampleMap = pathFn => {
+  const notes = 'C,C#,D,D#,E,F,F#,G,G#,A,A#,B'.split(',')
+  const octaves = [1, 2, 3, 4, 5, 6, 7]
+  const extension = '.mp3'
+
+  return notes
+    .flatMap(note =>
+      octaves.map(octave => {
+        const name = `${note}${octave}`
+        const path = pathFn(note, octave)
+        return { [name]: path }
+      })
+    )
+    .reduce((a, b) => Object.assign(a, b), {})
+}
+
+export const sampleMap2 = async (context, baseUrl) => {
   const notes = 'C,C#,D,D#,E,F,F#,G,G#,A,A#,B'.split(',')
   const octaves = [1, 2, 3, 4, 5, 6, 7]
   const extension = '.mp3'
@@ -66,7 +196,7 @@ export const sampleMap = baseUrl => {
     }
   }
 
-  return notes
+  const samples = notes
     .flatMap(note =>
       octaves.map(octave => {
         const name = `${note}${octave}`
@@ -75,6 +205,20 @@ export const sampleMap = baseUrl => {
       })
     )
     .reduce((a, b) => Object.assign(a, b), {})
+
+  const buffers = await Promise.all(
+    Object.keys(samples).map(note => {
+      return fetch(samples[note])
+        .then(response => response.arrayBuffer())
+        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+        .then(buffer => {
+          return { note: note, buffer: buffer }
+          // return Object.create({ note, buffer })
+        })
+    })
+  )
+
+  return buffers
 }
 
 // import { map, find, isString, defaults } from 'lodash'

@@ -356,3 +356,7 @@ While the musical results are less than inspiring, we now have a way to generate
 two key aspects of music: notes/pitch and rhythm/time, which combined can give
 us melody. With that in mind, we're ready to move on to a more interesting
 example.
+
+## Further Reading
+
+- [A Tale of Two Clocks - Scheduling Web Audio with Precision](https://www.html5rocks.com/en/tutorials/audio/scheduling/)

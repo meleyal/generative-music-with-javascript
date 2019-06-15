@@ -12,8 +12,10 @@ something from scratch.
 
 It's also an experiment, in that the results are uncertain. We can fairly easily
 write a program to generate noise, and with a little work even something that
-sounds vaguely like music, but can we make something that approaches the
-qualities of "real" music?
+sounds vaguely like music, but can we, with just a web browser, JavaScript, and
+the Web Audio API, make something that approaches the qualities of "real" music?
+
+## Principles
 
 To help us focus, the book has a few guiding principles:
 
@@ -21,8 +23,8 @@ To help us focus, the book has a few guiding principles:
   take some artistic license along the way.
 
 - **Composition over sound design:** The focus will be on creating musical
-  structures, with sound generation delegated to instrument samples. (Note level
-  vs. sample level).
+  structures, with sound generation delegated to instrument samples (i.e.
+  working at the note level rather than the sample level).
 
 - **Systems over performance:** We're aiming for music that is self evolving and
   requires no interaction from us or the listener (i.e.
@@ -35,6 +37,8 @@ To help us focus, the book has a few guiding principles:
 
 ## Structure
 
+### Primers
+
 To help us get started, the book begins with short primers on each of its three
 subjects:
 
@@ -45,33 +49,41 @@ subjects:
 2. [**Music:**](primers/music) Here we explain the building blocks of music:
    melody, harmony and rhythm.
 
-3. [**JavaScript:**](primers/javascript) Here we cover modern JavaScript,
-   introduce the Web Audio API, and explain why programming for the browser is a
-   good thing.
+3. [**JavaScript:**](primers/javascript) Here we cover modern JavaScript, and
+   introduce the Web Audio API.
 
-With that under our belts, the main part of the book guides us through applying
-these ideas to making some noise, and potentially, music! We begin by making
-some useful musical building blocks, and progress to explore the musical
-potential of different generative ideas:
+### Elements
 
-1. [**Notes:**](examples/notes) TODO: Summary
+Next, we move on to look at how to actually program the building blocks of
+music. We'll use the tools we create here throughout the rest of the book so we
+can express our ideas more fluently.
 
-2. [**Timing:**](examples/timing) TODO: Summary
+1. [**Notes:**](elements/notes) TODO: Summary
 
-3. [**Sequencing:**](examples/sequencing) TODO: Summary
+2. [**Timing:**](elements/timing) TODO: Summary
 
-4. [**Walker:**](examples/walker) Taking a random walk around the keyboard.
+3. [**Sequencing:**](elements/sequencing) TODO: Summary
 
-5. More...
+4. [**Architecture:**](elements/architecture) TODO: Summary
 
-## Requirements
+### Examples
 
-There are a few essentials you'll need to follow along with the examples:
+The core of the book is a series of examples exploring the musical potential of
+different generative ideas:
 
-- [A browser that supports the Web Audio API](https://caniuse.com/#feat=audio-api)
-- [A code editor](https://en.wikipedia.org/wiki/Source-code_editor#Notable_examples)
+1. [**Walker:**](examples/walker) Taking a random walk around the keyboard.
 
-## Credits
+2. More...
 
-Check out the [Links](appendix/links) for a list of references that informed
-this book.
+## Code Examples
+
+All the code examples in this book are runnable. You should be able to hear the
+results (or see them in the console) when hitting the `Run` bottom in the
+bottom-right corner of each code snippet.
+
+To avoid repeating big chunks of code we've already seen, once a concept has
+been introduced, we'll import relevant functions from the
+[Gen.js](https://www.npmjs.com/package/@meleyal/gen) library (it's present on
+every page as the `gen` global). The actual implementation might differ from the
+presented examples as the library evolves, but the principles should remain
+similar.

@@ -2,10 +2,8 @@
 title: Walker
 ---
 
-This example shows how to introduce variation to our music through the idea of a
+This chapter shows how to introduce variation to our music through the idea of a
 random walk.
-
-## Definition
 
 In 2D graphics, a random walk involves drawing a path by repeatedly choosing a
 random direction in which to move. On this 2D plane, each step can be one of 4
@@ -14,12 +12,12 @@ as an option). Given a certain set of rules, this might look as follows:
 
 ![](assets/walker/walk.png)
 
-How might we apply this idea to music? We know from the
-[Music chapter](../primers/music#midi) that a piano has 88 keys, giving it a
-range from A0 to C8, which map to the MIDI numbers 21–108. We can treat this as
-a 1D plane, and say that at each moment we have 4 choices: 1) play a higher
-note; 2) play a lower note; 3) play the same note; 4) play nothing. The range
-21-108 and the 4 choices define the "possibility space" for our random walk.
+How might we apply this idea to music? As we've seen, a piano has 88 keys,
+giving it a range from A0 to C8, which map to the MIDI numbers 21–108. We can
+treat this as a 1D plane, and say that at each moment we have 4 choices: 1) play
+a higher note; 2) play a lower note; 3) play the same note; 4) play nothing. The
+range 21-108 and the 4 choices define the "possibility space" for our random
+walk.
 
 ![](assets/walker/piano.svg)
 
@@ -33,8 +31,6 @@ For this example, we'll need a way to generate a random number within a given
 range, which JS doesn't have out-of-the-box. So let's create one:
 
 ```js
-// Play a random note between 21 (A0) and 108 (C8)
-
 const { run, sampleMap, sampler, metronome, random, resolution, noteName } = gen
 
 run(async context => {
@@ -55,6 +51,10 @@ run(async context => {
 This probably sounds like the bleeps and bloops you imagine when you hear the
 phrase "computer generated music". At strict intervals and constant velocity the
 results sound rather mechanical.
+
+In addition to hearing the results, it can also be useful to visualize what's
+being generated, which will be useful later as our examples get more
+complicated.
 
 ## More randomness
 

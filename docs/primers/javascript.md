@@ -72,3 +72,21 @@ output.send([noteOff, note, velocity], window.performance.now() + length)
 Other languages to check out:
 
 SuperCollider PureData Overtone Chuck Sonic Pi Max/MSP Tidal Cycles
+
+- [Overtone](http://overtone.github.io/)
+- [Sonic Pi](https://github.com/samaaron/sonic-pi)
+- [Tone.js](https://github.com/Tonejs/Tone.js)
+- [Tidal](https://github.com/tidalcycles/Tidal)
+- [Alda](https://github.com/alda-lang/alda)
+
+## Further Reading
+
+- [What Is the Web Audio API?](http://teropa.info/blog/2016/08/19/what-is-the-web-audio-api.html)
+- [Web Audio API: Advanced Sound for Games and Interactive Apps](https://webaudioapi.com/book/)
+- [Functional-Light JavaScript](https://leanpub.com/fljs)
+- [JavaScript Allongé](https://leanpub.com/javascriptallongesix)
+- [Functional JavaScript](http://shop.oreilly.com/product/0636920028857.do)
+- [Eloquent JavaScript](https://eloquentjavascript.net/)
+- [Reactive Programming with RxJS 5](https://pragprog.com/book/smreactjs5/reactive-programming-with-rxjs-5)
+- [JavaScript Systems Music](https://teropa.info/blog/2016/07/28/javascript-systems-music.html)
+- [Making Generative Music in the Browser](https://medium.com/@metalex9/making-generative-music-in-the-browser-bfb552a26b0b)

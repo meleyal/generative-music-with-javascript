@@ -2,9 +2,15 @@
 title: Music
 ---
 
-Melody (scales), Harmony (chords), Rhythm compare with functions + primitives
-Composition (canon, counterpoint, serial, etc.) compare with frameworks?
-Instruments, different ranges Scores, graphic scores, MIDI, computer music
+Melody, harmony, rhythm, compare with functions + primitives.
+
+## Melody
+
+- Scales
+
+## Harmony
+
+- Chords
 
 ## Rhythm
 
@@ -46,3 +52,12 @@ http://www.midi.org/techspecs/midimessages.php
 https://www.snoize.com/MIDIMonitor/
 
 https://people.carleton.edu/~jellinge/m208w14/pdf/02MIDIBasics_doc.pdf
+
+### Other
+
+- OSC
+
+## Scores
+
+- Traditional
+- Graphic

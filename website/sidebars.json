@@ -2,13 +2,13 @@
   "docs": {
     "Welcome": ["introduction"],
     "Primers": ["primers/generative", "primers/music", "primers/javascript"],
-    "Examples": [
-      "examples/notes",
-      "examples/timing",
-      "examples/sequencing",
-      "examples/walker"
+    "Elements": [
+      "elements/notes",
+      "elements/timing",
+      "elements/sequencing",
+      "elements/architecture"
     ],
-    "API": ["api/index"],
-    "Appendix": ["appendix/links", "appendix/forms"]
+    "Examples": ["examples/walker"],
+    "API": ["api/index"]
   }
 }

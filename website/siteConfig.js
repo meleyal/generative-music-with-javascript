@@ -16,6 +16,7 @@ const siteConfig = {
   projectName: 'gen',
   organizationName: 'meleyal',
   headerLinks: [
+    { href: 'http://localhost:3001/gen', label: 'Scratchpad' },
     { doc: 'introduction', label: 'Docs' },
     { doc: 'api/index', label: 'API' },
     {
