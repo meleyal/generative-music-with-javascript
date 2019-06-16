@@ -2,7 +2,7 @@
 title: Introduction
 ---
 
-This book is a <mark>work in progress</mark> guide to composing generative music
+This book is a <mark>work in progress</mark> guide to creating generative music
 with JavaScript.
 
 It's part learning exercise, part experiment. There already exist
@@ -35,45 +35,81 @@ To help us focus, the book has a few guiding principles:
   we'll encapsulate our learning into a set of modules we can plug together to
   make more sophisticated music.
 
-## Structure
+## Structure
 
-### Primers
+The book is structured in three parts:
 
-To help us get started, the book begins with short primers on each of its three
-subjects:
+### Generative
 
-1. [**Generative:**](primers/generative) Here we define what we mean by
-   "generative", and cover how generative processes can be applied to creating
-   art and music.
+Here we explore different generative techniques/methods and how to program them
+in JavaScript.
 
-2. [**Music:**](primers/music) Here we explain the building blocks of music:
-   melody, harmony and rhythm.
+Here we define what we mean by "generative", and cover how generative processes
+can be applied to creating art and music.
 
-3. [**JavaScript:**](primers/javascript) Here we cover modern JavaScript, and
-   introduce the Web Audio API.
+We'll cover how natural processes? have been applied to programming, art, music.
+History: https://www.artnome.com/news/2018/8/8/why-love-generative-art
 
-### Elements
+Nature of Code Biomimicry Generative algorithms Deep Learning Web of data NASA,
+Geo patterns
+
+Reas rules: https://drive.google.com/file/d/0B9h469--G5OwOGVfVmUxZUQ5VzA/view
+
+[The Nature of Code](https://natureofcode.com/)
+
+- [**Randomness:**](generative/randomness) TODO: Summary
+
+- [**Recursion:**](generative/recursion) TODO: Summary
+
+- [**Evolution:**](generative/evolution) TODO: Summary
+
+- [**Web of Data:**](generative/data) TODO: Summary
+
+- [**Machine Learning:**](generative/machine-learning) TODO: Summary
+
+### Music
+
+In the first part of the book, we start by covering the building blocks of
+music, and how to program them in JavaScript with the Web Audio API.
 
 Next, we move on to look at how to actually program the building blocks of
 music. We'll use the tools we create here throughout the rest of the book so we
 can express our ideas more fluently.
 
-1. [**Notes:**](elements/notes) TODO: Summary
+- [**Notes:**](elements/notes) TODO: Summary
 
-2. [**Timing:**](elements/timing) TODO: Summary
+- [**Scales:**](elements/notes) TODO: Summary
 
-3. [**Sequencing:**](elements/sequencing) TODO: Summary
+- [**Timing:**](elements/timing) TODO: Summary
 
-4. [**Architecture:**](elements/architecture) TODO: Summary
+- [**Sequencing:**](elements/sequencing) TODO: Summary
+
+- [**Architecture:**](elements/architecture) TODO: Summary
+
+Here we explain the building blocks of music: melody, harmony and rhythm.
+
+Melody, harmony, rhythm, compare with functions + primitives.
+
+- Scales
+- Chords
+- Rhythm
+- Tempo/BPM/beat
+- Human heart beat
+- Signature BPMs (house 120, hip hop 90, dnb 140)
+- Time signature
+- Note lengths
+- Instruments
 
 ### Examples
+
+Here we bring our learning together to make generative music.
 
 The core of the book is a series of examples exploring the musical potential of
 different generative ideas:
 
-1. [**Walker:**](examples/walker) Taking a random walk around the keyboard.
+- [**Walker:**](examples/walker) Taking a random walk around the keyboard.
 
-2. More...
+- More...
 
 ## Code Examples
 
@@ -87,3 +123,10 @@ been introduced, we'll import relevant functions from the
 every page as the `gen` global). The actual implementation might differ from the
 presented examples as the library evolves, but the principles should remain
 similar.
+
+## Gen.js Library
+
+A lot of the ideas are encapsulated in the Gen.js library. If you want to skip
+over how things are implemented and just make music, we'll cross-reference each
+of the code examples with their Gen.js counterpart. The full list of available
+functions can be found in the [API Reference](api/index).

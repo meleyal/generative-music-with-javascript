@@ -1,12 +1,13 @@
 {
   "docs": {
     "Welcome": ["introduction"],
-    "Primers": ["primers/generative", "primers/music", "primers/javascript"],
-    "Elements": [
-      "elements/notes",
-      "elements/timing",
-      "elements/sequencing",
-      "elements/architecture"
+    "Generative": ["generative/randomness", "generative/recursion"],
+    "Music": [
+      "music/notes",
+      "music/scales",
+      "music/timing",
+      "music/sequencing",
+      "music/architecture"
     ],
     "Examples": ["examples/walker"],
     "API": ["api/index"]
