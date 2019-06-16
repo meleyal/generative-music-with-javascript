@@ -13,17 +13,13 @@ the book use it.
 
 The architecture presented here is based on the concept of "one-way data flow",
 and is borrowed from
-[The Elm Architecture](https://guide.elm-lang.org/architecture/). A program
+[The Elm Architecture](https://guide.elm-lang.org/architecture/). A `program`
 generates `messages` which are sent to an `update` function that updates a data
 `model` and passes it to a `render` function. It's as simple as that!
 
 ![](assets/architecture/one-way-data-flow.svg)
 
-## Program
-
-Let's discuss each of the four concepts that make up our program in detail.
-
-### Model
+## Model
 
 The `model` is an object that describes the state of our program. Here, we can
 think about the "shape" of the data that our program will need. We can fill in
@@ -38,11 +34,12 @@ const model = {
 }
 ```
 
-### Messages
+## Messages
 
-The `messages()` function receives the current `model`, and a `send()` function
-it can use to update the model. It returns an object describing the things we
-want to happen in our program.
+The `messages()` function describes all the things we want to happen in our
+program. It receives the current `model`, and a `send()` function it can use to
+update the model. It returns an object describing the things we want to happen
+in our program.
 
 ```js
 const messages = (model, send) => {
@@ -77,7 +74,7 @@ const messages = (model, send) => {
 }
 ```
 
-### Update
+## Update
 
 If your update logic is more complicated, you can provide a custom `update()`
 function to `program()`.
@@ -102,25 +99,21 @@ const update = (model, msg) => {
 update({ tick: 0 }, { tick: 1 }) // => { tick: 1 }
 ```
 
-### Render
+## Render
 
 The `render()` function is where we actually make sounds. It takes our model as
 input, and the result is something that outputs audio to our speakers.
 
 > TODO: Example
 
-## Putting It All Together
+## Program
 
-These three functions don't currently talk to each other, we still need a way to
-wire them together.
-
-### Program
+These functions don't currently talk to each other, we still need a way to wire
+them together.
 
 The `program()` function takes care of calling `init()` to build the initial
-model, sends `messages()` to update our model, and automatically calls
+model, sends `messages()` to `update()` our model, and automatically calls
 `render()` with the updated model, forming a continuous feedback loop.
-
-### Basic Example
 
 This example shows how to setup a metronome to continually update the model with
 the current beat.
@@ -152,80 +145,6 @@ const messages = (model, send) => ({
 
 const render = model => {
   console.log('render', model.tick)
-}
-
-// -- PROGRAM
-
-program({ model, messages, render })
-```
-
-### Advanced Example
-
-This example shows loading samples and playing them back in `render()`.
-
-```js
-const {
-  program,
-  sampler2,
-  sampleMap2,
-  metronome,
-  resolution,
-  random,
-  noteName
-} = gen
-
-// -- INIT
-
-const model = {
-  bpm: 60,
-  tick: 0,
-  note: null,
-  piano: null
-}
-
-// -- MESSAGES
-
-const messages = (model, send) => {
-  const { context, bpm } = model
-
-  const msgs = {
-    tick: () => {
-      const metro = resolution(metronome(context, bpm), 4)
-
-      metro.subscribe(tick => {
-        const msg = { tick, ...msgs.note() }
-        send(msg)
-      })
-    },
-
-    note: () => {
-      const rng = random(24, 107)
-      const note = noteName(rng())
-      return { note }
-    },
-
-    piano: async () => {
-      const samples = await sampleMap2(
-        context,
-        '{{PACKAGE_URL}}/samples/piano/'
-      )
-      const piano = sampler2(context, samples)
-      const msg = { piano }
-      send(msg)
-    }
-  }
-
-  return msgs
-}
-
-// -- RENDER
-
-const render = model => {
-  const { piano, note } = model
-
-  if (piano) {
-    piano(note, { duration: 2 })
-  }
 }
 
 // -- PROGRAM

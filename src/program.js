@@ -6,18 +6,17 @@ export const program = (props = { model, messages, update, render }) => {
   // -- INIT
 
   let model = { ...props.model, context }
-  props.render(model)
 
   // -- UPDATE
 
-  if (!props.update) {
-    props.update = (model, msg) => {
-      return {
-        ...model,
-        ...msg
-      }
+  const update = (_, msg) => {
+    return {
+      ...model,
+      ...msg
     }
   }
+
+  props.update = props.update || update
 
   // -- MESSAGES
 
@@ -26,8 +25,20 @@ export const program = (props = { model, messages, update, render }) => {
       model = props.update(model, { [key]: msgs[key] })
     })
 
-    props.render(model)
+    render(model)
   }
+
+  // -- RENDER
+
+  const render = model => {
+    try {
+      props.render(model)
+    } catch (e) {
+      // no-op
+    }
+  }
+
+  render(model)
 
   values(props.messages(model, send)).forEach(fn => fn())
 }

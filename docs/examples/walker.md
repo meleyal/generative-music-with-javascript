@@ -48,6 +48,69 @@ run(async context => {
 })
 ```
 
+This example shows loading samples and playing them back in `render()`.
+
+```js
+const {
+  program,
+  sampler2,
+  sampleMap2,
+  metronome,
+  resolution,
+  random,
+  noteName
+} = gen
+
+// -- MODEL
+
+const model = {
+  bpm: 60,
+  tick: 0,
+  note: null,
+  sampler: null
+}
+
+// -- MESSAGES
+
+const messages = (model, send) => {
+  const { context, bpm } = model
+
+  const msgs = {
+    tick: () => {
+      const metro = resolution(metronome(context, bpm), 4)
+      metro.subscribe(tick => send({ tick, ...msgs.note() }))
+    },
+
+    note: () => {
+      const rng = random(24, 107)
+      return { note: noteName(rng()) }
+    },
+
+    sampler: async () => {
+      const samples = await sampleMap2(
+        context,
+        '{{PACKAGE_URL}}/samples/piano/'
+      )
+      send({ sampler: sampler2(context, samples) })
+    }
+  }
+
+  return msgs
+}
+
+// -- RENDER
+
+const render = model => {
+  const { sampler, note } = model
+
+  sampler(note, { duration: 2 })
+}
+
+// -- PROGRAM
+
+program({ model, messages, render })
+```
+
 This probably sounds like the bleeps and bloops you imagine when you hear the
 phrase "computer generated music". At strict intervals and constant velocity the
 results sound rather mechanical.
