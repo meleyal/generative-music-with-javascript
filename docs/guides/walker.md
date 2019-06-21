@@ -1,5 +1,5 @@
 ---
-title: Randomness
+title: Walker
 ---
 
 This chapter shows how to introduce variation to our music through the idea of a

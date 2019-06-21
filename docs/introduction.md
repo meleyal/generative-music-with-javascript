@@ -5,26 +5,23 @@ title: Introduction
 This book is a <mark>work in progress</mark> guide to creating generative music
 with JavaScript.
 
-It's part learning exercise, part experiment. There already exist
+There already exist
 [many ways](https://github.com/ciconia/awesome-music/blob/master/README.md#music-programming)
 to make generative music, but this book is about learning how to create
-something from scratch.
-
-It's also an experiment, in that the results are uncertain. We can fairly easily
-write a program to generate noise, and with a little work even something that
-sounds vaguely like music, but can we, with just a web browser, JavaScript, and
-the Web Audio API, make something that approaches the qualities of "real" music?
+something from scratch using JavaScript and the Web Audio API. We can fairly
+easily write a program to generate noise, and with a little work even something
+that sounds vaguely like music, but can we design systems that produce something
+that approaches the qualities of "real" music? Let's find out!
 
 ## Principles
 
 To help us focus, the book has a few guiding principles:
 
-- **Fun over rigour:** We'll take inspiration from nature and science, but also
+- **Fun over rigour:** We'll take inspiration from science and nature, but also
   take some artistic license along the way.
 
 - **Composition over sound design:** The focus will be on creating musical
-  structures, with sound generation delegated to instrument samples (i.e.
-  working at the note level rather than the sample level).
+  structures, with sound generation delegated to instrument samples.
 
 - **Systems over performance:** We're aiming for music that is self evolving and
   requires no interaction from us or the listener (i.e.
@@ -37,44 +34,28 @@ To help us focus, the book has a few guiding principles:
 
 ## Structure
 
-The book is structured in three parts:
+### Primers
 
-### Generative
+To help us get started, the book begins with short primers on each of its three
+subjects:
 
-Here we explore different generative techniques/methods and how to program them
-in JavaScript.
+- [**Generative:**](primers/generative) Here we define what we mean by
+  "generative", and cover how generative processes can be applied to creating
+  art and music
 
-Here we define what we mean by "generative", and cover how generative processes
-can be applied to creating art and music.
+- [**Music:**](primers/music) Here we explain the building blocks of music:
+  melody, harmony and rhythm.
 
-We'll cover how natural processes? have been applied to programming, art, music.
-History: https://www.artnome.com/news/2018/8/8/why-love-generative-art
+- [**JavaScript:**](primers/javascript) Here we cover modern JavaScript, and
+  introduce the Web Audio API.
 
-Nature of Code Biomimicry Generative algorithms Deep Learning Web of data NASA,
-Geo patterns
+### Guides
 
-Reas rules: https://drive.google.com/file/d/0B9h469--G5OwOGVfVmUxZUQ5VzA/view
+The core of the book is a series of guided examples. We starting with how to
+program the basic building blocks of music, and go on to develop systems that
+create music based on different generative ideas:
 
-[The Nature of Code](https://natureofcode.com/)
-
-- [**Randomness:**](generative/randomness) TODO: Summary
-
-- [**Recursion:**](generative/recursion) TODO: Summary
-
-- [**Evolution:**](generative/evolution) TODO: Summary
-
-- [**Web of Data:**](generative/data) TODO: Summary
-
-- [**Machine Learning:**](generative/machine-learning) TODO: Summary
-
-### Music
-
-In the first part of the book, we start by covering the building blocks of
-music, and how to program them in JavaScript with the Web Audio API.
-
-Next, we move on to look at how to actually program the building blocks of
-music. We'll use the tools we create here throughout the rest of the book so we
-can express our ideas more fluently.
+- [**Note:**](elements/note) TODO: Summary
 
 - [**Notes:**](elements/notes) TODO: Summary
 
@@ -85,27 +66,6 @@ can express our ideas more fluently.
 - [**Sequencing:**](elements/sequencing) TODO: Summary
 
 - [**Architecture:**](elements/architecture) TODO: Summary
-
-Here we explain the building blocks of music: melody, harmony and rhythm.
-
-Melody, harmony, rhythm, compare with functions + primitives.
-
-- Scales
-- Chords
-- Rhythm
-- Tempo/BPM/beat
-- Human heart beat
-- Signature BPMs (house 120, hip hop 90, dnb 140)
-- Time signature
-- Note lengths
-- Instruments
-
-### Examples
-
-Here we bring our learning together to make generative music.
-
-The core of the book is a series of examples exploring the musical potential of
-different generative ideas:
 
 - [**Walker:**](examples/walker) Taking a random walk around the keyboard.
 

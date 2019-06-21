@@ -1,15 +1,16 @@
 {
   "docs": {
     "Welcome": ["introduction"],
-    "Generative": ["generative/randomness", "generative/recursion"],
-    "Music": [
-      "music/notes",
-      "music/scales",
-      "music/timing",
-      "music/sequencing",
-      "music/architecture"
+    "Primers": ["primers/generative", "primers/music", "primers/javascript"],
+    "Guides": [
+      "guides/note",
+      "guides/notes",
+      "guides/scales",
+      "guides/timing",
+      "guides/sequencing",
+      "guides/architecture",
+      "guides/walker"
     ],
-    "Examples": ["examples/walker"],
     "API": ["api/index"]
   }
 }
