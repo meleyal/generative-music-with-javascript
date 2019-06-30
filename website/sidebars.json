@@ -7,9 +7,13 @@
       "guides/notes",
       "guides/scales",
       "guides/timing",
+      "guides/patterns",
       "guides/sequencing",
+      "guides/routing",
       "guides/architecture",
-      "guides/walker"
+      "guides/randomness",
+      "guides/probability",
+      "guides/phasing"
     ],
     "API": ["api/index"]
   }

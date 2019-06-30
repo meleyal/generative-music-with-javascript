@@ -6,12 +6,10 @@
 // console.log('seed:', seed)
 // const rng = new seedrandom(seed)
 //
-// export const random = (lower, upper) => {
-//   return lower + Math.floor(rng() * (upper - lower + 1))
+// export const random = (min, max) => {
+//   return min + Math.floor(rng() * (max - min + 1))
 // }
 
-export const random = (lower, upper) => {
-  return () => {
-    return lower + Math.floor(Math.random() * (upper - lower + 1))
-  }
+export const random = (min, max) => {
+  return min + Math.floor(Math.random() * (max - min + 1))
 }

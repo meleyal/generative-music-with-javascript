@@ -1,37 +1,23 @@
-import { run, createContext } from './env'
-import { random } from './number'
-import { noteNumber, noteName, enharmonic } from './music'
-import { ring } from './pattern'
-import { metronome, resolution } from './metronome'
-import {
-  sampler,
-  sampler2,
-  sampler3,
-  sampleMap,
-  sampleMap2,
-  loadSample
-} from './sampler'
-import { program } from './program'
+import * as fx from './fx'
+import * as music from './music'
+import * as number from './number'
+import * as pattern from './pattern'
+import * as util from './util'
+import { metronome } from './metronome'
+import { sampler, sampleMap } from './sampler'
+import { samples } from './samples'
 
 const gen = {
-  run,
-  createContext,
-  noteNumber,
-  noteName,
-  enharmonic,
-  random,
-  ring,
+  fx,
   metronome,
-  resolution,
-  sampler,
-  sampler2,
-  sampler3,
+  music,
+  number,
+  pattern,
   sampleMap,
-  sampleMap2,
-  loadSample,
-  program
+  sampler,
+  samples,
+  util
 }
 
 window.gen = gen
-
 export default gen

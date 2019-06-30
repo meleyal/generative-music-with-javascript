@@ -21,6 +21,8 @@ run(async context => {
 
 TODO: Summary
 
+Credit: Sonic Pi
+
 ```js
 const pattern = ring(['a', 'b', 'c', 'd'])
 

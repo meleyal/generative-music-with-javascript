@@ -28,21 +28,6 @@ export const noteNumber = name => {
 }
 
 export const noteName = num => {
-  // const numbers = {
-  //   0: 'C',
-  //   1: 'C#/Db',
-  //   2: 'D',
-  //   3: 'D#/Eb',
-  //   4: 'E',
-  //   5: 'F',
-  //   6: 'F#/Gb',
-  //   7: 'G',
-  //   8: 'G#/Ab',
-  //   9: 'A',
-  //   10: 'A#/Bb',
-  //   11: 'B'
-  // }
-
   const numbers = {
     0: 'C',
     1: 'C#',
@@ -101,61 +86,64 @@ export const enharmonic = note => {
   }
 }
 
-// import {
-//   range,
-//   filter,
-//   chunk,
-//   map,
-//   flow,
-//   indexOf,
-//   includes,
-//   flatten
-// } from 'lodash/fp'
-//
-// const scales = {
-//   cmaj: [0, 2, 4, 5, 7, 9, 11]
-// }
-//
-// export const limit = instrument => {
-//   let min, max
-//
-//   switch (instrument) {
-//     case 'piano':
-//       min = 21
-//       max = 109
-//       break
-//     default:
-//       min = 0
-//       max = 127
-//   }
-//
-//   return notes => {
-//     return filter(n => {
-//       return n >= min && n <= max
-//     })(notes)
-//   }
-// }
-//
-// const octaves = notes => {
-//   return chunk(12)(notes)
-// }
-//
-// export const scale = scale => {
-//   // const notes = range(24, 108)
-//   const notes = range(0, 200)
-//   const scaleNotes = flow(
-//     octaves,
-//     map(o => {
-//       // select only the notes in the scale
-//       return filter(n => {
-//         const idx = indexOf(n, o)
-//         return includes(idx, scales[scale])
-//       })(o)
-//     }),
-//     flatten
-//   )(notes)
-//
-//   return arr => {
-//     return scaleNotes
-//   }
-// }
+import {
+  range,
+  filter,
+  chunk,
+  map,
+  flow,
+  indexOf,
+  includes,
+  flatten
+} from 'lodash/fp'
+
+const scales = {
+  cmaj: [0, 2, 4, 5, 7, 9, 11]
+}
+
+export const limit = instrument => {
+  let min, max
+
+  switch (instrument) {
+    case 'piano':
+      // min = 21
+      // max = 109
+      // TODO: Samples only support this range
+      min = 24
+      max = 107
+      break
+    default:
+      min = 0
+      max = 127
+  }
+
+  return notes => {
+    return filter(n => {
+      return n >= min && n <= max
+    })(notes)
+  }
+}
+
+const octaves = notes => {
+  return chunk(12)(notes)
+}
+
+export const scale = scale => {
+  // const notes = range(24, 108)
+  const notes = range(0, 200)
+  const scaleNotes = flow(
+    octaves,
+    map(o => {
+      // select only the notes in the scale
+      return filter(n => {
+        const idx = indexOf(n, o)
+        return includes(idx, scales[scale])
+      })(o)
+    }),
+    flatten
+  )(notes)
+
+  return arr => {
+    return scaleNotes
+  }
+}

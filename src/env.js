@@ -1,8 +1,5 @@
-// TODO: memoize so it always returns the same AudioContext.
-export const run = fn => {
-  return fn(new AudioContext())
-}
+import { memoize } from 'lodash'
 
-export const createContext = () => {
-  return new AudioContext()
-}
+export const context = memoize(global => {
+  return new (global || window).AudioContext()
+})

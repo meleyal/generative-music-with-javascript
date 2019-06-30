@@ -1,49 +1,13 @@
-import { random } from './number'
-import { chain } from 'lodash-es'
+import _ from 'lodash'
 
-export const ring = arr => {
-  const len = arr.length
+export const take = n => arr => _.take(arr, n)
 
-  return index => {
-    if (typeof index !== 'undefined') {
-      return arr[index % len]
-    } else {
-      return arr
-    }
-  }
-}
+export const random = (min, max) => arr => arr.map(x => _.random(min, max))
 
-// export const reverse = arr => [...arr].reverse()
-//
-// // TODO: Handle positive and negative steps > 1
-// export const nudge = (arr, step = 1) => {
-//   const _arr = [...arr]
-//   const last = _arr.pop()
-//   _arr.unshift(last)
-//   return _arr
-// }
-//
-// // TODO
-// export const shuffle = arr => {
-//   var index = -1,
-//     result = [...arr],
-//     length = result.length,
-//     lastIndex = length - 1
-//
-//   while (++index < length) {
-//     var rand = random(index, lastIndex)
-//     result[index] = result[rand]
-//   }
-//
-//   return result
-// }
-//
-// export const transpose = (arr, step = 1) => {
-//   return arr.map(n => n + step)
-// }
-//
-// export const swap = arr => {
-//   const a = arr.filter((n, idx) => idx % 2 == 0)
-//   const b = arr.filter((n, idx) => idx % 2 == 1)
-//   return a.map((n, idx) => [n, b[idx]].reverse())
-// }
+export const shuffle = () => arr => _.shuffle(arr)
+
+export const reverse = () => arr => _.reverse(arr)
+
+export const transpose = (step = 1) => arr => arr.map(n => n + step)
+
+export const ring = arr => index => arr[index % arr.length]
