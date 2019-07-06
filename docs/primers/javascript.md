@@ -7,5 +7,3 @@ title: JavaScript
 - Web Audio API
 
 - Functional Programming
-
-- Observables

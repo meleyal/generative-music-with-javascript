@@ -6,8 +6,6 @@ At it's most basic, we could represent a pattern as an array of notes:
 
 ```js
 const pattern = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5']
-
-pattern.length // => 8
 ```
 
 ## Steps
@@ -164,10 +162,19 @@ scale. As we progress through the book, we'll explore more interesting ways of
 generating patterns.
 
 ```js
-const { sampler, metronome, music, util, pattern } = gen
-const { pipe } = util
-const { scale, limit } = music
-const { ring, transpose, take, shuffle } = pattern
+const {
+  sampler,
+  metronome,
+  music,
+  util,
+  pipe,
+  scale,
+  limit,
+  ring,
+  transpose,
+  take,
+  shuffle
+} = gen
 
 ;(async () => {
   const piano = await sampler('piano')

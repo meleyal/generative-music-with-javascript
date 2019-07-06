@@ -5,33 +5,39 @@ title: API Reference
 This page documents all of the functions available in the
 [`gen`](https://www.npmjs.com/package/@meleyal/gen) library.
 
-## run()
+## context()
 
-Creates an `AudioContext`, the canvas for all the nodes you create. Repeated
-calls to `run()` will always return the same one. If the passed in function is
-`async`, we can use `await` in the rest of our code.
+TODO: Summary: Creates an `AudioContext`, the canvas for all the nodes you
+create. Repeated calls to `run()` will always return the same one. If the passed
+in function is `async`, we can use `await` in the rest of our code.
 
 ```js
-run(async context => {
-  const foo = await someThing(context)
-})
+context() // => AudioContext
 ```
 
-## ring()
+## compressor()
 
 TODO: Summary
 
-Credit: Sonic Pi
+```js
+// TODO: Example
+```
+
+## enharmonic()
+
+TODO: Summary. Convert enharmonic notes in either direction.
 
 ```js
-const pattern = ring(['a', 'b', 'c', 'd'])
+enharmonic('C#') // => Db
+enharmonic('Db') // => C#
+```
 
-pattern(0) // => 'a'
-pattern(1) // => 'b'
-pattern(2) // => 'c'
-pattern(3) // => 'd'
-pattern(4) // => 'a'
-pattern() // => ['a', 'b', 'c', 'd']
+## limit()
+
+TODO: Summary
+
+```js
+// TODO: Example
 ```
 
 ## metronome()
@@ -53,15 +59,6 @@ metro.on('tick/16', tick => {
 })
 
 metro.start()
-```
-
-## enharmonic()
-
-TODO: Summary. Convert enharmonic notes in either direction.
-
-```js
-enharmonic('C#') // => Db
-enharmonic('Db') // => C#
 ```
 
 ## noteName()
@@ -93,6 +90,72 @@ noteNumber('Bb4') // => 70
 noteNumber('B4') // => 71
 ```
 
+## pipe()
+
+TODO: Summary
+
+```js
+// TODO: Example
+```
+
+## random()
+
+TODO: Summary
+
+```js
+const generator = random(21, 108)
+
+generator() // => 21
+generator() // => 88
+```
+
+## randomize()
+
+TODO: Summary
+
+```js
+randomize(1, 10)([1, 2, 3, 4]) // => [9, 4, 6, 2]
+```
+
+## reverb()
+
+TODO: Summary
+
+```js
+// TODO: Example
+```
+
+## reverse()
+
+TODO: Summary
+
+```js
+reverse()([1, 2, 3, 4]) // => [4, 3, 2, 1]
+```
+
+## ring()
+
+TODO: Summary
+
+Credit: Sonic Pi
+
+```js
+const pattern = ring(['a', 'b', 'c', 'd'])
+
+pattern(0) // => 'a'
+pattern(1) // => 'b'
+pattern(2) // => 'c'
+pattern(3) // => 'd'
+pattern(4) // => 'a'
+pattern() // => ['a', 'b', 'c', 'd']
+```
+
+## sampleMap()
+
+TODO: Summary
+
+TODO: Example
+
 ## sampler()
 
 TODO: Summary
@@ -112,19 +175,34 @@ gen.run(async context => {
 })
 ```
 
-## sampleMap()
-
-TODO: Summary
-
-TODO: Example
-
-## random()
+## scale()
 
 TODO: Summary
 
 ```js
-const rng = random(21, 108)
+// TODO: Example
+```
 
-rng() // => 21
-rng() // => 88
+## shuffle()
+
+TODO: Summary
+
+```js
+shuffle()([1, 2, 3, 4]) // => [3, 2, 1, 4]
+```
+
+## take()
+
+TODO: Summary
+
+```js
+take(2)([1, 2, 3, 4]) // => [1, 2]
+```
+
+## transpose()
+
+TODO: Summary
+
+```js
+transpose(1)([1, 2, 3, 4]) // => [2, 3, 4, 5]
 ```

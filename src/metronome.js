@@ -42,7 +42,7 @@ export const metronome = (bpm = 60) => {
     }
     if (currentTick % 16 === 0) {
       callbacks['tick/4'](currentTick / 4)
-      callbacks['tick'](currentTick / 4)
+      callbacks['tick'](currentTick / 16)
     }
   }
 

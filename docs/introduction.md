@@ -51,7 +51,7 @@ subjects:
 
 ### Guides
 
-The core of the book is a series of guided examples. We starting with how to
+The core of the book is a series of guided examples. We start with how to
 program the basic building blocks of music, and go on to develop systems that
 create music based on different generative ideas:
 
