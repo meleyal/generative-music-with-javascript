@@ -21,6 +21,7 @@
     "esm": "^3.2.25",
     "tap-dot": "^2.0.0",
     "tape": "^4.10.2",
+    "tape-await": "^0.1.2",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.4.1"
