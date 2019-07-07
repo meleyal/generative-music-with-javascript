@@ -2,8 +2,8 @@
 title: Note
 ---
 
-An obvious place to start is to understand how to create a musical note. This
-guide covers how to generate a single note, first using synthesis, then using a
+A good place to start is to understand how to create a musical note. This guide
+covers how to generate a single note, first using synthesis, then using a
 sample.
 
 ## Synthesis
@@ -57,16 +57,47 @@ but this time using our pre-recorded sample. When running this code, we hear our
 piano sample play from start to finish.
 
 ```js
+// Create the Web Audio environment.
 const context = new AudioContext()
 
+// Load a sample from the server.
 fetch('{{PACKAGE_URL}}/samples/piano/c4.mp3')
-  .then(response => response.arrayBuffer())
-  .then(arrayBuffer =>
-    context.decodeAudioData(arrayBuffer).then(audioBuffer => {
-      const sourceNode = context.createBufferSource()
-      sourceNode.buffer = audioBuffer
-      sourceNode.connect(context.destination)
-      sourceNode.start()
-    })
-  )
+  .then(response => {
+    // Get the `arrayBuffer` representation of the sample.
+    return response.arrayBuffer()
+  })
+  .then(arrayBuffer => {
+    // Decode the `arrayBuffer` into actual audio.
+    return context.decodeAudioData(arrayBuffer)
+  })
+  .then(audioBuffer => {
+    // Create an `AudioBufferSourceNode`.
+    const sourceNode = context.createBufferSource()
+
+    // Assign the audio to its buffer.
+    sourceNode.buffer = audioBuffer
+
+    // Connect the `sourceNode` to the destination output (our speakers).
+    sourceNode.connect(context.destination)
+
+    // Start playback of the sample.
+    sourceNode.start()
+  })
+```
+
+## Learning
+
+We now know the steps involved in loading a sample, decoding it, and playing it
+back. **Gen.js** includes the [`sample()`](api/index.md#sample) function which
+abstracts away some of these details for us:
+
+```js
+const { sample } = gen
+
+;(async () => {
+  const context = new AudioContext()
+  const s = await sample(context, '{{PACKAGE_URL}}/samples/piano/c4.mp3')
+  s.connect(context.destination)
+  s.start()
+})()
 ```

@@ -150,6 +150,21 @@ pattern(4) // => 'a'
 pattern() // => ['a', 'b', 'c', 'd']
 ```
 
+## sample()
+
+TODO: Summary
+
+```js
+const { sample } = gen
+
+;(async () => {
+  const context = new AudioContext()
+  const s = await sample(context, '{{PACKAGE_URL}}/samples/piano/c4.mp3')
+  s.connect(context.destination)
+  s.start()
+})()
+```
+
 ## sampleMap()
 
 TODO: Summary

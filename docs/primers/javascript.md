@@ -6,4 +6,6 @@ title: JavaScript
 
 - Web Audio API
 
+- async/await
+
 - Functional Programming

@@ -1,6 +1,10 @@
-import test from 'tape'
-import { sampler } from '../src/sampler'
+import test from 'tape-await'
+import { sample } from '../src/sampler'
 
-test('sampler', t => {
-  t.end()
+test('sample', async t => {
+  const buffer = new ArrayBuffer()
+  const context = new window.AudioContext()
+  const s = await sample(context, '/path/file.mp3')
+
+  t.equal(s.buffer.length, 3)
 })

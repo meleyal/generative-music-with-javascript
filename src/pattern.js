@@ -10,4 +10,5 @@ export const reverse = () => arr => _.reverse(arr)
 
 export const transpose = (step = 1) => arr => arr.map(n => n + step)
 
-export const ring = arr => index => index ? arr[index % arr.length] : arr
+export const ring = arr => index =>
+  _.isInteger(index) ? arr[index % arr.length] : arr

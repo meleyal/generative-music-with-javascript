@@ -2,6 +2,15 @@ import { context } from './env'
 import { noteName } from './music'
 import { samples } from './samples'
 
+export const sample = async (context, path) => {
+  const response = await window.fetch(path)
+  const arrayBuffer = await response.arrayBuffer()
+  const audioBuffer = await context.decodeAudioData(arrayBuffer)
+  const sourceNode = context.createBufferSource()
+  sourceNode.buffer = audioBuffer
+  return sourceNode
+}
+
 export const sampler = async keyOrMap => {
   const sampleMap = typeof keyOrMap === 'string' ? samples[keyOrMap] : keyOrMap
   const ctx = context()
