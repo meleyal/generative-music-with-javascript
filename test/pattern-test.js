@@ -1,52 +1,52 @@
 import test from 'tape'
-import {
-  take,
-  randomize,
-  shuffle,
-  reverse,
-  transpose,
-  ring
-} from '../src/pattern'
+import { pattern } from '../src/pattern'
 
-// test('take', t => {
-//   const a = ['A', 'B', 'C']
-//   const r = take(2)(a)
-//   t.looseEqual(r, ['A', 'B'])
-//   t.end()
-// })
-//
-// test('randomize', t => {
-//   const a = ['A', 'B', 'C']
-//   const r = randomize()(a)
-//   t.equal(r.length, 3)
-//   t.end()
-// })
-//
-// test('shuffle', t => {
-//   const a = ['A', 'B', 'C']
-//   const r = shuffle()(a)
-//   t.equal(r.length, 3)
-//   t.end()
-// })
-//
-// test('reverse', t => {
-//   const a = ['A', 'B', 'C']
-//   const r = reverse()(a)
-//   t.looseEqual(r, ['C', 'B', 'A'])
-//   t.end()
-// })
-//
-// test('transpose', t => {
-//   const a = [1, 2, 3, 4]
-//   const r = transpose(1)(a)
-//   t.looseEqual(r, [2, 3, 4, 5])
-//   t.end()
-// })
-//
-// test('ring', t => {
-//   const r = ring(['A4', 'B4', 'C4'])
-//   t.equal(r(0), r(3))
-//   t.equal(r(1), r(4))
-//   t.equal(r(2), r(5))
-//   t.end()
-// })
+test('get', t => {
+  const p = pattern(['A', 'B', 'C'])
+  t.looseEqual(p.get(), ['A', 'B', 'C'])
+  t.end()
+})
+
+test('take', t => {
+  const p = pattern(['A', 'B', 'C'])
+  t.looseEqual(p.take(2).get(), ['A', 'B'])
+  t.end()
+})
+
+test('reverse', t => {
+  const p = pattern(['A', 'B', 'C'])
+  t.looseEqual(p.reverse().get(), ['C', 'B', 'A'])
+  t.end()
+})
+
+test('randomize', t => {
+  const p = pattern(['A', 'B', 'C'])
+  t.equal(p.randomize(0, 1).get().length, 3)
+  t.end()
+})
+
+test('shuffle', t => {
+  const p = pattern(['A', 'B', 'C'])
+  t.equal(p.shuffle().get().length, 3)
+  t.end()
+})
+
+test('transpose', t => {
+  const p = pattern([1, 2, 3, 4])
+  t.looseEqual(p.transpose(1).get(), [2, 3, 4, 5])
+  t.end()
+})
+
+test('ring', t => {
+  const p = pattern(['A4', 'B4', 'C4'])
+  const r = p.ring()
+
+  t.equal('A4', r(3))
+  t.equal('B4', r(4))
+  t.equal('C4', r(5))
+
+  // without arguments, ring returns pattern
+  t.equal(p, r())
+
+  t.end()
+})

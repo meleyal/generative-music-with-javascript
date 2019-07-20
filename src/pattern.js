@@ -1,14 +1,41 @@
 import _ from 'lodash'
 
-export const take = n => arr => _.take(arr, n)
+class Pattern {
+  constructor(array) {
+    this.array = array
+  }
 
-export const randomize = (min, max) => arr => arr.map(x => _.random(min, max))
+  get() {
+    return this.array
+  }
 
-export const shuffle = () => arr => _.shuffle(arr)
+  take(n) {
+    return new Pattern(_.take(this.array, n))
+  }
 
-export const reverse = () => arr => _.reverse(arr)
+  reverse() {
+    return new Pattern(_.reverse(this.array))
+  }
 
-export const transpose = (step = 1) => arr => arr.map(n => n + step)
+  randomize(min, max) {
+    return new Pattern(this.array.map(x => _.random(min, max)))
+  }
 
-export const ring = arr => index =>
-  _.isInteger(index) ? arr[index % arr.length] : arr
+  shuffle() {
+    return new Pattern(_.shuffle(this.array))
+  }
+
+  transpose(step = 1) {
+    return new Pattern(this.array.map(x => x + step))
+  }
+
+  ring() {
+    return index => {
+      return _.isInteger(index) ? this.array[index % this.array.length] : this
+    }
+  }
+}
+
+export const pattern = array => {
+  return new Pattern(array)
+}
