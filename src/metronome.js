@@ -93,8 +93,8 @@ class Metronome {
   }
 }
 
-export const metronome = opts => {
-  const { bpm, end } = opts
+export const metronome = (bpm, opts) => {
+  const { end } = opts
   return new Metronome(bpm, end)
 }
 

@@ -2,7 +2,7 @@ import test from 'tape'
 import { metronome } from '../src/metronome'
 
 test('tick', t => {
-  const metro = metronome({ bpm: 60, end: 16 })
+  const metro = metronome(60, { end: 16 })
   metro
     .on('tick', tick => {
       t.equal(tick, 1)
@@ -12,7 +12,7 @@ test('tick', t => {
 })
 
 test('tick/1', t => {
-  const metro = metronome({ bpm: 60, end: 64 })
+  const metro = metronome(60, { end: 64 })
   metro
     .on('tick/1', tick => {
       t.equal(tick, 1)
@@ -22,7 +22,7 @@ test('tick/1', t => {
 })
 
 test('tick/2', t => {
-  const metro = metronome({ bpm: 60, end: 32 })
+  const metro = metronome(60, { end: 32 })
   metro
     .on('tick/2', tick => {
       t.equal(tick, 1)
@@ -32,7 +32,7 @@ test('tick/2', t => {
 })
 
 test('tick/4', t => {
-  const metro = metronome({ bpm: 60, end: 16 })
+  const metro = metronome(60, { end: 16 })
   metro
     .on('tick', tick => {
       t.equal(tick, 1)
@@ -42,7 +42,7 @@ test('tick/4', t => {
 })
 
 test('tick/8', t => {
-  const metro = metronome({ bpm: 60, end: 8 })
+  const metro = metronome(60, { end: 8 })
   metro
     .on('tick/8', tick => {
       t.equal(tick, 1)
@@ -52,7 +52,7 @@ test('tick/8', t => {
 })
 
 test('tick/16', t => {
-  const metro = metronome({ bpm: 60, end: 4 })
+  const metro = metronome(60, { end: 4 })
   metro
     .on('tick/16', tick => {
       t.equal(tick, 1)
@@ -62,7 +62,7 @@ test('tick/16', t => {
 })
 
 test('tick/32', t => {
-  const metro = metronome({ bpm: 60, end: 2 })
+  const metro = metronome(60, { end: 2 })
   metro
     .on('tick/32', tick => {
       t.equal(tick, 1)
@@ -72,7 +72,7 @@ test('tick/32', t => {
 })
 
 test('tick/64', t => {
-  const metro = metronome({ bpm: 60, end: 1 })
+  const metro = metronome(60, { end: 1 })
   metro
     .on('tick/64', tick => {
       t.equal(tick, 1)

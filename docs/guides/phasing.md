@@ -10,7 +10,7 @@ const { sampler, metronome, pattern } = gen
 ;(async () => {
   const piano1 = await sampler('piano')
   const piano2 = await sampler('piano')
-  const metro = metronome({ bpm: 80 })
+  const metro = metronome(80)
 
   const notes = pattern([
     'E4',
