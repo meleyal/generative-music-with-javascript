@@ -5,14 +5,14 @@ title: Phasing
 This guide describes how to create Steve Reich's "Piano Phase".
 
 ```js
-const { sampler, metronome, ring } = gen
+const { sampler, metronome, pattern } = gen
 
 ;(async () => {
   const piano1 = await sampler('piano')
   const piano2 = await sampler('piano')
   const metro = metronome({ bpm: 80 })
 
-  const notes = ring([
+  const notes = pattern([
     'E4',
     'F#4',
     'B4',
@@ -25,7 +25,7 @@ const { sampler, metronome, ring } = gen
     'F#4',
     'D5',
     'C#5'
-  ])
+  ]).ring()
 
   let phase = 0
 
