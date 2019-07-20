@@ -31,7 +31,7 @@ class Metronome {
       this.osc = this.context.createOscillator()
       this.osc.onended = () => {
         currentTick += 1
-        this.dispatch(currentTick)
+        this.dispatch(currentTick, now)
         this.tick(currentTick)
       }
       this.osc.start(now)
@@ -49,41 +49,41 @@ class Metronome {
     return this
   }
 
-  dispatch(tick) {
+  dispatch(tick, now) {
     // 64 ticks = 1 whole note
     if (tick % 64 === 0) {
-      this.callbacks['tick/1'](tick / 64)
+      this.callbacks['tick/1'](tick / 64, now)
     }
 
     // 32 ticks = 1 half note
     if (tick % 32 === 0) {
-      this.callbacks['tick/2'](tick / 32)
+      this.callbacks['tick/2'](tick / 32, now)
     }
 
     // 16 ticks = 1 quarter note
     if (tick % 16 === 0) {
-      this.callbacks['tick'](tick / 16)
-      this.callbacks['tick/4'](tick / 16)
+      this.callbacks['tick'](tick / 16, now)
+      this.callbacks['tick/4'](tick / 16, now)
     }
 
     // 8 ticks = 1 eighth note
     if (tick % 8 === 0) {
-      this.callbacks['tick/8'](tick / 8)
+      this.callbacks['tick/8'](tick / 8, now)
     }
 
     // 4 ticks = 1 sixteenth note
     if (tick % 4 === 0) {
-      this.callbacks['tick/16'](tick / 4)
+      this.callbacks['tick/16'](tick / 4, now)
     }
 
     // 2 ticks = 1 thirtysecond note
     if (tick % 2 === 0) {
-      this.callbacks['tick/32'](tick / 2)
+      this.callbacks['tick/32'](tick / 2, now)
     }
 
     // 1 tick = 1 sixtyfourth note
     if (tick % 1 === 0) {
-      this.callbacks['tick/64'](tick / 1)
+      this.callbacks['tick/64'](tick / 1, now)
     }
   }
 
