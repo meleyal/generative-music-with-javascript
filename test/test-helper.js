@@ -2,9 +2,12 @@ class AudioContext {
   createGain() {}
 
   createOscillator() {
+    const that = this
     return {
-      start: () => null,
-      stop: () => null
+      start: function() {},
+      stop: function() {
+        this.onended()
+      }
     }
   }
 
