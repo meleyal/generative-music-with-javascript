@@ -6,7 +6,7 @@
     "start": "yarn run website & yarn run serve",
     "website": "cd website && yarn start",
     "serve": "webpack-dev-server",
-    "test": "tape -r esm test/**/*.js | tap-dot"
+    "test": "tape -r esm test/**/*.js | tap-spec"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "esm": "^3.2.25",
-    "tap-dot": "^2.0.0",
+    "tap-spec": "^5.0.0",
     "tape": "^4.10.2",
     "tape-await": "^0.1.2",
     "webpack": "^4.32.2",
