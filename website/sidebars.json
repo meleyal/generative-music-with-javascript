@@ -1,0 +1,17 @@
+{
+  "docs": {
+    "Welcome": ["introduction"],
+    "Primers": ["primers/generative", "primers/music", "primers/javascript"],
+    "Music": [
+      "music/note",
+      "music/notes",
+      "music/scales",
+      "music/timing",
+      "music/patterns",
+      "music/sequencing",
+      "music/routing"
+    ],
+    "Generative": ["generative/randomness", "generative/probability"],
+    "API": ["api/index"]
+  }
+}

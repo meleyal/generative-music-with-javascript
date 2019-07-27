@@ -1,0 +1,31 @@
+.toggleNav h2 i {
+  display: none;
+}
+
+details {
+  background: #f8f8f8;
+  text-align: center;
+  padding: 10px;
+}
+
+details > img {
+  margin: 10px 0;
+}
+
+audio {
+  min-width: 500px;
+}
+
+blockquote {
+  background: none;
+}
+
+code {
+  position: relative;
+}
+
+code > button {
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.5rem;
+}
