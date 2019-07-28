@@ -95,3 +95,8 @@ A lot of the ideas are encapsulated in the Gen.js library. If you want to skip
 over how things are implemented and just make music, we'll cross-reference each
 of the code examples with their Gen.js counterpart. The full list of available
 functions can be found in the [API Reference](api/index).
+
+- https://explodingart.com/jmusic/jmDocumentation/index.html
+- https://github.com/overtone/overtone
+- https://sonic-pi.net/
+- https://tonejs.github.io/
