@@ -34,32 +34,47 @@ export const sampler = async keyOrMap => {
     }
   }
 
-  return (note, options) => {
+  return (note, options, callback) => {
     const now = context.currentTime
     const notes = parseNote(note)
     const defaults = { volume: 1, start: now, duration: Infinity }
     const { volume, start, duration } = Object.assign(defaults, options)
 
     notes.map(n => {
-      const buffer = buffers.find(b => b.note == n).buffer
-      let sourceNode = context.createBufferSource()
-      let gainNode = context.createGain()
-      sourceNode.buffer = buffer
+      if (note) {
+        const buffer = buffers.find(b => b.note == n).buffer
+        let sourceNode = context.createBufferSource()
+        let gainNode = context.createGain()
+        sourceNode.buffer = buffer
 
-      const zero = 0.00001 // value must be positive for exponentialRamp
-      gainNode.gain.value = volume
-      gainNode.gain.exponentialRampToValueAtTime(
-        zero,
-        start + Math.min(duration, buffer.duration)
-      )
+        const zero = 0.00001 // value must be positive for exponentialRamp
+        gainNode.gain.value = volume
+        gainNode.gain.exponentialRampToValueAtTime(
+          zero,
+          start + Math.min(duration, buffer.duration)
+        )
 
-      sourceNode.connect(gainNode)
-      gainNode.connect(context.destination)
+        sourceNode.connect(gainNode)
+        gainNode.connect(context.destination)
 
-      sourceNode.start(start)
+        sourceNode.start(start)
+        sourceNode.stop(start + Math.min(duration, buffer.duration))
 
-      sourceNode = null
-      gainNode = null
+        sourceNode.onended = () => {
+          callback()
+        }
+
+        sourceNode = null
+        gainNode = null
+      // Rest
+      } else {
+        let osc = context.createOscillator()
+        osc.onended = () => {
+          callback()
+        }
+        osc.start(start)
+        osc.stop(start + duration)
+      }
     })
   }
 }

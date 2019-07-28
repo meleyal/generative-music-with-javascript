@@ -38,6 +38,10 @@ auth_header="Authorization: Bearer $access_token"
 curl -H $auth_header -o /tmp/piano.zip "$FREESOUND_URL/packs/9133/download/"
 unzip /tmp/piano.zip -d ./src/samples/piano/files
 rm /tmp/piano.zip
+for f in ./src/samples/piano/files/*.wav; do
+  # Remove <id>__<username>__ prefix to make files easier to work with.
+  mv $f $(echo $f | sed -E 's/[0-9]{6}__neatonk__//')
+done
 
 ##
 # Philharmonia Orchestra
