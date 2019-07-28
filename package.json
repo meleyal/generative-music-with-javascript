@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "esm": "^3.2.25",
+    "sinon": "^7.3.2",
     "tap-spec": "^5.0.0",
     "tape": "^4.10.2",
     "tape-await": "^0.1.2",

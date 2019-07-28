@@ -6,7 +6,7 @@ This example is adapted from the
 [`rowYourBoat.py` jythonMusic example](https://git.io/fjyri).
 
 ```js
-const { score, part, phrase, play } = gen
+const { score, part, phrase } = gen
 const { C4, D4, E4, F4, G4, C5 } = gen.notes
 const { QN, DEN, SN, HN, ENT } = gen.durations
 
@@ -60,6 +60,5 @@ rowYourBoat
   .add(flutePart)
   .add(trumpetPart)
   .add(clarinetPart)
-
-play(rowYourBoat)
+  .play()
 ```
