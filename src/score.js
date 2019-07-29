@@ -5,7 +5,7 @@
  *
  * a.k.a. "arrangement" or "session" in a DAW.
  */
-class Score {
+export class Score {
   constructor(bpm) {
     this.bpm = bpm                  // tempo in beats per minute
     this.parts = []                 // all parts of the score
@@ -37,8 +37,4 @@ class Score {
     }
     return this
   }
-}
-
-export const score = bpm => {
-  return new Score(bpm)
 }

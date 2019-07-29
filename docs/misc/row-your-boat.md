@@ -6,16 +6,16 @@ This example is adapted from the
 [`rowYourBoat.py` jythonMusic example](https://git.io/fjyri).
 
 ```js
-const { score, part, phrase } = gen
+const { Score, Part, Phrase } = gen
 const { C4, D4, E4, F4, G4, C5 } = gen.notes
 const { QN, DEN, SN, HN, ENT } = gen.durations
 
 // const rowYourBoat = score(108.0)
-const rowYourBoat = score(60.0)
+const rowYourBoat = new Score(60.0)
 
-const flutePart = part('piano')
-const trumpetPart = part('piano')
-const clarinetPart = part('piano')
+const flutePart = new Part('piano')
+const trumpetPart = new Part('piano')
+const clarinetPart = new Part('piano')
 
 // "Row, row, row your boat, gently down the stream"
 const pitches1 =   [C4, C4, C4,  D4, E4, E4,  D4, E4,  F4, G4]
@@ -29,14 +29,14 @@ const durations2 = [ENT, ENT, ENT, ENT, ENT, ENT, ENT, ENT, ENT, ENT, ENT, ENT]
 const pitches3 =   [G4,  F4, E4,  D4, C4]
 const durations3 = [DEN, SN, DEN, SN, HN]
 
-const theme = phrase()
+const theme = new Phrase()
   .add(pitches1, durations1)
   .add(pitches2, durations2)
   .add(pitches3, durations3)
   .startAt(0.0)
   .repeat(2)
 
-const response1 = phrase()
+const response1 = new Phrase()
   .add(pitches1, durations1)
   .add(pitches2, durations2)
   .add(pitches3, durations3)
@@ -44,7 +44,7 @@ const response1 = phrase()
   .startAt(4.0)
   .repeat(2)
 
-const response2 = phrase()
+const response2 = new Phrase()
   .add(pitches1, durations1)
   .add(pitches2, durations2)
   .add(pitches3, durations3)

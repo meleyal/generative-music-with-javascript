@@ -4,7 +4,7 @@
  *
  * a.k.a. "pattern" or "clip" in a DAW.
  */
-class Phrase {
+export class Phrase {
   constructor() {
     this.instrument = null  // instrument for playback (assigned from part)
     this.pitches = []       // all pitches of the phrase
@@ -92,8 +92,4 @@ class Phrase {
     this.pitches = this.pitches.map(x => x + num)
     return this
   }
-}
-
-export const phrase = () => {
-  return new Phrase()
 }

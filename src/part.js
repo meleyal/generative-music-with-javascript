@@ -7,7 +7,7 @@
  */
 import { sampler } from './sampler'
 
-class Part {
+export class Part {
   constructor(instrument) {
     this.instrument = instrument  // name of instrument the part is for
     this.phrases = []             // all phrases of the part
@@ -31,8 +31,4 @@ class Part {
     this.phrases[this.currentPhrase].play(this.instrument)
     return this
   }
-}
-
-export const part = instrument => {
-  return new Part(instrument)
 }

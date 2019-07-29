@@ -1,10 +1,10 @@
 import test from 'tape'
 import sinon from 'sinon'
-import { phrase } from '../src/phrase'
+import { Phrase } from '../src/phrase'
 
-test('phrase', t => {
+test('Phrase', t => {
   const i = sinon.spy()
-  const p = phrase()
+  const p = new Phrase()
   p.startAt(0.0)
   p.repeat(2)
   p.add([1], [2])

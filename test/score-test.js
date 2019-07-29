@@ -1,9 +1,10 @@
 import test from 'tape'
 import sinon from 'sinon'
-import { score } from '../src/score'
+import { Score } from '../src/score'
 
-test('score', t => {
-  const s = score(60.0)
+test('Score', t => {
+  const s = new Score(60.0)
+
   const pt1 = { play: sinon.spy(), loadInstrument() {} }
   const pt2 = { play: sinon.spy(), loadInstrument() {} }
 

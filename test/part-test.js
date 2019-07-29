@@ -1,9 +1,9 @@
 import test from 'tape'
 import sinon from 'sinon'
-import { part } from '../src/part'
+import { Part } from '../src/part'
 
 test('part', t => {
-  const p = part('piano')
+  const p = new Part('piano')
   const ph1 = { play: sinon.spy() }
   const ph2 = { play: sinon.spy() }
 
