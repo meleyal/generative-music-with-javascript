@@ -1,3 +1,5 @@
+import { Sampler } from './sampler'
+
 /**
  * A Part is the grouping of all the phrases for a given instrument.
  *
@@ -5,8 +7,6 @@
  *
  * a.k.a. "track" or "channel" in a DAW.
  */
-import { sampler } from './sampler'
-
 export class Part {
   constructor(instrument) {
     this.instrument = instrument  // name of instrument the part is for
@@ -20,9 +20,22 @@ export class Part {
     return this
   }
 
-  // Load instrument for part.
+  /**
+   * Load the instrument for the part.
+   */
   async loadInstrument() {
-    this.instrument = await sampler(this.instrument)
+    this.instrument = new Sampler(this.instrument)
+    await this.instrument.load()
+    return this
+  }
+
+  /**
+   * Quantize the durations of each phrase in the part.
+   */
+  quantize(bpm) {
+    for (let phrase of this.phrases) {
+      phrase.quantize(bpm)
+    }
     return this
   }
 
