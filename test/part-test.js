@@ -7,7 +7,9 @@ test('part', t => {
   const ph1 = { play: sinon.spy() }
   const ph2 = { play: sinon.spy() }
 
-  p.add(ph1).add(ph2).play()
+  p.add(ph1)
+    .add(ph2)
+    .play()
 
   t.equal(p.instrument, 'piano')
   t.looseEqual(p.phrases, [ph1, ph2])
