@@ -1,4 +1,4 @@
-import { sampleMap } from '../../sampler'
+import { sampleMap } from '../../sample-map'
 import { enharmonic } from '../../music'
 
 export const piano = sampleMap((note, octave) => {
