@@ -7,7 +7,7 @@ This example is adapted from the
 
 ```js
 const { Score, Part, Phrase } = gen
-const { C4, D4, E4, F4, G4, C5 } = gen.notes
+const { C4, D4, E4, F4, G4, C5 } = gen.pitches
 const { QN, DEN, SN, HN, ENT } = gen.durations
 
 // const rowYourBoat = score(108.0)
