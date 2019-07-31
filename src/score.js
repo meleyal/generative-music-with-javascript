@@ -16,6 +16,7 @@ export class Score {
    * Add a part to the score.
    */
   add(part) {
+    part.quantize(this.bpm) // quantize part to bpm
     this.parts.push(part)
     return this
   }
