@@ -4,6 +4,8 @@ title: Music
 
 > TODO
 
+Remember, music consists of sequences (i.e., lists) of events.
+
 Here we explain the building blocks of music: melody, harmony and rhythm.
 
 Melody, harmony, rhythm, compare with functions + primitives.

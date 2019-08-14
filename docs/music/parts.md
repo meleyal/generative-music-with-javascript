@@ -1,5 +1,5 @@
 ---
-title: Sequencing
+title: Parts
 ---
 
 In this chapter we're going to look at the concept of sequencing, or, how to

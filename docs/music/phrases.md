@@ -1,5 +1,5 @@
 ---
-title: Patterns
+title: Phrases
 ---
 
 At it's most basic, we could represent a pattern as an array of notes:

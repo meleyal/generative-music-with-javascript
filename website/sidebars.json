@@ -3,15 +3,22 @@
     "Welcome": ["introduction"],
     "Primers": ["primers/generative", "primers/music", "primers/javascript"],
     "Music": [
-      "music/note",
       "music/notes",
       "music/scales",
       "music/timing",
-      "music/patterns",
-      "music/sequencing",
-      "music/routing"
+      "music/phrases",
+      "music/parts",
+      "music/scores"
     ],
-    "Generative": ["generative/randomness", "generative/probability"],
+    "Generative": [
+      "generative/repetition",
+      "generative/randomness",
+      "generative/grammars",
+      "generative/recursion",
+      "generative/evolution",
+      "generative/machine-learning",
+      "generative/sonification"
+    ],
     "API": ["api/index"]
   }
 }

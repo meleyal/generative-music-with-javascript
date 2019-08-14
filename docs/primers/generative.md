@@ -4,6 +4,8 @@ title: Generative
 
 > TODO
 
+- the imitation of nature (mimesis), or Biomimicry
+
 Here we explore different generative techniques/methods and how to program them
 in JavaScript.
 
@@ -11,30 +13,25 @@ Here we define what we mean by "generative", and cover how generative processes
 can be applied to creating art and music.
 
 We'll cover how natural processes? have been applied to programming, art, music.
-History: https://www.artnome.com/news/2018/8/8/why-love-generative-art
 
-Nature of Code Biomimicry Generative algorithms Deep Learning Web of data NASA,
-Geo patterns
+Nature of Code Biomimicry Deep Learning Web of data
 
 Reas rules: https://drive.google.com/file/d/0B9h469--G5OwOGVfVmUxZUQ5VzA/view
 
-[The Nature of Code](https://natureofcode.com/)
+- Minimalism: Minimalist music usually employs repetition and layering of simple
+  musical patterns to generating intricate musical textures and structures.
 
-- Randomness
+- Chance music, also known as aleatoric music, is a compositional technique that
+  introduces elements of randomness (or indeterminism) into the compositional
+  process.
 
-- Recursion
+- Serialism: Serialism involves using deterministic rules to control choices
+  within the compositional process.
 
-  - Trees, Fractals, Cantor Set, Cellular Automata
+- Stochastic music refers to music whose various aspects are guided by
+  probability.
 
-- Evolution
+## Further Reading
 
-- Web of Data
-
-  - https://github.com/toddmotto/public-apis
-
-- Machine Learning
-
-  - https://magenta.tensorflow.org/music-transformer
-  - https://magenta.tensorflow.org/studio/
-  - http://freepats.zenvoid.org/Piano/acoustic-grand-piano.html
-  - http://www.linuxsampler.org/
+- [The Nature of Code](https://natureofcode.com/)
+- [Why Love Generative Art?](https://www.artnome.com/news/2018/8/8/why-love-generative-art)
