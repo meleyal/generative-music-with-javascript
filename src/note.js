@@ -1,5 +1,5 @@
 /**
- * A Note is a single musical event. It consists of a pitch, duration, and an
+ * Note is a single musical event. It consists of a pitch, duration, and an
  * optional velocity.
  */
 export class Note {
@@ -13,8 +13,8 @@ export class Note {
    * Adjust the duration of the note for a given bpm.
    */
   quantize(bpm) {
-    const bps = bpm / 60.0 // how many beats are in 1 second?
-    this.duration = this.duration / bps
+    const bps = 60.0 / bpm // how many beats are in 1 second?
+    this.duration = this.duration * bps
     return this
   }
 

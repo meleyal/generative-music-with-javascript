@@ -1,7 +1,7 @@
 import { Sampler } from './sampler'
 
 /**
- * A Part is the grouping of all the phrases for a given instrument.
+ * Part is the grouping of all the phrases for a given instrument.
  *
  * A traditional score might contain e.g. a Violin part, a Cello part, etc.
  *
@@ -18,6 +18,7 @@ export class Part {
    * Add a phrase to the part.
    */
   add(phrase) {
+    phrase.part = this
     this.phrases.push(phrase)
     return this
   }
@@ -26,7 +27,7 @@ export class Part {
    * Load the instrument for the part.
    */
   async loadInstrument() {
-    this.instrument = new Sampler(this.instrument)
+    this.instrument = new Sampler(this.score.context, this.instrument)
     await this.instrument.load()
     return this
   }

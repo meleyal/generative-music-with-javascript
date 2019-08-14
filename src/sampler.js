@@ -1,14 +1,13 @@
-import * as env from './env'
 import { samples } from './samples'
 import { noteName } from './music'
 
 /**
- * A Sampler maps notes to audio samples and handles their loading and playback.
+ * Sampler maps notes to audio samples and handles their loading and playback.
  */
 export class Sampler {
-  constructor(keyOrMap) {
+  constructor(context, keyOrMap) {
     this.samples = samples[keyOrMap] || keyOrMap // preset or custom map
-    this.context = env.context() // AudioContext
+    this.context = context
     this.buffers = [] // decoded samples
   }
 
@@ -27,9 +26,9 @@ export class Sampler {
   // Play the given note and callback when it's finished.
   play(note, options, callback) {
     const notes = this.parseNote(note)
-    const now = this.context.currentTime
-    const defaults = { volume: 1, start: now, duration: Infinity }
-    const { volume, start, duration } = Object.assign(defaults, options)
+    const defaults = { volume: 1, offset: 0, duration: Infinity }
+    const { volume, offset, duration } = Object.assign(defaults, options)
+    const now = offset
 
     notes.map(n => {
       if (note) {
@@ -41,18 +40,16 @@ export class Sampler {
         const zero = 0.00001 // value must be positive for exponentialRamp
         gainNode.gain.value = volume
 
-        // console.log(now, start, duration)
-        console.log(start + Math.min(duration, buffer.duration))
         gainNode.gain.linearRampToValueAtTime(
           zero,
-          start + Math.min(duration, buffer.duration)
+          now + Math.min(duration, buffer.duration)
         )
 
         sourceNode.connect(gainNode)
         gainNode.connect(this.context.destination)
 
-        sourceNode.start(start)
-        sourceNode.stop(start + Math.min(duration, buffer.duration))
+        sourceNode.start(now)
+        sourceNode.stop(now + Math.min(duration, buffer.duration))
 
         sourceNode.onended = () => {
           callback()
@@ -67,8 +64,8 @@ export class Sampler {
         osc.onended = () => {
           callback()
         }
-        osc.start(start)
-        osc.stop(start + duration)
+        osc.start(now)
+        osc.stop(now + duration)
       }
     })
   }

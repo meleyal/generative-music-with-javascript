@@ -1,7 +1,7 @@
 import { Note } from './note'
 
 /**
- * A Phrase is a logical grouping of notes (pitches and durations) that starts
+ * Phrase is a logical grouping of notes (pitches and durations) that starts
  * at a given point in the score and may repeat a given number of times.
  *
  * a.k.a. "pattern" or "clip" in a DAW.
@@ -41,37 +41,40 @@ export class Phrase {
   /**
    * Tick through notes of phrase recursively.
    */
-  tick(tick = this.currentTick) {
+  tick(tick) {
     if (this.playCount > this.repeats) {
       return
     }
 
-    // const pitch = this.pitches[this.currentNote]
-    // const duration = this.durations[this.currentNote]
     const note = this.notes[this.currentNote]
+    const offset = this.part.score.delta(this.part.score.context.currentTime)
 
     // Should the phrase be playing yet?
     if (this.currentTick >= this.start) {
       // Play the current note.
-      this.instrument.play(note.pitch, { duration: note.duration }, () => {
-        // Advance to the next note and metronome tick.
-        this.currentNote += 1
-        this.currentTick += 1
+      this.part.instrument.play(
+        note.pitch,
+        { offset, duration: note.duration },
+        () => {
+          // Advance to the next note and metronome tick.
+          this.currentNote += 1
+          this.currentTick += 1
 
-        // Rewind if we're at the end of the phrase.
-        if (this.currentNote === this.notes.length) {
-          this.playCount += 1
-          this.currentNote = 0
+          // Rewind if we're at the end of the phrase.
+          if (this.currentNote === this.notes.length) {
+            this.playCount += 1
+            this.currentNote = 0
+          }
+
+          // Continue ticking.
+          this.tick(this.currentTick)
         }
-
-        // Continue ticking.
-        this.tick(this.currentTick)
-      })
+      )
     }
     // The phrase should not start yet.
     else {
       // Continue to play rests to advance the metronome tick.
-      this.instrument.play(null, { duration: note.duration }, () => {
+      this.instrument.play(null, { offset, duration: note.duration }, () => {
         this.currentTick += 1
         this.tick(this.currentTick)
       })

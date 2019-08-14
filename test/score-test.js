@@ -5,6 +5,8 @@ import { Part } from '../src/part'
 
 test('Score', t => {
   const s = new Score(60.0)
+  const m = sinon.createStubInstance(Metronome)
+  s.metronome = m
   const pt1 = sinon.createStubInstance(Part)
   const pt2 = sinon.createStubInstance(Part)
 
@@ -19,5 +21,6 @@ test('Score', t => {
   t.assert(pt2.quantize.calledOnce)
   t.assert(pt1.play.calledOnce)
   t.assert(pt2.play.calledOnce)
+  t.assert(m.start.calledOnce)
   t.end()
 })
