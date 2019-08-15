@@ -1,4 +1,5 @@
 import { Note } from './note'
+import { cloneDeep } from 'lodash'
 
 export class Phrase {
   constructor() {
@@ -59,6 +60,12 @@ export class Phrase {
         }
       )
     }
+  }
+
+  copy() {
+    const phrase = new Phrase()
+    phrase.notes = cloneDeep(this.notes)
+    return phrase
   }
 
   quantize(bpm) {

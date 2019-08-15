@@ -30,5 +30,10 @@ test('Phrase', t => {
   t.equal(phrase.playCount, 1, 'tracks play count')
   t.equal(phrase.currentTick, 2, 'tracks current tick')
   t.equal(phrase.currentNote, 0, 'tracks current note')
+  t.looseEqual(
+    phrase.copy().notes,
+    [new Note(2, 1), new Note(2, 2)],
+    'copies self'
+  )
   t.end()
 })

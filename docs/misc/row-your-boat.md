@@ -36,18 +36,14 @@ const theme = new Phrase()
   .startAt(0.0)
   .repeat(2)
 
-const response1 = new Phrase()
-  .add(pitches1, durations1)
-  .add(pitches2, durations2)
-  .add(pitches3, durations3)
+const response1 = theme
+  .copy()
   .transpose(12)
   .startAt(4.0)
   .repeat(2)
 
-const response2 = new Phrase()
-  .add(pitches1, durations1)
-  .add(pitches2, durations2)
-  .add(pitches3, durations3)
+const response2 = theme
+  .copy()
   .transpose(-12)
   .startAt(8.0)
   .repeat(2)
