@@ -1,26 +1,26 @@
 import './banner'
+import * as compressor from './compressor'
 import * as constants from './constants'
-import * as fx from './fx'
 import * as music from './music'
-import * as score from './score'
+import * as number from './number'
 import * as part from './part'
 import * as phrase from './phrase'
-import * as number from './number'
+import * as reverb from './reverb'
 import * as sampler from './sampler'
 import * as samples from './samples'
-import * as util from './util'
+import * as score from './score'
 
 const gen = {
+  ...compressor,
   ...constants,
-  ...fx,
   ...music,
   ...number,
-  ...sampler,
-  ...samples,
-  ...score,
   ...part,
   ...phrase,
-  ...util
+  ...reverb,
+  ...sampler,
+  ...samples,
+  ...score
 }
 
 window.gen = gen

@@ -8,7 +8,7 @@ import { Note } from './note'
  */
 export class Phrase {
   constructor() {
-    this.instrument = null // instrument for playback (assigned from part)
+    this.part = null // the part this phrase belongs to (assigned when added to part)
     this.notes = [] // all notes of the phrase
     this.start = 0.0 // start at beginning of score
     this.repeats = 0 // don't repeat (play once)
@@ -30,10 +30,9 @@ export class Phrase {
   }
 
   /**
-   * Play phrase using part's instrument.
+   * Play the phrase.
    */
-  play(instrument) {
-    this.instrument = instrument
+  play() {
     this.tick()
     return this
   }
@@ -47,14 +46,14 @@ export class Phrase {
     }
 
     const note = this.notes[this.currentNote]
-    const offset = this.part.score.delta(this.part.score.context.currentTime)
+    const now = this.part.score.now()
 
     // Should the phrase be playing yet?
     if (this.currentTick >= this.start) {
       // Play the current note.
       this.part.instrument.play(
         note.pitch,
-        { offset, duration: note.duration },
+        { offset: now, duration: note.duration },
         () => {
           // Advance to the next note and metronome tick.
           this.currentNote += 1
@@ -74,10 +73,14 @@ export class Phrase {
     // The phrase should not start yet.
     else {
       // Continue to play rests to advance the metronome tick.
-      this.instrument.play(null, { offset, duration: note.duration }, () => {
-        this.currentTick += 1
-        this.tick(this.currentTick)
-      })
+      this.part.instrument.play(
+        null,
+        { offset: now, duration: note.duration },
+        () => {
+          this.currentTick += 1
+          this.tick(this.currentTick)
+        }
+      )
     }
   }
 

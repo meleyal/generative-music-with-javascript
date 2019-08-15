@@ -2,7 +2,6 @@ import { Sampler } from './sampler'
 
 /**
  * Part is the grouping of all the phrases for a given instrument.
- *
  * A traditional score might contain e.g. a Violin part, a Cello part, etc.
  *
  * a.k.a. "track" or "channel" in a DAW.
@@ -11,6 +10,7 @@ export class Part {
   constructor(instrument) {
     this.instrument = instrument // name of instrument the part is for
     this.phrases = [] // all phrases of the part
+    this.score = null // the score this part belongs to (assigned when added to score)
     this.currentPhrase = 0 // index of currently playing phrase
   }
 
@@ -46,7 +46,7 @@ export class Part {
    * Play the current phrase.
    */
   play() {
-    this.phrases[this.currentPhrase].play(this.instrument)
+    this.phrases[this.currentPhrase].play()
     return this
   }
 }

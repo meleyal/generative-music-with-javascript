@@ -1,17 +1,16 @@
 /**
  * Score is the container for all the parts of a piece.
- *
  * It plays back its parts at a given bpm.
  *
  * a.k.a. "arrangement" or "session" in a DAW.
  */
 export class Score {
   constructor(bpm) {
-    this.context = new AudioContext()
+    this.context = new window.AudioContext() // shared AudioContext
     this.bpm = bpm // tempo in beats per minute
     this.parts = [] // all parts of the score
     this.instrumentsLoaded = false // are all instruments loaded?
-    this.lastTime = null
+    this.currentTime = null // last recorded note time
   }
 
   /**
@@ -24,13 +23,19 @@ export class Score {
     return this
   }
 
-  delta(time) {
-    if (!this.lastTime) {
-      this.lastTime = time
-    } else if (time - this.lastTime > 0.02) {
-      this.lastTime = time
+  /**
+   * Return a normalized timestamp to account for slight time variations
+   * between notes. Times that are off by `latency` will get the same timestamp.
+   */
+  now(time = this.context.currentTime) {
+    const latency = 0.02
+
+    if (!this.currentTime) {
+      this.currentTime = time
+    } else if (time - this.currentTime > latency) {
+      this.currentTime = time
     }
-    return this.lastTime
+    return this.currentTime
   }
 
   /**
