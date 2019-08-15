@@ -1,17 +1,13 @@
 import { samples } from './samples'
 import { noteName } from './music'
 
-/**
- * Sampler maps notes to audio samples and handles their loading and playback.
- */
 export class Sampler {
   constructor(context, keyOrMap) {
-    this.samples = samples[keyOrMap] || keyOrMap // preset or custom map
+    this.samples = samples[keyOrMap] || keyOrMap
     this.context = context
-    this.buffers = [] // decoded samples
+    this.buffers = []
   }
 
-  // Load all samples into buffers.
   async load() {
     this.buffers = await Promise.all(
       Object.keys(this.samples).map(note =>
@@ -23,7 +19,6 @@ export class Sampler {
     )
   }
 
-  // Play the given note and callback when it's finished.
   play(note, options, callback) {
     const notes = this.parseNote(note)
     const defaults = { volume: 1, offset: 0, duration: Infinity }
@@ -57,8 +52,6 @@ export class Sampler {
 
         sourceNode = null
         gainNode = null
-
-        // Rest
       } else {
         let osc = this.context.createOscillator()
         osc.onended = () => {
@@ -70,7 +63,6 @@ export class Sampler {
     })
   }
 
-  // Parse notes into a list of note numbers.
   parseNote(note) {
     if (Array.isArray(note)) {
       return note.map(parseNote)

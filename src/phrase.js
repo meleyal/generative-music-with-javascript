@@ -1,25 +1,16 @@
 import { Note } from './note'
 
-/**
- * Phrase is a logical grouping of notes (pitches and durations) that starts
- * at a given point in the score and may repeat a given number of times.
- *
- * a.k.a. "pattern" or "clip" in a DAW.
- */
 export class Phrase {
   constructor() {
-    this.part = null // the part this phrase belongs to (assigned when added to part)
-    this.notes = [] // all notes of the phrase
-    this.start = 0.0 // start at beginning of score
-    this.repeats = 0 // don't repeat (play once)
-    this.currentTick = 0 // current metronome tick
-    this.currentNote = 0 // index of currently playing note
-    this.playCount = 0 // how many times phrase has played
+    this.part = null
+    this.notes = []
+    this.start = 0.0
+    this.repeats = 0
+    this.currentTick = 0
+    this.currentNote = 0
+    this.playCount = 0
   }
 
-  /**
-   * Add notes (parallel lists of pitches and durations) to the phrase.
-   */
   add(pitches, durations) {
     if (pitches.length !== durations.length) {
       throw 'pitch and duration lists must be same length'
@@ -29,17 +20,11 @@ export class Phrase {
     return this
   }
 
-  /**
-   * Play the phrase.
-   */
   play() {
     this.tick()
     return this
   }
 
-  /**
-   * Tick through notes of phrase recursively.
-   */
   tick(tick) {
     if (this.playCount > this.repeats) {
       return
@@ -48,31 +33,23 @@ export class Phrase {
     const note = this.notes[this.currentNote]
     const now = this.part.score.now()
 
-    // Should the phrase be playing yet?
     if (this.currentTick >= this.start) {
-      // Play the current note.
       this.part.instrument.play(
         note.pitch,
         { offset: now, duration: note.duration },
         () => {
-          // Advance to the next note and metronome tick.
           this.currentNote += 1
           this.currentTick += 1
 
-          // Rewind if we're at the end of the phrase.
           if (this.currentNote === this.notes.length) {
             this.playCount += 1
             this.currentNote = 0
           }
 
-          // Continue ticking.
           this.tick(this.currentTick)
         }
       )
-    }
-    // The phrase should not start yet.
-    else {
-      // Continue to play rests to advance the metronome tick.
+    } else {
       this.part.instrument.play(
         null,
         { offset: now, duration: note.duration },
@@ -84,9 +61,6 @@ export class Phrase {
     }
   }
 
-  /**
-   * Quantize the durations of each of the notes in the phrase.
-   */
   quantize(bpm) {
     for (let note of this.notes) {
       note.quantize(bpm)
@@ -94,25 +68,16 @@ export class Phrase {
     return this
   }
 
-  /**
-   * Set the point at which the phrase should start in the score.
-   */
   startAt(time) {
     this.start = time
     return this
   }
 
-  /**
-   * Repeat the phrase a given a number of times.
-   */
   repeat(num) {
     this.repeats = num
     return this
   }
 
-  /**
-   * Raise or lower the pitches of the phrase by a given interval.
-   */
   transpose(num) {
     this.notes = this.notes.map(n => n.transpose(num))
     return this
