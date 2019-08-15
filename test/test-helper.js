@@ -1,26 +1,11 @@
 class AudioContext {
-  get currentTime() {
-    return 0
-  }
-
   createGain() {}
-
-  createOscillator() {
-    const that = this
-    return {
-      start: function() {},
-      stop: function() {
-        this.onended()
-      }
-    }
-  }
-
-  createBufferSource() {
-    return {}
-  }
-
+  createOscillator() {}
+  createBufferSource() {}
   decodeAudioData() {
-    return [1, 2, 3]
+    return {
+      duration: Math.random()
+    }
   }
 }
 

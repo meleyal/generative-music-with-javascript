@@ -11,10 +11,13 @@ export class Sampler {
   async load() {
     this.buffers = await Promise.all(
       Object.keys(this.samples).map(note =>
-        fetch(this.samples[note])
+        window
+          .fetch(this.samples[note])
           .then(response => response.arrayBuffer())
           .then(arrayBuffer => this.context.decodeAudioData(arrayBuffer))
-          .then(buffer => Object.create({ note, buffer }))
+          .then(buffer => {
+            return { note, buffer }
+          })
       )
     )
   }
@@ -43,12 +46,11 @@ export class Sampler {
         sourceNode.connect(gainNode)
         gainNode.connect(this.context.destination)
 
-        sourceNode.start(now)
-        sourceNode.stop(now + Math.min(duration, buffer.duration))
-
         sourceNode.onended = () => {
           callback()
         }
+        sourceNode.start(now)
+        sourceNode.stop(now + Math.min(duration, buffer.duration))
 
         sourceNode = null
         gainNode = null
@@ -59,13 +61,14 @@ export class Sampler {
         }
         osc.start(now)
         osc.stop(now + duration)
+        osc = null
       }
     })
   }
 
   parseNote(note) {
     if (Array.isArray(note)) {
-      return note.map(parseNote)
+      return note.map(this.parseNote)
     } else if (typeof note === 'number') {
       return [noteName(note)]
     } else {
