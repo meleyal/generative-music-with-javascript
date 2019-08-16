@@ -14,6 +14,7 @@ export class Score {
     return this
   }
 
+  // Normalize now so events within latency return same timestamp
   now(time = this.context.currentTime) {
     const latency = 0.02
 

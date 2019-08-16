@@ -1,4 +1,5 @@
 export const pitches = {
+  REST: null,
   A0: 20,
   AS0: 21,
   B0: 23,

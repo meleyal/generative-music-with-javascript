@@ -1,78 +1,55 @@
 import { samples } from './samples'
-import { noteName } from './music'
+import { pitches } from '../src/constants'
+
+const { REST } = pitches
 
 export class Sampler {
   constructor(context, keyOrMap) {
-    this.samples = samples[keyOrMap] || keyOrMap
     this.context = context
-    this.buffers = []
+    this.samples = samples[keyOrMap] || keyOrMap
+    this.buffers = {}
   }
 
   async load() {
-    this.buffers = await Promise.all(
+    await Promise.all(
       Object.keys(this.samples).map(note =>
         window
           .fetch(this.samples[note])
           .then(response => response.arrayBuffer())
           .then(arrayBuffer => this.context.decodeAudioData(arrayBuffer))
           .then(buffer => {
-            return { note, buffer }
+            this.buffers[note] = buffer
           })
       )
     )
   }
 
-  play(note, options, callback) {
-    const notes = this.parseNote(note)
-    const defaults = { volume: 1, offset: 0, duration: Infinity }
-    const { volume, offset, duration } = Object.assign(defaults, options)
-    const now = offset
+  play(_note, when, callback) {
+    const notes = Array.isArray(_note) ? _note : [_note]
+    const now = when
 
-    notes.map(n => {
-      if (note) {
-        const buffer = this.buffers.find(b => b.note == n).buffer
-        let sourceNode = this.context.createBufferSource()
-        let gainNode = this.context.createGain()
-        sourceNode.buffer = buffer
+    for (let note of notes) {
+      if (note.pitch !== REST) {
+        const buffer = this.buffers[note.name]
+        const duration = Math.min(note.duration, buffer.duration)
 
-        const zero = 0.00001 // value must be positive for exponentialRamp
-        gainNode.gain.value = volume
-
-        gainNode.gain.linearRampToValueAtTime(
-          zero,
-          now + Math.min(duration, buffer.duration)
-        )
-
-        sourceNode.connect(gainNode)
+        const gainNode = this.context.createGain()
         gainNode.connect(this.context.destination)
+        gainNode.gain.value = note.velocity
+        gainNode.gain.linearRampToValueAtTime(0, now + duration)
 
-        sourceNode.onended = () => {
-          callback()
-        }
+        const sourceNode = this.context.createBufferSource()
+        sourceNode.connect(gainNode)
+        sourceNode.buffer = buffer
+        sourceNode.onended = callback
         sourceNode.start(now)
-        sourceNode.stop(now + Math.min(duration, buffer.duration))
-
-        sourceNode = null
-        gainNode = null
+        sourceNode.stop(now + duration)
       } else {
-        let osc = this.context.createOscillator()
-        osc.onended = () => {
-          callback()
-        }
+        const osc = this.context.createOscillator()
+        osc.onended = callback
         osc.start(now)
-        osc.stop(now + duration)
-        osc = null
+        osc.stop(now + note.duration)
       }
-    })
-  }
-
-  parseNote(note) {
-    if (Array.isArray(note)) {
-      return note.map(this.parseNote)
-    } else if (typeof note === 'number') {
-      return [noteName(note)]
-    } else {
-      return [note]
     }
   }
 }

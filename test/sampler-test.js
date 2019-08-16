@@ -1,14 +1,16 @@
 import test from 'tape-await'
 import sinon from 'sinon'
 import { Sampler } from '../src/sampler'
+import { Note } from '../src/note'
 import { pitches, durations } from '../src/constants'
 
-const { C4, D4 } = pitches
+const { C4, D4, REST } = pitches
 const { QN } = durations
 
 test('Sampler', async t => {
   const context = new window.AudioContext()
   const sampler = new Sampler(context, 'piano')
+
   const sourceNode = {
     start: sinon.spy(),
     stop: sinon.stub().callsFake(function() {
@@ -38,28 +40,25 @@ test('Sampler', async t => {
 
   await sampler.load()
 
-  const cNote = sampler.buffers.find(n => n.note === 'C4')
-  const dNote = sampler.buffers.find(n => n.note === 'D4')
-
   // Note
-  sampler.play(C4, { offset: 1, duration: QN, volume: 2 }, noteCallback)
-  t.equal(sampler.buffers.length, 84, 'loads samples')
+  sampler.play(new Note(C4, QN, 2), 1, noteCallback)
+  t.equal(Object.keys(sampler.buffers).length, 84, 'loads samples')
   t.equal(gainNode.gain.value, 2, 'sets volume')
-  t.equal(cNote.buffer, sourceNode.buffer, 'plays correct note')
+  t.equal(sampler.buffers['C4'], sourceNode.buffer, 'plays correct note')
   t.assert(sourceNode.start.calledWith(1), 'note starts at offset')
   t.assert(
-    sourceNode.stop.calledWith(cNote.buffer.duration + QN),
+    sourceNode.stop.calledWith(sampler.buffers['C4'].duration + QN),
     'note stops at duration'
   )
   t.assert(noteCallback.calledOnce, 'note calls callback on ended')
 
   // Chord
-  sampler.play([C4, D4], { offset: 1, duration: QN, volume: 2 }, noteCallback)
+  sampler.play([new Note(C4, QN, 2), new Note(D4, QN, 2)], 1, noteCallback)
   // TODO: This should test that both notes are played
-  t.equal(dNote.buffer, sourceNode.buffer, 'plays correct chord notes')
+  t.equal(sampler.buffers['D4'], sourceNode.buffer, 'plays correct chord notes')
 
   // Rest
-  sampler.play(null, { offset: 1, duration: QN, volume: 2 }, restCallback)
+  sampler.play(new Note(REST, QN, 2), 1, restCallback)
   t.assert(oscillator.start.calledWith(1), 'rest starts at offset')
   t.assert(oscillator.stop.calledWith(1 + QN), 'rest stops at duration')
   t.assert(restCallback.calledOnce, 'rest calls callback on ended')

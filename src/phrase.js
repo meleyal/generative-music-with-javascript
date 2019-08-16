@@ -35,30 +35,23 @@ export class Phrase {
     const now = this.part.score.now()
 
     if (this.currentTick >= this.start) {
-      this.part.instrument.play(
-        note.pitch,
-        { offset: now, duration: note.duration },
-        () => {
-          this.currentNote += 1
-          this.currentTick += 1
+      this.part.instrument.play(note, now, () => {
+        this.currentNote += 1
+        this.currentTick += 1
 
-          if (this.currentNote === this.notes.length) {
-            this.playCount += 1
-            this.currentNote = 0
-          }
-
-          this.tick(this.currentTick)
+        if (this.currentNote === this.notes.length) {
+          this.playCount += 1
+          this.currentNote = 0
         }
-      )
+
+        this.tick(this.currentTick)
+      })
     } else {
-      this.part.instrument.play(
-        null,
-        { offset: now, duration: note.duration },
-        () => {
-          this.currentTick += 1
-          this.tick(this.currentTick)
-        }
-      )
+      const rest = new Note(null, note.duration)
+      this.part.instrument.play(rest, now, () => {
+        this.currentTick += 1
+        this.tick(this.currentTick)
+      })
     }
   }
 

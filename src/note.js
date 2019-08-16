@@ -1,8 +1,15 @@
+import { invert } from 'lodash'
+import { pitches } from '../src/constants'
+
 export class Note {
-  constructor(pitch, duration, velocity = 80) {
+  constructor(pitch, duration = Infinity, velocity = 80) {
     this.pitch = pitch
     this.duration = duration
     this.velocity = velocity
+  }
+
+  get name() {
+    return invert(pitches)[this.pitch]
   }
 
   quantize(bpm) {
