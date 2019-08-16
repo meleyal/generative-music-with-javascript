@@ -7,15 +7,15 @@ This example demonstrates how to make a musical canon.
 Adapted from the [`rowYourBoat.py` jythonMusic example](https://git.io/fjyri).
 
 ```js
-const { Score, Part, Phrase } = gen
-const { C4, D4, E4, F4, G4, C5 } = gen.pitches
-const { QN, DEN, SN, HN, ENT } = gen.durations
+const { Score, Part, Phrase, pitches, durations } = gen
+const { C4, D4, E4, F4, G4, C5 } = pitches
+const { QN, DEN, SN, HN, ENT } = durations
 
-const rowYourBoat = new Score(108)
+const score = new Score(108)
 
-const flutePart = new Part('piano')
-const trumpetPart = new Part('piano')
-const clarinetPart = new Part('piano')
+const flute = new Part('piano')
+const trumpet = new Part('piano')
+const clarinet = new Part('piano')
 
 // "Row, row, row your boat, gently down the stream"
 const pitches1 = [C4, C4, C4, D4, E4, E4, D4, E4, F4, G4]
@@ -48,13 +48,13 @@ const response2 = theme
   .startAt(8)
   .repeat(2)
 
-flutePart.add(theme)
-trumpetPart.add(response1)
-clarinetPart.add(response2)
+flute.add(theme)
+trumpet.add(response1)
+clarinet.add(response2)
 
-rowYourBoat
-  .add(flutePart)
-  .add(trumpetPart)
-  .add(clarinetPart)
+score
+  .add(flute)
+  .add(trumpet)
+  .add(clarinet)
   .play()
 ```
