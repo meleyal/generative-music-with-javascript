@@ -41,9 +41,9 @@ test('Sampler', async t => {
   await sampler.load()
 
   // Note
-  sampler.play(new Note(C4, QN, 2), 1, noteCallback)
+  sampler.play(new Note(C4, QN, 127), 1, noteCallback)
   t.equal(Object.keys(sampler.buffers).length, 84, 'loads samples')
-  t.equal(gainNode.gain.value, 2, 'sets volume')
+  t.equal(gainNode.gain.value, 1, 'sets volume')
   t.equal(sampler.buffers['C4'], sourceNode.buffer, 'plays correct note')
   t.assert(sourceNode.start.calledWith(1), 'note starts at offset')
   t.assert(

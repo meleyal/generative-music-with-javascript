@@ -35,7 +35,7 @@ export class Sampler {
 
         const gainNode = this.context.createGain()
         gainNode.connect(this.context.destination)
-        gainNode.gain.value = note.velocity
+        gainNode.gain.value = note.volume
         gainNode.gain.linearRampToValueAtTime(0, now + duration)
 
         const sourceNode = this.context.createBufferSource()

@@ -11,7 +11,8 @@ test('Note', t => {
   t.equal(n.pitch, 60, 'sets pitch')
   t.equal(n.duration, 1.0, 'sets duration')
   t.equal(n.velocity, 127, 'sets velocity')
-  t.equal(n.name, 'C4')
+  t.equal(n.name, 'C4', 'maps pitch to name')
+  t.equal(n.volume, 1, 'maps velocity to volume')
 
   // Sixteenth note
   n.duration = SN
