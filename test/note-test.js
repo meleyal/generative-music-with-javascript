@@ -1,12 +1,13 @@
 import test from 'tape'
 import { Note } from '../src/note'
-import { pitches, durations } from '../src/constants'
+import { pitches, durations, velocities } from '../src/constants'
 
 const { C4 } = pitches
 const { QN, SN, WN } = durations
+const { FFF } = velocities
 
 test('Note', t => {
-  const n = new Note(C4, QN, 127)
+  const n = new Note(C4, QN, FFF)
 
   t.equal(n.pitch, 60, 'sets pitch')
   t.equal(n.duration, 1.0, 'sets duration')

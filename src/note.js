@@ -1,9 +1,11 @@
 import { invert } from 'lodash'
-import { pitches } from '../src/constants'
+import { pitches, velocities } from '../src/constants'
 import { remap } from '../src/number'
 
+const { F, FFF, SILENT } = velocities
+
 export class Note {
-  constructor(pitch, duration = Infinity, velocity = 80) {
+  constructor(pitch, duration = Infinity, velocity = F) {
     this.pitch = pitch
     this.duration = duration
     this.velocity = velocity
@@ -14,7 +16,7 @@ export class Note {
   }
 
   get volume() {
-    return remap(this.velocity, 0, 127, 0, 1)
+    return remap(this.velocity, SILENT, FFF, 0, 1)
   }
 
   quantize(bpm) {

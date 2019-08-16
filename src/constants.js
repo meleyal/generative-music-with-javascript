@@ -132,3 +132,15 @@ export const durations = {
   DQN: 1.5,
   DHN: 3.0
 }
+
+export const velocities = {
+  FFF: 127, // fortississimo (very very loud)
+  FF: 100, // fortissimo (very loud)
+  F: 85, // forte (loud)
+  MF: 70, // mezzo forte (average)
+  MP: 60, // mezzo piano (average)
+  P: 50, // piano (soft)
+  PP: 25, // pianissimo (very soft)
+  PPP: 10, // pianississimo (very very soft)
+  SILENT: 0
+}
