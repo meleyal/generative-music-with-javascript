@@ -20,12 +20,12 @@ test('Phrase', t => {
   part.instrument = instrument
   phrase.part = part
 
-  phrase.startAt(0.0)
+  phrase.startAt(0)
   phrase.add([1, 1], [1, 2])
   phrase.transpose(1)
   phrase.play()
 
-  t.equal(phrase.start, 0.0, 'starts at 0.0')
+  t.equal(phrase.start, 0, 'starts at 0')
   t.looseEqual(phrase.notes, [new Note(2, 1), new Note(2, 2)], 'adds notes')
   t.equal(phrase.playCount, 1, 'tracks play count')
   t.equal(phrase.currentTick, 2, 'tracks current tick')

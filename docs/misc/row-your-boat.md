@@ -11,7 +11,7 @@ const { Score, Part, Phrase } = gen
 const { C4, D4, E4, F4, G4, C5 } = gen.pitches
 const { QN, DEN, SN, HN, ENT } = gen.durations
 
-const rowYourBoat = new Score(108.0)
+const rowYourBoat = new Score(108)
 
 const flutePart = new Part('piano')
 const trumpetPart = new Part('piano')
@@ -33,19 +33,19 @@ const theme = new Phrase()
   .add(pitches1, durations1)
   .add(pitches2, durations2)
   .add(pitches3, durations3)
-  .startAt(0.0)
+  .startAt(0)
   .repeat(2)
 
 const response1 = theme
   .copy()
   .transpose(12)
-  .startAt(4.0)
+  .startAt(4)
   .repeat(2)
 
 const response2 = theme
   .copy()
   .transpose(-12)
-  .startAt(8.0)
+  .startAt(8)
   .repeat(2)
 
 flutePart.add(theme)
