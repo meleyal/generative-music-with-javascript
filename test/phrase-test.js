@@ -35,5 +35,22 @@ test('Phrase', t => {
     [new Note(2, 1), new Note(2, 2)],
     'copies self'
   )
+
+  const ph1 = new Phrase()
+  ph1.add([1, 1], [1, 2])
+  t.looseEqual(ph1.take(1).notes, [new Note(1, 1)], 'take')
+
+  const ph2 = new Phrase()
+  ph2.add([1, 1], [1, 2])
+  t.looseEqual(ph2.reverse().notes, [new Note(1, 2), new Note(1, 1)], 'reverse')
+
+  const ph3 = new Phrase()
+  ph3.add([1, 1], [1, 2])
+  t.equal(ph3.shuffle().notes.length, 2, 'shuffle')
+
+  const ph4 = new Phrase()
+  ph4.add([1, 1], [1, 2])
+  t.equal(ph3.randomize().notes.length, 2, 'randomize')
+
   t.end()
 })

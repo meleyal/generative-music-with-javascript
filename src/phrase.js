@@ -1,5 +1,6 @@
 import { Note } from './note'
-import { cloneDeep } from 'lodash'
+import { pitches, durations, velocities } from './constants'
+import { take, reverse, shuffle, sample, random, cloneDeep } from 'lodash'
 
 export class Phrase {
   constructor() {
@@ -73,8 +74,30 @@ export class Phrase {
     return this
   }
 
-  repeat(num) {
-    this.repeats = num
+  repeat(n) {
+    this.repeats = n
+    return this
+  }
+
+  take(n) {
+    this.notes = take(this.notes, n)
+    return this
+  }
+
+  reverse() {
+    this.notes = reverse(this.notes)
+    return this
+  }
+
+  shuffle() {
+    this.notes = shuffle(this.notes)
+    return this
+  }
+
+  randomize() {
+    this.notes = this.notes.map(n => {
+      return new Note(sample(pitches), sample(durations), sample(velocities))
+    })
     return this
   }
 
