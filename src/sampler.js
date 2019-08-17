@@ -1,3 +1,4 @@
+import { Gain } from '../src/gain'
 import { samples } from './samples'
 import { pitches } from '../src/constants'
 
@@ -34,13 +35,14 @@ export class Sampler {
         const buffer = this.buffers[note.name]
         const duration = Math.min(note.duration, buffer.duration)
 
-        const gainNode = this.context.createGain()
-        gainNode.connect(this.compressor.node)
-        gainNode.gain.value = note.volume
-        gainNode.gain.linearRampToValueAtTime(0, now + duration)
+        const gain = new Gain(this.context, {
+          volume: note.volume,
+          output: this.compressor.node
+        })
+        gain.ramp(0, now + duration)
 
         const sourceNode = this.context.createBufferSource()
-        sourceNode.connect(gainNode)
+        sourceNode.connect(gain.node)
         sourceNode.buffer = buffer
         sourceNode.onended = callback
         sourceNode.start(now)

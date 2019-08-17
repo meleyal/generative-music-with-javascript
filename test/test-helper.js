@@ -1,7 +1,15 @@
 import sinon from 'sinon'
 
 class AudioContext {
-  createGain() {}
+  createGain() {
+    return {
+      gain: {
+        value: 0,
+        linearRampToValueAtTime: () => null
+      },
+      connect: () => null
+    }
+  }
   createOscillator() {}
   createDynamicsCompressor() {
     return {
