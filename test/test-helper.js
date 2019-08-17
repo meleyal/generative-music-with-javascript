@@ -21,7 +21,14 @@ class AudioContext {
       connect: () => null
     }
   }
-  createBufferSource() {}
+  createBufferSource() {
+    return {
+      buffer: null,
+      connect: () => null,
+      start: () => null,
+      stop: () => null
+    }
+  }
   decodeAudioData() {
     return {
       duration: Math.random()

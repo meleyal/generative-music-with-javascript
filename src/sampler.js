@@ -1,4 +1,5 @@
 import { Gain } from '../src/gain'
+import { Source } from '../src/source'
 import { samples } from './samples'
 import { pitches } from '../src/constants'
 
@@ -41,12 +42,12 @@ export class Sampler {
         })
         gain.ramp(0, now + duration)
 
-        const sourceNode = this.context.createBufferSource()
-        sourceNode.connect(gain.node)
-        sourceNode.buffer = buffer
-        sourceNode.onended = callback
-        sourceNode.start(now)
-        sourceNode.stop(now + duration)
+        const source = new Source(this.context, {
+          buffer: buffer,
+          onended: callback,
+          output: gain.node
+        })
+        source.start(now).stop(now + duration)
       } else {
         const osc = this.context.createOscillator()
         osc.onended = callback

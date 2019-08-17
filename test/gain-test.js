@@ -1,5 +1,4 @@
 import test from 'tape'
-import sinon from 'sinon'
 import { Gain } from '../src/gain'
 
 test('Gain', t => {
