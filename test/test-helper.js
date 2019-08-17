@@ -10,7 +10,13 @@ class AudioContext {
       connect: () => null
     }
   }
-  createOscillator() {}
+  createOscillator() {
+    return {
+      connect: () => null,
+      start: () => null,
+      stop: () => null
+    }
+  }
   createDynamicsCompressor() {
     return {
       threshold: { value: 0 },

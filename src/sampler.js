@@ -1,5 +1,6 @@
 import { Gain } from '../src/gain'
 import { Source } from '../src/source'
+import { Oscillator } from '../src/oscillator'
 import { samples } from './samples'
 import { pitches } from '../src/constants'
 
@@ -49,10 +50,10 @@ export class Sampler {
         })
         source.start(now).stop(now + duration)
       } else {
-        const osc = this.context.createOscillator()
-        osc.onended = callback
-        osc.start(now)
-        osc.stop(now + note.duration)
+        const oscillator = new Oscillator(this.context, {
+          onended: callback
+        })
+        oscillator.start(now).stop(now + note.duration)
       }
     }
   }
