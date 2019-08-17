@@ -1,6 +1,7 @@
-const baseUrl = 'http://localhost:3001'
+const baseUrl = 'http://localhost:3001/samples/reverbs/files'
 
 export const reverbs = {
-  'block-inside': `${baseUrl}/samples/reverbs/files/block-inside.wav`,
-  'bottle-hall': `${baseUrl}/samples/reverbs/files/bottle-hall.wav`
+  flat: `${baseUrl}/flat.wav`,
+  'block-inside': `${baseUrl}/block-inside.wav`,
+  'bottle-hall': `${baseUrl}/bottle-hall.wav`
 }

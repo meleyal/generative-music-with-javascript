@@ -35,6 +35,12 @@ class AudioContext {
       stop: () => null
     }
   }
+  createConvolver() {
+    return {
+      buffer: null,
+      connect: () => null
+    }
+  }
   decodeAudioData() {
     return {
       duration: Math.random()

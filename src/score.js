@@ -1,9 +1,11 @@
 import { Compressor } from './compressor'
+import { Reverb } from './reverb'
 
 export class Score {
   constructor(bpm) {
     this.context = new window.AudioContext()
-    this.compressor = new Compressor(this.context)
+    this.reverb = new Reverb(this.context, { output: this.context.destination })
+    this.compressor = new Compressor(this.context, { output: this.reverb.node })
     this.bpm = bpm
     this.parts = []
     this.loaded = false
@@ -36,9 +38,14 @@ export class Score {
     return this
   }
 
+  async loadEffects() {
+    this.reverb.load()
+  }
+
   async play() {
     if (!this.loaded) {
       await this.loadInstruments()
+      await this.loadEffects()
       this.loaded = true
     }
     for (let part of this.parts) {

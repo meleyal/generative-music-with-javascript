@@ -1,6 +1,14 @@
 import test from 'tape'
-import { reverb } from '../src/reverb'
+import { Reverb } from '../src/reverb'
 
-// test('reverb', t => {
-//   t.end()
-// })
+test('Reverb', t => {
+  const context = new window.AudioContext()
+  const reverb = new Reverb(context, {
+    output: context.destination
+  })
+
+  t.equal(reverb.output, context.destination, 'sets options')
+  t.assert(reverb.impulse.endsWith('flat.wav'), 'sets defaults')
+
+  t.end()
+})

@@ -1,10 +1,11 @@
 export class Compressor {
   constructor(context, options = {}) {
-    const { threshold, knee, ratio, attack, release } = Object.assign(
+    const { output, threshold, knee, ratio, attack, release } = Object.assign(
       this.defaults,
       options
     )
     this.context = context
+    this.output = output
     this.threshold = threshold
     this.knee = knee
     this.ratio = ratio
@@ -31,7 +32,7 @@ export class Compressor {
     node.ratio.value = this.ratio
     node.attack.value = this.attack
     node.release.value = this.release
-    node.connect(this.context.destination)
+    node.connect(this.output)
     return node
   }
 }
