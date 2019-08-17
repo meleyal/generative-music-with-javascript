@@ -1,11 +1,13 @@
 export class Source {
   constructor(context, options = {}) {
-    const { buffer, onended, output } = options
+    const { buffer, start, stop, onended, output } = options
     this.context = context
     this.buffer = buffer
     this.onended = onended
     this.output = output
     this.node = this.createNode()
+    this.start(start)
+    this.stop(stop)
   }
 
   createNode() {

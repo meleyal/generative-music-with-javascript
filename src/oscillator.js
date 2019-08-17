@@ -1,9 +1,11 @@
 export class Oscillator {
   constructor(context, options = {}) {
-    const { onended } = options
+    const { start, stop, onended } = options
     this.context = context
     this.onended = onended
     this.node = this.createNode()
+    this.start(start)
+    this.stop(stop)
   }
 
   createNode() {

@@ -39,21 +39,23 @@ export class Sampler {
 
         const gain = new Gain(this.context, {
           volume: note.volume,
-          output: this.compressor.node
+          output: this.compressor.node,
+          stop: now + duration
         })
-        gain.ramp(0, now + duration)
 
-        const source = new Source(this.context, {
+        new Source(this.context, {
           buffer: buffer,
+          start: now,
+          stop: now + duration,
           onended: callback,
           output: gain.node
         })
-        source.start(now).stop(now + duration)
       } else {
-        const oscillator = new Oscillator(this.context, {
+        new Oscillator(this.context, {
+          start: now,
+          stop: now + note.duration,
           onended: callback
         })
-        oscillator.start(now).stop(now + note.duration)
       }
     }
   }

@@ -1,10 +1,11 @@
 export class Gain {
   constructor(context, options = {}) {
-    const { volume, output } = Object.assign(this.defaults, options)
+    const { volume, stop, output } = Object.assign(this.defaults, options)
     this.context = context
     this.volume = volume
     this.output = output
     this.node = this.createNode()
+    this.stop(stop)
   }
 
   get defaults() {
@@ -21,8 +22,8 @@ export class Gain {
     return node
   }
 
-  ramp(value, time) {
-    this.node.gain.linearRampToValueAtTime(value, time)
+  stop(time) {
+    this.node.gain.linearRampToValueAtTime(0, time)
     return this
   }
 }
