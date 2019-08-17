@@ -1,6 +1,14 @@
 import test from 'tape'
-import { compressor } from '../src/compressor'
+import { Compressor } from '../src/compressor'
 
-// test('compressor', t => {
-//   t.end()
-// })
+test('Compressor', t => {
+  const context = new window.AudioContext()
+  const compressor = new Compressor(context, {
+    threshold: 100
+  })
+
+  t.equal(compressor.node.threshold.value, 100, 'sets options')
+  t.equal(compressor.node.knee.value, 40, 'sets defaults')
+
+  t.end()
+})

@@ -2,6 +2,8 @@ import { Note } from './note'
 import { pitches, durations, velocities } from './constants'
 import { take, reverse, shuffle, sample, random, cloneDeep } from 'lodash'
 
+const { REST } = pitches
+
 export class Phrase {
   constructor() {
     this.part = null
@@ -48,7 +50,8 @@ export class Phrase {
         this.tick(this.currentTick)
       })
     } else {
-      const rest = new Note(null, note.duration)
+      const rest = new Note(REST, note.duration)
+
       this.part.instrument.play(rest, now, () => {
         this.currentTick += 1
         this.tick(this.currentTick)

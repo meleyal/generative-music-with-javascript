@@ -15,7 +15,11 @@ export class Part {
   }
 
   async loadInstrument() {
-    this.instrument = new Sampler(this.score.context, this.instrument)
+    this.instrument = new Sampler(
+      this.score.context,
+      this.instrument,
+      this.score.compressor
+    )
     await this.instrument.load()
     return this
   }

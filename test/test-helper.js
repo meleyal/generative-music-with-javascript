@@ -1,6 +1,18 @@
+import sinon from 'sinon'
+
 class AudioContext {
   createGain() {}
   createOscillator() {}
+  createDynamicsCompressor() {
+    return {
+      threshold: { value: 0 },
+      knee: { value: 0 },
+      ratio: { value: 0 },
+      attack: { value: 0 },
+      release: { value: 0 },
+      connect: () => null
+    }
+  }
   createBufferSource() {}
   decodeAudioData() {
     return {

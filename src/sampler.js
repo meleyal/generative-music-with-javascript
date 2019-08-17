@@ -4,9 +4,10 @@ import { pitches } from '../src/constants'
 const { REST } = pitches
 
 export class Sampler {
-  constructor(context, keyOrMap) {
+  constructor(context, keyOrMap, compressor) {
     this.context = context
     this.samples = samples[keyOrMap] || keyOrMap
+    this.compressor = compressor
     this.buffers = {}
   }
 
@@ -34,7 +35,7 @@ export class Sampler {
         const duration = Math.min(note.duration, buffer.duration)
 
         const gainNode = this.context.createGain()
-        gainNode.connect(this.context.destination)
+        gainNode.connect(this.compressor.node)
         gainNode.gain.value = note.volume
         gainNode.gain.linearRampToValueAtTime(0, now + duration)
 

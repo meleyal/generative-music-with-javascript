@@ -1,9 +1,12 @@
+import { Compressor } from './compressor'
+
 export class Score {
   constructor(bpm) {
     this.context = new window.AudioContext()
+    this.compressor = new Compressor(this.context)
     this.bpm = bpm
     this.parts = []
-    this.instrumentsLoaded = false
+    this.loaded = false
     this.currentTime = null
   }
 
@@ -30,13 +33,13 @@ export class Score {
     for (let part of this.parts) {
       await part.loadInstrument()
     }
-    this.instrumentsLoaded = true
     return this
   }
 
   async play() {
-    if (!this.instrumentsLoaded) {
+    if (!this.loaded) {
       await this.loadInstruments()
+      this.loaded = true
     }
     for (let part of this.parts) {
       part.play()

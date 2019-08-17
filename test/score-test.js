@@ -8,7 +8,7 @@ test('Score', t => {
   const part1 = sinon.createStubInstance(Part)
   const part2 = sinon.createStubInstance(Part)
 
-  score.instrumentsLoaded = true // hack
+  score.loaded = true // hack
   score
     .add(part1)
     .add(part2)

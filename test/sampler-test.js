@@ -2,6 +2,7 @@ import test from 'tape-await'
 import sinon from 'sinon'
 import { Sampler } from '../src/sampler'
 import { Note } from '../src/note'
+import { Compressor } from '../src/compressor'
 import { pitches, durations, velocities } from '../src/constants'
 
 const { C4, D4, REST } = pitches
@@ -10,7 +11,8 @@ const { FFF } = velocities
 
 test('Sampler', async t => {
   const context = new window.AudioContext()
-  const sampler = new Sampler(context, 'piano')
+  const compressor = new Compressor(context)
+  const sampler = new Sampler(context, 'piano', compressor)
 
   const sourceNode = {
     start: sinon.spy(),
