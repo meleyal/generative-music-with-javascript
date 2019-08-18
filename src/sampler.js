@@ -7,10 +7,10 @@ import { pitches } from '../src/constants'
 const { REST } = pitches
 
 export class Sampler {
-  constructor(context, keyOrMap, compressor) {
+  constructor(context, keyOrMap, options = {}) {
     this.context = context
     this.samples = samples[keyOrMap] || keyOrMap
-    this.compressor = compressor
+    this.output = options.output
     this.buffers = {}
   }
 
@@ -39,7 +39,7 @@ export class Sampler {
 
         const gain = new Gain(this.context, {
           volume: note.volume,
-          output: this.compressor.node,
+          output: this.output,
           stop: now + duration
         })
 

@@ -15,11 +15,9 @@ export class Part {
   }
 
   async loadInstrument() {
-    this.instrument = new Sampler(
-      this.score.context,
-      this.instrument,
-      this.score.compressor
-    )
+    this.instrument = new Sampler(this.score.context, this.instrument, {
+      output: this.score.effects['compressor'].node
+    })
     await this.instrument.load()
     return this
   }
