@@ -1,17 +1,16 @@
 export class Gain {
-  constructor(context, options = {}) {
-    const { volume, stop, output } = Object.assign(this.defaults, options)
+  constructor(context, output, options = {}) {
+    const { volume, stop } = Object.assign(this.defaults, options)
     this.context = context
-    this.volume = volume
     this.output = output
+    this.volume = volume
     this.node = this.createNode()
     this.stop(stop)
   }
 
   get defaults() {
     return {
-      volume: 1,
-      output: null
+      volume: 1
     }
   }
 

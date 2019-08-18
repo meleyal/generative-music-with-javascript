@@ -3,7 +3,7 @@ import { Compressor } from '../src/compressor'
 
 test('Compressor', t => {
   const context = new window.AudioContext()
-  const compressor = new Compressor(context, {
+  const compressor = new Compressor(context, context.destination, {
     threshold: 100
   })
 

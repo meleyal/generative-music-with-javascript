@@ -1,6 +1,6 @@
 export class Compressor {
-  constructor(context, options = {}) {
-    const { output, threshold, knee, ratio, attack, release } = Object.assign(
+  constructor(context, output, options = {}) {
+    const { threshold, knee, ratio, attack, release } = Object.assign(
       this.defaults,
       options
     )

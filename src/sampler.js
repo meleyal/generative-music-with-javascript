@@ -7,10 +7,10 @@ import { pitches } from '../src/constants'
 const { REST } = pitches
 
 export class Sampler {
-  constructor(context, keyOrMap, options = {}) {
+  constructor(context, output, keyOrMap) {
     this.context = context
+    this.output = output
     this.samples = samples[keyOrMap] || keyOrMap
-    this.output = options.output
     this.buffers = {}
   }
 
@@ -37,18 +37,16 @@ export class Sampler {
         const buffer = this.buffers[note.name]
         const duration = Math.min(note.duration, buffer.duration)
 
-        const gain = new Gain(this.context, {
+        const gain = new Gain(this.context, this.output, {
           volume: note.volume,
-          output: this.output,
           stop: now + duration
         })
 
-        new Source(this.context, {
+        new Source(this.context, gain.node, {
           buffer: buffer,
           start: now,
           stop: now + duration,
-          onended: callback,
-          output: gain.node
+          onended: callback
         })
       } else {
         new Oscillator(this.context, {

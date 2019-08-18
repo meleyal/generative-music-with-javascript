@@ -1,18 +1,17 @@
 import { samples } from './samples'
 
 export class Reverb {
-  constructor(context, options = {}) {
-    const { impulse, output } = Object.assign(this.defaults, options)
+  constructor(context, output, options = {}) {
+    const { impulse } = Object.assign(this.defaults, options)
     this.context = context
     this.output = output
-    this.impulse = impulse
+    this.impulse = samples.reverbs[impulse]
     this.node = this.createNode()
   }
 
   get defaults() {
     return {
-      impulse: samples.reverbs['flat'],
-      output: null
+      impulse: 'flat'
     }
   }
 

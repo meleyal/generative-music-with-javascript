@@ -12,7 +12,7 @@ const { FFF } = velocities
 test('Sampler', async t => {
   const context = new window.AudioContext()
   const compressor = new Compressor(context)
-  const sampler = new Sampler(context, 'piano', compressor)
+  const sampler = new Sampler(context, compressor, 'piano')
 
   const sourceNode = {
     start: sinon.spy(),

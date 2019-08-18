@@ -5,16 +5,12 @@ export class Score {
   constructor(bpm) {
     this.context = new window.AudioContext()
     this.effects = {}
-    this.effects['reverb'] = new Reverb(this.context, {
-      output: this.context.destination
-    })
-    this.effects['compressor'] = new Compressor(this.context, {
-      output: this.effects.reverb.node
-    })
     this.bpm = bpm
     this.parts = []
     this.loaded = false
     this.currentTime = null
+    this.createReverb()
+    this.createCompressor()
   }
 
   add(part) {
@@ -57,5 +53,19 @@ export class Score {
       part.play()
     }
     return this
+  }
+
+  createReverb(output, options = {}) {
+    const reverb = new Reverb(this.context, this.context.destination, options)
+    this.effects['reverb'] = reverb
+  }
+
+  createCompressor(output, options = {}) {
+    const compressor = new Compressor(
+      this.context,
+      this.effects['reverb'].node,
+      options
+    )
+    this.effects['compressor'] = compressor
   }
 }

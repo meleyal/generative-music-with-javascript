@@ -3,12 +3,10 @@ import { Gain } from '../src/gain'
 
 test('Gain', t => {
   const context = new window.AudioContext()
-  const gain = new Gain(context, {
-    volume: 2,
-    output: context.destination
+  const gain = new Gain(context, context.destination, {
+    volume: 2
   })
 
-  t.equal(gain.output, context.destination, 'sets options')
   t.equal(gain.node.gain.value, 2, 'sets options')
 
   t.end()
