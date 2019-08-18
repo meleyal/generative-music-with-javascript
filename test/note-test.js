@@ -1,4 +1,4 @@
-import test from 'tape'
+import test from 'tape-await'
 import { Note } from '../src/note'
 import { pitches, durations, velocities } from '../src/constants'
 
@@ -14,6 +14,10 @@ test('Note', t => {
   t.equal(n.velocity, 127, 'sets velocity')
   t.equal(n.name, 'C4', 'maps pitch to name')
   t.equal(n.volume, 1, 'maps velocity to volume')
+})
+
+test('Note / Quantize', t => {
+  const n = new Note(C4, QN, FFF)
 
   // Sixteenth note
   n.duration = SN
@@ -38,6 +42,4 @@ test('Note', t => {
   t.equal(n.quantize(120).duration, 2.0, 'quantizes duration')
   n.duration = WN
   t.equal(n.quantize(240).duration, 1.0, 'quantizes duration')
-
-  t.end()
 })

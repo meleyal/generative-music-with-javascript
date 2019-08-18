@@ -1,22 +1,6 @@
-import sinon from 'sinon'
-
 class AudioContext {
-  createGain() {
-    return {
-      gain: {
-        value: 0,
-        linearRampToValueAtTime: () => null
-      },
-      connect: () => null
-    }
-  }
-  createOscillator() {
-    return {
-      connect: () => null,
-      start: () => null,
-      stop: () => null
-    }
-  }
+  createGain() {}
+  createOscillator() {}
   createDynamicsCompressor() {
     return {
       threshold: { value: 0 },
@@ -27,17 +11,9 @@ class AudioContext {
       connect: () => null
     }
   }
-  createBufferSource() {
-    return {
-      buffer: null,
-      connect: () => null,
-      start: () => null,
-      stop: () => null
-    }
-  }
+  createBufferSource() {}
   createConvolver() {
     return {
-      buffer: null,
       connect: () => null
     }
   }

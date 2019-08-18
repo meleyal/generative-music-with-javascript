@@ -1,12 +1,20 @@
-import test from 'tape'
+import test from 'tape-await'
+import sinon from 'sinon'
 import { Reverb } from '../src/reverb'
 
-test('Reverb', t => {
+test('Reverb', async t => {
   const context = new window.AudioContext()
-  const reverb = new Reverb(context, context.destination)
+  const output = {}
+  const node = {
+    buffer: null,
+    connect: sinon.spy()
+  }
+  sinon.stub(context, 'createConvolver').returns(node)
 
-  t.equal(reverb.output, context.destination, 'sets options')
+  const reverb = new Reverb(context, output)
+  await reverb.load()
+
   t.assert(reverb.impulse.endsWith('flat.wav'), 'sets defaults')
-
-  t.end()
+  t.assert(node.connect.calledWith(output), 'connects to output')
+  t.assert(node.buffer.duration, 'loads impulse sample')
 })

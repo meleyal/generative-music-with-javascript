@@ -16,7 +16,7 @@ export class Reverb {
   }
 
   async load() {
-    const res = await fetch(this.impulse)
+    const res = await window.fetch(this.impulse)
     const arrayBuffer = await res.arrayBuffer()
     const buffer = await this.context.decodeAudioData(arrayBuffer)
     this.node.buffer = buffer

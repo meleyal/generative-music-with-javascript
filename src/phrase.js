@@ -59,12 +59,6 @@ export class Phrase {
     }
   }
 
-  copy() {
-    const phrase = new Phrase()
-    phrase.notes = cloneDeep(this.notes)
-    return phrase
-  }
-
   quantize(bpm) {
     for (let note of this.notes) {
       note.quantize(bpm)
@@ -82,30 +76,41 @@ export class Phrase {
     return this
   }
 
+  copy() {
+    const phrase = new Phrase()
+    phrase.notes = cloneDeep(this.notes)
+    return phrase
+  }
+
   take(n) {
-    this.notes = take(this.notes, n)
-    return this
+    const phrase = this.copy()
+    phrase.notes = take(phrase.notes, n)
+    return phrase
   }
 
   reverse() {
-    this.notes = reverse(this.notes)
-    return this
+    const phrase = this.copy()
+    phrase.notes = reverse(phrase.notes)
+    return phrase
   }
 
   shuffle() {
-    this.notes = shuffle(this.notes)
-    return this
+    const phrase = this.copy()
+    phrase.notes = shuffle(phrase.notes)
+    return phrase
   }
 
   randomize() {
-    this.notes = this.notes.map(n => {
+    const phrase = this.copy()
+    phrase.notes = phrase.notes.map(n => {
       return new Note(sample(pitches), sample(durations), sample(velocities))
     })
-    return this
+    return phrase
   }
 
   transpose(num) {
-    this.notes = this.notes.map(n => n.transpose(num))
-    return this
+    const phrase = this.copy()
+    phrase.notes = phrase.notes.map(n => n.transpose(num))
+    return phrase
   }
 }

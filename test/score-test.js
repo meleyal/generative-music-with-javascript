@@ -1,4 +1,4 @@
-import test from 'tape'
+import test from 'tape-await'
 import sinon from 'sinon'
 import { Score } from '../src/score'
 import { Part } from '../src/part'
@@ -25,5 +25,4 @@ test('Score', t => {
   t.equal(score.now(0.1), 0.1, 'calculates now')
   t.equal(score.now(0.12), 0.1, 'calculates now')
   t.equal(score.now(0.13), 0.13, 'calculates now')
-  t.end()
 })

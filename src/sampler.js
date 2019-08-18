@@ -36,12 +36,10 @@ export class Sampler {
       if (note.pitch !== REST) {
         const buffer = this.buffers[note.name]
         const duration = Math.min(note.duration, buffer.duration)
-
         const gain = new Gain(this.context, this.output, {
           volume: note.volume,
           stop: now + duration
         })
-
         new Source(this.context, gain.node, {
           buffer: buffer,
           start: now,

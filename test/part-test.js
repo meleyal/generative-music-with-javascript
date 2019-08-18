@@ -1,4 +1,4 @@
-import test from 'tape'
+import test from 'tape-await'
 import sinon from 'sinon'
 import { Part } from '../src/part'
 import { Phrase } from '../src/phrase'
@@ -19,5 +19,4 @@ test('part', t => {
   t.looseEqual(part.phrases, [phrase1, phrase2], 'adds phrases')
   t.assert(phrase1.play.calledOnce, 'plays first phrase')
   t.assert(phrase2.play.notCalled, 'does not play later phrases')
-  t.end()
 })
