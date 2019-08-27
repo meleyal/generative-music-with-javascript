@@ -1,10 +1,5 @@
-import { Gain } from '../src/gain'
-import { Source } from '../src/source'
-import { Oscillator } from '../src/oscillator'
+import { Sample } from './sample'
 import { samples } from './samples'
-import { pitches } from '../src/constants'
-
-const { REST } = pitches
 
 export class Sampler {
   constructor(context, output, keyOrMap) {
@@ -28,31 +23,13 @@ export class Sampler {
     )
   }
 
-  play(_note, when, callback) {
+  play(_note, time, callback) {
     const notes = Array.isArray(_note) ? _note : [_note]
-    const now = when
 
     for (let note of notes) {
-      if (note.pitch !== REST) {
-        const buffer = this.buffers[note.name]
-        const duration = Math.min(note.duration, buffer.duration)
-        const gain = new Gain(this.context, this.output, {
-          volume: note.volume,
-          stop: now + duration
-        })
-        new Source(this.context, gain.node, {
-          buffer: buffer,
-          start: now,
-          stop: now + duration,
-          onended: callback
-        })
-      } else {
-        new Oscillator(this.context, {
-          start: now,
-          stop: now + note.duration,
-          onended: callback
-        })
-      }
+      const buffer = this.buffers[note.name]
+      const sample = new Sample(this.context, this.output, note, buffer)
+      sample.play(time, callback)
     }
   }
 }
