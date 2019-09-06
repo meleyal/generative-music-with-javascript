@@ -2,23 +2,18 @@
   "docs": {
     "Welcome": ["introduction"],
     "Primers": ["primers/generative", "primers/music", "primers/javascript"],
-    "Music": [
-      "music/notes",
-      "music/scales",
-      "music/timing",
-      "music/phrases",
-      "music/parts",
-      "music/scores"
-    ],
+    "Music": ["music/notes", "music/scales", "music/timing", "music/structure"],
     "Generative": [
       "generative/repetition",
       "generative/randomness",
+      "generative/probability",
       "generative/grammars",
       "generative/recursion",
       "generative/evolution",
       "generative/machine-learning",
       "generative/sonification"
     ],
+    "Course": ["course/outline"],
     "API": ["api/index"]
   }
 }

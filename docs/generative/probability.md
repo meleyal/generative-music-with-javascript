@@ -4,6 +4,9 @@ title: Probability
 
 > TODO
 
+- Probability/Chance
+- Markov Models
+
 ## Probability
 
 By applying probability, we can still employ randomness, but weigh the odds to

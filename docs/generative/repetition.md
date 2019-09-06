@@ -4,4 +4,5 @@ title: Repetition
 
 TODO
 
-- Canons
+- Looping
+- Canons/Rounds

@@ -4,4 +4,5 @@ title: Evolution
 
 TODO
 
-- Generative algorithms
+- Generative/genetic algorithms
+- Cellular Automata

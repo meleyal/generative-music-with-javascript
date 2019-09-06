@@ -4,4 +4,5 @@ title: Recursion
 
 TODO
 
-- Trees, Fractals, Cantor Set, Cellular Automata
+- Trees, Fractals, Cantor Set
+- Chaos, Self-similarity

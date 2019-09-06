@@ -17,7 +17,6 @@ const siteConfig = {
   organizationName: 'meleyal',
   headerLinks: [
     { doc: 'introduction', label: 'Docs' },
-    { href: 'https://gentape.meleyal.com/', label: 'Listen' },
     { href: 'https://github.com/meleyal/gen', label: 'GitHub' }
   ],
   favicon: 'img/favicon.png',
