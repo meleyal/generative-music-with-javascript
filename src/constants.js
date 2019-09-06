@@ -1,7 +1,7 @@
 export const pitches = {
   REST: null,
-  A0: 20,
-  AS0: 21,
+  A0: 21,
+  AS0: 22,
   B0: 23,
   C1: 24,
   CS1: 25,
