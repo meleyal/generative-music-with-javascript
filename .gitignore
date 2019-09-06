@@ -4,5 +4,8 @@ website/build/
 website/yarn.lock
 website/i18n/
 
+# Yarn
+yarn-error.log
+
 # Samples
 src/samples/**/files
