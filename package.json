@@ -6,8 +6,7 @@
     "start": "yarn run website & yarn run serve",
     "website": "cd website && yarn start",
     "serve": "webpack-dev-server",
-    "test": "tape -r esm test/**/*.js | tap-spec",
-    "samples": "./bin/samples"
+    "test": "tape -r esm test/**/*.js | tap-spec"
   },
   "repository": {
     "type": "git",
