@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Randomness · Gen.js</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Reference:&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Randomness · Gen.js"/><meta property="og:type" content="website"/><meta property="og:url" content="https://meleyal.github.io/gen/"/><meta property="og:description" content="&lt;p&gt;Reference:&lt;/p&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/gen/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"/><script type="text/javascript" src="/gen/js/custom.js"></script><script type="text/javascript" src="https://unpkg.com/@meleyal/gen/gen.js"></script><link rel="stylesheet" href="/gen/css/prism.css"/><link rel="stylesheet" href="/gen/css/main.css"/><script src="/gen/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/gen/"><h2 class="headerTitle">Gen.js</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/gen/docs/introduction" target="_self">Docs</a></li><li class=""><a href="https://github.com/meleyal/gen" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Generative</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Welcome</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/introduction">Introduction</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Primers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/primers/generative">Generative</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/primers/music">Music</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/primers/javascript">JavaScript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Music</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/music/notes">Notes</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/music/scales">Scales</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/music/timing">Timing</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/music/structure">Structure</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Generative</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/generative/repetition">Repetition</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/gen/docs/generative/randomness">Randomness</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/probability">Probability</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/grammars">Grammars</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/recursion">Recursion</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/evolution">Evolution</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/machine-learning">Machine Learning</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/sonification">Sonification</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Course</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/course/outline">Course Outline</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/api/">API Reference</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Randomness</h1></header><article><div><span><p>Reference:</p>
+<ul>
+<li><a href="https://medium.com/@metalex9/randomizing-program-execution-with-random-number-generators-a7bb613861f9">https://medium.com/@metalex9/randomizing-program-execution-with-random-number-generators-a7bb613861f9</a></li>
+</ul>
+<p>This guide shows how to use randomness to introduce variation to our music,
+specifically through the idea of a random walk.</p>
+<h2><a class="anchor" aria-hidden="true" id="random-walk"></a><a href="#random-walk" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Random Walk</h2>
+<p>In 2D graphics, a random walk involves drawing a path by repeatedly choosing a
+random direction in which to move. On this 2D plane, each step can be one of
+four directions: up, down, left, or right (plus a fifth choice if you include
+not moving as an option). Given a certain set of rules, this might look as
+follows:</p>
+<p><img src="/gen/docs/assets/walker/walk.png" alt=""></p>
+<p>How might we apply this idea to music? As we've seen, a piano has 88 keys,
+giving it a range from A0 to C8, which map to the MIDI numbers 21–108. We can
+treat this as a 1D plane, and say that at each moment we have 4 choices: 1) play
+a higher note; 2) play a min note; 3) play the same note; 4) play nothing. The
+range 21-108 and the 4 choices define the &quot;possibility space&quot; for our random
+walk.</p>
+<p><img src="/gen/docs/assets/walker/piano.svg" alt=""></p>
+<h2><a class="anchor" aria-hidden="true" id="random-notes"></a><a href="#random-notes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Random Notes</h2>
+<p>Let's start simple and just play random notes by repeatedly picking a random
+number between 21 and 108. This gives us a random distribution, where each of
+the 88 notes have an equal chance of being played.</p>
+<h3><a class="anchor" aria-hidden="true" id="random-numbers"></a><a href="#random-numbers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Random Numbers</h3>
+<p>For this example, we'll need a way to generate a random number within a given
+range, which JS doesn't have out-of-the-box, so let's create one:</p>
+<pre><code class="hljs css language-js"><span class="token keyword">const</span> <span class="token function-variable function">random</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">min<span class="token punctuation">,</span> max</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> min <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>max <span class="token operator">-</span> min <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// => a random number between 1 and 10</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="random-stream"></a><a href="#random-stream" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Random Stream</h3>
+<p>Before actually making any sounds, let's just create a regular stream of random
+numbers within our desired range. We just need to convert our random number
+function to an Observable:</p>
+<pre><code class="hljs css language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> interval <span class="token punctuation">}</span> <span class="token operator">=</span> rxjs
+<span class="token keyword">const</span> <span class="token punctuation">{</span> map <span class="token punctuation">}</span> <span class="token operator">=</span> rxjs<span class="token punctuation">.</span>operators
+
+<span class="token keyword">const</span> <span class="token function-variable function">random</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">min<span class="token punctuation">,</span> max</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=></span> min <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>max <span class="token operator">-</span> min <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> numbers$ <span class="token operator">=</span> <span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">108</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+numbers$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>console<span class="token punctuation">.</span>log<span class="token punctuation">)</span> <span class="token comment">// => a random number between 21 and 108 every second</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="random-notes-1"></a><a href="#random-notes-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Random Notes</h3>
+<p>Now, let's plug in the <code>sampler()</code> function from Gen.js and hear some notes:</p>
+<pre><code class="hljs css language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> interval <span class="token punctuation">}</span> <span class="token operator">=</span> rxjs
+<span class="token keyword">const</span> <span class="token punctuation">{</span> map <span class="token punctuation">}</span> <span class="token operator">=</span> rxjs<span class="token punctuation">.</span>operators
+<span class="token keyword">const</span> <span class="token punctuation">{</span> sampler<span class="token punctuation">,</span> samples <span class="token punctuation">}</span> <span class="token operator">=</span> gen
+
+<span class="token keyword">const</span> <span class="token function-variable function">random</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">min<span class="token punctuation">,</span> max</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=></span> min <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>max <span class="token operator">-</span> min <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// TODO: our piano samples only support this range, should be 21, 108</span>
+<span class="token keyword">const</span> notes$ <span class="token operator">=</span> <span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">24</span><span class="token punctuation">,</span> <span class="token number">107</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> context <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> piano <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">sampler</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> samples<span class="token punctuation">.</span>piano<span class="token punctuation">)</span>
+
+  notes$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token parameter">note</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token function">piano</span><span class="token punctuation">(</span>note<span class="token punctuation">,</span> <span class="token punctuation">{</span> duration<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Let's refactor this using the <code>program()</code> structure from Gen.js:</p>
+<pre><code class="hljs css language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> interval <span class="token punctuation">}</span> <span class="token operator">=</span> rxjs
+<span class="token keyword">const</span> <span class="token punctuation">{</span> map <span class="token punctuation">}</span> <span class="token operator">=</span> rxjs<span class="token punctuation">.</span>operators
+<span class="token keyword">const</span> <span class="token punctuation">{</span> program<span class="token punctuation">,</span> sampler<span class="token punctuation">,</span> samples<span class="token punctuation">,</span> random <span class="token punctuation">}</span> <span class="token operator">=</span> gen
+
+<span class="token keyword">const</span> model <span class="token operator">=</span> <span class="token punctuation">{</span>
+  note<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  piano<span class="token punctuation">:</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">messages</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">model<span class="token punctuation">,</span> send</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token function-variable function">note</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> notes$ <span class="token operator">=</span> <span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=></span> <span class="token function">random</span><span class="token punctuation">(</span><span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">108</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    notes$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token parameter">note</span> <span class="token operator">=></span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span> note <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token function-variable function">piano</span><span class="token punctuation">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> piano <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">sampler</span><span class="token punctuation">(</span>model<span class="token punctuation">.</span>context<span class="token punctuation">,</span> samples<span class="token punctuation">.</span>piano<span class="token punctuation">)</span>
+    <span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span> piano <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">render</span> <span class="token operator">=</span> <span class="token parameter">model</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> piano<span class="token punctuation">,</span> note <span class="token punctuation">}</span> <span class="token operator">=</span> model
+  <span class="token function">piano</span><span class="token punctuation">(</span>note<span class="token punctuation">,</span> <span class="token punctuation">{</span> duration<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">program</span><span class="token punctuation">(</span><span class="token punctuation">{</span> model<span class="token punctuation">,</span> messages<span class="token punctuation">,</span> render <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code class="hljs css language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span>
+  program<span class="token punctuation">,</span>
+  sampler2<span class="token punctuation">,</span>
+  sampleMap2<span class="token punctuation">,</span>
+  metronome<span class="token punctuation">,</span>
+  resolution<span class="token punctuation">,</span>
+  random<span class="token punctuation">,</span>
+  noteName
+<span class="token punctuation">}</span> <span class="token operator">=</span> gen
+
+<span class="token comment">// -- MODEL</span>
+
+<span class="token keyword">const</span> model <span class="token operator">=</span> <span class="token punctuation">{</span>
+  bpm<span class="token punctuation">:</span> <span class="token number">60</span><span class="token punctuation">,</span>
+  tick<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  note<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  sampler<span class="token punctuation">:</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// -- MESSAGES</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">messages</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">model<span class="token punctuation">,</span> send</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> context<span class="token punctuation">,</span> bpm <span class="token punctuation">}</span> <span class="token operator">=</span> model
+
+  <span class="token keyword">const</span> msgs <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">tick</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> metro <span class="token operator">=</span> <span class="token function">resolution</span><span class="token punctuation">(</span><span class="token function">metronome</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> bpm<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
+      metro<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token parameter">tick</span> <span class="token operator">=></span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span> tick<span class="token punctuation">,</span> <span class="token operator">...</span>msgs<span class="token punctuation">.</span><span class="token function">note</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function-variable function">note</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> rng <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span><span class="token number">24</span><span class="token punctuation">,</span> <span class="token number">107</span><span class="token punctuation">)</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span> note<span class="token punctuation">:</span> <span class="token function">noteName</span><span class="token punctuation">(</span><span class="token function">rng</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function-variable function">sampler</span><span class="token punctuation">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> samples <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">sampleMap2</span><span class="token punctuation">(</span>
+        context<span class="token punctuation">,</span>
+        <span class="token string">'https://unpkg.com/@meleyal/gen/samples/piano/'</span>
+      <span class="token punctuation">)</span>
+      <span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span> sampler<span class="token punctuation">:</span> <span class="token function">sampler2</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> samples<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> msgs
+<span class="token punctuation">}</span>
+
+<span class="token comment">// -- RENDER</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">render</span> <span class="token operator">=</span> <span class="token parameter">model</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> sampler<span class="token punctuation">,</span> note <span class="token punctuation">}</span> <span class="token operator">=</span> model
+
+  <span class="token function">sampler</span><span class="token punctuation">(</span>note<span class="token punctuation">,</span> <span class="token punctuation">{</span> duration<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// -- PROGRAM</span>
+
+<span class="token function">program</span><span class="token punctuation">(</span><span class="token punctuation">{</span> model<span class="token punctuation">,</span> messages<span class="token punctuation">,</span> render <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>This probably sounds like the bleeps and bloops you imagine when you hear the
+phrase &quot;computer generated music&quot;. At strict intervals and constant velocity the
+results sound rather mechanical.</p>
+<h2><a class="anchor" aria-hidden="true" id="more-randomness"></a><a href="#more-randomness" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>More randomness</h2>
+<p>By also applying some randomness to the timing and velocity, we can add more
+nuance.</p>
+<pre><code class="hljs css language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> instrument<span class="token punctuation">,</span> metronome<span class="token punctuation">,</span> midi <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'gen'</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">rand</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">min<span class="token punctuation">,</span> max</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>max <span class="token operator">-</span> min <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> min
+<span class="token punctuation">}</span>
+
+<span class="token function">midi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">output</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> metro <span class="token operator">=</span> <span class="token function">metronome</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> inst <span class="token operator">=</span> <span class="token function">instrument</span><span class="token punctuation">(</span><span class="token punctuation">{</span> output<span class="token punctuation">,</span> metro <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// Play a random note, at a random velocity, for a random length of time</span>
+  metro<span class="token punctuation">.</span><span class="token function">onTick</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">inst</span><span class="token punctuation">(</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">108</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token number">250</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  metro<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>This makes things feel more natural, emulating the variations of timing and
+touch of a human player.</p>
+<p>Whilst initially quite interesting though, pure randomness doesn't hold our
+attention for long, as, by definition, it lacks the patterns and structure that
+are a key aspect of our enjoyment of music.</p>
+<h2><a class="anchor" aria-hidden="true" id="relative-notes"></a><a href="#relative-notes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relative notes</h2>
+<p>If we think about taking a walk, even if we're just wandering, we're not taking
+random steps and leaps. Our movements have direction, each step is related to
+the previous ones to keep us moving along a certain path.</p>
+<p>Rather than choosing randomly, we can pick our next note relative to the current
+one.</p>
+<pre><code class="hljs css language-js">navigator<span class="token punctuation">.</span><span class="token function">requestMIDIAccess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">midi</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> outputs <span class="token operator">=</span> midi<span class="token punctuation">.</span>outputs<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> output <span class="token operator">=</span> outputs<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value
+
+  <span class="token keyword">function</span> <span class="token function">random</span><span class="token punctuation">(</span><span class="token parameter">min<span class="token punctuation">,</span> max</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    min <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span>min<span class="token punctuation">)</span>
+    max <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>max<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>max <span class="token operator">-</span> min <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> min
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">playNote</span><span class="token punctuation">(</span><span class="token parameter">note<span class="token punctuation">,</span> length<span class="token punctuation">,</span> velocity</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> noteOn <span class="token operator">=</span> <span class="token number">0x90</span> <span class="token comment">// 144 = channel 1 note on</span>
+    <span class="token keyword">let</span> noteOff <span class="token operator">=</span> <span class="token number">0x80</span> <span class="token comment">// 128 = channel 1 note off</span>
+
+    output<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">[</span>noteOn<span class="token punctuation">,</span> note<span class="token punctuation">,</span> velocity<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    output<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">[</span>noteOff<span class="token punctuation">,</span> note<span class="token punctuation">,</span> velocity<span class="token punctuation">]</span><span class="token punctuation">,</span> window<span class="token punctuation">.</span>performance<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> length<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">let</span> startNote <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span><span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">108</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> startVelocity <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> step <span class="token operator">=</span> <span class="token number">5</span>
+
+  <span class="token keyword">function</span> <span class="token function">play</span><span class="token punctuation">(</span><span class="token parameter">note<span class="token punctuation">,</span> velocity</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> nextNote <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>note <span class="token operator">-</span> step<span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>note <span class="token operator">+</span> step<span class="token punctuation">,</span> <span class="token number">108</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">let</span> length <span class="token operator">=</span> <span class="token number">500</span>
+    <span class="token keyword">let</span> nextVelocity <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span>
+      Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>velocity <span class="token operator">-</span> step<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>velocity <span class="token operator">+</span> step<span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    <span class="token keyword">let</span> timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token function">playNote</span><span class="token punctuation">(</span>nextNote<span class="token punctuation">,</span> length<span class="token punctuation">,</span> nextVelocity<span class="token punctuation">)</span>
+      <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span>
+      <span class="token function">play</span><span class="token punctuation">(</span>nextNote<span class="token punctuation">,</span> nextVelocity<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> length<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">play</span><span class="token punctuation">(</span>startNote<span class="token punctuation">,</span> startVelocity<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>This gives us something that has more of a flow and sense of direction. We've
+constrained the options from all possible notes, to just those that are 5 notes
+(a 5th) either up or down from the current note. This gives us some control, but
+we're still very much at the whim of chaos to determine our path.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 10/25/2019</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/gen/docs/generative/repetition"><span class="arrow-prev">← </span><span>Repetition</span></a><a class="docs-next button" href="/gen/docs/generative/probability"><span>Probability</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#random-walk">Random Walk</a></li><li><a href="#random-notes">Random Notes</a><ul class="toc-headings"><li><a href="#random-numbers">Random Numbers</a></li><li><a href="#random-stream">Random Stream</a></li><li><a href="#random-notes-1">Random Notes</a></li></ul></li><li><a href="#more-randomness">More randomness</a></li><li><a href="#relative-notes">Relative notes</a></li></ul></nav></div></div></body></html>

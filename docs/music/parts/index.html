@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Parts · Gen.js</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;In this chapter we&#x27;re going to look at the concept of sequencing, or, how to&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Parts · Gen.js"/><meta property="og:type" content="website"/><meta property="og:url" content="https://meleyal.github.io/gen/"/><meta property="og:description" content="&lt;p&gt;In this chapter we&#x27;re going to look at the concept of sequencing, or, how to&lt;/p&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/gen/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"/><script type="text/javascript" src="/gen/js/custom.js"></script><script type="text/javascript" src="https://unpkg.com/@meleyal/gen/gen.js"></script><link rel="stylesheet" href="/gen/css/prism.css"/><link rel="stylesheet" href="/gen/css/main.css"/><script src="/gen/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/gen/"><h2 class="headerTitle">Gen.js</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/gen/docs/introduction" target="_self">Docs</a></li><li class=""><a href="https://github.com/meleyal/gen" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Parts</h1></header><article><div><span><p>In this chapter we're going to look at the concept of sequencing, or, how to
+combine notes into patterns and play them back. It combines what we've learned
+so far about notes and timing to help us build more complete musical structures.</p>
+<h2><a class="anchor" aria-hidden="true" id="sequencers"></a><a href="#sequencers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sequencers</h2>
+<p>Most music apps include some form of sequencer, often called a &quot;pattern
+sequencer&quot; or &quot;step sequencer&quot;. At a minimum, they usually have the following
+features:</p>
+<ul>
+<li>Draw or record a sequence or &quot;pattern&quot; of notes and their velocities.</li>
+<li>The number of steps (i.e. length) of the pattern can be adjusted (4 steps, 8
+steps, etc.).</li>
+<li>When played back, the sequencer &quot;steps&quot; through the pattern note by note,
+looping back around when it reaches the end of the pattern.</li>
+<li>The rate or &quot;resolution&quot; of the pattern can be adjusted. This defines how fast
+the sequencer steps through the pattern.</li>
+<li>Patterns themselves can also be sequenced, meaning you can cycle through or
+alternate between different patterns.</li>
+<li>Patterns can be copied to serve as the basis for new patterns.</li>
+<li>TODO: Mention pattern &quot;banks&quot;</li>
+</ul>
+<p>An example is the
+<a href="https://www.propellerheads.com/en/reason/recording/matrix">&quot;Matrix&quot;</a> pattern
+sequencer found in Reason, which has all the features listed above. We're going
+to build a basic emulation of the Matrix sequencer in this chapter, so let's
+take a look at it:</p>
+<p><img src="/gen/docs/assets/sequencer/matrix.png" alt=""></p>
+<h2><a class="anchor" aria-hidden="true" id="sequencing"></a><a href="#sequencing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sequencing</h2>
+<h3><a class="anchor" aria-hidden="true" id="patterns"></a><a href="#patterns" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Patterns</h3>
+<p>If we define a pattern &quot;bank&quot; as just an array of patterns, then moving between
+patterns is similar to progressing through the individual steps of a pattern,
+and we can use the same <code>ring()</code> trick.</p>
+<pre><code class="hljs css language-js"><span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">// const metronome = await import('https://unpkg.com/@meleyal/gen/src/metro.js')</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> metronome<span class="token punctuation">,</span> ring <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'http://localhost:8081/src/index.js'</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> context <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">const</span> metro <span class="token operator">=</span> <span class="token function">metronome</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">const</span> pattern1 <span class="token operator">=</span> <span class="token function">ring</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> pattern2 <span class="token operator">=</span> <span class="token function">ring</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'e'</span><span class="token punctuation">,</span> <span class="token string">'f'</span><span class="token punctuation">,</span> <span class="token string">'g'</span><span class="token punctuation">,</span> <span class="token string">'h'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> bankA <span class="token operator">=</span> <span class="token function">ring</span><span class="token punctuation">(</span><span class="token punctuation">[</span>pattern1<span class="token punctuation">,</span> pattern2<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+  metro<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'tock'</span><span class="token punctuation">,</span> <span class="token parameter">tock</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    metro<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'tick'</span><span class="token punctuation">,</span> <span class="token parameter">tick</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">bankA</span><span class="token punctuation">(</span>tock<span class="token punctuation">)</span><span class="token punctuation">(</span>tick<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// a, b, c, d, e, f, g, h, a, b...</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+  metro<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="generating-patterns"></a><a href="#generating-patterns" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generating patterns</h2>
+<blockquote>
+<p>TODO: Research if Generator functions would be useful here.</p>
+</blockquote>
+<p>It would be nice if we could avoid writing out all of our patterns by hand. This
+is a book on generative music after all! For this purpose, we'll introduce the
+concept of &quot;generators&quot;. In this context, a generator is just a name we'll give
+to something that produces a pattern (not to be confused with
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*">JavaScript generator functions</a>).</p>
+<p>We'll start simple, and reuse some of our learning from the previous chapter to
+generate a random pattern for our sequencer to play back.</p>
+<pre><code class="hljs css language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> limit<span class="token punctuation">,</span> scale <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'gen'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>
+  flow<span class="token punctuation">,</span>
+  sample<span class="token punctuation">,</span>
+  random<span class="token punctuation">,</span>
+  shuffle<span class="token punctuation">,</span>
+  take<span class="token punctuation">,</span>
+  fill<span class="token punctuation">,</span>
+  map<span class="token punctuation">,</span>
+  reverse
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'lodash/fp'</span>
+
+<span class="token keyword">const</span> pattern1 <span class="token operator">=</span> <span class="token function">flow</span><span class="token punctuation">(</span>
+  <span class="token function">scale</span><span class="token punctuation">(</span><span class="token string">'cmaj'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function">limit</span><span class="token punctuation">(</span><span class="token string">'piano'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  shuffle<span class="token punctuation">,</span>
+  <span class="token function">take</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">n</span> <span class="token operator">=></span> <span class="token punctuation">[</span>n<span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> bpm <span class="token operator">=</span> <span class="token number">60</span>
+<span class="token keyword">const</span> beat <span class="token operator">=</span> <span class="token punctuation">(</span>bpm <span class="token operator">/</span> <span class="token number">60</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">1000</span> <span class="token comment">// 1000ms = 1s</span>
+<span class="token keyword">const</span> bar <span class="token operator">=</span> beat <span class="token operator">*</span> <span class="token number">4</span> <span class="token comment">// 4000ms = 4s</span>
+<span class="token keyword">const</span> resolution <span class="token operator">=</span> <span class="token number">16</span>
+<span class="token keyword">const</span> length <span class="token operator">=</span> bar <span class="token operator">/</span> resolution
+
+<span class="token keyword">let</span> pattern <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">let</span> step <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">const</span> patterns <span class="token operator">=</span> <span class="token punctuation">[</span>pattern1<span class="token punctuation">,</span> <span class="token function">reverse</span><span class="token punctuation">(</span>pattern1<span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+navigator<span class="token punctuation">.</span><span class="token function">requestMIDIAccess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">midi</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> outputs <span class="token operator">=</span> midi<span class="token punctuation">.</span>outputs<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> output <span class="token operator">=</span> outputs<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value
+
+  <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`p</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>pattern <span class="token operator">+</span> <span class="token number">1</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> : s</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>step <span class="token operator">+</span> <span class="token number">1</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> : </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>patterns<span class="token punctuation">[</span>pattern<span class="token punctuation">]</span><span class="token punctuation">[</span>step<span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span>
+
+    <span class="token keyword">const</span> <span class="token punctuation">[</span>note<span class="token punctuation">,</span> velocity<span class="token punctuation">]</span> <span class="token operator">=</span> patterns<span class="token punctuation">[</span>pattern<span class="token punctuation">]</span><span class="token punctuation">[</span>step<span class="token punctuation">]</span>
+    output<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0x90</span><span class="token punctuation">,</span> note<span class="token punctuation">,</span> velocity<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    output<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0x80</span><span class="token punctuation">,</span> note<span class="token punctuation">,</span> velocity<span class="token punctuation">]</span><span class="token punctuation">,</span> window<span class="token punctuation">.</span>performance<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> length<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>step <span class="token operator">&lt;</span> patterns<span class="token punctuation">[</span>pattern<span class="token punctuation">]</span><span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      step <span class="token operator">+=</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      step <span class="token operator">=</span> <span class="token number">0</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>pattern <span class="token operator">&lt;</span> patterns<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        pattern <span class="token operator">+=</span> <span class="token number">1</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        pattern <span class="token operator">=</span> <span class="token number">0</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> length<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Here, we're shuffling the notes of the scale, then taking 16 of them to produce
+a random pattern. To introduce some symmetry, our second pattern is just our
+first pattern reversed.</p>
+<h3><a class="anchor" aria-hidden="true" id="seeding"></a><a href="#seeding" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Seeding</h3>
+<p>We can now reload the browser and get a new random pattern each time. But what
+if we hit upon a pattern we like? If we reload, our pattern will be lost forever
+(or at least has only a small chance of occurring again).</p>
+<p>Random number generators often let you provide a &quot;seed&quot; for the purpose of
+reproducing randomness. Given the same seed, you'll always get the same result.</p>
+<p>The Lodash <code>shuffle</code> function we're using here relies on JS' native
+<code>Math.random()</code> function, which unfortunately doesn't support seeding.</p>
+<p>Luckily there's <a href="https://github.com/davidbau/seedrandom"><code>seedrandom</code></a> which
+replaces <code>Math.random()</code> with a seedable version.</p>
+<p>TODO: Can we just overwrite/mixin a custom <code>random()</code> function?
+<a href="https://github.com/lodash/lodash/issues/3289#issuecomment-434854622">https://github.com/lodash/lodash/issues/3289#issuecomment-434854622</a></p>
+<pre><code class="hljs css language-js"><span class="token keyword">import</span> seedrandom <span class="token keyword">from</span> <span class="token string">'seedrandom'</span>
+<span class="token keyword">import</span> cryptoRandomString <span class="token keyword">from</span> <span class="token string">'crypto-random-string'</span>
+
+<span class="token comment">// const seed = 'hello'</span>
+<span class="token keyword">const</span> seed <span class="token operator">=</span> <span class="token function">cryptoRandomString</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'seed:'</span><span class="token punctuation">,</span> seed<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> rng <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">seedrandom</span><span class="token punctuation">(</span>seed<span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> <span class="token function">random</span><span class="token punctuation">(</span><span class="token parameter">lower<span class="token punctuation">,</span> upper</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> lower <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token function">rng</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>upper <span class="token operator">-</span> lower <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">shuffle</span><span class="token punctuation">(</span><span class="token parameter">collection</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> index <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>
+    result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>collection<span class="token punctuation">]</span><span class="token punctuation">,</span>
+    length <span class="token operator">=</span> result<span class="token punctuation">.</span>length<span class="token punctuation">,</span>
+    lastIndex <span class="token operator">=</span> length <span class="token operator">-</span> <span class="token number">1</span>
+
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">++</span>index <span class="token operator">&lt;</span> length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> rand <span class="token operator">=</span> <span class="token function">random</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> lastIndex<span class="token punctuation">)</span>
+    result<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> result<span class="token punctuation">[</span>rand<span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> result
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">shuffle</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="altering-patterns"></a><a href="#altering-patterns" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Altering patterns</h3>
+<p>Being that our pattern is just an array, it's easy to copy and alter it:</p>
+<pre><code class="hljs css language-js"><span class="token keyword">const</span> pattern <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token string">'C'</span><span class="token punctuation">,</span>
+  <span class="token string">'C'</span><span class="token punctuation">,</span>
+  <span class="token string">'D'</span><span class="token punctuation">,</span>
+  <span class="token string">'D'</span><span class="token punctuation">,</span>
+  <span class="token string">'D'</span><span class="token punctuation">,</span>
+  <span class="token string">'D'</span><span class="token punctuation">,</span>
+  <span class="token string">'D'</span><span class="token punctuation">,</span>
+  <span class="token string">'E'</span><span class="token punctuation">,</span>
+  <span class="token string">'F#'</span><span class="token punctuation">,</span>
+  <span class="token string">'G#'</span><span class="token punctuation">,</span>
+  <span class="token string">'G#'</span><span class="token punctuation">,</span>
+  <span class="token string">'G#'</span><span class="token punctuation">,</span>
+  <span class="token string">'G#'</span><span class="token punctuation">,</span>
+  <span class="token string">'G#'</span><span class="token punctuation">,</span>
+  <span class="token string">'G#'</span><span class="token punctuation">,</span>
+  <span class="token string">'G#'</span>
+<span class="token punctuation">]</span>
+
+<span class="token keyword">const</span> pattern2 <span class="token operator">=</span> pattern<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>pattern2<span class="token punctuation">)</span> <span class="token comment">// => ['E', 'D', 'D', 'D', 'D', 'D', 'C', 'C']</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>pattern2<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token comment">// => 8</span>
+</code></pre>
+<p>To also model velocity, we can make each value an array (or tuple):</p>
+<pre><code class="hljs css language-js"><span class="token keyword">const</span> pattern <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">[</span><span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'E'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'F#'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'G#'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'G#'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'G#'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'G#'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'G#'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'G#'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'G#'</span><span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">]</span>
+<span class="token punctuation">]</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="transforms"></a><a href="#transforms" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Transforms</h3>
+<p>We've already seen how we can produce a new pattern based on an existing one via
+reversing it. The beauty of our patterns being arrays is that they're easy to
+slice and dice using built-in functions, or anything that works with arrays,
+such as the Lodash array and collection functions.</p>
+<p>This can be useful for creating both melodies and harmonies. Melodies might
+reuse the same notes in a different order to create a variation, while harmonies
+might play the same notes in a lower octave on a different instrument.</p>
+<p>We'll refer to this as &quot;transforming&quot; a pattern, and there are many ways we
+could do it:</p>
+<p><img src="/gen/docs/assets/sequencer/transforms.svg" alt=""></p>
+<p>And here's how these transformations might look in code:</p>
+<pre><code class="hljs css language-js"><span class="token keyword">const</span> original <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">reverse</span> <span class="token operator">=</span> <span class="token parameter">arr</span> <span class="token operator">=></span> <span class="token punctuation">[</span><span class="token operator">...</span>arr<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// TODO: Handle positive and negative steps > 1</span>
+<span class="token keyword">const</span> <span class="token function-variable function">nudge</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">arr<span class="token punctuation">,</span> step <span class="token operator">=</span> <span class="token number">1</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> _arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>arr<span class="token punctuation">]</span>
+  <span class="token keyword">const</span> last <span class="token operator">=</span> _arr<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  _arr<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span>last<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> _arr
+<span class="token punctuation">}</span>
+
+<span class="token comment">// TODO</span>
+<span class="token keyword">const</span> <span class="token function-variable function">shuffle</span> <span class="token operator">=</span> <span class="token parameter">arr</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token operator">...</span>arr<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">transpose</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">arr<span class="token punctuation">,</span> step <span class="token operator">=</span> <span class="token number">1</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> arr<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">n</span> <span class="token operator">=></span> n <span class="token operator">+</span> step<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">swap</span> <span class="token operator">=</span> <span class="token parameter">arr</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> a <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">n<span class="token punctuation">,</span> idx</span><span class="token punctuation">)</span> <span class="token operator">=></span> idx <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> b <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">n<span class="token punctuation">,</span> idx</span><span class="token punctuation">)</span> <span class="token operator">=></span> idx <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> a<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">n<span class="token punctuation">,</span> idx</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">[</span>n<span class="token punctuation">,</span> b<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+original <span class="token comment">// => 1,2,3,4</span>
+<span class="token function">reverse</span><span class="token punctuation">(</span>original<span class="token punctuation">)</span> <span class="token comment">// => 4,3,2,1</span>
+<span class="token function">nudge</span><span class="token punctuation">(</span>original<span class="token punctuation">)</span> <span class="token comment">// => 4,1,2,3</span>
+<span class="token function">shuffle</span><span class="token punctuation">(</span>original<span class="token punctuation">)</span> <span class="token comment">// => 3,2,1,4</span>
+<span class="token function">transpose</span><span class="token punctuation">(</span>original<span class="token punctuation">)</span> <span class="token comment">// => 2,3,4,5</span>
+<span class="token function">swap</span><span class="token punctuation">(</span>original<span class="token punctuation">)</span> <span class="token comment">// => 2,1,4,3</span>
+</code></pre>
+<p>It should be noted that our patterns <em>are</em> technically
+<a href="https://en.wikipedia.org/wiki/Matrix_(mathematics)">matrices</a> (or vectors),
+and that matrix transformation is a rich topic, but beyond the scope of this
+book.</p>
+<h2><a class="anchor" aria-hidden="true" id="sequencer"></a><a href="#sequencer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sequencer</h2>
+<p>Putting this all together, let's build a <code>sequencer()</code> function that does..?</p>
+<ul>
+<li>Has it's own metronome (or argument)?</li>
+<li>Has it's own sampler (or argument)?</li>
+</ul>
+<blockquote>
+<p>Not sure we need this</p>
+</blockquote>
+<pre><code class="hljs css language-js"><span class="token keyword">const</span> metro <span class="token operator">=</span> <span class="token function">metronome</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> piano <span class="token operator">=</span> <span class="token function">sampler</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> <span class="token string">'piano'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> cello <span class="token operator">=</span> <span class="token function">sampler</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> <span class="token string">'cello'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> pianoPattern <span class="token operator">=</span> <span class="token function">somePatternGenerator</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> celloPattern <span class="token operator">=</span> <span class="token function">someOtherPatternGenerator</span><span class="token punctuation">(</span>pianoPattern<span class="token operator">?</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">sequencer</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">met<span class="token punctuation">,</span> samp</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> pianoSeq <span class="token operator">=</span> <span class="token function">sequencer</span><span class="token punctuation">(</span>metro<span class="token punctuation">,</span> piano<span class="token punctuation">)</span>
+<span class="token keyword">const</span> celloSeq <span class="token operator">=</span> <span class="token function">sequencer</span><span class="token punctuation">(</span>metro<span class="token punctuation">,</span> cello<span class="token punctuation">)</span>
+
+<span class="token comment">// console.log(seq)</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="learning"></a><a href="#learning" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learning</h2>
+<p>Before proceeding, let's encapsulate our learning so far.</p>
+<ul>
+<li><p><strong>Generating patterns:</strong> Functions for generating new patterns →
+<a href="../api/gen"><code>gen</code></a>.</p></li>
+<li><p><strong>Transforming patterns:</strong> Functions for transforming patterns →
+<a href="../api/?"><code>array/collection/transform/pattern</code></a>.</p></li>
+<li><p><strong>Sequencing patterns:</strong> Functions for sequencing patterns →
+<a href="../api/seq"><code>seq</code></a>.</p></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/27/2019</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#sequencers">Sequencers</a></li><li><a href="#sequencing">Sequencing</a><ul class="toc-headings"><li><a href="#patterns">Patterns</a></li></ul></li><li><a href="#generating-patterns">Generating patterns</a><ul class="toc-headings"><li><a href="#seeding">Seeding</a></li><li><a href="#altering-patterns">Altering patterns</a></li><li><a href="#transforms">Transforms</a></li></ul></li><li><a href="#sequencer">Sequencer</a></li><li><a href="#learning">Learning</a></li></ul></nav></div></div></body></html>
