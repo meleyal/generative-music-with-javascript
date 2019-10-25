@@ -2,6 +2,9 @@
 title: Randomness
 ---
 
+Reference:
+- https://medium.com/@metalex9/randomizing-program-execution-with-random-number-generators-a7bb613861f9
+
 This guide shows how to use randomness to introduce variation to our music,
 specifically through the idea of a random walk.
 
