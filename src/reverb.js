@@ -1,11 +1,11 @@
-import { samples } from './samples'
+// import { samples } from './samples'
 
 export class Reverb {
   constructor(context, output, options = {}) {
     const { impulse } = Object.assign(this.defaults, options)
     this.context = context
     this.output = output
-    this.impulse = samples.reverbs[impulse]
+    // this.impulse = samples.reverbs[impulse]
     this.node = this.createNode()
   }
 
@@ -16,6 +16,7 @@ export class Reverb {
   }
 
   async load() {
+    const reverbs = await import('./samples/reverbs')
     const res = await window.fetch(this.impulse)
     const arrayBuffer = await res.arrayBuffer()
     const buffer = await this.context.decodeAudioData(arrayBuffer)

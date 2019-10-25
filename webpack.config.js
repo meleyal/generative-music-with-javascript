@@ -4,7 +4,10 @@ module.exports = {
   mode: 'development',
   entry: './src/index.js',
   output: {
-    filename: 'gen.js'
+    filename: 'gen.js',
+    chunkFilename: 'gen.[name].js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/dist/'
   },
   devServer: {
     contentBase: 'src',
