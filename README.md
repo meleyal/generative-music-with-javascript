@@ -6,10 +6,10 @@ Generative music with JavaScript.
 
 TODO
 
-## Documentation
+## Documentation
 
 TODO
 
-## License
+## License
 
 Gen.js is [MIT licensed](./LICENSE).
