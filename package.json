@@ -4,9 +4,10 @@
   "main": "src/index.js",
   "scripts": {
     "start": "yarn run website & yarn run serve",
-    "website": "cd website && yarn start",
+    "website": "cd website && yarn run start",
     "serve": "webpack-dev-server",
-    "test": "tape -r esm test/**/*.js | tap-spec"
+    "test": "tape -r esm test/**/*.js | tap-spec",
+    "publish-docs": "cd website && yarn run publish-gh-pages"
   },
   "repository": {
     "type": "git",
