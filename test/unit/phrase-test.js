@@ -1,10 +1,10 @@
 import test from 'tape-await'
 import sinon from 'sinon'
-import { Sampler } from '../src/sampler'
-import { Score } from '../src/score'
-import { Part } from '../src/part'
-import { Phrase } from '../src/phrase'
-import { Note } from '../src/note'
+import { Sampler } from '../../src/sampler'
+import { Score } from '../../src/score'
+import { Part } from '../../src/part'
+import { Phrase } from '../../src/phrase'
+import { Note } from '../../src/note'
 
 test('Phrase', t => {
   const phrase = new Phrase()

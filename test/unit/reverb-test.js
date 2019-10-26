@@ -1,6 +1,6 @@
 import test from 'tape-await'
 import sinon from 'sinon'
-import { Reverb } from '../src/reverb'
+import { Reverb } from '../../src/reverb'
 
 test('Reverb', async t => {
   const context = new window.AudioContext()

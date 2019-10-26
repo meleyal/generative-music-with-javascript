@@ -1,7 +1,7 @@
 import test from 'tape-await'
 import sinon from 'sinon'
-import { Part } from '../src/part'
-import { Phrase } from '../src/phrase'
+import { Part } from '../../src/part'
+import { Phrase } from '../../src/phrase'
 
 test('part', t => {
   const part = new Part('piano')

@@ -1,8 +1,8 @@
 import test from 'tape-await'
 import sinon from 'sinon'
-import { Sample } from '../src/sample'
-import { Note } from '../src/note'
-import { pitches, durations, velocities } from '../src/constants'
+import { Sample } from '../../src/sample'
+import { Note } from '../../src/note'
+import { pitches, durations, velocities } from '../../src/constants'
 
 const { C4, REST } = pitches
 const { QN } = durations

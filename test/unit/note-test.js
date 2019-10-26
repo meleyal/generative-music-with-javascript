@@ -1,6 +1,6 @@
 import test from 'tape-await'
-import { Note } from '../src/note'
-import { pitches, durations, velocities } from '../src/constants'
+import { Note } from '../../src/note'
+import { pitches, durations, velocities } from '../../src/constants'
 
 const { C4 } = pitches
 const { QN, SN, WN } = durations

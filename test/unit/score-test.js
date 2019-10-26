@@ -1,7 +1,7 @@
 import test from 'tape-await'
 import sinon from 'sinon'
-import { Score } from '../src/score'
-import { Part } from '../src/part'
+import { Score } from '../../src/score'
+import { Part } from '../../src/part'
 
 test('Score', t => {
   const score = new Score(60)
