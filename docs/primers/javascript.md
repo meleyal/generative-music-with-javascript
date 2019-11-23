@@ -277,6 +277,15 @@ Needs interaction. Needs some hijinx.
 - Safari: ?
 - Edge: ?
 
+Can be allowed for specific domains:
+
+- Chrome: chrome://settings/content/sound
+
+References:
+
+- https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide#Autoplay_using_the_Web_Audio_API
+- https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+
 ## Conclusion
 
 The WAA is a well defined and adopted/supported technology that's actively
@@ -289,3 +298,9 @@ are already a range of libraries for music, game audio, VR?, machine learning.
 
 If we understand two basic concepts: graph/nodes and timing model, we have a
 good foundation for working at a higher level and make cool stuff.
+
+## Further Reading
+
+- [JavaScript Systems Music](https://teropa.info/blog/2016/07/28/javascript-systems-music.html)
+- [What Is the Web Audio API?](http://teropa.info/blog/2016/08/19/what-is-the-web-audio-api.html)
+- [Making Generative Music in the Browser](https://medium.com/@metalex9/making-generative-music-in-the-browser-bfb552a26b0b)

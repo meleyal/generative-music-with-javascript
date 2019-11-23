@@ -69,6 +69,9 @@ downwards, but the results will always trend upwards over time.
 
 > TODO
 
+> The resulting stochastic system is called a Markov chain. The number of
+> previous values observed is called the order of the Markov chain.
+
 ## Normal distribution
 
 Probability is one way to reign in randomness. Another way is to emulate a

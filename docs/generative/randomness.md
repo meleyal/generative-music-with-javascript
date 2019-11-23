@@ -3,12 +3,20 @@ title: Randomness
 ---
 
 Reference:
+
 - https://medium.com/@metalex9/randomizing-program-execution-with-random-number-generators-a7bb613861f9
 
 This guide shows how to use randomness to introduce variation to our music,
 specifically through the idea of a random walk.
 
+> Music that relies at least to some degree on randomness is said to be
+> stochastic, or aleatoric.
+
 ## Random Walk
+
+> Another approach to generating a melody is sometimes called a random walk. The
+> idea is to start on a particular note and treat the sequence of random numbers
+> as intervals, rather than as pitches.
 
 In 2D graphics, a random walk involves drawing a path by repeatedly choosing a
 random direction in which to move. On this 2D plane, each step can be one of

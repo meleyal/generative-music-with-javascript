@@ -1,0 +1,20 @@
+<meta charset="utf-8" />
+<script src="http://localhost:3001/gen.js"></script>
+<script>
+  ;(async () => {
+    // const { sampler, range, note } = gen
+    const { sampler } = gen
+
+    // load piano instrument
+    const piano = sampler('piano')
+
+    // generate range of all playable note numbers (21-109)
+    // const notes = range('piano')
+
+    // cycle through note numbers and play with time offset
+    // notes.map((n, idx) => {
+    //   const note = note(n)
+    //   piano(note, idx)
+    // })
+  })()
+</script>

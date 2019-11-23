@@ -1,14 +1,10 @@
 import './banner'
 import * as constants from './constants'
-import * as part from './part'
-import * as phrase from './phrase'
-import * as score from './score'
+import { sampler } from './sampler'
 
 const gen = {
   ...constants,
-  ...part,
-  ...phrase,
-  ...score
+  sampler
 }
 
 window.gen = gen

@@ -1,8 +1,21 @@
-export const noteNumber = name => {
-  const re = /(?<note>\w(\w|\W)?)(?<octave>\d{1})/u
-  const {
-    groups: { note, octave }
-  } = re.exec(name)
+import { round } from 'lodash'
+
+export const pitchSplit = pitch => {
+  const re = /(\w(?:\w|\W)?)(\d{1})/
+  const m = re.exec(pitch)
+  return [m[1], m[2]]
+}
+
+export const pitchNote = pitch => {
+  return pitchSplit(pitch)[0]
+}
+
+export const pitchOctave = pitch => {
+  return pitchSplit(pitch)[1]
+}
+
+export const toMidi = name => {
+  const [note, octave] = pitchSplit(name)
 
   const notes = {
     C: 0,
@@ -27,7 +40,7 @@ export const noteNumber = name => {
   return notes[note] + 12 + 12 * octave
 }
 
-export const noteName = num => {
+export const toPitch = num => {
   const numbers = {
     0: 'C',
     1: 'C#',
@@ -57,6 +70,20 @@ export const noteName = num => {
     .split('/')
     .map(name => name + octave)
     .join('/')
+}
+
+export const toPath = pitch => {
+  return pitch.replace('#', 's').toLowerCase()
+}
+
+export const mtof = midi => {
+  const A4 = 440
+  return round(A4 * Math.pow(2, (midi - 69) / 12), 2)
+}
+
+// Shamelessly stolen from Tone.js
+export const intervalToFrequencyRatio = interval => {
+  return Math.pow(2, interval / 12)
 }
 
 export const enharmonic = note => {

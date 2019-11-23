@@ -6,8 +6,9 @@
     "start": "yarn run website & yarn run serve",
     "website": "cd website && yarn run start",
     "serve": "webpack-dev-server",
-    "test": "tape -r esm test/unit/**/*.js | tap-spec",
-    "publish-docs": "cd website && yarn run publish-gh-pages"
+    "test": "tape -r esm test/unit/**/*.js | tap-bail",
+    "publish-docs": "cd website && yarn run publish-gh-pages",
+    "build": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,7 @@
   "devDependencies": {
     "esm": "^3.2.25",
     "sinon": "^7.3.2",
-    "tap-spec": "^5.0.0",
+    "tap-bail": "^1.0.0",
     "tape": "^4.10.2",
     "tape-await": "^0.1.2",
     "webpack": "^4.32.2",

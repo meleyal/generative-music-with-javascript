@@ -14,6 +14,15 @@ Algorithmic: expressed as or using an algorithm or computational procedure. A
 set of rules for solving a problem in a finite number of steps. A sequence of
 instructions, typically to solve a class of problems or perform a computation.
 
+> Algorithmic composition is the process of designing an algorithm (or
+> heuristic) for generating music.
+
+> Another typical approach to algorithmic composition is to specify some
+> constraints on the solution space and then generate lots of solutions that
+> satisfy those constraints.
+
+> – The Haskell School of Music: From Signals to Symphonies
+
 For our purposes / working definition: A (predetermined?) process/rules we
 define to create, outcome is unknown?
 
