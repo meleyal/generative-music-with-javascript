@@ -1,10 +1,11 @@
 import { sampleMap } from '../../sample-map'
-import { enharmonic } from '../../music'
+import { downcase } from '../../string'
 
+// TODO: Use pitch constants for note names and start/end
 export const piano = sampleMap(
   (note, octave) => {
     const baseUrl = 'http://localhost:3001'
-    const noteName = note.toLowerCase()
+    const noteName = downcase(note)
     return `${baseUrl}/samples/piano/files/${noteName}${octave}.mp3`
   },
   [

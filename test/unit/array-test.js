@@ -5,6 +5,7 @@ import {
   includes,
   last,
   length,
+  map,
   nth,
   range
 } from '../../src/array'
@@ -32,14 +33,6 @@ test('first', t => {
   t.end()
 })
 
-test('includes', t => {
-  const arr = [1, 2, 3]
-  t.equal(includes(arr, 1), true)
-  t.equal(includes(arr, 3), true)
-  t.equal(includes(arr, 4), false)
-  t.end()
-})
-
 test('last', t => {
   const arr = [1, 2, 3]
   t.equal(last(arr), 3)
@@ -56,6 +49,20 @@ test('nth', t => {
   const arr = [1, 2, 3]
   t.equal(nth(arr, 0), 1)
   t.equal(nth(arr, 2), 3)
+  t.end()
+})
+
+test('includes', t => {
+  const arr = [1, 2, 3]
+  t.equal(includes(arr, 1), true)
+  t.equal(includes(arr, 3), true)
+  t.equal(includes(arr, 4), false)
+  t.end()
+})
+
+test('map', t => {
+  const arr = [1, 2, 3]
+  t.looseEqual(map(arr, n => n + 1), [2, 3, 4])
   t.end()
 })
 
