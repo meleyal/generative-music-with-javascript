@@ -1,4 +1,5 @@
-import { closest, includes, map, range } from './array'
+import { range } from 'lodash'
+import { closest } from './array'
 import { pitches } from './constants'
 import {
   intervalToFrequencyRatio,
@@ -16,16 +17,16 @@ export const sampleMap = (
   start = A0,
   end = G8
 ) => {
-  const midiSamples = map(pitchesWithSamples, pitchToMidi)
+  const midiSamples = pitchesWithSamples.map(pitchToMidi)
 
   return Object.assign(
-    ...map(range(start, end + 1), midi => {
+    ...range(start, end + 1).map(midi => {
       let pitch = midiToPitch(midi)
       let distance = 0
       let path
       let nearest
 
-      if (includes(midiSamples, midi)) {
+      if (midiSamples.includes(midi)) {
         path = pathResolver(...pitchSplit(pitch))
       } else {
         nearest = closest(midiSamples, midi)

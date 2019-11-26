@@ -1,18 +1,17 @@
-import { round } from './number'
-import { first, last, nth } from './array'
+import { round } from 'lodash'
 
 export const pitchSplit = pitch => {
   const re = /(\w(?:\w|\W)?)(\d{1})/
   const m = re.exec(pitch)
-  return [nth(m, 1), nth(m, 2)]
+  return [m[1], m[2]]
 }
 
 export const pitchNote = pitch => {
-  return first(pitchSplit(pitch))
+  return pitchSplit(pitch)[0]
 }
 
 export const pitchOctave = pitch => {
-  return last(pitchSplit(pitch))
+  return pitchSplit(pitch)[1]
 }
 
 export const pitchToMidi = pitch => {
