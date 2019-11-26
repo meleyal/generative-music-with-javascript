@@ -1,36 +1,35 @@
 import { sampleMap } from '../../sample-map'
+import { pitches as p } from '../../constants'
 
-// TODO: Use pitch constants for note names and start/end
 export const piano = sampleMap(
   (note, octave) => {
-    const baseUrl = 'http://localhost:3001'
-    const noteName = note.toLowerCase()
-    return `${baseUrl}/samples/piano/files/${noteName}${octave}.mp3`
+    const baseUrl = 'http://localhost:3001' // TODO: set via ENV
+    return `${baseUrl}/samples/piano/files/${note}${octave}.mp3`
   },
   [
-    'A0',
-    'A2',
-    'A3',
-    'A4',
-    'A5',
-    'A6',
-    'A7',
-    'C#1',
-    'C#2',
-    'C#3',
-    'C#4',
-    'C#5',
-    'C#6',
-    'C#7',
-    'C8',
-    'F1',
-    'F2',
-    'F3',
-    'F4',
-    'F5',
-    'F6',
-    'F7'
+    p.a0,
+    p.a2,
+    p.a3,
+    p.a4,
+    p.a5,
+    p.a6,
+    p.a7,
+    p.cs1,
+    p.cs2,
+    p.cs3,
+    p.cs4,
+    p.cs5,
+    p.cs6,
+    p.cs7,
+    p.c8,
+    p.f1,
+    p.f2,
+    p.f3,
+    p.f4,
+    p.f5,
+    p.f6,
+    p.f7
   ],
-  21,
-  108
+  p.a0,
+  p.c8
 )

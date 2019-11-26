@@ -5,46 +5,39 @@ import {
   pitchOctave,
   pitchToMidi,
   midiToPitch,
-  pitchToPath,
   midiToFrequency,
   intervalToFrequencyRatio
 } from '../src/music'
 
 test('pitchSplit', t => {
-  const [note, octave] = pitchSplit('A#0')
-  t.equal(note, 'A#')
-  t.equal(octave, '0')
+  const [note, octave] = pitchSplit('as0')
+  t.equal(note, 'as')
+  t.equal(octave, 0)
 })
 
 test('pitchNote', t => {
-  t.equal(pitchNote('A#0'), 'A#')
+  t.equal(pitchNote('as0'), 'as')
 })
 
 test('pitchOctave', t => {
-  t.equal(pitchOctave('A#0'), '0')
+  t.equal(pitchOctave('as0'), 0)
 })
 
 test('pitchToMidi', t => {
-  t.equal(pitchToMidi('A0'), 21)
-  t.equal(pitchToMidi('C8'), 108)
+  t.equal(pitchToMidi('a0'), 21)
+  t.equal(pitchToMidi('c8'), 108)
 })
 
 test('midiToPitch', t => {
-  t.equal(midiToPitch(21), 'A0')
-  t.equal(midiToPitch(108), 'C8')
-})
-
-test('pitchToPath', t => {
-  t.equal(pitchToPath('A1'), 'a1')
-  t.equal(pitchToPath('A#1'), 'as1')
-  t.equal(pitchToPath('Ab1'), 'ab1')
+  t.equal(midiToPitch(21), 'a0')
+  t.equal(midiToPitch(108), 'c8')
 })
 
 test('midiToFrequency', t => {
-  t.equal(midiToFrequency(21), 27.5) // A0
-  t.equal(midiToFrequency(53), 174.61) // F3
-  t.equal(midiToFrequency(38), 73.42) // D2
-  t.equal(midiToFrequency(97), 2217.46) // C#7
+  t.equal(midiToFrequency(21), 27.5) // a0
+  t.equal(midiToFrequency(53), 174.61) // f3
+  t.equal(midiToFrequency(38), 73.42) // d2
+  t.equal(midiToFrequency(97), 2217.46) // cs7
 })
 
 test('intervalToFrequencyRatio', t => {

@@ -1,24 +1,16 @@
 import { range } from 'lodash'
 import { closest } from './array'
 import { pitches } from './constants'
-import {
-  intervalToFrequencyRatio,
-  midiToPitch,
-  pitchSplit,
-  pitchToMidi,
-  pitchToPath
-} from './music'
+import { intervalToFrequencyRatio, midiToPitch, pitchSplit } from './music'
 
-const { A0, G8 } = pitches
+const { a0, g8 } = pitches
 
 export const sampleMap = (
   pathResolver,
-  pitchesWithSamples,
-  start = A0,
-  end = G8
+  midisWithSamples,
+  start = a0,
+  end = g8
 ) => {
-  const midiSamples = pitchesWithSamples.map(pitchToMidi)
-
   return Object.assign(
     ...range(start, end + 1).map(midi => {
       let pitch = midiToPitch(midi)
@@ -26,17 +18,17 @@ export const sampleMap = (
       let path
       let nearest
 
-      if (midiSamples.includes(midi)) {
+      if (midisWithSamples.includes(midi)) {
         path = pathResolver(...pitchSplit(pitch))
       } else {
-        nearest = closest(midiSamples, midi)
+        nearest = closest(midisWithSamples, midi)
         distance = midi - nearest
         path = pathResolver(...pitchSplit(midiToPitch(nearest)))
       }
 
       return {
         [pitch]: {
-          path: pitchToPath(path),
+          path,
           playbackRate: intervalToFrequencyRatio(distance)
         }
       }

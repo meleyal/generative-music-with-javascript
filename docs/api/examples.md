@@ -6,7 +6,8 @@ title: Examples
 
 ```js
 ;(async () => {
-  const { sampler, range, midiToPitch } = gen
+  const { sampler, range, midiToPitch, durations } = gen
+  const { sn, hn } = durations
 
   // load piano instrument
   const piano = await sampler('piano')
@@ -16,7 +17,7 @@ title: Examples
 
   // cycle through note numbers and play with time offset
   notes.map((n, idx) => {
-    piano(midiToPitch(n), { start: idx * 0.25, duration: 2 })
+    piano(midiToPitch(n), { start: idx * sn, duration: hn })
   })
 })()
 ```

@@ -6,4 +6,6 @@ export const closest = (arr, n) => {
   })
 }
 
+// TODO: Overload range with instrument ranges:
+// const notes = range('piano') // => [21...108]
 export const range = _range
