@@ -2,19 +2,18 @@
 <script src="http://localhost:3001/gen.js"></script>
 <script>
   ;(async () => {
-    // const { sampler, range, note } = gen
-    const { sampler } = gen
+    const { sampler, range, toPitch } = gen
 
     // load piano instrument
-    const piano = sampler('piano')
+    const piano = await sampler('piano')
 
-    // generate range of all playable note numbers (21-109)
-    // const notes = range('piano')
+    // generate range of all playable note numbers (21-108)
+    const notes = range(21, 108)
 
     // cycle through note numbers and play with time offset
-    // notes.map((n, idx) => {
-    //   const note = note(n)
-    //   piano(note, idx)
-    // })
+    notes.map((n, idx) => {
+      const note = toPitch(n)
+      piano(note, { start: idx * 0.25, duration: 2 })
+    })
   })()
 </script>

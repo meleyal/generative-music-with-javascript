@@ -31,4 +31,6 @@
 //   sampler.play([note1, note2], time, callback)
 //   t.equal(note1, playStub.secondCall.thisValue.note, 'plays chord note')
 //   t.equal(note2, playStub.thirdCall.thisValue.note, 'plays chord note')
+//
+//  TODO: should scale duration by playback rate (buffer.duration * playbackRate)
 // })

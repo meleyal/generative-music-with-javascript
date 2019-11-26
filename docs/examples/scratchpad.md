@@ -3,6 +3,45 @@ title: Scratchpad
 ---
 
 ```js
+const score = new Gen()
+
+const melody1 = {
+  pitches: [A0, A0, A1, A1],
+  durations: [QN, QN, QN, QN]
+}
+
+const melody2 = {
+  pitches: [B0, B0, B1, B1],
+  durations: [QN, QN, QN, QN]
+}
+
+const piano = score
+  .part('piano')
+  .phrase('melody1', melody1)
+  .phrase('melody2', melody2)
+
+score.on('bar:1', (req, res) => {
+  piano.phrase('melody1').play()
+})
+
+score.on('bar:5', (req, res) => {
+  piano
+    .phrase('melody2')
+    .reverse()
+    .play()
+})
+
+score.every('bar', (req, res) => {
+  piano
+    .phrase('melody2')
+    .reverse()
+    .play()
+})
+
+score.play(108)
+```
+
+```js
 const app = gen()
 
 const pitches = [A0, A0, A1, A1]

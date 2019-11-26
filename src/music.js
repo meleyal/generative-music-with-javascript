@@ -1,22 +1,22 @@
-import { round } from 'lodash'
+import { round } from './number'
+import { first, last, nth } from './array'
 
 export const pitchSplit = pitch => {
   const re = /(\w(?:\w|\W)?)(\d{1})/
   const m = re.exec(pitch)
-  return [m[1], m[2]]
+  return [nth(m, 1), nth(m, 2)]
 }
 
 export const pitchNote = pitch => {
-  return pitchSplit(pitch)[0]
+  return first(pitchSplit(pitch))
 }
 
 export const pitchOctave = pitch => {
-  return pitchSplit(pitch)[1]
+  return last(pitchSplit(pitch))
 }
 
-export const toMidi = name => {
-  const [note, octave] = pitchSplit(name)
-
+export const pitchToMidi = pitch => {
+  const [note, octave] = pitchSplit(pitch)
   const notes = {
     C: 0,
     'C#': 1,
@@ -36,11 +36,10 @@ export const toMidi = name => {
     Bb: 10,
     B: 11
   }
-
   return notes[note] + 12 + 12 * octave
 }
 
-export const toPitch = num => {
+export const midiToPitch = midi => {
   const numbers = {
     0: 'C',
     1: 'C#',
@@ -57,7 +56,7 @@ export const toPitch = num => {
   }
 
   // Normalize the note number so it maps to our 0-indexed `numbers` map
-  const norm = num - 12
+  const norm = midi - 12
 
   // Dividing the note number by 12 (the number of notes in an octave) gives us
   // the octave that the note falls into.
@@ -72,11 +71,11 @@ export const toPitch = num => {
     .join('/')
 }
 
-export const toPath = pitch => {
+export const pitchToPath = pitch => {
   return pitch.replace('#', 's').toLowerCase()
 }
 
-export const mtof = midi => {
+export const midiToFrequency = midi => {
   const A4 = 440
   return round(A4 * Math.pow(2, (midi - 69) / 12), 2)
 }
@@ -110,67 +109,5 @@ export const enharmonic = note => {
       return 'G#'
     default:
       return note
-  }
-}
-
-import {
-  range,
-  filter,
-  chunk,
-  map,
-  flow,
-  indexOf,
-  includes,
-  flatten
-} from 'lodash/fp'
-
-const scales = {
-  cmaj: [0, 2, 4, 5, 7, 9, 11]
-}
-
-export const limit = instrument => {
-  let min, max
-
-  switch (instrument) {
-    case 'piano':
-      // min = 21
-      // max = 109
-      // TODO: Samples only support this range
-      min = 24
-      max = 107
-      break
-    default:
-      min = 0
-      max = 127
-  }
-
-  return notes => {
-    return filter(n => {
-      return n >= min && n <= max
-    })(notes)
-  }
-}
-
-const octaves = notes => {
-  return chunk(12)(notes)
-}
-
-export const scale = scale => {
-  // const notes = range(24, 108)
-  const notes = range(0, 200)
-  const scaleNotes = flow(
-    octaves,
-    map(o => {
-      // select only the notes in the scale
-      return filter(n => {
-        const idx = indexOf(n, o)
-        return includes(idx, scales[scale])
-      })(o)
-    }),
-    flatten
-  )(notes)
-
-  return arr => {
-    return scaleNotes
   }
 }
