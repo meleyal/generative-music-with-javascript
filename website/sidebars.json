@@ -14,6 +14,6 @@
       "generative/sonification"
     ],
     "Course": ["course/outline"],
-    "API": ["api/index"]
+    "API": ["api/index", "api/examples"]
   }
 }

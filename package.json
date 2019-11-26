@@ -6,7 +6,7 @@
     "start": "yarn run website & yarn run serve",
     "website": "cd website && yarn run start",
     "serve": "webpack-dev-server",
-    "test": "tape -r esm test/unit/**/*.js | tap-bail",
+    "test": "tape -r esm test/**/*.js | tap-bail",
     "publish-docs": "cd website && yarn run publish-gh-pages",
     "build": "webpack -p"
   },

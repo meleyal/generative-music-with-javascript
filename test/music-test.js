@@ -8,7 +8,7 @@ import {
   pitchToPath,
   midiToFrequency,
   intervalToFrequencyRatio
-} from '../../src/music'
+} from '../src/music'
 
 test('pitchSplit', t => {
   const [note, octave] = pitchSplit('A#0')

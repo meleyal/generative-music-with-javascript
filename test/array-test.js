@@ -1,5 +1,5 @@
 import test from 'tape'
-import { closest } from '../../src/array'
+import { closest } from '../src/array'
 
 test('closest', t => {
   const arr = [-10, -5, 0, 5, 10]

@@ -1,6 +1,6 @@
 // import test from 'tape-await'
 // import sinon from 'sinon'
-// import { Compressor } from '../../src/compressor'
+// import { Compressor } from '../src/compressor'
 //
 // test('Compressor', t => {
 //   const context = new window.AudioContext()

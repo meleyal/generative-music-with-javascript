@@ -1,5 +1,5 @@
 import test from 'tape'
-import { sampleMap } from '../../src/sample-map'
+import { sampleMap } from '../src/sample-map'
 
 test('sampleMap', t => {
   const pitchesWithSamples = ['A0', 'C#2']
