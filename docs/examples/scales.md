@@ -1,8 +1,6 @@
 ---
-title: Examples
+title: Scales
 ---
-
-## Piano
 
 ```js
 ;(async () => {
