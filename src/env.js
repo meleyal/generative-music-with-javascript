@@ -1,4 +1,4 @@
 // TODO: memoize so it always returns the same AudioContext.
 export const context = () => {
-  return new AudioContext()
+  return new window.AudioContext()
 }

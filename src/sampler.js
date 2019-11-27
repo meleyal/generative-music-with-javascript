@@ -1,4 +1,5 @@
 import * as env from './env'
+import { midiToPitch } from './music'
 import { samples } from './samples'
 
 export const sampler = async inst => {
@@ -25,7 +26,7 @@ export const sampler = async inst => {
     if (Array.isArray(note)) {
       return note.map(parseNote)
     } else if (typeof note === 'number') {
-      return [noteName(note)]
+      return [midiToPitch(note)]
     } else {
       return [note]
     }
