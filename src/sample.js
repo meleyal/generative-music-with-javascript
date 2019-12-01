@@ -12,9 +12,11 @@ export class Sample {
 
   play(time, callback) {
     const { context, output, note, buffer } = this
+    console.log('sample.play', time, note, buffer)
 
     if (note.pitch !== REST) {
-      const duration = Math.min(note.duration, buffer.duration)
+      const duration = Math.min(note.duration, buffer.buffer.duration)
+      // debugger
 
       const volume = context.createGain()
       volume.gain.value = note.volume
@@ -22,7 +24,8 @@ export class Sample {
       volume.gain.linearRampToValueAtTime(0, duration)
 
       const source = context.createBufferSource()
-      source.buffer = buffer
+      source.buffer = buffer.buffer
+      source.playbackRate.value = buffer.playbackRate
       source.connect(volume)
       source.onended = callback
       source.start(time)

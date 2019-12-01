@@ -9,8 +9,8 @@ export class Score {
     this.parts = []
     this.loaded = false
     this.currentTime = null
-    this.createReverb()
-    this.createCompressor()
+    // this.createReverb()
+    // this.createCompressor()
   }
 
   add(part) {
@@ -40,7 +40,7 @@ export class Score {
   }
 
   async loadEffects() {
-    this.effects['reverb'].load()
+    // this.effects['reverb'].load()
   }
 
   async play() {
