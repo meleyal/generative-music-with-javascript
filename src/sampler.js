@@ -2,8 +2,8 @@ import * as env from './env'
 import { midiToPitch } from './music'
 import { samples } from './samples'
 
-export const sampler = async inst => {
-  const context = env.context()
+export const sampler = async (context, inst) => {
+  // const context = env.context()
   const sampleMap = samples[inst]
   const buffers = {}
 
@@ -23,41 +23,48 @@ export const sampler = async inst => {
   )
 
   const parseNote = note => {
-    if (Array.isArray(note)) {
-      return note.map(parseNote)
-    } else if (typeof note === 'number') {
-      return [midiToPitch(note)]
-    } else {
-      return [note]
-    }
+    // if (Array.isArray(note)) {
+    //   return note.map(parseNote)
+    // } else if (typeof note === 'number') {
+    //   return [midiToPitch(note)]
+    // } else {
+    //   return [note]
+    // }
+
+    return [[midiToPitch(note[0]), note[1]]]
   }
 
   return (note, options, callback = () => {}) => {
-    const now = context.currentTime
+    // const now = context.currentTime
     const notes = parseNote(note)
-    const defaults = { volume: 1, start: now, duration: Infinity }
-    const { volume, start, duration } = Object.assign(defaults, options)
+    // const defaults = { volume: 1, start: now, duration: 1 }
+    // const { volume, start, duration } = Object.assign(defaults, options)
+    const volume = 1
+    const start = options.start
+    const uuid = options.uuid
 
     notes.map(n => {
-      if (note) {
-        const buffer = buffers[n].buffer
+      if (note[0] !== null) {
+        let duration = n[1]
+        console.log('note', n, uuid)
+        const buffer = buffers[n[0]].buffer
         let sourceNode = context.createBufferSource()
         let gainNode = context.createGain()
         sourceNode.buffer = buffer
-        sourceNode.playbackRate.value = buffers[n].playbackRate
+        sourceNode.playbackRate.value = buffers[n[0]].playbackRate
 
         const zero = 0.00001 // value must be positive for exponentialRamp
-        gainNode.gain.setValueAtTime(volume, now + start)
+        gainNode.gain.setValueAtTime(volume, start)
         gainNode.gain.exponentialRampToValueAtTime(
           zero,
-          now + start + Math.min(duration, buffer.duration)
+          start + Math.min(duration, buffer.duration)
         )
 
         sourceNode.connect(gainNode)
         gainNode.connect(context.destination)
 
-        sourceNode.start(now + start)
-        sourceNode.stop(now + start + Math.min(duration, buffer.duration))
+        sourceNode.start(start)
+        sourceNode.stop(start + Math.min(duration, buffer.duration))
 
         sourceNode.onended = () => {
           callback()
@@ -67,12 +74,13 @@ export const sampler = async inst => {
         gainNode = null
         // Rest
       } else {
+        let duration = n[1]
         let osc = context.createOscillator()
         osc.onended = () => {
           callback()
         }
-        osc.start(now + start)
-        osc.stop(now + start + duration)
+        osc.start(start)
+        osc.stop(start + duration)
       }
     })
   }

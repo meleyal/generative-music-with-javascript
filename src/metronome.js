@@ -1,119 +1,67 @@
-import * as env from './env'
+// import * as env from './env'
+import { noop } from 'lodash'
 
-class Metronome {
-  constructor(bpm = 60, end = Infinity) {
-    this.context = env.context()
+export default class Metronome {
+  constructor(context, bpm = 60.0) {
+    this.context = context
     this.bpm = bpm
-    this.end = end
-    this.osc = null
-
-    this.callbacks = {
-      tick: () => null,
-      'tick/1': () => null,
-      'tick/2': () => null,
-      'tick/4': () => null,
-      'tick/8': () => null,
-      'tick/16': () => null,
-      'tick/32': () => null,
-      'tick/64': () => null
-    }
+    this.beatNumber = 0
+    this.nextBeatTime = 0.0
+    this.lookahead = 0.1
+    this.callbacks = {}
   }
 
-  tick(currentTick = 0) {
-    const secondsPerBeat = 60.0 / this.bpm
-    const beatsPerBar = 4
-    const wholeNote = secondsPerBeat * beatsPerBar
-    const resolution = wholeNote / 64 // 1/64 = max resolution
-    const now = this.context.currentTime
-
-    if (currentTick < this.end) {
-      // osc can only be used once, so we create a new one for each tick.
-      this.osc = this.context.createOscillator()
-      this.osc.onended = () => {
-        currentTick += 1
-        this.dispatch(currentTick, now)
-        this.tick(currentTick)
-      }
-      this.osc.start(now)
-      this.osc.stop(now + resolution)
-    }
-  }
-
-  start(at = 0) {
-    this.tick(at)
+  start() {
+    this.nextBeatTime = this.context.currentTime
+    this.scheduler()
     return this
   }
 
-  stop() {
-    this.osc = null
-    return this
-  }
+  scheduler() {
+    const secondsPerBeat = 60.0 / this.bpm / 128
+    // console.log('secondsPerBeat', secondsPerBeat)
 
-  dispatch(tick, now) {
-    // 64 ticks = 1 whole note
-    if (tick % 64 === 0) {
-      this.callbacks['tick/1'](tick / 64, now)
+    while (this.nextBeatTime < this.context.currentTime + this.lookahead) {
+      // this.beep(this.beatNumber, this.nextBeatTime)
+      this.dispatch(this.beatNumber, this.nextBeatTime)
+      this.nextBeatTime += secondsPerBeat
+      this.beatNumber += 1
     }
 
-    // 32 ticks = 1 half note
-    if (tick % 32 === 0) {
-      this.callbacks['tick/2'](tick / 32, now)
-    }
-
-    // 16 ticks = 1 quarter note
-    if (tick % 16 === 0) {
-      this.callbacks['tick'](tick / 16, now)
-      this.callbacks['tick/4'](tick / 16, now)
-    }
-
-    // 8 ticks = 1 eighth note
-    if (tick % 8 === 0) {
-      this.callbacks['tick/8'](tick / 8, now)
-    }
-
-    // 4 ticks = 1 sixteenth note
-    if (tick % 4 === 0) {
-      this.callbacks['tick/16'](tick / 4, now)
-    }
-
-    // 2 ticks = 1 thirtysecond note
-    if (tick % 2 === 0) {
-      this.callbacks['tick/32'](tick / 2, now)
-    }
-
-    // 1 tick = 1 sixtyfourth note
-    if (tick % 1 === 0) {
-      this.callbacks['tick/64'](tick / 1, now)
-    }
+    setTimeout(this.scheduler.bind(this), 0.25)
   }
 
   on(event, fn) {
     this.callbacks[event] = fn
     return this
   }
-}
 
-export const metronome = (bpm, opts = {}) => {
-  const { end } = opts
-  return new Metronome(bpm, end)
-}
-
-export const click = tick => {
-  const context = env.context()
-  const now = context.currentTime
-  const end = now + 1 / 16
-  const osc = context.createOscillator()
-  const gain = context.createGain()
-
-  osc.connect(gain)
-  gain.connect(context.destination)
-
-  osc.frequency.value = 1200
-  if (tick % 4 === 0) {
-    osc.frequency.value = 1600
+  dispatch(beatNumber, time) {
+    ;(this.callbacks['tick'] || noop)(beatNumber, time)
   }
 
-  osc.start(now)
-  gain.gain.exponentialRampToValueAtTime(0.01, end)
-  osc.stop(end)
+  beep(beat, time) {
+    const beepLength = 0.05 // sec
+
+    const osc = this.context.createOscillator()
+    osc.connect(this.context.destination)
+
+    if (beat % 16 === 0) {
+      osc.frequency.value = 880.0 // beat 0 == low pitch
+      // console.log('beep:start')
+    } else if (beat % 4 === 0) {
+      osc.frequency.value = 440.0 // quarter notes = medium pitch
+      // console.log('beep:bar')
+    } else {
+      osc.frequency.value = 220.0 // other 16th notes = high pitch
+      // console.log('beep:beat')
+    }
+
+    osc.start(time)
+    osc.stop(time + beepLength)
+  }
+}
+
+export const metronome = (context, bpm) => {
+  return new Metronome(context, bpm)
 }

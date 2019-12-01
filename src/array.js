@@ -1,4 +1,5 @@
-import { range as _range } from 'lodash'
+// TODO: Does import * increase bundle size?
+import * as _ from 'lodash'
 
 export const closest = (arr, n) => {
   return arr.reduce((prev, curr) => {
@@ -8,4 +9,6 @@ export const closest = (arr, n) => {
 
 // TODO: Overload range with instrument ranges:
 // const notes = range('piano') // => [21...108]
-export const range = _range
+export const range = _.range
+
+export const zip = _.zip

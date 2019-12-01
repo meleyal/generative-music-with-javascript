@@ -1,4 +1,7 @@
 class AudioContext {
+  get currentTime() {
+    return 0
+  }
   createGain() {}
   createOscillator() {
     return {

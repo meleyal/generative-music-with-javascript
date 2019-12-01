@@ -80,3 +80,23 @@ test('tick/64', t => {
     })
     .start(0)
 })
+
+// test('bar/1', t => {
+//   const metro = metronome(60, { end: 256 })
+//   metro
+//     .on('bar/1', tick => {
+//       t.equal(tick, 1)
+//       t.end()
+//     })
+//     .start(255)
+// })
+//
+// test('bar/2', t => {
+//   const metro = metronome(60, { end: 512 })
+//   metro
+//     .on('bar/2', tick => {
+//       t.equal(tick, 2)
+//       t.end()
+//     })
+//     .start(511)
+// })

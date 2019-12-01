@@ -1,4 +1,4 @@
-import test from 'tape'
+import test from 'tape-await'
 import { closest } from '../src/array'
 
 test('closest', t => {
@@ -15,5 +15,4 @@ test('closest', t => {
   t.equal(closest(arr, -4), -5)
   t.equal(closest(arr, -5), -5)
   t.equal(closest(arr, -8), -10)
-  t.end()
 })
