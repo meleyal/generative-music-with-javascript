@@ -21,7 +21,11 @@ class AudioContext {
       connect: () => null
     }
   }
-  createBufferSource() {}
+  createBufferSource() {
+    return {
+      playbackRate: { value: 0 }
+    }
+  }
   createConvolver() {
     return {
       connect: () => null

@@ -1,6 +1,8 @@
 import { sampleMap } from '../../sample-map'
 import { downcase } from '../../string'
 
+// TODO: Use constants for notes
+// TODO: Make baseUrl configurable
 export const piano = sampleMap(
   (note, octave) => {
     const baseUrl = 'http://localhost:3001'

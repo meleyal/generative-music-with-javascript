@@ -12,11 +12,9 @@ export class Sample {
 
   play(time, callback) {
     const { context, output, note, buffer } = this
-    console.log('sample.play', time, note, buffer)
 
     if (note.pitch !== REST) {
       const duration = Math.min(note.duration, buffer.buffer.duration)
-      // debugger
 
       const volume = context.createGain()
       volume.gain.value = note.volume

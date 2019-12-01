@@ -1,4 +1,3 @@
-// import * as env from './env'
 import { noop } from 'lodash'
 
 export default class Metronome {
