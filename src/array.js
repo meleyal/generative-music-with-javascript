@@ -16,6 +16,10 @@ export const nth = (arr, n) => {
   return arr[n]
 }
 
+export const map = (arr, fn) => {
+  return arr.map(fn)
+}
+
 export const includes = (arr, n) => {
   return arr.includes(n)
 }

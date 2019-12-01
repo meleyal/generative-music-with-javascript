@@ -1,5 +1,5 @@
 import test from 'tape'
-import { round } from '../../src/number'
+import { round } from '../src/number'
 
 test('number', t => {
   t.equal(round(3.14159265359), 3.14)

@@ -5,9 +5,10 @@ import {
   includes,
   last,
   length,
+  map,
   nth,
   range
-} from '../../src/array'
+} from '../src/array'
 
 test('closest', t => {
   const arr = [-10, -5, 0, 5, 10]
@@ -56,6 +57,12 @@ test('nth', t => {
   const arr = [1, 2, 3]
   t.equal(nth(arr, 0), 1)
   t.equal(nth(arr, 2), 3)
+  t.end()
+})
+
+test('map', t => {
+  const arr = [1, 2, 3]
+  t.looseEqual(map(arr, n => n + 1), [2, 3, 4])
   t.end()
 })
 

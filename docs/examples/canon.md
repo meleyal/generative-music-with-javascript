@@ -1,12 +1,14 @@
 ---
-title: Row Your Boat
+title: Canon
 ---
 
-This example demonstrates how to make a musical canon.
-
-Adapted from the [`rowYourBoat.py` jythonMusic example](https://git.io/fjyri).
-
 ```js
+/**
+ * "Row Your Boat"
+ *
+ * Adapted from https://git.io/fjyri
+ */
+
 const { Score, Part, Phrase, pitches, durations } = gen
 const { C4, D4, E4, F4, G4, C5 } = pitches
 const { QN, DEN, SN, HN, ENT } = durations

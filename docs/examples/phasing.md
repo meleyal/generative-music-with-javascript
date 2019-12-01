@@ -2,9 +2,9 @@
 title: Phasing
 ---
 
-This guide describes how to create Steve Reich's "Piano Phase".
-
 ```js
+// "Piano Phase" by Steve Reich
+
 const { sampler, metronome, pattern } = gen
 
 ;(async () => {

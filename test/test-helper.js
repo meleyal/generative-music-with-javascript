@@ -1,6 +1,16 @@
 class AudioContext {
+  get currentTime() {
+    return 0
+  }
   createGain() {}
-  createOscillator() {}
+  createOscillator() {
+    return {
+      start: function() {},
+      stop: function() {
+        this.onended()
+      }
+    }
+  }
   createDynamicsCompressor() {
     return {
       threshold: { value: 0 },
