@@ -1,10 +1,9 @@
 import test from 'tape'
 import { sampleMap } from '../src/sample-map'
-import { downcase } from '../src/string'
 
 test('sampleMap', t => {
   const pitchesWithSamples = ['A0', 'C#2']
-  const pathResolver = (n, o) => downcase(`/path/to/${n}${o}.mp3`)
+  const pathResolver = (n, o) => `/path/to/${n}${o}.mp3`.toLowerCase()
   const samples = sampleMap(pathResolver, pitchesWithSamples)
 
   t.looseEqual(samples['A0'], {

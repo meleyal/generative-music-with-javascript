@@ -1,6 +1,6 @@
 import { invert } from 'lodash'
-import { pitches, velocities } from './constants'
 import { remap } from './number'
+import { pitches, velocities } from './constants'
 
 const { F, FFF, SILENT } = velocities
 

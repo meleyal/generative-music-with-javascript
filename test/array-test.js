@@ -1,12 +1,6 @@
 import test from 'tape'
 import {
   closest,
-  first,
-  includes,
-  last,
-  length,
-  map,
-  nth,
   range
 } from '../src/array'
 
@@ -27,49 +21,10 @@ test('closest', t => {
   t.end()
 })
 
-test('first', t => {
-  const arr = [1, 2, 3]
-  t.equal(first(arr), 1)
-  t.end()
-})
-
-test('includes', t => {
-  const arr = [1, 2, 3]
-  t.equal(includes(arr, 1), true)
-  t.equal(includes(arr, 3), true)
-  t.equal(includes(arr, 4), false)
-  t.end()
-})
-
-test('last', t => {
-  const arr = [1, 2, 3]
-  t.equal(last(arr), 3)
-  t.end()
-})
-
-test('length', t => {
-  const arr = [1, 2, 3]
-  t.equal(length(arr), 3)
-  t.end()
-})
-
-test('nth', t => {
-  const arr = [1, 2, 3]
-  t.equal(nth(arr, 0), 1)
-  t.equal(nth(arr, 2), 3)
-  t.end()
-})
-
-test('map', t => {
-  const arr = [1, 2, 3]
-  t.looseEqual(map(arr, n => n + 1), [2, 3, 4])
-  t.end()
-})
-
 test('range', t => {
   const arr = range(1, 10)
-  t.equal(length(arr), 10)
-  t.equal(first(arr), 1)
-  t.equal(last(arr), 10)
+  t.equal(arr.length, 10)
+  t.equal(arr[0], 1)
+  t.equal(arr[9], 10)
   t.end()
 })

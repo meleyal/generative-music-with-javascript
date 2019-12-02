@@ -1,18 +1,9 @@
 import { round } from './number'
-import { first, last, nth } from './array'
 
 export const pitchSplit = pitch => {
   const re = /(\w(?:\w|\W)?)(\d{1})/
   const m = re.exec(pitch)
-  return [nth(m, 1), nth(m, 2)]
-}
-
-export const pitchNote = pitch => {
-  return first(pitchSplit(pitch))
-}
-
-export const pitchOctave = pitch => {
-  return last(pitchSplit(pitch))
+  return [m[1], m[2]]
 }
 
 export const pitchToMidi = pitch => {
@@ -73,11 +64,6 @@ export const midiToPitch = midi => {
 
 export const pitchToPath = pitch => {
   return pitch.replace('#', 's').toLowerCase()
-}
-
-export const midiToFrequency = midi => {
-  const A4 = 440
-  return round(A4 * Math.pow(2, (midi - 69) / 12), 2)
 }
 
 // Shamelessly stolen from Tone.js

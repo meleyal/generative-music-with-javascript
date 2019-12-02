@@ -1,4 +1,4 @@
-import './banner'
+import banner from './banner'
 import * as constants from './constants'
 import * as part from './part'
 import * as phrase from './phrase'

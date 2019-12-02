@@ -1,12 +1,11 @@
 import { sampleMap } from '../../sample-map'
-import { downcase } from '../../string'
 
 // TODO: Use constants for notes
 // TODO: Make baseUrl configurable
-export const piano = sampleMap(
+export default sampleMap(
   (note, octave) => {
     const baseUrl = 'http://localhost:3001'
-    const noteName = downcase(note)
+    const noteName = note.toLowerCase()
     return `${baseUrl}/samples/piano/files/${noteName}${octave}.mp3`
   },
   [

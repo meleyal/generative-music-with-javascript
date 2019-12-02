@@ -1,4 +1,4 @@
-import { closest, includes, map, range } from './array'
+import { closest, range } from './array'
 import { pitches } from './constants'
 import {
   intervalToFrequencyRatio,
@@ -10,22 +10,23 @@ import {
 
 const { A0, G8 } = pitches
 
+// TODO: Make this a class
 export const sampleMap = (
   pathResolver,
   pitchesWithSamples,
   start = A0,
   end = G8
 ) => {
-  const midiSamples = map(pitchesWithSamples, pitchToMidi)
+  const midiSamples = pitchesWithSamples.map(pitchToMidi)
 
   return Object.assign(
-    ...map(range(start, end + 1), midi => {
+    ...range(start, end + 1).map(midi => {
       let pitch = midiToPitch(midi)
       let distance = 0
       let path
       let nearest
 
-      if (includes(midiSamples, midi)) {
+      if (midiSamples.includes(midi)) {
         path = pathResolver(...pitchSplit(pitch))
       } else {
         nearest = closest(midiSamples, midi)

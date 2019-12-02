@@ -1,5 +1,5 @@
 import { Sample } from './sample'
-import { samples } from './samples'
+import samples from './samples'
 
 export class Sampler {
   constructor(context, output, keyOrMap) {

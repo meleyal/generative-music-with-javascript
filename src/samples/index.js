@@ -1,7 +1,7 @@
-import { piano } from './piano'
-import { reverbs } from './reverbs'
+import piano from './piano'
+import reverbs from './reverbs'
 
-export const samples = {
+export default {
   piano,
   reverbs
 }
