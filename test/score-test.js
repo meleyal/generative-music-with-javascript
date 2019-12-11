@@ -4,7 +4,8 @@ import { Score } from '../src/score'
 import { Part } from '../src/part'
 
 test('Score', t => {
-  const score = new Score(60)
+  const context = {}
+  const score = new Score(context, 60.0)
   const part1 = sinon.createStubInstance(Part)
   const part2 = sinon.createStubInstance(Part)
 
@@ -14,7 +15,7 @@ test('Score', t => {
     .add(part2)
     .play()
 
-  t.equal(score.bpm, 60)
+  t.equal(score.bpm, 60.0)
   t.looseEqual(score.parts, [part1, part2])
   t.equal(part1.score, score)
   t.equal(part2.score, score)

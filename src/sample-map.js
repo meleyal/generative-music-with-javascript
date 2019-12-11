@@ -8,14 +8,14 @@ import {
   pitchToPath
 } from './music'
 
-const { A0, G8 } = pitches
+const { a0, g8 } = pitches
 
 // TODO: Make this a class
 export const sampleMap = (
   pathResolver,
   pitchesWithSamples,
-  start = A0,
-  end = G8
+  start = a0,
+  end = g8
 ) => {
   const midiSamples = pitchesWithSamples.map(pitchToMidi)
 

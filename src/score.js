@@ -2,10 +2,10 @@ import { Compressor } from './compressor'
 import { Reverb } from './reverb'
 
 export class Score {
-  constructor(bpm) {
-    this.context = new window.AudioContext()
-    this.effects = {}
+  constructor(context, bpm) {
+    this.context = context
     this.bpm = bpm
+    this.effects = {}
     this.parts = []
     this.loaded = false
     this.currentTime = null
@@ -68,4 +68,9 @@ export class Score {
     )
     this.effects['compressor'] = compressor
   }
+}
+
+export default (bpm = 60.0) => {
+  const context = new window.AudioContext()
+  return new Score(context, bpm)
 }

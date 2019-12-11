@@ -1,8 +1,14 @@
 import { Note } from './note'
 import { pitches, durations, velocities } from './constants'
-import { take, reverse, shuffle, sample, random, cloneDeep } from 'lodash'
-
-const { REST } = pitches
+import {
+  take,
+  reverse,
+  shuffle,
+  sample,
+  random,
+  cloneDeep,
+  unzip
+} from 'lodash'
 
 export class Phrase {
   constructor() {
@@ -15,10 +21,13 @@ export class Phrase {
     this.playCount = 0
   }
 
-  add(pitches, durations) {
-    if (pitches.length !== durations.length) {
-      throw 'pitch and duration lists must be same length'
-    }
+  add(notes) {
+    // if (pitches.length !== durations.length) {
+    //   throw 'pitch and duration lists must be same length'
+    // }
+    const flat = notes.flat(1)
+    const [pitches, durations] = unzip(flat)
+
     const newNotes = pitches.map((p, idx) => new Note(p, durations[idx]))
     this.notes = this.notes.concat(newNotes)
     return this
@@ -50,7 +59,7 @@ export class Phrase {
         this.tick(this.currentTick)
       })
     } else {
-      const rest = new Note(REST, note.duration)
+      const rest = new Note(pitches.rest, note.duration)
 
       this.part.instrument.play(rest, now, () => {
         this.currentTick += 1
@@ -113,4 +122,8 @@ export class Phrase {
     phrase.notes = phrase.notes.map(n => n.transpose(num))
     return phrase
   }
+}
+
+export default () => {
+  return new Phrase()
 }

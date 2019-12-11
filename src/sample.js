@@ -1,7 +1,5 @@
 import { pitches } from './constants'
 
-const { REST } = pitches
-
 export class Sample {
   constructor(context, output, note, buffer) {
     this.context = context
@@ -13,7 +11,7 @@ export class Sample {
   play(time, callback) {
     const { context, output, note, buffer } = this
 
-    if (note.pitch !== REST) {
+    if (note.pitch !== pitches.rest) {
       const duration = Math.min(note.duration, buffer.buffer.duration)
 
       const volume = context.createGain()

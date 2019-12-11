@@ -37,3 +37,7 @@ export class Part {
     return this
   }
 }
+
+export default (instrument = 'piano') => {
+  return new Part(instrument)
+}

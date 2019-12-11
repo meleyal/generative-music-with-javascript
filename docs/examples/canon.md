@@ -9,43 +9,68 @@ title: Canon
  * Adapted from https://git.io/fjyri
  */
 
-const { Score, Part, Phrase, pitches, durations } = gen
-const { C4, D4, E4, F4, G4, C5 } = pitches
-const { QN, DEN, SN, HN, ENT } = durations
+const { score, part, phrase, pitches, durations } = gen
+const { c4, d4, e4, f4, g4, c5 } = pitches
+const { qn, den, sn, hn, ent } = durations
 
-const score = new Score(108)
+const bpm = 108.0
 
-const flute = new Part('piano')
-const trumpet = new Part('piano')
-const clarinet = new Part('piano')
+const notes = [
+  [
+    // Row, row, row your boat, gently down the stream,
+    [c4, qn],
+    [c4, qn],
+    [c4, den],
+    [d4, sn],
+    [e4, qn],
+    [e4, den],
+    [d4, sn],
+    [e4, den],
+    [f4, sn],
+    [g4, hn],
+  ],
+  [
+    // merrily, merrily, merrily, merrily,
+    [c5, ent],
+    [c5, ent],
+    [c5, ent],
+    [g4, ent],
+    [g4, ent],
+    [g4, ent],
+    [e4, ent],
+    [e4, ent],
+    [e4, ent],
+    [c4, ent],
+    [c4, ent],
+    [c4, ent],
+  ],
+  [
+    // life is but a dream.
+    [g4, den],
+    [f4, sn],
+    [e4, den],
+    [d4, sn],
+    [c4, hn],
+  ],
+]
 
-// "Row, row, row your boat, gently down the stream"
-const pitches1 = [C4, C4, C4, D4, E4, E4, D4, E4, F4, G4]
-const durations1 = [QN, QN, DEN, SN, QN, DEN, SN, DEN, SN, HN]
+const app = score(bpm)
 
-// "merrily, merrily, merrily, merrily"
-const pitches2 = [C5, C5, C5, G4, G4, G4, E4, E4, E4, C4, C4, C4]
-const durations2 = [ENT, ENT, ENT, ENT, ENT, ENT, ENT, ENT, ENT, ENT, ENT, ENT]
+const flute = part('piano')
+const trumpet = part('piano')
+const clarinet = part('piano')
 
-// "life is but a dream."
-const pitches3 = [G4, F4, E4, D4, C4]
-const durations3 = [DEN, SN, DEN, SN, HN]
-
-const theme = new Phrase()
-  .add(pitches1, durations1)
-  .add(pitches2, durations2)
-  .add(pitches3, durations3)
+const theme = phrase()
+  .add(notes)
   .startAt(0)
   .repeat(2)
 
 const response1 = theme
-  .copy()
   .transpose(12)
   .startAt(4)
   .repeat(2)
 
 const response2 = theme
-  .copy()
   .transpose(-12)
   .startAt(8)
   .repeat(2)
@@ -54,7 +79,7 @@ flute.add(theme)
 trumpet.add(response1)
 clarinet.add(response2)
 
-score
+app
   .add(flute)
   .add(trumpet)
   .add(clarinet)

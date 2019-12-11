@@ -9,41 +9,41 @@ export const pitchSplit = pitch => {
 export const pitchToMidi = pitch => {
   const [note, octave] = pitchSplit(pitch)
   const notes = {
-    C: 0,
-    'C#': 1,
-    Db: 1,
-    D: 2,
-    'D#': 3,
-    Eb: 3,
-    E: 4,
-    F: 5,
-    'F#': 6,
-    Gb: 6,
-    G: 7,
-    'G#': 8,
-    Ab: 8,
-    A: 9,
-    'A#': 10,
-    Bb: 10,
-    B: 11
+    c: 0,
+    cs: 1,
+    db: 1,
+    d: 2,
+    ds: 3,
+    eb: 3,
+    e: 4,
+    f: 5,
+    fs: 6,
+    gb: 6,
+    g: 7,
+    gs: 8,
+    ab: 8,
+    a: 9,
+    as: 10,
+    bb: 10,
+    b: 11
   }
   return notes[note] + 12 + 12 * octave
 }
 
 export const midiToPitch = midi => {
   const numbers = {
-    0: 'C',
-    1: 'C#',
-    2: 'D',
-    3: 'D#',
-    4: 'E',
-    5: 'F',
-    6: 'F#',
-    7: 'G',
-    8: 'G#',
-    9: 'A',
-    10: 'A#',
-    11: 'B'
+    0: 'c',
+    1: 'cs',
+    2: 'd',
+    3: 'ds',
+    4: 'e',
+    5: 'f',
+    6: 'fs',
+    7: 'g',
+    8: 'gs',
+    9: 'a',
+    10: 'as',
+    11: 'b'
   }
 
   // Normalize the note number so it maps to our 0-indexed `numbers` map
@@ -69,31 +69,4 @@ export const pitchToPath = pitch => {
 // Shamelessly stolen from Tone.js
 export const intervalToFrequencyRatio = interval => {
   return Math.pow(2, interval / 12)
-}
-
-export const enharmonic = note => {
-  switch (note) {
-    case 'A#':
-      return 'Bb'
-    case 'Bb':
-      return 'A#'
-    case 'C#':
-      return 'Db'
-    case 'Db':
-      return 'C#'
-    case 'D#':
-      return 'Eb'
-    case 'Eb':
-      return 'D#'
-    case 'F#':
-      return 'Gb'
-    case 'Gb':
-      return 'F#'
-    case 'G#':
-      return 'Ab'
-    case 'Ab':
-      return 'G#'
-    default:
-      return note
-  }
 }
