@@ -1,4 +1,4 @@
-import test from 'tape-await'
+import { expect } from 'chai'
 import { Note } from '../src/note'
 import { pitches, durations, velocities } from '../src/constants'
 
@@ -6,40 +6,41 @@ const { c4 } = pitches
 const { qn, sn, wn } = durations
 const { fff } = velocities
 
-test('Note', t => {
-  const n = new Note(c4, qn, fff)
+describe('Note', () => {
+  it('create', () => {
+    const n = new Note(c4, qn, fff)
+    expect(n.pitch).to.equal(60)
+    expect(n.duration).to.equal(1.0)
+    expect(n.velocity).to.equal(127)
+    expect(n.name).to.equal('c4')
+    expect(n.volume).to.equal(1)
+  })
 
-  t.equal(n.pitch, 60)
-  t.equal(n.duration, 1.0)
-  t.equal(n.velocity, 127)
-  t.equal(n.name, 'c4')
-  t.equal(n.volume, 1)
-})
+  it('quantizes note durations', () => {
+    const n = new Note(c4, qn, fff)
 
-test('Note / Quantize', t => {
-  const n = new Note(c4, qn, fff)
+    // Sixteenth note
+    n.duration = sn
+    expect(n.quantize(60).duration).to.equal(0.25)
+    n.duration = sn
+    expect(n.quantize(120).duration).to.equal(0.125)
+    n.duration = sn
+    expect(n.quantize(240).duration).to.equal(0.0625)
 
-  // Sixteenth note
-  n.duration = sn
-  t.equal(n.quantize(60).duration, 0.25)
-  n.duration = sn
-  t.equal(n.quantize(120).duration, 0.125)
-  n.duration = sn
-  t.equal(n.quantize(240).duration, 0.0625)
+    // Quarter note
+    n.duration = qn
+    expect(n.quantize(60).duration).to.equal(1.0)
+    n.duration = qn
+    expect(n.quantize(120).duration).to.equal(0.5)
+    n.duration = qn
+    expect(n.quantize(240).duration).to.equal(0.25)
 
-  // Quarter note
-  n.duration = qn
-  t.equal(n.quantize(60).duration, 1.0)
-  n.duration = qn
-  t.equal(n.quantize(120).duration, 0.5)
-  n.duration = qn
-  t.equal(n.quantize(240).duration, 0.25)
-
-  // Whole note
-  n.duration = wn
-  t.equal(n.quantize(60).duration, 4.0)
-  n.duration = wn
-  t.equal(n.quantize(120).duration, 2.0)
-  n.duration = wn
-  t.equal(n.quantize(240).duration, 1.0)
+    // Whole note
+    n.duration = wn
+    expect(n.quantize(60).duration).to.equal(4.0)
+    n.duration = wn
+    expect(n.quantize(120).duration).to.equal(2.0)
+    n.duration = wn
+    expect(n.quantize(240).duration).to.equal(1.0)
+  })
 })

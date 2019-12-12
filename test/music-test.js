@@ -1,4 +1,4 @@
-import test from 'tape-await'
+import { expect } from 'chai'
 import {
   pitchSplit,
   pitchToMidi,
@@ -6,26 +6,28 @@ import {
   intervalToFrequencyRatio,
 } from '../src/music'
 
-test('pitchSplit', t => {
-  const [note, octave] = pitchSplit('as0')
-  t.equal(note, 'as')
-  t.equal(octave, '0')
-})
+describe('Music', () => {
+  it('pitchSplit', () => {
+    const [note, octave] = pitchSplit('as0')
+    expect(note).to.equal('as')
+    expect(octave).to.equal('0')
+  })
 
-test('pitchToMidi', t => {
-  t.equal(pitchToMidi('a0'), 21)
-  t.equal(pitchToMidi('c8'), 108)
-})
+  it('pitchToMidi', () => {
+    expect(pitchToMidi('a0')).to.equal(21)
+    expect(pitchToMidi('c8')).to.equal(108)
+  })
 
-test('midiToPitch', t => {
-  t.equal(midiToPitch(21), 'a0')
-  t.equal(midiToPitch(108), 'c8')
-})
+  it('midiToPitch', () => {
+    expect(midiToPitch(21)).to.equal('a0')
+    expect(midiToPitch(108)).to.equal('c8')
+  })
 
-test('intervalToFrequencyRatio', t => {
-  t.equal(intervalToFrequencyRatio(0), 1)
-  t.equal(intervalToFrequencyRatio(7), 1.4983070768766815)
-  t.equal(intervalToFrequencyRatio(-7), 0.6674199270850172)
-  t.equal(intervalToFrequencyRatio(12), 2)
-  t.equal(intervalToFrequencyRatio(-12), 0.5)
+  it('intervalToFrequencyRatio', () => {
+    expect(intervalToFrequencyRatio(0)).to.equal(1)
+    expect(intervalToFrequencyRatio(7)).to.equal(1.4983070768766815)
+    expect(intervalToFrequencyRatio(-7)).to.equal(0.6674199270850172)
+    expect(intervalToFrequencyRatio(12)).to.equal(2)
+    expect(intervalToFrequencyRatio(-12)).to.equal(0.5)
+  })
 })

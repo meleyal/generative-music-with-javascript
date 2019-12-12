@@ -1,20 +1,22 @@
-import test from 'tape-await'
+import { expect } from 'chai'
 import sinon from 'sinon'
 import { Reverb } from '../src/reverb'
 
-test('Reverb', async t => {
-  const context = new window.AudioContext()
-  const output = {}
-  const node = {
-    buffer: null,
-    connect: sinon.spy()
-  }
-  sinon.stub(context, 'createConvolver').returns(node)
+describe('Reverb', () => {
+  it('create', async () => {
+    const context = new window.AudioContext()
+    const output = {}
+    const node = {
+      buffer: null,
+      connect: sinon.spy(),
+    }
+    sinon.stub(context, 'createConvolver').returns(node)
 
-  const reverb = new Reverb(context, output)
-  await reverb.load()
+    const reverb = new Reverb(context, output)
+    await reverb.load()
 
-  t.assert(reverb.impulse.endsWith('flat.wav'))
-  t.assert(node.connect.calledWith(output))
-  t.assert(node.buffer.duration)
+    expect(reverb.impulse).to.endWith('flat.wav')
+    expect(node.connect).to.have.been.calledWith(output)
+    expect(node.buffer).to.have.property('duration')
+  })
 })

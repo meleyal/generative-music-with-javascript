@@ -1,8 +1,8 @@
-import test from 'tape-await'
+import { expect } from 'chai'
 import sinon from 'sinon'
 import { Compressor } from '../src/compressor'
 
-test('Compressor', t => {
+describe('Compressor', () => {
   const context = new window.AudioContext()
   const output = {}
   const node = {
@@ -11,15 +11,17 @@ test('Compressor', t => {
     ratio: { value: 0 },
     attack: { value: 0 },
     release: { value: 0 },
-    connect: sinon.spy()
+    connect: sinon.spy(),
   }
   sinon.stub(context, 'createDynamicsCompressor').returns(node)
 
   const compressor = new Compressor(context, output, {
-    threshold: 100
+    threshold: 100,
   })
 
-  t.equal(node.knee.value, 40, 'sets defaults')
-  t.equal(node.threshold.value, 100, 'sets options')
-  t.assert(node.connect.calledWith(output), 'connects to output')
+  it('create', () => {
+    expect(node.knee.value).to.equal(40)
+    expect(node.threshold.value).to.equal(100)
+    expect(node.connect).to.have.been.calledWith(output)
+  })
 })

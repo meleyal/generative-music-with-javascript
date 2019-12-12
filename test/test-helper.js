@@ -1,3 +1,9 @@
+import chai from 'chai'
+import chaiString from 'chai-string'
+import sinonChai from 'sinon-chai'
+chai.use(chaiString)
+chai.use(sinonChai)
+
 class AudioContext {
   createGain() {}
   createOscillator() {}
@@ -6,7 +12,7 @@ class AudioContext {
   createConvolver() {}
   decodeAudioData() {
     return {
-      duration: Math.random()
+      duration: Math.random(),
     }
   }
 }
@@ -14,7 +20,7 @@ class AudioContext {
 const fetch = url => {
   return Promise.resolve(
     Promise.resolve({
-      arrayBuffer: () => new ArrayBuffer()
+      arrayBuffer: () => new ArrayBuffer(),
     })
   )
 }

@@ -6,7 +6,7 @@
     "start": "npm run website & npm run serve",
     "website": "cd website && npm run start",
     "serve": "webpack-dev-server",
-    "test": "tape -r esm test/**/*.js | tap-bail",
+    "test": "mocha --require esm --require test/test-helper",
     "publish-docs": "cd website && npm run publish-gh-pages",
     "build": "webpack -p"
   },
@@ -20,11 +20,12 @@
     "lodash-es": "^4.17.11"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-string": "^1.5.0",
     "esm": "^3.2.25",
+    "mocha": "^6.2.2",
     "sinon": "^7.3.2",
-    "tap-bail": "^1.0.0",
-    "tape": "^4.10.2",
-    "tape-await": "^0.1.2",
+    "sinon-chai": "^3.3.0",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.4.1"

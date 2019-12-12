@@ -1,36 +1,47 @@
-import test from 'tape-await'
-import sinon from 'sinon'
+import { expect } from 'chai'
+import { createSandbox } from 'sinon'
 import { Sampler } from '../src/sampler'
 import { Sample } from '../src/sample'
 import { Note } from '../src/note'
-import { pitches, durations } from '../src/constants'
+import { pitches, durations, velocities } from '../src/constants'
+
+const sandbox = createSandbox()
+const context = new window.AudioContext()
+const sampler = new Sampler(context, context.destination, 'piano')
 
 const { c4, d4 } = pitches
 const { qn } = durations
 
-test('Sampler', async t => {
-  const context = new window.AudioContext()
-  const sampler = new Sampler(context, context.destination, 'piano')
+describe('Sampler', () => {
+  beforeEach(() => {
+    sandbox.stub(Sample.prototype, 'play')
+  })
 
-  // Load
-  await sampler.load()
-  t.equal(Object.keys(sampler.buffers).length, 89)
+  afterEach(() => {
+    sandbox.restore()
+  })
 
-  const note1 = new Note(c4, qn)
-  const note2 = new Note(d4, qn)
-  const time = 1
-  const callback = sinon.spy()
-  const playStub = sinon.stub(Sample.prototype, 'play')
+  it('loads samples', async () => {
+    await sampler.load()
+    expect(Object.keys(sampler.buffers)).to.have.lengthOf(89)
+  })
 
-  // Play note
-  sampler.play(note1, time, callback)
-  t.equal(note1, playStub.firstCall.thisValue.note)
-  t.assert(playStub.calledWith(time, callback))
+  it('plays note', () => {
+    const note1 = new Note(c4, qn)
+    const time = 1
+    const callback = sandbox.spy()
+    sampler.play(note1, time, callback)
+    expect(Sample.prototype.play.firstCall.thisValue.note).to.equal(note1)
+    expect(Sample.prototype.play).to.have.been.calledWith(time, callback)
+  })
 
-  // Play chord
-  sampler.play([note1, note2], time, callback)
-  t.equal(note1, playStub.secondCall.thisValue.note)
-  t.equal(note2, playStub.thirdCall.thisValue.note)
-
-  // TODO: should scale duration by playback rate (buffer.duration * playbackRate)
+  it('plays chord', () => {
+    const note1 = new Note(c4, qn)
+    const note2 = new Note(d4, qn)
+    const time = 1
+    const callback = sandbox.spy()
+    sampler.play([note1, note2], time, callback)
+    expect(Sample.prototype.play.firstCall.thisValue.note).to.equal(note1)
+    expect(Sample.prototype.play.secondCall.thisValue.note).to.equal(note2)
+  })
 })

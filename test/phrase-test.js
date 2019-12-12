@@ -1,55 +1,76 @@
-import test from 'tape-await'
+import { expect } from 'chai'
 import sinon from 'sinon'
 import { Sampler } from '../src/sampler'
 import { Score } from '../src/score'
 import { Phrase } from '../src/phrase'
 import { Note } from '../src/note'
 
-test('Phrase', t => {
-  const phrase = new Phrase()
-  const score = sinon.createStubInstance(Score)
-  const sampler = sinon.createStubInstance(Sampler, {
-    play: sinon.stub().callsFake((pitch, options, callback) => {
-      callback()
-    }),
+describe('Phrase', function() {
+  before(function() {
+    const phrase = new Phrase()
+    phrase.add([
+      [
+        [1, 1],
+        [1, 2],
+      ],
+    ])
+    const score = sinon.createStubInstance(Score)
+    const sampler = sinon.createStubInstance(Sampler, {
+      play: sinon.stub().callsFake((pitch, options, callback) => {
+        callback()
+      }),
+    })
+    sinon.stub(phrase, 'score').get(() => score)
+    sinon.stub(phrase, 'instrument').get(() => sampler)
+    this.phrase = phrase
   })
-  sinon.stub(phrase, 'score').get(() => score)
-  sinon.stub(phrase, 'instrument').get(() => sampler)
 
-  phrase.startAt(0)
-  phrase.add([
-    [
-      [1, 1],
-      [1, 2],
-    ],
-  ])
-  phrase.play()
+  it('plays phrase', function() {
+    const { phrase } = this
+    phrase.startAt(0)
+    phrase.play()
+    expect(phrase.start).to.equal(0)
+    expect(phrase.playCount).to.equal(1)
+    expect(phrase.currentTick).to.equal(2)
+    expect(phrase.currentNote).to.equal(0)
+  })
 
-  t.equal(phrase.start, 0)
-  t.looseEqual(phrase.notes, [new Note(1, 1), new Note(1, 2)])
-  t.equal(phrase.playCount, 1)
-  t.equal(phrase.currentTick, 2)
-  t.equal(phrase.currentNote, 0)
-})
+  it('parses notes', function() {
+    const { phrase } = this
+    expect(phrase.notes).to.deep.equal([new Note(1, 1), new Note(1, 2)])
+  })
 
-test('Phrase / Transforms', t => {
-  const phrase = new Phrase()
-  phrase.add([
-    [
-      [1, 1],
-      [1, 2],
-    ],
-  ])
+  it('copies notes', function() {
+    const { phrase } = this
+    const notes = [new Note(1, 1), new Note(1, 2)]
+    expect(phrase.copy().notes).to.deep.equal(notes)
+  })
 
-  const notes = [new Note(1, 1), new Note(1, 2)]
-  const firstNote = notes[0]
-  const reversedNotes = [new Note(1, 2), new Note(1, 1)]
-  const transposedNotes = [new Note(2, 1), new Note(2, 2)]
+  it('takes notes', function() {
+    const { phrase } = this
+    const notes = [new Note(1, 1), new Note(1, 2)]
+    expect(phrase.take(1).notes).to.deep.equal([notes[0]])
+  })
 
-  t.looseEqual(phrase.copy().notes, notes)
-  t.looseEqual(phrase.take(1).notes, [firstNote])
-  t.looseEqual(phrase.reverse().notes, reversedNotes)
-  t.equal(phrase.shuffle().notes.length, notes.length)
-  t.equal(phrase.randomize().notes.length, notes.length)
-  t.looseEqual(phrase.transpose(1).notes, transposedNotes)
+  it('reverses notes', function() {
+    const { phrase } = this
+    const reversedNotes = [new Note(1, 2), new Note(1, 1)]
+    expect(phrase.reverse().notes).to.deep.equal(reversedNotes)
+  })
+
+  it('shuffle notes', function() {
+    const { phrase } = this
+    expect(phrase.reverse().notes).to.have.lengthOf(2)
+  })
+
+  it('randomizes notes', function() {
+    const { phrase } = this
+    expect(phrase.randomize().notes).to.have.lengthOf(2)
+  })
+
+  it('transposes notes', function() {
+    const { phrase } = this
+    const transposedNotes = [new Note(2, 1), new Note(2, 2)]
+    expect(phrase.transpose(1).notes).to.deep.equal(transposedNotes)
+  })
 })
