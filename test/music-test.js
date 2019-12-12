@@ -3,30 +3,23 @@ import {
   pitchSplit,
   pitchToMidi,
   midiToPitch,
-  pitchToPath,
-  intervalToFrequencyRatio
+  intervalToFrequencyRatio,
 } from '../src/music'
 
 test('pitchSplit', t => {
-  const [note, octave] = pitchSplit('A#0')
-  t.equal(note, 'A#')
+  const [note, octave] = pitchSplit('as0')
+  t.equal(note, 'as')
   t.equal(octave, '0')
 })
 
 test('pitchToMidi', t => {
-  t.equal(pitchToMidi('A0'), 21)
-  t.equal(pitchToMidi('C8'), 108)
+  t.equal(pitchToMidi('a0'), 21)
+  t.equal(pitchToMidi('c8'), 108)
 })
 
 test('midiToPitch', t => {
-  t.equal(midiToPitch(21), 'A0')
-  t.equal(midiToPitch(108), 'C8')
-})
-
-test('pitchToPath', t => {
-  t.equal(pitchToPath('A1'), 'a1')
-  t.equal(pitchToPath('A#1'), 'as1')
-  t.equal(pitchToPath('Ab1'), 'ab1')
+  t.equal(midiToPitch(21), 'a0')
+  t.equal(midiToPitch(108), 'c8')
 })
 
 test('intervalToFrequencyRatio', t => {

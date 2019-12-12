@@ -5,8 +5,8 @@ import { Sample } from '../src/sample'
 import { Note } from '../src/note'
 import { pitches, durations } from '../src/constants'
 
-const { C4, D4 } = pitches
-const { QN } = durations
+const { c4, d4 } = pitches
+const { qn } = durations
 
 test('Sampler', async t => {
   const context = new window.AudioContext()
@@ -16,8 +16,8 @@ test('Sampler', async t => {
   await sampler.load()
   t.equal(Object.keys(sampler.buffers).length, 89)
 
-  const note1 = new Note(C4, QN)
-  const note2 = new Note(D4, QN)
+  const note1 = new Note(c4, qn)
+  const note2 = new Note(d4, qn)
   const time = 1
   const callback = sinon.spy()
   const playStub = sinon.stub(Sample.prototype, 'play')

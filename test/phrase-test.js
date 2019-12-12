@@ -2,7 +2,6 @@ import test from 'tape-await'
 import sinon from 'sinon'
 import { Sampler } from '../src/sampler'
 import { Score } from '../src/score'
-import { Part } from '../src/part'
 import { Phrase } from '../src/phrase'
 import { Note } from '../src/note'
 
@@ -12,15 +11,18 @@ test('Phrase', t => {
   const sampler = sinon.createStubInstance(Sampler, {
     play: sinon.stub().callsFake((pitch, options, callback) => {
       callback()
-    })
+    }),
   })
-  const part = sinon.createStubInstance(Part)
-  part.score = score
-  part.instrument = sampler
+  sinon.stub(phrase, 'score').get(() => score)
+  sinon.stub(phrase, 'instrument').get(() => sampler)
 
-  phrase.part = part
   phrase.startAt(0)
-  phrase.add([1, 1], [1, 2])
+  phrase.add([
+    [
+      [1, 1],
+      [1, 2],
+    ],
+  ])
   phrase.play()
 
   t.equal(phrase.start, 0)
@@ -32,7 +34,12 @@ test('Phrase', t => {
 
 test('Phrase / Transforms', t => {
   const phrase = new Phrase()
-  phrase.add([1, 1], [1, 2])
+  phrase.add([
+    [
+      [1, 1],
+      [1, 2],
+    ],
+  ])
 
   const notes = [new Note(1, 1), new Note(1, 2)]
   const firstNote = notes[0]

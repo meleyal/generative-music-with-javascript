@@ -1,14 +1,6 @@
 import { Note } from './note'
 import { pitches, durations, velocities } from './constants'
-import {
-  take,
-  reverse,
-  shuffle,
-  sample,
-  random,
-  cloneDeep,
-  unzip
-} from 'lodash'
+import { take, reverse, shuffle, sample, cloneDeep, unzip } from 'lodash'
 
 export class Phrase {
   constructor() {
@@ -21,13 +13,21 @@ export class Phrase {
     this.playCount = 0
   }
 
-  add(notes) {
-    // if (pitches.length !== durations.length) {
-    //   throw 'pitch and duration lists must be same length'
-    // }
-    const flat = notes.flat(1)
-    const [pitches, durations] = unzip(flat)
+  get score() {
+    return this.part.score
+  }
 
+  get instrument() {
+    return this.part.instrument
+  }
+
+  // TODO: Enable passing in unnested arrays
+  add(notes) {
+    const flattend = notes.flat(1)
+    const [pitches, durations] = unzip(flattend)
+    if (pitches.length !== durations.length) {
+      throw new TypeError('pitch and duration lists must be same length')
+    }
     const newNotes = pitches.map((p, idx) => new Note(p, durations[idx]))
     this.notes = this.notes.concat(newNotes)
     return this
@@ -38,16 +38,16 @@ export class Phrase {
     return this
   }
 
-  tick(tick) {
+  tick() {
     if (this.playCount > this.repeats) {
       return
     }
 
     const note = this.notes[this.currentNote]
-    const now = this.part.score.now()
+    const now = this.score.now()
 
     if (this.currentTick >= this.start) {
-      this.part.instrument.play(note, now, () => {
+      this.instrument.play(note, now, () => {
         this.currentNote += 1
         this.currentTick += 1
 
@@ -56,14 +56,14 @@ export class Phrase {
           this.currentNote = 0
         }
 
-        this.tick(this.currentTick)
+        this.tick()
       })
     } else {
       const rest = new Note(pitches.rest, note.duration)
 
-      this.part.instrument.play(rest, now, () => {
+      this.instrument.play(rest, now, () => {
         this.currentTick += 1
-        this.tick(this.currentTick)
+        this.tick()
       })
     }
   }

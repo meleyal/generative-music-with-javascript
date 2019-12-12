@@ -5,7 +5,6 @@ import {
   midiToPitch,
   pitchSplit,
   pitchToMidi,
-  pitchToPath
 } from './music'
 
 const { a0, g8 } = pitches
@@ -36,9 +35,9 @@ export const sampleMap = (
 
       return {
         [pitch]: {
-          path: pitchToPath(path),
-          playbackRate: intervalToFrequencyRatio(distance)
-        }
+          path: path,
+          playbackRate: intervalToFrequencyRatio(distance),
+        },
       }
     })
   )

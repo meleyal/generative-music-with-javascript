@@ -25,7 +25,7 @@ export const pitchToMidi = pitch => {
     a: 9,
     as: 10,
     bb: 10,
-    b: 11
+    b: 11,
   }
   return notes[note] + 12 + 12 * octave
 }
@@ -43,7 +43,7 @@ export const midiToPitch = midi => {
     8: 'gs',
     9: 'a',
     10: 'as',
-    11: 'b'
+    11: 'b',
   }
 
   // Normalize the note number so it maps to our 0-indexed `numbers` map
@@ -60,10 +60,6 @@ export const midiToPitch = midi => {
     .split('/')
     .map(name => name + octave)
     .join('/')
-}
-
-export const pitchToPath = pitch => {
-  return pitch.replace('#', 's').toLowerCase()
 }
 
 // Shamelessly stolen from Tone.js
