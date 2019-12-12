@@ -3,11 +3,11 @@
   "version": "0.0.5",
   "main": "src/index.js",
   "scripts": {
-    "start": "yarn run website & yarn run serve",
-    "website": "cd website && yarn run start",
+    "start": "npm run website & npm run serve",
+    "website": "cd website && npm run start",
     "serve": "webpack-dev-server",
     "test": "tape -r esm test/**/*.js | tap-bail",
-    "publish-docs": "cd website && yarn run publish-gh-pages",
+    "publish-docs": "cd website && npm run publish-gh-pages",
     "build": "webpack -p"
   },
   "repository": {
