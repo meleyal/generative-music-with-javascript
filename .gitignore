@@ -12,3 +12,6 @@ dist
 website/build/
 website/yarn.lock
 website/i18n/
+
+# Editor
+.vscode
