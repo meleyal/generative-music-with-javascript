@@ -1,4 +1,4 @@
-import { Sampler } from './sampler'
+import { Sampler } from './sampler-class'
 
 export class Part {
   constructor(instrument) {

@@ -9,15 +9,28 @@ title: Canon
  * Adapted from https://git.io/fjyri
  */
 
-const { score, part, phrase, pitches, durations } = gen
-const { c4, d4, e4, f4, g4, c5 } = pitches
-const { qn, den, sn, hn, ent } = durations
+const { pattern, sampler, array, pitches, durations } = gen
+const { c4, d4, e4, f4, g4, c5, rest } = pitches
+const { wn, qn, den, sn, hn, ent } = durations
+const { repeat, transpose } = array
 
-const bpm = 108.0
+;(async () => {
+  const app = gen.app()
 
-const notes = [
-  [
-    // Row, row, row your boat, gently down the stream,
+  const logger = (state, next) => {
+    console.log('logger', state)
+    next()
+  }
+
+  const superLogger = (state, next) => {
+    console.log('SUPERLOGGER', state)
+    state.log = 'SUPER 💪'
+    next()
+  }
+
+  const rests = [[rest, wn]]
+
+  const notes = [
     [c4, qn],
     [c4, qn],
     [c4, den],
@@ -28,9 +41,6 @@ const notes = [
     [e4, den],
     [f4, sn],
     [g4, hn],
-  ],
-  [
-    // merrily, merrily, merrily, merrily,
     [c5, ent],
     [c5, ent],
     [c5, ent],
@@ -43,45 +53,32 @@ const notes = [
     [c4, ent],
     [c4, ent],
     [c4, ent],
-  ],
-  [
-    // life is but a dream.
     [g4, den],
     [f4, sn],
     [e4, den],
     [d4, sn],
     [c4, hn],
-  ],
-]
+  ]
 
-const app = score(bpm)
+  const theme = pattern(repeat(notes, 2))
 
-const flute = part('piano')
-const trumpet = part('piano')
-const clarinet = part('piano')
+  const response1 = pattern([...rests, ...repeat(transpose(notes, 12), 2)])
 
-const theme = phrase()
-  .add(notes)
-  .startAt(0)
-  .repeat(2)
+  const response2 = pattern([
+    ...repeat(rests, 2),
+    ...repeat(transpose(notes, -12), 2),
+  ])
 
-const response1 = theme
-  .transpose(12)
-  .startAt(4)
-  .repeat(2)
+  // console.log(repeat(notes, 2))
+  // console.log([...rests, ...repeat(transpose(notes, 12), 2)])
+  // console.log([...repeat(rests, 2), ...repeat(transpose(notes, -12), 2)])
 
-const response2 = theme
-  .transpose(-12)
-  .startAt(8)
-  .repeat(2)
+  const smp = await sampler('piano')
 
-flute.add(theme)
-trumpet.add(response1)
-clarinet.add(response2)
+  app.use('piano/1', theme, smp, logger)
+  app.use('piano/2', response1, smp, logger)
+  app.use('piano/3', response2, smp, logger)
 
-app
-  .add(flute)
-  .add(trumpet)
-  .add(clarinet)
-  .play()
+  app.play()
+})()
 ```

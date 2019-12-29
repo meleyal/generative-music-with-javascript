@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import sinon from 'sinon'
-import { Sampler } from '../src/sampler'
+import { Sampler } from '../src/sampler-class'
 import { Score } from '../src/score'
 import { Phrase } from '../src/phrase'
 import { Note } from '../src/note'
@@ -8,12 +8,7 @@ import { Note } from '../src/note'
 describe('Phrase', function() {
   before(function() {
     const phrase = new Phrase()
-    phrase.add([
-      [
-        [1, 1],
-        [1, 2],
-      ],
-    ])
+    phrase.add([[[1, 1], [1, 2]]])
     const score = sinon.createStubInstance(Score)
     const sampler = sinon.createStubInstance(Sampler, {
       play: sinon.stub().callsFake((pitch, options, callback) => {

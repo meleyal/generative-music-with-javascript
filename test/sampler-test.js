@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { createSandbox } from 'sinon'
-import { Sampler } from '../src/sampler'
+import { Sampler } from '../src/sampler-class'
 import { Sample } from '../src/sample'
 import { Note } from '../src/note'
 import { pitches, durations, velocities } from '../src/constants'
@@ -23,7 +23,7 @@ describe('Sampler', () => {
 
   it('loads samples', async () => {
     await sampler.load()
-    expect(Object.keys(sampler.buffers)).to.have.lengthOf(89)
+    expect(Object.keys(sampler.buffers)).to.have.lengthOf(88)
   })
 
   it('plays note', () => {

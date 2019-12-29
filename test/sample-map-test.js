@@ -1,12 +1,14 @@
 import { expect } from 'chai'
 import { sampleMap } from '../src/sample-map'
+import { pitches } from '../src/constants'
+
+const { a0, cs2 } = pitches
 
 describe('sampleMap', () => {
-  const pitchesWithSamples = ['a0', 'cs2']
-  const pathResolver = (n, o) => `/path/to/${n}${o}.mp3`
-  const samples = sampleMap(pathResolver, pitchesWithSamples)
-
   it('create', () => {
+    const midiSamples = [a0, cs2]
+    const pathResolver = (n, o) => `/path/to/${n}${o}.mp3`
+    const samples = sampleMap(pathResolver, midiSamples)
     expect(samples['a0']).to.deep.equal({
       path: '/path/to/a0.mp3',
       playbackRate: 1,

@@ -1,10 +1,11 @@
 import banner from './banner'
 import * as constants from './constants'
-import score from './score'
-import part from './part'
-import phrase from './phrase'
+import * as array from './array'
+import app from './app'
+import pattern from './pattern'
+import sampler from './sampler'
 
-const gen = { ...constants, score, part, phrase }
+const gen = { app, pattern, sampler, array, ...constants }
 
 window.gen = gen
 export default gen
