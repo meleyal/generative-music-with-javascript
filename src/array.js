@@ -1,4 +1,4 @@
-import { range as _range, head, tail } from 'lodash'
+import { range as _range } from 'lodash'
 
 export const closest = (arr, n) => {
   return arr.reduce((prev, curr) => {
@@ -8,21 +8,4 @@ export const closest = (arr, n) => {
 
 export const range = (start = 0, end, step = 1) => {
   return _range(start, end + 1, step)
-}
-
-export const transpose = (arr, n) => {
-  return arr.map(e => {
-    const h = head(e) + n
-    return [h, ...tail(e)]
-  })
-}
-
-export const repeat = (arr, n) => {
-  if (n < 2) {
-    return arr
-  } else {
-    return Array(n)
-      .fill(arr)
-      .flat(1)
-  }
 }

@@ -4,6 +4,7 @@ import {
   pitchToMidi,
   midiToPitch,
   intervalToFrequencyRatio,
+  volume,
 } from '../src/music'
 
 describe('Music', () => {
@@ -29,5 +30,11 @@ describe('Music', () => {
     expect(intervalToFrequencyRatio(-7)).to.equal(0.6674199270850172)
     expect(intervalToFrequencyRatio(12)).to.equal(2)
     expect(intervalToFrequencyRatio(-12)).to.equal(0.5)
+  })
+
+  it('volume', () => {
+    expect(volume(0)).to.equal(0)
+    expect(volume(63.5)).to.equal(0.5)
+    expect(volume(127)).to.equal(1)
   })
 })

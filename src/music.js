@@ -1,4 +1,7 @@
-import { round } from './number'
+import { round, remap } from './number'
+import { velocities } from './constants'
+
+const { fff, silent } = velocities
 
 export const pitchSplit = pitch => {
   const re = /(\w(?:\w|\W)?)(\d{1})/
@@ -65,4 +68,8 @@ export const midiToPitch = midi => {
 // Shamelessly stolen from Tone.js
 export const intervalToFrequencyRatio = interval => {
   return Math.pow(2, interval / 12)
+}
+
+export const volume = velocity => {
+  return remap(velocity, silent, fff, 0, 1)
 }
