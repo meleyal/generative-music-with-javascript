@@ -1,6 +1,7 @@
 import {
   take as _take,
   shuffle as _shuffle,
+  range as _range,
   head,
   tail,
   sample,
@@ -18,6 +19,10 @@ export default notes => {
     state.tick++
     next()
   }
+}
+
+export const range = (start = 0, end, step = 1) => {
+  return _range(start, end + 1, step)
 }
 
 export const ring = arr => {

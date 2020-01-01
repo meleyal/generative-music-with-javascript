@@ -9,3 +9,9 @@ export const remap = (value, min, max, newMin, newMax) => {
 export const round = n => {
   return Math.round(n * 1e2) / 1e2
 }
+
+export const closest = (arr, n) => {
+  return arr.reduce((prev, curr) => {
+    return Math.abs(curr - n) < Math.abs(prev - n) ? curr : prev
+  })
+}

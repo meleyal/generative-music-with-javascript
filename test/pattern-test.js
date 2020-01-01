@@ -8,6 +8,7 @@ import {
   randomize,
   shuffle,
   quantize,
+  range,
 } from '../src/pattern'
 import { pitches, durations, velocities } from '../src/constants'
 
@@ -16,6 +17,13 @@ const { qn, sn, wn } = durations
 const { fff } = velocities
 
 describe('Pattern', () => {
+  it('range', () => {
+    const arr = range(1, 10)
+    expect(arr.length).to.equal(10)
+    expect(arr[0]).to.equal(1)
+    expect(arr[9]).to.equal(10)
+  })
+
   it('ring', () => {
     const r = ring([1, 2, 3])
 

@@ -1,4 +1,5 @@
-import { closest, range } from './array'
+import { range } from './pattern'
+import { closest } from './number'
 import { pitches } from './constants'
 import { intervalToFrequencyRatio, midiToPitch, pitchSplit } from './music'
 
