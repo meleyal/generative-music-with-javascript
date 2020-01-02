@@ -6,23 +6,17 @@ import {
   tail,
   sample,
   cloneDeep,
-  unzip,
 } from 'lodash'
 import { pitches, durations, velocities } from './constants'
 
-export default notes => {
-  const len = notes.length
+export const loop = notes => {
+  const r = ring(notes)
 
-  // TODO: Use `ring()` here.
   return (state, next) => {
-    state['note'] = notes[state.tick % len]
+    state['note'] = r(state.tick)
     state.tick++
     next()
   }
-}
-
-export const range = (start = 0, end, step = 1) => {
-  return _range(start, end + 1, step)
 }
 
 export const ring = arr => {
@@ -31,6 +25,10 @@ export const ring = arr => {
   return idx => {
     return arr[idx % len]
   }
+}
+
+export const range = (start = 0, end, step = 1) => {
+  return _range(start, end + 1, step)
 }
 
 export const transpose = (arr, n) => {

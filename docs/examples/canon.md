@@ -9,22 +9,16 @@ title: Canon
  * Adapted from https://git.io/fjyri
  */
 
-const { pattern, sampler, array, pitches, durations } = gen
+const { pattern, sampler, pitches, durations } = gen
 const { c4, d4, e4, f4, g4, c5, rest } = pitches
 const { wn, qn, den, sn, hn, ent } = durations
-const { repeat, transpose } = array
+const { loop, repeat, transpose } = pattern
 
 ;(async () => {
   const app = gen.app()
 
   const logger = (state, next) => {
     console.log('logger', state)
-    next()
-  }
-
-  const superLogger = (state, next) => {
-    console.log('SUPERLOGGER', state)
-    state.log = 'SUPER 💪'
     next()
   }
 
@@ -60,18 +54,14 @@ const { repeat, transpose } = array
     [c4, hn],
   ]
 
-  const theme = pattern(repeat(notes, 2))
+  const theme = loop(repeat(notes, 2))
 
-  const response1 = pattern([...rests, ...repeat(transpose(notes, 12), 2)])
+  const response1 = loop([...rests, ...repeat(transpose(notes, 12), 2)])
 
-  const response2 = pattern([
+  const response2 = loop([
     ...repeat(rests, 2),
     ...repeat(transpose(notes, -12), 2),
   ])
-
-  // console.log(repeat(notes, 2))
-  // console.log([...rests, ...repeat(transpose(notes, 12), 2)])
-  // console.log([...repeat(rests, 2), ...repeat(transpose(notes, -12), 2)])
 
   const smp = await sampler('piano')
 
