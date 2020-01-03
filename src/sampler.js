@@ -23,8 +23,8 @@ export default async inst => {
   )
 
   return (state, next) => {
-    const now = env.now()
     const context = env.context
+    const now = env.now()
     const note = midiToPitch(state.note[0])
     const duration = state.note[1]
     // const volume = state.note[2] || 80

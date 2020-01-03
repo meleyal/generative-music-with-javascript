@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { sampleMap } from '../src/sample-map'
+import sampleMap from '../src/sample-map'
 import { pitches } from '../src/constants'
 
 const { a0, cs2 } = pitches

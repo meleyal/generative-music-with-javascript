@@ -5,10 +5,30 @@ chai.use(chaiString)
 chai.use(sinonChai)
 
 class AudioContext {
-  createGain() {}
+  get currentTime() {
+    return 0
+  }
+  createGain() {
+    return {
+      gain: {
+        value: 0,
+        setValueAtTime: () => null,
+        exponentialRampToValueAtTime: () => null,
+      },
+      connect: () => null,
+    }
+  }
   createOscillator() {}
   createDynamicsCompressor() {}
-  createBufferSource() {}
+  createBufferSource() {
+    return {
+      buffer: null,
+      playbackRate: { value: 0 },
+      connect: () => null,
+      start: () => null,
+      stop: () => null,
+    }
+  }
   createConvolver() {}
   decodeAudioData() {
     return {

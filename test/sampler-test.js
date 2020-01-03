@@ -1,47 +1,45 @@
-// import { expect } from 'chai'
-// import { createSandbox } from 'sinon'
-// import { Sampler } from '../src/sampler-class'
-// import { Sample } from '../src/sample'
-// import { Note } from '../src/note'
-// import { pitches, durations, velocities } from '../src/constants'
-//
-// const sandbox = createSandbox()
-// const context = new window.AudioContext()
-// const sampler = new Sampler(context, context.destination, 'piano')
-//
-// const { c4, d4 } = pitches
-// const { qn } = durations
-//
-// describe('Sampler', () => {
-//   beforeEach(() => {
-//     sandbox.stub(Sample.prototype, 'play')
-//   })
-//
-//   afterEach(() => {
-//     sandbox.restore()
-//   })
-//
-//   it('loads samples', async () => {
-//     await sampler.load()
-//     expect(Object.keys(sampler.buffers)).to.have.lengthOf(88)
-//   })
-//
-//   it('plays note', () => {
-//     const note1 = new Note(c4, qn)
-//     const time = 1
-//     const callback = sandbox.spy()
-//     sampler.play(note1, time, callback)
-//     expect(Sample.prototype.play.firstCall.thisValue.note).to.equal(note1)
-//     expect(Sample.prototype.play).to.have.been.calledWith(time, callback)
-//   })
-//
-//   it('plays chord', () => {
-//     const note1 = new Note(c4, qn)
-//     const note2 = new Note(d4, qn)
-//     const time = 1
-//     const callback = sandbox.spy()
-//     sampler.play([note1, note2], time, callback)
-//     expect(Sample.prototype.play.firstCall.thisValue.note).to.equal(note1)
-//     expect(Sample.prototype.play.secondCall.thisValue.note).to.equal(note2)
-//   })
-// })
+import { expect } from 'chai'
+import sinon from 'sinon'
+import env from '../src/env'
+import sampler from '../src/sampler'
+import { pitches, durations, velocities } from '../src/constants'
+
+const { c4, rest } = pitches
+const { qn } = durations
+
+describe('Sampler', () => {
+  it('plays note', async () => {
+    const smp = await sampler('piano')
+    const note = [c4, qn]
+    const state = { note }
+    const node = {
+      buffer: null,
+      playbackRate: { value: 0 },
+      connect: () => null,
+      start: sinon.spy(),
+      stop: sinon.spy(),
+    }
+    sinon.stub(env.context, 'createBufferSource').returns(node)
+
+    smp(state)
+
+    expect(node.start).to.have.been.called
+    expect(node.stop).to.have.been.called
+  })
+
+  it('plays rest', async () => {
+    const smp = await sampler('piano')
+    const note = [rest, qn]
+    const state = { note }
+    const node = {
+      start: sinon.spy(),
+      stop: sinon.spy(),
+    }
+    sinon.stub(env.context, 'createOscillator').returns(node)
+
+    smp(state)
+
+    expect(node.start).to.have.been.called
+    expect(node.stop).to.have.been.called
+  })
+})

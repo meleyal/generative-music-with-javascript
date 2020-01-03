@@ -1,4 +1,4 @@
-import { sampleMap } from '../../sample-map'
+import sampleMap from '../../sample-map'
 import { pitches } from '../../constants'
 
 // TODO: Make baseUrl configurable

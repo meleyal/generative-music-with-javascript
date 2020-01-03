@@ -40,11 +40,11 @@ describe('Pattern', () => {
     expect(transpose(arr, 1)).to.deep.equal([[2, 0, 0], [3, 0, 0]])
   })
 
-  it.skip('repeat', () => {
+  it('repeat', () => {
     const arr = [1, 2]
     expect(repeat(arr, 0)).to.deep.equal([1, 2])
     expect(repeat(arr, 1)).to.deep.equal([1, 2])
-    expect(repeat(arr, 2)).to.deep.equal([[1, 2], [1, 2]])
+    expect(repeat(arr, 2)).to.deep.equal([1, 2, 1, 2])
   })
 
   it('reverse', () => {

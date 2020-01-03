@@ -20,9 +20,7 @@ export default () => {
 
       // Complete
       if (idx >= stack.length) {
-        // return setImmediate(() => callback())
         return setImmediate(() => handle(state, stack, callback))
-        // return setTimeout(() => handle(state, stack, callback), 1000)
       }
 
       // Next
@@ -43,15 +41,13 @@ export default () => {
     let state = {}
 
     for (let [name, stack] of Object.entries(middleware)) {
-      // console.log(`${key}: ${value}`)
       state[name] = { tick: 0 }
 
       handle(state[name], stack, err => {
         if (err) {
           console.log('error!', err)
         } else {
-          // console.log('done', state)
-          // setTimeout(() => play(), 1000)
+          console.log('done', state)
         }
       })
     }

@@ -1,6 +1,7 @@
 export default {
   currentTime: 0,
 
+  // TODO: Does this get reevaluated each time it's imported?
   context: (() => {
     return new window.AudioContext()
   })(),
