@@ -9,7 +9,7 @@ title: Canon
  * Adapted from https://git.io/fjyri
  */
 
-const { pattern, sampler, pitches, durations } = gen
+const { pattern, sampler, reverb, pitches, durations } = gen
 const { c4, d4, e4, f4, g4, c5, rest } = pitches
 const { wn, qn, den, sn, hn, ent } = durations
 const { loop, repeat, transpose } = pattern
@@ -64,10 +64,11 @@ const { loop, repeat, transpose } = pattern
   ])
 
   const smp = await sampler('piano')
+  const rvb = await reverb('flat')
 
-  app.use('piano/1', theme, smp, logger)
-  app.use('piano/2', response1, smp, logger)
-  app.use('piano/3', response2, smp, logger)
+  app.use('piano/1', theme, smp, rvb, logger)
+  // app.use('piano/2', response1, smp, logger)
+  // app.use('piano/3', response2, smp, logger)
 
   app.play()
 })()

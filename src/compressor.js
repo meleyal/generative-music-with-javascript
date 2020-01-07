@@ -1,38 +1,23 @@
-export class Compressor {
-  constructor(context, output, options = {}) {
-    const { threshold, knee, ratio, attack, release } = Object.assign(
-      this.defaults,
-      options
-    )
-    this.context = context
-    this.output = output
-    this.threshold = threshold
-    this.knee = knee
-    this.ratio = ratio
-    this.attack = attack
-    this.release = release
-    this.node = this.createNode()
-  }
+import env from './env'
 
-  get defaults() {
-    return {
-      threshold: -50,
-      knee: 40,
-      ratio: 12,
-      attack: 0,
-      release: 0.25,
-      output: null
-    }
-  }
+export default (
+  threshold = -50,
+  knee = 40,
+  ratio = 12,
+  attack = 0,
+  release = 0.25
+) => {
+  const context = env.context
+  const node = context.createDynamicsCompressor()
+  node.threshold.value = threshold
+  node.knee.value = knee
+  node.ratio.value = ratio
+  node.attack.value = attack
+  node.release.value = release
 
-  createNode() {
-    const node = this.context.createDynamicsCompressor()
-    node.threshold.value = this.threshold
-    node.knee.value = this.knee
-    node.ratio.value = this.ratio
-    node.attack.value = this.attack
-    node.release.value = this.release
-    node.connect(this.output)
-    return node
+  return (state, next) => {
+    node.connect(state.output)
+    state.output = node
+    next()
   }
 }

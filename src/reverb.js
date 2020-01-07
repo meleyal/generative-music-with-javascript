@@ -1,32 +1,20 @@
+import env from './env'
 import samples from './samples'
 
-export class Reverb {
-  constructor(context, output, options = {}) {
-    const { impulse } = Object.assign(this.defaults, options)
-    this.context = context
-    this.output = output
-    this.impulse = samples.reverbs[impulse]
-    this.node = this.createNode()
-  }
+export default async (name = 'flat') => {
+  const context = env.context
+  console.log(samples.reverbs, name)
+  const impulse = samples.reverbs[name]
+  const res = await window.fetch(impulse)
+  const arrayBuffer = await res.arrayBuffer()
+  const buffer = await context.decodeAudioData(arrayBuffer)
+  const node = context.createConvolver()
+  node.buffer = buffer
+  node.normalize = false
 
-  get defaults() {
-    return {
-      impulse: 'flat'
-    }
-  }
-
-  async load() {
-    const res = await window.fetch(this.impulse)
-    const arrayBuffer = await res.arrayBuffer()
-    const buffer = await this.context.decodeAudioData(arrayBuffer)
-    this.node.buffer = buffer
-    return this
-  }
-
-  createNode() {
-    const node = this.context.createConvolver()
-    node.normalize = false
-    node.connect(this.output)
-    return node
+  return (state, next) => {
+    node.connect(state.output)
+    state.output = node
+    next()
   }
 }
