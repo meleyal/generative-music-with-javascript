@@ -1,5 +1,5 @@
 ---
-title: Structure
+title: Sequencing
 ---
 
 - Scores

@@ -69,12 +69,7 @@ Next, we move on to programming the basic building blocks of music:
 Finally, we go on to develop systems that create music based on different
 generative ideas:
 
-- Randomness and probability
-- Grammars (L-Systems)
-- Recursion (Fractals, Cantor Set...)
-- Evolution (Game of Life, Cellular Automata)
-- Data
-- Rules
+- TODO: List chapters
 
 ## Code Examples
 

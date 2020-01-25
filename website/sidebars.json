@@ -2,7 +2,12 @@
   "docs": {
     "Welcome": ["introduction"],
     "Primers": ["primers/generative", "primers/music", "primers/javascript"],
-    "Music": ["music/notes", "music/scales", "music/timing", "music/structure"],
+    "Music": [
+      "music/notes",
+      "music/scales",
+      "music/timing",
+      "music/sequencing"
+    ],
     "Generative": [
       "generative/repetition",
       "generative/randomness",
