@@ -1,74 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Music · Gen.js</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;blockquote&gt;
-&lt;p&gt;TODO&lt;/p&gt;
-&lt;/blockquote&gt;
-"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Music · Gen.js"/><meta property="og:type" content="website"/><meta property="og:url" content="https://meleyal.github.io/gen/"/><meta property="og:description" content="&lt;blockquote&gt;
-&lt;p&gt;TODO&lt;/p&gt;
-&lt;/blockquote&gt;
-"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/gen/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"/><script type="text/javascript" src="/gen/js/custom.js"></script><script type="text/javascript" src="https://unpkg.com/@meleyal/gen/gen.js"></script><link rel="stylesheet" href="/gen/css/prism.css"/><link rel="stylesheet" href="/gen/css/main.css"/><script src="/gen/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/gen/"><h2 class="headerTitle">Gen.js</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/gen/docs/introduction" target="_self">Docs</a></li><li class=""><a href="https://github.com/meleyal/gen" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Primers</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Welcome</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/introduction">Introduction</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Primers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/primers/generative">Generative</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/gen/docs/primers/music">Music</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/primers/javascript">JavaScript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Music</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/music/notes">Notes</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/music/scales">Scales</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/music/timing">Timing</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/music/structure">Structure</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Generative</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/generative/repetition">Repetition</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/randomness">Randomness</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/probability">Probability</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/grammars">Grammars</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/recursion">Recursion</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/evolution">Evolution</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/machine-learning">Machine Learning</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/sonification">Sonification</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Course</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/course/outline">Course Outline</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/api/">API Reference</a></li></ul></div></div></section></div><script>
-            var coll = document.getElementsByClassName('collapsible');
-            var checkActiveCategory = true;
-            for (var i = 0; i < coll.length; i++) {
-              var links = coll[i].nextElementSibling.getElementsByTagName('*');
-              if (checkActiveCategory){
-                for (var j = 0; j < links.length; j++) {
-                  if (links[j].classList.contains('navListItemActive')){
-                    coll[i].nextElementSibling.classList.toggle('hide');
-                    coll[i].childNodes[1].classList.toggle('rotate');
-                    checkActiveCategory = false;
-                    break;
-                  }
-                }
-              }
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="generator" content="Docusaurus">
+<script src="/gen/js/custom.js"></script>
+<script src="https://unpkg.com/@meleyal/gen/gen.js"></script>
 
-              coll[i].addEventListener('click', function() {
-                var arrow = this.childNodes[1];
-                arrow.classList.toggle('rotate');
-                var content = this.nextElementSibling;
-                content.classList.toggle('hide');
-              });
-            }
+<title data-react-helmet="true">Music</title>
 
-            document.addEventListener('DOMContentLoaded', function() {
-              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
-              createToggler('#tocToggler', 'body', 'tocActive');
+<meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"><meta data-react-helmet="true" property="og:title" content="Gen.js · Generative music with JavaScript"><meta data-react-helmet="true" name="twitter:card" content="summary"><meta data-react-helmet="true" name="description" content="&gt; TODO"><meta data-react-helmet="true" property="og:description" content="&gt; TODO"><meta data-react-helmet="true" property="og:url" content="https://meleyal.github.io/gen/docs/primers/music">
 
-              const headings = document.querySelector('.toc-headings');
-              headings && headings.addEventListener('click', function(event) {
-                if (event.target.tagName === 'A') {
-                  document.body.classList.remove('tocActive');
-                }
-              }, false);
+<link data-react-helmet="true" rel="shortcut icon" href="/gen/img/favicon.png">
 
-              function createToggler(togglerSelector, targetSelector, className) {
-                var toggler = document.querySelector(togglerSelector);
-                var target = document.querySelector(targetSelector);
 
-                if (!toggler) {
-                  return;
-                }
+<link rel="stylesheet" href="/gen/styles.413d22a3.css">
 
-                toggler.onclick = function(event) {
-                  event.preventDefault();
+</head>
+<body>
 
-                  target.classList.toggle(className);
-                };
-              }
-            });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Music</h1></header><article><div><span><blockquote>
-<p>TODO</p>
-</blockquote>
-<p>Remember, music consists of sequences (i.e., lists) of events.</p>
-<p>Here we explain the building blocks of music: melody, harmony and rhythm.</p>
-<p>Melody, harmony, rhythm, compare with functions + primitives.</p>
-<ul>
-<li>Scales</li>
-<li>Chords</li>
-<li>Rhythm</li>
-<li>Tempo/BPM/beat</li>
-<li>Human heart beat</li>
-<li>Signature BPMs (house 120, hip hop 90, dnb 140)</li>
-<li>Time signature</li>
-<li>Note lengths</li>
-<li>Instruments</li>
-</ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 8/14/2019</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/gen/docs/primers/generative"><span class="arrow-prev">← </span><span>Generative</span></a><a class="docs-next button" href="/gen/docs/primers/javascript"><span class="function-name-prevnext">JavaScript</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div></div></body></html>
+<div id="__docusaurus">
+<nav class="navbar navbar--light navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><div aria-label="Navigation bar toggle" class="navbar__toggle" role="button" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></div><a aria-current="page" class="navbar__brand active" href="/gen/"><img class="navbar__logo"><strong>Gen.js</strong></a></div><div class="navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/gen/docs/introduction">Docs</a><a class="navbar__item navbar__link" target="_blank" rel="noopener noreferrer" href="https://github.com/meleyal/gen">GitHub</a></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div><div class="navbar-sidebar"><div class="navbar-sidebar__brand"><a aria-current="page" class="navbar__brand active" href="/gen/"><img class="navbar__logo"><strong>Gen.js</strong></a></div><div class="navbar-sidebar__items"><div class="menu"><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/introduction">Docs</a></li><li class="menu__list-item"><a class="menu__link" target="_blank" rel="noopener noreferrer" href="https://github.com/meleyal/gen">GitHub</a></li></ul></div></div></div></nav><div class="main-wrapper"><div class="docPage_1kjD"><div class="docSidebarContainer_1cYp"><div class="sidebar_1kLs"><div class="menu menu--responsive"><button aria-label="Open Menu" class="button button--secondary button--sm menu__button" type="button"><svg class="sidebarMenuIcon_2vk4" xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 32 32" role="img" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="#!">Welcome</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/introduction">Introduction</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="#!">Primers</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/primers/generative">Generative</a></li><li class="menu__list-item"><a aria-current="page" class="menu__link menu__link--active" href="/gen/docs/primers/music">Music</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/primers/javascript">JavaScript</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="#!">Music</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/music/notes">Notes</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/music/scales">Scales</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/music/timing">Timing</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/music/sequencing">Sequencing</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="#!">Generative</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/repetition">Repetition</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/randomness">Randomness</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/probability">Probability</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/grammars">Grammars</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/recursion">Recursion</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/evolution">Evolution</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/machine-learning">Machine Learning</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/sonification">Sonification</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="#!">Course</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/course/outline">Course Outline</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="#!">Examples</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/examples/scales">Scales</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/examples/phasing">Phasing</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/examples/canon">Canon</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="#!">API</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/api/index">API Reference</a></li></ul></li></ul></div></div></div><main class="docMainContainer_FFX1"><div class="padding-vert--lg"><div class="container"><div class="row"><div class="col"><div class="docItemContainer_2cwg"><article><header><h1 class="docTitle_1vWb">Music</h1></header><div class="markdown"><blockquote><p>TODO</p></blockquote><blockquote><p>Remember, music consists of sequences (i.e., lists) of events.</p></blockquote><p>Here we explain the building blocks of music: melody, harmony and rhythm.</p><p>Melody, harmony, rhythm, compare with functions + primitives.</p><ul><li>Scales</li><li>Chords</li><li>Rhythm</li><li>Tempo/BPM/beat</li><li>Human heart beat</li><li>Signature BPMs (house 120, hip hop 90, dnb 140)</li><li>Time signature</li><li>Note lengths</li><li>Instruments</li></ul><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="definitions"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#definitions" title="Direct link to heading">#</a>Definitions</h2><ul><li>Pitch: a pitch consists of a pitch class and an octave. For example, A4
+represents the pitch class A in the fourth octave.</li><li>Pitch Class: the pitch class A consists of the As in all octaves.</li><li>Note: a note is a pitch combined with a duration</li><li>Rest:</li><li>Score:</li><li>Part:</li><li>Phrase:</li><li>Octave:</li></ul><blockquote><p>where a piece of music is represented as a score, that score has several parts
+(e.g., a flute part and a percussion part), each part contains phrases (e.g.,
+melodies, riffs, grooves, sequences, patterns), and each phrase is made up of
+a series of one or more notes (individual sound events).</p></blockquote><blockquote><p>The collection of notes from one pitch to the next one of the same name, say
+C4 to C5, is an octave. All the notes within an octave (including sharps or
+flats) make up the notes of the “chromatic” scale (12 notes).</p></blockquote><blockquote><p>A note in Python consists of pitch, duration, dynamic (volume), and panning
+position</p></blockquote><blockquote><p>In music theory, a phrase refers to a grouping of consecutive notes. A phrase
+typically contains a melody—a linear list of notes that acts as a musical
+unit.</p></blockquote><blockquote><p>For convenience, Python also defines meaningful names (constants) for pitches.
+Pitch constants consist of a letter (C, D, E, F, G, A, or B) followed by the
+octave (or register) of the pitch. For example, middle C is C4.</p></blockquote><blockquote><p>In Python, dynamic values are integers. They range from 0 to 127. This follows
+the MIDI standard, which represents dynamics (or velocity) from 0 (silence) to
+127 (loudest).</p></blockquote><blockquote><p>Creating Notes The most basic musical structure in the Python music library is
+a note. Python notes have the following attributes: • pitch—an integer from 0
+(low) to 127 (high) • duration—a positive real number (quarter note is 1.0) •
+dynamic—(or volume) an integer from 0 (silent) to 127 (loudest) • panning—a
+real number from 0.0 (left) to 1.0 (right) To create a note, we specify its
+pitch, duration, dynamic, and panning position, as follows: Note(pitch,
+duration, dynamic, panning) where dynamic and panning are optional. If
+omitted, dynamic is set to 85 and panning to 0.5 (center).</p></blockquote><blockquote><p>Distinctive parameters for notes are pitch, duration and velocity;</p></blockquote><blockquote><p>In most computer music systems of algorithmic composition, the parameters
+pitch, duration, and dynamics may be manipulated;</p></blockquote></div></article><div class="margin-vert--xl"><div class="row"><div class="col"></div><div class="col text--right"><em><small>Last updated on <time datetime="2020-01-26T00:45:38.000Z" class="docLastUpdatedAt_1sqk">1/26/2020</time></small></em></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/gen/docs/primers/generative"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« Generative</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/gen/docs/primers/javascript"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">JavaScript »</h4></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_TbNY"><ul class="contents contents__left-border"><li><a href="#definitions" class="contents__link">Definitions</a></li></ul></div></div></div></div></div></main></div></div>
+</div>
+
+<script src="/gen/styles.71578e07.js"></script>
+
+<script src="/gen/runtime~main.6cb4e9aa.js"></script>
+
+<script src="/gen/main.e92d8ddb.js"></script>
+
+<script src="/gen/1.4bfa0390.js"></script>
+
+<script src="/gen/36.1c63aa02.js"></script>
+
+<script src="/gen/ceb3780a.a23ad598.js"></script>
+
+<script src="/gen/17896441.32186c1c.js"></script>
+
+<script src="/gen/443ebbf3.58b208ee.js"></script>
+
+
+</body>
+</html>

@@ -1,140 +1,76 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Introduction · Gen.js</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;blockquote&gt;
-&lt;p&gt;Nature, music, and number are all somehow intertwined ... one can be&lt;/p&gt;
-&lt;/blockquote&gt;
-"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Introduction · Gen.js"/><meta property="og:type" content="website"/><meta property="og:url" content="https://meleyal.github.io/gen/"/><meta property="og:description" content="&lt;blockquote&gt;
-&lt;p&gt;Nature, music, and number are all somehow intertwined ... one can be&lt;/p&gt;
-&lt;/blockquote&gt;
-"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/gen/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"/><script type="text/javascript" src="/gen/js/custom.js"></script><script type="text/javascript" src="https://unpkg.com/@meleyal/gen/gen.js"></script><link rel="stylesheet" href="/gen/css/prism.css"/><link rel="stylesheet" href="/gen/css/main.css"/><script src="/gen/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/gen/"><h2 class="headerTitle">Gen.js</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive siteNavItemActive"><a href="/gen/docs/introduction" target="_self">Docs</a></li><li class=""><a href="https://github.com/meleyal/gen" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Welcome</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Welcome</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/gen/docs/introduction">Introduction</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Primers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/primers/generative">Generative</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/primers/music">Music</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/primers/javascript">JavaScript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Music</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/music/notes">Notes</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/music/scales">Scales</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/music/timing">Timing</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/music/structure">Structure</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Generative</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/generative/repetition">Repetition</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/randomness">Randomness</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/probability">Probability</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/grammars">Grammars</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/recursion">Recursion</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/evolution">Evolution</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/machine-learning">Machine Learning</a></li><li class="navListItem"><a class="navItem" href="/gen/docs/generative/sonification">Sonification</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Course</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/course/outline">Course Outline</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/gen/docs/api/">API Reference</a></li></ul></div></div></section></div><script>
-            var coll = document.getElementsByClassName('collapsible');
-            var checkActiveCategory = true;
-            for (var i = 0; i < coll.length; i++) {
-              var links = coll[i].nextElementSibling.getElementsByTagName('*');
-              if (checkActiveCategory){
-                for (var j = 0; j < links.length; j++) {
-                  if (links[j].classList.contains('navListItemActive')){
-                    coll[i].nextElementSibling.classList.toggle('hide');
-                    coll[i].childNodes[1].classList.toggle('rotate');
-                    checkActiveCategory = false;
-                    break;
-                  }
-                }
-              }
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="generator" content="Docusaurus">
+<script src="/gen/js/custom.js"></script>
+<script src="https://unpkg.com/@meleyal/gen/gen.js"></script>
 
-              coll[i].addEventListener('click', function() {
-                var arrow = this.childNodes[1];
-                arrow.classList.toggle('rotate');
-                var content = this.nextElementSibling;
-                content.classList.toggle('hide');
-              });
-            }
+<title data-react-helmet="true">Introduction</title>
 
-            document.addEventListener('DOMContentLoaded', function() {
-              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
-              createToggler('#tocToggler', 'body', 'tocActive');
+<meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"><meta data-react-helmet="true" property="og:title" content="Gen.js · Generative music with JavaScript"><meta data-react-helmet="true" name="twitter:card" content="summary"><meta data-react-helmet="true" name="description" content="&gt; Nature, music, and number are all somehow intertwined ... one can be"><meta data-react-helmet="true" property="og:description" content="&gt; Nature, music, and number are all somehow intertwined ... one can be"><meta data-react-helmet="true" property="og:url" content="https://meleyal.github.io/gen/docs/introduction">
 
-              const headings = document.querySelector('.toc-headings');
-              headings && headings.addEventListener('click', function(event) {
-                if (event.target.tagName === 'A') {
-                  document.body.classList.remove('tocActive');
-                }
-              }, false);
+<link data-react-helmet="true" rel="shortcut icon" href="/gen/img/favicon.png">
 
-              function createToggler(togglerSelector, targetSelector, className) {
-                var toggler = document.querySelector(togglerSelector);
-                var target = document.querySelector(targetSelector);
 
-                if (!toggler) {
-                  return;
-                }
+<link rel="stylesheet" href="/gen/styles.413d22a3.css">
 
-                toggler.onclick = function(event) {
-                  event.preventDefault();
+</head>
+<body>
 
-                  target.classList.toggle(className);
-                };
-              }
-            });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Introduction</h1></header><article><div><span><blockquote>
-<p>Nature, music, and number are all somehow intertwined ... one can be
-transformed into another.</p>
-<p><em><a href="https://www.amazon.com/dp/1439867917">Making Music with Computers</a>, Bill
-Manaris and Andrew R. Brown</em></p>
-</blockquote>
-<p>This book is a <mark>work in progress</mark> guide to creating generative music
-with JavaScript.</p>
-<p>There already exist
+<div id="__docusaurus">
+<nav class="navbar navbar--light navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><div aria-label="Navigation bar toggle" class="navbar__toggle" role="button" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></div><a aria-current="page" class="navbar__brand active" href="/gen/"><img class="navbar__logo"><strong>Gen.js</strong></a></div><div class="navbar__items navbar__items--right"><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/gen/docs/introduction">Docs</a><a class="navbar__item navbar__link" target="_blank" rel="noopener noreferrer" href="https://github.com/meleyal/gen">GitHub</a></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div><div class="navbar-sidebar"><div class="navbar-sidebar__brand"><a aria-current="page" class="navbar__brand active" href="/gen/"><img class="navbar__logo"><strong>Gen.js</strong></a></div><div class="navbar-sidebar__items"><div class="menu"><ul class="menu__list"><li class="menu__list-item"><a aria-current="page" class="menu__link navbar__link--active" href="/gen/docs/introduction">Docs</a></li><li class="menu__list-item"><a class="menu__link" target="_blank" rel="noopener noreferrer" href="https://github.com/meleyal/gen">GitHub</a></li></ul></div></div></div></nav><div class="main-wrapper"><div class="docPage_1kjD"><div class="docSidebarContainer_1cYp"><div class="sidebar_1kLs"><div class="menu menu--responsive"><button aria-label="Open Menu" class="button button--secondary button--sm menu__button" type="button"><svg class="sidebarMenuIcon_2vk4" xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 32 32" role="img" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="#!">Welcome</a><ul class="menu__list"><li class="menu__list-item"><a aria-current="page" class="menu__link menu__link--active" href="/gen/docs/introduction">Introduction</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="#!">Primers</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/primers/generative">Generative</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/primers/music">Music</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/primers/javascript">JavaScript</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="#!">Music</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/music/notes">Notes</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/music/scales">Scales</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/music/timing">Timing</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/music/sequencing">Sequencing</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="#!">Generative</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/repetition">Repetition</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/randomness">Randomness</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/probability">Probability</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/grammars">Grammars</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/recursion">Recursion</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/evolution">Evolution</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/machine-learning">Machine Learning</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/generative/sonification">Sonification</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="#!">Course</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/course/outline">Course Outline</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="#!">Examples</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/examples/scales">Scales</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/examples/phasing">Phasing</a></li><li class="menu__list-item"><a class="menu__link" href="/gen/docs/examples/canon">Canon</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="#!">API</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/gen/docs/api/index">API Reference</a></li></ul></li></ul></div></div></div><main class="docMainContainer_FFX1"><div class="padding-vert--lg"><div class="container"><div class="row"><div class="col"><div class="docItemContainer_2cwg"><article><header><h1 class="docTitle_1vWb">Introduction</h1></header><div class="markdown"><blockquote><p>Nature, music, and number are all somehow intertwined ... one can be
+transformed into another.</p><p><em><a href="https://www.amazon.com/dp/1439867917">Making Music with Computers</a>, Bill
+Manaris and Andrew R. Brown</em></p></blockquote><p>This book is a <mark>work in progress</mark> guide to creating generative music
+with JavaScript.</p><p>There already exist
 <a href="https://github.com/ciconia/awesome-music/blob/master/README.md#music-programming">many ways</a>
 to make generative music, but this book is about learning how to create
 something from scratch using JavaScript and the Web Audio API. We can fairly
 easily write a program to generate noise, and with a little work even something
 that sounds vaguely like music, but can we design systems that produce something
-that approaches the qualities of &quot;real&quot; music? Let's find out!</p>
-<h2><a class="anchor" aria-hidden="true" id="principles"></a><a href="#principles" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Principles</h2>
-<p>To help us focus, the book has a few guiding principles:</p>
-<ul>
-<li><p><strong>Fun over rigour:</strong> We'll take inspiration from science and nature, but also
-take some artistic license along the way.</p></li>
-<li><p><strong>Composition over sound design:</strong> The focus will be on creating musical
-structures, with sound generation delegated to instrument samples.</p></li>
-<li><p><strong>Systems over performance:</strong> We're aiming for music that is self evolving and
+that approaches the qualities of &quot;real&quot; music? Let&#x27;s find out!</p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="principles"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#principles" title="Direct link to heading">#</a>Principles</h2><p>To help us focus, the book has a few guiding principles:</p><ul><li><p><strong>Fun over rigour:</strong> We&#x27;ll take inspiration from science and nature, but also
+take some artistic license along the way.</p></li><li><p><strong>Composition over sound design:</strong> The focus will be on creating musical
+structures, with sound generation delegated to instrument samples.</p></li><li><p><strong>Systems over performance:</strong> We&#x27;re aiming for music that is self evolving and
 requires no interaction from us or the listener (i.e.
 <a href="https://en.wikipedia.org/wiki/Generative_music#Creative/procedural">procedural music</a>
-in contrast with <a href="https://en.wikipedia.org/wiki/Live_coding">live coding</a>).</p></li>
-<li><p><strong>Simple building blocks:</strong> We'll build things from the ground up. As we go
-we'll encapsulate our learning into a set of modules we can plug together to
-make more sophisticated music.</p></li>
-</ul>
-<h2><a class="anchor" aria-hidden="true" id="structure"></a><a href="#structure" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Structure</h2>
-<h3><a class="anchor" aria-hidden="true" id="primers"></a><a href="#primers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Primers</h3>
-<p>To help us get started, the book begins with short primers on each of its three
-subjects:</p>
-<ul>
-<li><p><a href="primers/generative"><strong>Generative:</strong></a> Here we define what we mean by
+in contrast with <a href="https://en.wikipedia.org/wiki/Live_coding">live coding</a>).</p></li><li><p><strong>Simple building blocks:</strong> We&#x27;ll build things from the ground up. As we go
+we&#x27;ll encapsulate our learning into a set of modules we can plug together to
+make more sophisticated music.</p></li></ul><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="structure"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#structure" title="Direct link to heading">#</a>Structure</h2><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="primers"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#primers" title="Direct link to heading">#</a>Primers</h3><p>To help us get started, the book begins with short primers on each of its three
+subjects:</p><ul><li><p><a href="primers/generative"><strong>Generative:</strong></a> Here we define what we mean by
 &quot;generative&quot;, and cover how generative processes can be applied to creating
-art and music</p></li>
-<li><p><a href="primers/music"><strong>Music:</strong></a> Here we explain the building blocks of music:
-melody, harmony and rhythm.</p></li>
-<li><p><a href="primers/javascript"><strong>JavaScript:</strong></a> Here we cover modern JavaScript, and
-introduce the Web Audio API.</p></li>
-</ul>
-<h3><a class="anchor" aria-hidden="true" id="music"></a><a href="#music" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Music</h3>
-<p>Next, we move on to programming the basic building blocks of music:</p>
-<ul>
-<li>Notes</li>
-<li>Scales</li>
-<li>Timing</li>
-<li>Sequencing</li>
-</ul>
-<h3><a class="anchor" aria-hidden="true" id="generative"></a><a href="#generative" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generative</h3>
-<p>Finally, we go on to develop systems that create music based on different
-generative ideas:</p>
-<ul>
-<li>Randomness and probability</li>
-<li>Grammars (L-Systems)</li>
-<li>Recursion (Fractals, Cantor Set...)</li>
-<li>Evolution (Game of Life, Cellular Automata)</li>
-<li>Data</li>
-<li>Rules</li>
-</ul>
-<h2><a class="anchor" aria-hidden="true" id="code-examples"></a><a href="#code-examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Code Examples</h2>
-<p>All the code examples in this book are runnable. You should be able to hear the
+art and music</p></li><li><p><a href="primers/music"><strong>Music:</strong></a> Here we explain the building blocks of music:
+melody, harmony and rhythm.</p></li><li><p><a href="primers/javascript"><strong>JavaScript:</strong></a> Here we cover modern JavaScript, and
+introduce the Web Audio API.</p></li></ul><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="music"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#music" title="Direct link to heading">#</a>Music</h3><p>Next, we move on to programming the basic building blocks of music:</p><ul><li>Notes</li><li>Scales</li><li>Timing</li><li>Sequencing</li></ul><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="generative"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#generative" title="Direct link to heading">#</a>Generative</h3><p>Finally, we go on to develop systems that create music based on different
+generative ideas:</p><ul><li>TODO: List chapters</li></ul><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="code-examples"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#code-examples" title="Direct link to heading">#</a>Code Examples</h2><p>All the code examples in this book are runnable. You should be able to hear the
 results (or see them in the console) when hitting the <code>Run</code> bottom in the
-bottom-right corner of each code snippet.</p>
-<p>To avoid repeating big chunks of code we've already seen, once a concept has
-been introduced, we'll import relevant functions from the
-<a href="https://www.npmjs.com/package/@meleyal/gen">Gen.js</a> library (it's present on
+bottom-right corner of each code snippet.</p><p>To avoid repeating big chunks of code we&#x27;ve already seen, once a concept has
+been introduced, we&#x27;ll import relevant functions from the
+<a href="https://www.npmjs.com/package/@meleyal/gen">Gen.js</a> library (it&#x27;s present on
 every page as the <code>gen</code> global). The actual implementation might differ from the
 presented examples as the library evolves, but the principles should remain
-similar.</p>
-<h2><a class="anchor" aria-hidden="true" id="genjs-library"></a><a href="#genjs-library" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Gen.js Library</h2>
-<p>A lot of the ideas are encapsulated in the Gen.js library. If you want to skip
-over how things are implemented and just make music, we'll cross-reference each
+similar.</p><p>## Gen.js Library</p><p>A lot of the ideas are encapsulated in the Gen.js library. If you want to skip
+over how things are implemented and just make music, we&#x27;ll cross-reference each
 of the code examples with their Gen.js counterpart. The full list of available
-functions can be found in the <a href="api/index">API Reference</a>.</p>
-<ul>
-<li><a href="https://explodingart.com/jmusic/jmDocumentation/index.html">https://explodingart.com/jmusic/jmDocumentation/index.html</a></li>
-<li><a href="https://github.com/overtone/overtone">https://github.com/overtone/overtone</a></li>
-<li><a href="https://sonic-pi.net/">https://sonic-pi.net/</a></li>
-<li><a href="https://tonejs.github.io/">https://tonejs.github.io/</a></li>
-</ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/28/2019</em></div><div class="docs-prevnext"><a class="docs-next button" href="/gen/docs/primers/generative"><span>Generative</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#principles">Principles</a></li><li><a href="#structure">Structure</a><ul class="toc-headings"><li><a href="#primers">Primers</a></li><li><a href="#music">Music</a></li><li><a href="#generative">Generative</a></li></ul></li><li><a href="#code-examples">Code Examples</a></li><li><a href="#genjs-library">Gen.js Library</a></li></ul></nav></div></div></body></html>
+functions can be found in the <a href="api/index">API Reference</a>.</p><ul><li><a href="https://explodingart.com/jmusic/jmDocumentation/index.html">https://explodingart.com/jmusic/jmDocumentation/index.html</a></li><li><a href="https://github.com/overtone/overtone">https://github.com/overtone/overtone</a></li><li><a href="https://sonic-pi.net/">https://sonic-pi.net/</a></li><li><a href="https://tonejs.github.io/">https://tonejs.github.io/</a></li></ul></div></article><div class="margin-vert--xl"><div class="row"><div class="col"></div><div class="col text--right"><em><small>Last updated on <time datetime="2020-01-26T00:45:38.000Z" class="docLastUpdatedAt_1sqk">1/26/2020</time></small></em></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav"><div class="pagination-nav__item"></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/gen/docs/primers/generative"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Generative »</h4></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_TbNY"><ul class="contents contents__left-border"><li><a href="#principles" class="contents__link">Principles</a></li><li><a href="#structure" class="contents__link">Structure</a><ul><li><a href="#primers" class="contents__link">Primers</a></li><li><a href="#music" class="contents__link">Music</a></li><li><a href="#generative" class="contents__link">Generative</a></li></ul></li><li><a href="#code-examples" class="contents__link">Code Examples</a></li></ul></div></div></div></div></div></main></div></div>
+</div>
+
+<script src="/gen/styles.71578e07.js"></script>
+
+<script src="/gen/runtime~main.6cb4e9aa.js"></script>
+
+<script src="/gen/main.e92d8ddb.js"></script>
+
+<script src="/gen/1.4bfa0390.js"></script>
+
+<script src="/gen/36.1c63aa02.js"></script>
+
+<script src="/gen/ceb3780a.a23ad598.js"></script>
+
+<script src="/gen/17896441.32186c1c.js"></script>
+
+<script src="/gen/a09c2993.9ca53058.js"></script>
+
+
+</body>
+</html>
