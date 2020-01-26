@@ -9,9 +9,7 @@ src/samples/**/files
 dist
 
 # Docusuarus
+.docusaurus
+.cache-loader
 website/build/
-website/yarn.lock
 website/i18n/
-
-# Editor
-.vscode

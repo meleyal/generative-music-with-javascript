@@ -1,5 +1,6 @@
 module.exports = {
   inject: vars => {
+    console.log('here', vars)
     return (md, options) => {
       const originalRender = md.renderer.rules.fence
 

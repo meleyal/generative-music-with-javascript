@@ -17,7 +17,7 @@ and is borrowed from
 generates `messages` which are sent to an `update` function that updates a data
 `model` and passes it to a `render` function. It's as simple as that!
 
-![](assets/architecture/one-way-data-flow.svg)
+![](/gen/img/architecture/one-way-data-flow.svg)
 
 ## Model
 

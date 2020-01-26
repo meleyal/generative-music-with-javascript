@@ -14,6 +14,8 @@ different notes. Thanks to the intricacies of frequency and the human ear, we
 perceive a sample played at twice the speed to be twice the pitch.
 
 ```js
+const context = new AudioContext()
+
 // Half speed = 22,050 Hz = -1 octave = C3
 const c3 = context.createBufferSource()
 c3.buffer = audioBuffer
@@ -139,7 +141,7 @@ Recall from the [Music](../primers/music) chapter that some notes can be sharp
 (C#, half a semitone above C) or flat (Db, half a semitone below D). Looking at
 our keyboard, we can see that these are actually the same note:
 
-![](assets/sampler/enharmonic.svg)
+![](/gen/img/sampler/enharmonic.svg)
 
 These are known as "enharmonic" notes, which just means they are the same note
 written in a different way. We can write a simple `enharmonic()` function to
@@ -444,7 +446,7 @@ we can simplify this down to just the attack and release phases, which will
 allow us to control how a sound peaks, and how long it lasts, known as an _AR
 envelope_:
 
-![](assets/notes/envelopes.svg)
+![](/gen/img/notes/envelopes.svg)
 
 Envelopes can be modelled with a `GainNode`, taking advantage of the fact that
 its `gain` property is an

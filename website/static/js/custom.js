@@ -1,5 +1,5 @@
 window.onload = () => {
-  const codeBlocks = document.querySelectorAll('code.language-js')
+  const codeBlocks = document.querySelectorAll('.prism-code.language-js')
 
   codeBlocks.forEach(block => {
     const btn = document.createElement('button')

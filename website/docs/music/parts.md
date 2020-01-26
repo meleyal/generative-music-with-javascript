@@ -30,7 +30,7 @@ sequencer found in Reason, which has all the features listed above. We're going
 to build a basic emulation of the Matrix sequencer in this chapter, so let's
 take a look at it:
 
-![](assets/sequencer/matrix.png)
+![](/gen/img/sequencer/matrix.png)
 
 ## Sequencing
 
@@ -255,7 +255,7 @@ might play the same notes in a lower octave on a different instrument.
 We'll refer to this as "transforming" a pattern, and there are many ways we
 could do it:
 
-![](assets/sequencer/transforms.svg)
+![](/gen/img/sequencer/transforms.svg)
 
 And here's how these transformations might look in code:
 

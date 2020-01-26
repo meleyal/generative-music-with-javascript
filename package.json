@@ -7,7 +7,7 @@
     "website": "cd website && yarn run start",
     "serve": "webpack-dev-server",
     "test": "mocha --require esm --require test/test-helper",
-    "publish-docs": "cd website && yarn run publish-gh-pages",
+    "publish-docs": "cd website && yarn run deploy",
     "build": "webpack -p"
   },
   "repository": {
