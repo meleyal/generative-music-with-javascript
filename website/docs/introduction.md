@@ -84,14 +84,24 @@ every page as the `gen` global). The actual implementation might differ from the
 presented examples as the library evolves, but the principles should remain
 similar.
 
-## Gen.js Library
+## Gen.js Library
 
-A lot of the ideas are encapsulated in the Gen.js library. If you want to skip
-over how things are implemented and just make music, we'll cross-reference each
-of the code examples with their Gen.js counterpart. The full list of available
-functions can be found in the [API Reference](api/index).
+A lot of the ideas here are encapsulated in the Gen.js library. If you want to
+skip over how things are implemented and just make music, we'll cross-reference
+each of the code examples with their Gen.js counterpart. The full list of
+available functions can be found in the [API Reference](api/index).
 
-- https://explodingart.com/jmusic/jmDocumentation/index.html
-- https://github.com/overtone/overtone
-- https://sonic-pi.net/
-- https://tonejs.github.io/
+## Prior Art
+
+This book and the design of Gen.js take inspiration from the following:
+
+- [The Nature of Code](https://natureofcode.com/) – simulations of natural
+  systems.
+- [Overtone](https://github.com/overtone/overtone) – collaborative programmable
+  music.
+- [Sonic Pi](https://sonic-pi.net/) – a code-based music creation and
+  performance tool.
+- [Tone.js](https://tonejs.github.io/) – a framework for creating interactive
+  music in the browser
+- [jMusic](https://explodingart.com/jmusic/jmDocumentation/index.html) - music
+  composition in Java.
