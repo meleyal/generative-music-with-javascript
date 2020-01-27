@@ -4,7 +4,7 @@ title: Course Outline
 
 Below is an outline for teaching this book as a course/workshop.
 
-## Learning
+## Learning
 
 Over the course of ten lessons, students will learn:
 
