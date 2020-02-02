@@ -6,7 +6,7 @@ Below is an outline for teaching this book as a course/workshop.
 
 ## Learning
 
-Over the course of ten lessons, students will learn:
+Through the course students will learn:
 
 - The basic principles of music
 - Working with audio in the browser via the Web Audio API and JavaScript
@@ -22,7 +22,34 @@ Over the course of ten lessons, students will learn:
 - A code editor such as [Atom](https://atom.io/) or
   [VS Code](https://code.visualstudio.com)
 
-## Lesson Plan
+## Lesson Plan (Workshop)
+
+_A compressed version of the course introducing the main concepts._
+
+- Duration: 2 days
+- Size: 6-8 people
+
+### Day 1
+
+- Morning
+  - TODO
+- Afternoon
+  - TODO
+
+### Day 2
+
+- Morning
+  - TODO
+- Afternoon
+  - TODO
+
+## Lesson Plan (Course)
+
+_An extended version of the course covering topics in more detail and developing
+a personal project._
+
+- Duration: 10 weeks
+- Size: 6-8 people
 
 ### Week 1 - Introduction
 
