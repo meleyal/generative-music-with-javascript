@@ -5,8 +5,8 @@ title: Introduction
 > Nature, music, and number are all somehow intertwined ... one can be
 > transformed into another.
 >
-> _[Making Music with Computers](https://www.amazon.com/dp/1439867917), Bill
-> Manaris and Andrew R. Brown_
+> – *[Making Music with Computers](https://www.amazon.com/dp/1439867917), Bill
+> Manaris and Andrew R. Brown*
 
 This book is a <mark>work in progress</mark> guide to creating generative music
 with JavaScript.
