@@ -16,22 +16,22 @@ export default async inst => {
         .then(buffer => {
           buffers[pitch] = {
             buffer,
-            ...sampleMap[pitch],
+            ...sampleMap[pitch]
           }
         })
     )
   )
 
-  return (state, next) => {
+  return (note, next) => {
     const context = env.context
     const now = env.now()
-    const note = midiToPitch(state.note[0])
-    const duration = state.note[1]
+    const pitch = midiToPitch(note[0])
+    const duration = note[1]
     // const volume = state.note[2] || 80
     const volume = 1
 
-    if (state.note) {
-      if (state.note[0] === pitches.rest) {
+    if (note) {
+      if (note[0] === pitches.rest) {
         let osc = context.createOscillator()
         osc.onended = () => {
           next()
@@ -40,13 +40,13 @@ export default async inst => {
         osc.stop(now + duration)
         osc = null
       } else {
-        const buffer = buffers[note].buffer
+        const buffer = buffers[pitch].buffer
 
         let sourceNode = context.createBufferSource()
         let gainNode = context.createGain()
 
         sourceNode.buffer = buffer
-        sourceNode.playbackRate.value = buffers[note].playbackRate
+        sourceNode.playbackRate.value = buffers[pitch].playbackRate
 
         const zero = 0.00001 // value must be positive for exponentialRamp
         gainNode.gain.setValueAtTime(volume, now)

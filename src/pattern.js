@@ -5,9 +5,48 @@ import {
   head,
   tail,
   sample,
-  cloneDeep,
+  cloneDeep
 } from 'lodash'
 import { pitches, durations, velocities } from './constants'
+
+export const part = notes => {
+  let callback
+  let note = 0
+
+  const next = () => {
+    note += 1
+    callback(notes[note], next)
+  }
+
+  return {
+    on: function(event, cb) {
+      callback = cb
+      console.log(this)
+      return this
+    },
+
+    play: function() {
+      callback(notes[note], next)
+      return this
+    }
+  }
+}
+
+export const part2 = notes => {
+  let note = -1
+  let callback
+
+  const next = () => {
+    note += 1
+    // callback(notes[note], next)
+    callback(notes[note], next)
+  }
+
+  return piano => {
+    callback = piano
+    next()
+  }
+}
 
 export const loop = notes => {
   const r = ring(notes)
