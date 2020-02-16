@@ -56,7 +56,7 @@ blockquote {
   position: relative;
 }
 
-.prism-code > button {
+.prism-code > .btn-code-block-run {
   position: absolute;
   bottom: 1.25rem;
   right: 1.5rem;
