@@ -9,42 +9,9 @@ import {
 } from 'lodash'
 import { pitches, durations, velocities } from './constants'
 
-export const part = notes => {
-  let callback
-  let note = 0
-
-  const next = () => {
-    note += 1
-    callback(notes[note], next)
-  }
-
-  return {
-    on: function(event, cb) {
-      callback = cb
-      console.log(this)
-      return this
-    },
-
-    play: function() {
-      callback(notes[note], next)
-      return this
-    }
-  }
-}
-
-export const part2 = notes => {
-  let note = -1
-  let callback
-
-  const next = () => {
-    note += 1
-    // callback(notes[note], next)
-    callback(notes[note], next)
-  }
-
-  return piano => {
-    callback = piano
-    next()
+export const part = async (notes, inst) => {
+  for (const note of notes) {
+    await inst(note)
   }
 }
 
@@ -106,10 +73,9 @@ export const take = (arr, n) => {
 }
 
 export const quantize = (arr, bpm) => {
-  const bps = 60.0 / bpm
+  const bps = bpm / 60.0
 
-  return cloneDeep(arr).map(n => {
-    n[1] = n[1] * bps
-    return n
+  return arr.map(n => {
+    return [n[0], n[1] / bps]
   })
 }
