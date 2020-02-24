@@ -9,10 +9,11 @@ title: Canon
  * Adapted from https://git.io/fjyri
  */
 
-const { pattern, sampler, reverb, pitches, durations } = gen
+const { env, pattern, sampler, reverb, compressor, pitches, durations } = gen
+const { context, connect, clock, master } = env
+const { part, repeat, transpose, quantize } = pattern
 const { c4, d4, e4, f4, g4, c5, rest } = pitches
 const { wn, qn, den, sn, hn, ent } = durations
-const { part, repeat, transpose, quantize } = pattern
 
 ;(async () => {
   const rests = [[rest, wn]]
@@ -50,11 +51,17 @@ const { part, repeat, transpose, quantize } = pattern
     [c4, hn]
   ]
 
-  // TODO: fx(reverb)
-
   const bpm = 90.0
 
-  const piano = await sampler('piano')
+  const ctx = context()
+  const time = clock(ctx)
+  const output = connect(
+    compressor(ctx),
+    await reverb('bottle-hall', ctx),
+    master(ctx)
+  )
+
+  const piano = await sampler('piano', ctx, time, output)
 
   const theme = quantize(repeat(notes, 2), bpm)
 
@@ -67,6 +74,8 @@ const { part, repeat, transpose, quantize } = pattern
     [...repeat(rests, 2), ...repeat(transpose(notes, -12), 2)],
     bpm
   )
+
+  // TODO: Wrap in score(bpm, parts) that does quantize?
 
   part(theme, piano)
   part(response1, piano)

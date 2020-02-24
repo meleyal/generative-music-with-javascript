@@ -5,17 +5,21 @@ chai.use(chaiString)
 chai.use(sinonChai)
 
 class AudioContext {
+  get id() {
+    return Date.now() // test memoize
+  }
   get currentTime() {
     return 0
   }
+  get destination() {}
   createGain() {
     return {
       gain: {
         value: 0,
         setValueAtTime: () => null,
-        exponentialRampToValueAtTime: () => null,
+        exponentialRampToValueAtTime: () => null
       },
-      connect: () => null,
+      connect: () => null
     }
   }
   createOscillator() {}
@@ -26,13 +30,13 @@ class AudioContext {
       playbackRate: { value: 0 },
       connect: () => null,
       start: () => null,
-      stop: () => null,
+      stop: () => null
     }
   }
   createConvolver() {}
   decodeAudioData() {
     return {
-      duration: Math.random(),
+      duration: Math.random()
     }
   }
 }
@@ -40,7 +44,7 @@ class AudioContext {
 const fetch = url => {
   return Promise.resolve(
     Promise.resolve({
-      arrayBuffer: () => new ArrayBuffer(),
+      arrayBuffer: () => new ArrayBuffer()
     })
   )
 }

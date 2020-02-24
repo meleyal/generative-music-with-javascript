@@ -1,9 +1,6 @@
-import env from './env'
 import samples from './samples'
 
-export default async (name = 'flat') => {
-  const context = env.context
-  console.log(samples.reverbs, name)
+export default async (name, context) => {
   const impulse = samples.reverbs[name]
   const res = await window.fetch(impulse)
   const arrayBuffer = await res.arrayBuffer()
@@ -11,10 +8,5 @@ export default async (name = 'flat') => {
   const node = context.createConvolver()
   node.buffer = buffer
   node.normalize = false
-
-  return (state, next) => {
-    node.connect(state.output)
-    state.output = node
-    next()
-  }
+  return node
 }
