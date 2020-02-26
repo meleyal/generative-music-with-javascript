@@ -5,8 +5,8 @@ chai.use(chaiString)
 chai.use(sinonChai)
 
 class AudioContext {
-  get id() {
-    return Date.now() // test memoize
+  constructor() {
+    this.id = Date.now()
   }
   get currentTime() {
     return 0

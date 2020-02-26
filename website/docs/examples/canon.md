@@ -52,9 +52,9 @@ const { wn, qn, den, sn, hn, ent } = durations
   ]
 
   const bpm = 90.0
-
   const ctx = context()
   const time = clock(ctx)
+
   const output = connect(
     compressor(ctx),
     await reverb('bottle-hall', ctx),
@@ -76,7 +76,6 @@ const { wn, qn, den, sn, hn, ent } = durations
   )
 
   // TODO: Wrap in score(bpm, parts) that does quantize?
-
   part(theme, piano)
   part(response1, piano)
   part(response2, piano)

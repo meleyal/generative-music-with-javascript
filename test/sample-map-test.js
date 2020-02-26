@@ -12,27 +12,27 @@ describe('sampleMap', () => {
 
     expect(samples['a0']).to.deep.equal({
       path: '/path/to/a0.mp3',
-      playbackRate: 1,
+      playbackRate: 1
     })
 
     expect(samples['as0']).to.deep.equal({
       path: '/path/to/a0.mp3',
-      playbackRate: 1.0594630943592953,
+      playbackRate: 1.0594630943592953
     })
 
     expect(samples['b0']).to.deep.equal({
       path: '/path/to/a0.mp3',
-      playbackRate: 1.122462048309373,
+      playbackRate: 1.122462048309373
     })
 
     expect(samples['as1']).to.deep.equal({
       path: '/path/to/cs2.mp3',
-      playbackRate: 0.8408964152537146,
+      playbackRate: 0.8408964152537145
     })
 
     expect(samples['f7']).to.deep.equal({
       path: '/path/to/cs2.mp3',
-      playbackRate: 40.317473596635935,
+      playbackRate: 40.317473596635935
     })
   })
 })

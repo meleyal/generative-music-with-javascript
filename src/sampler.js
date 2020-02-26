@@ -1,4 +1,3 @@
-import env from './env'
 import { midiToPitch } from './music'
 import { pitches } from './constants'
 import samples from './samples'
