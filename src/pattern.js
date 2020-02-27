@@ -9,12 +9,6 @@ import {
 } from 'lodash'
 import { pitches, durations, velocities } from './constants'
 
-export const part = async (notes, inst) => {
-  for (const note of notes) {
-    await inst(note)
-  }
-}
-
 export const loop = notes => {
   const r = ring(notes)
 

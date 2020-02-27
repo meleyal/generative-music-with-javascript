@@ -11,7 +11,9 @@ class AudioContext {
   get currentTime() {
     return 0
   }
-  get destination() {}
+  get destination() {
+    return {}
+  }
   createGain() {
     return {
       gain: {

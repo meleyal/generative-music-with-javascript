@@ -2,7 +2,7 @@ import { midiToPitch } from './music'
 import { pitches } from './constants'
 import samples from './samples'
 
-export default async (inst, context, time, output) => {
+export default async (env, inst) => {
   const buffers = {}
   const sampleMap = samples[inst]
 
@@ -11,7 +11,7 @@ export default async (inst, context, time, output) => {
       window
         .fetch(sampleMap[pitch].path)
         .then(response => response.arrayBuffer())
-        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+        .then(arrayBuffer => env.context.decodeAudioData(arrayBuffer))
         .then(buffer => {
           buffers[pitch] = {
             buffer,
@@ -23,14 +23,14 @@ export default async (inst, context, time, output) => {
 
   return note => {
     return new Promise(resolve => {
-      const now = time()
+      const now = env.now()
       const pitch = midiToPitch(note[0])
       const duration = note[1]
       // const volume = state.note[2] || 80
       const volume = 1
 
       if (note[0] === pitches.rest) {
-        let osc = context.createOscillator()
+        let osc = env.context.createOscillator()
         osc.onended = () => {
           resolve()
         }
@@ -40,8 +40,8 @@ export default async (inst, context, time, output) => {
       } else {
         const buffer = buffers[pitch].buffer
 
-        let sourceNode = context.createBufferSource()
-        let gainNode = context.createGain()
+        let sourceNode = env.context.createBufferSource()
+        let gainNode = env.context.createGain()
 
         sourceNode.buffer = buffer
         sourceNode.playbackRate.value = buffers[pitch].playbackRate
@@ -57,7 +57,7 @@ export default async (inst, context, time, output) => {
         sourceNode.connect(gainNode)
         // gainNode.connect(context.destination)
         // output.connect(gainNode)
-        gainNode.connect(output)
+        gainNode.connect(env.bus())
         // env.connect(gainNode)
 
         sourceNode.start(now)
