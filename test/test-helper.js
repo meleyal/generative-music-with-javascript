@@ -25,7 +25,13 @@ class AudioContext {
     }
   }
   createOscillator() {}
-  createDynamicsCompressor() {}
+  createDynamicsCompressor() {
+    return {
+      threshold: {
+        value: 0
+      }
+    }
+  }
   createBufferSource() {
     return {
       buffer: null,

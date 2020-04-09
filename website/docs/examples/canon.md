@@ -46,7 +46,7 @@ const { wn, qn, den, sn, hn, ent } = music.durations
     [f4, sn],
     [e4, den],
     [d4, sn],
-    [c4, hn]
+    [c4, hn],
   ]
 
   const bpm = 90.0
@@ -60,26 +60,14 @@ const { wn, qn, den, sn, hn, ent } = music.durations
 
   const piano = await inst.sampler(env, 'piano')
 
-  const theme = seq(notes)
-    .repeat(2)
-    .quantize(bpm)
+  const theme = seq(notes).repeat(2).quantize(bpm)
 
   const res1 = seq
-    .concat(
-      seq(rests),
-      seq(notes)
-        .repeat(2)
-        .transpose(12)
-    )
+    .concat(seq(rests), seq(notes).repeat(2).transpose(12))
     .quantize(bpm)
 
   const res2 = seq
-    .concat(
-      seq(rests).repeat(2),
-      seq(notes)
-        .repeat(2)
-        .transpose(-12)
-    )
+    .concat(seq(rests).repeat(2), seq(notes).repeat(2).transpose(-12))
     .quantize(bpm)
 
   seq.play(theme, piano)

@@ -5,7 +5,7 @@ import { pitches } from '../src/constants'
 const { a0, cs2 } = pitches
 
 describe('sampleMap', () => {
-  it('create', () => {
+  it.skip('create', () => {
     const midiSamples = [a0, cs2]
     const pathResolver = (n, o) => `/path/to/${n}${o}.mp3`
     const samples = sampleMap(pathResolver, midiSamples)

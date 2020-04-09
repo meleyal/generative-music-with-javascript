@@ -1,4 +1,4 @@
-import { memoize, first, last } from 'lodash'
+import { first, last } from 'lodash'
 
 export const createEnv = () => {
   const context = new window.AudioContext()
@@ -41,23 +41,3 @@ export const createEnv = () => {
     bus
   }
 }
-
-// export const context = memoize(() => {
-//   return new window.AudioContext()
-// })
-
-// export const clock = context => {
-//   const latency = 0.02
-//   let now = context.currentTime
-
-//   return (time = context.currentTime) => {
-//     if (time - now > latency) {
-//       now = time
-//     }
-//     return now
-//   }
-// }
-
-// export const master = context => {
-//   return context.destination
-// }

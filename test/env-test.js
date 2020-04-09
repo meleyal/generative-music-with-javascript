@@ -1,47 +1,31 @@
-// import { expect } from 'chai'
-// import { createEnv, context, clock, connect, master } from '../src/env'
+import { expect } from 'chai'
+import sinon from 'sinon'
+import { createEnv } from '../src/env'
 
-// describe('Env', () => {
-//   it.only('createEnv', () => {
-//     const env = createEnv()
-//     console.log(env.master)
-//   })
+const sandbox = sinon.createSandbox()
 
-//   it('context', done => {
-//     const ctx1 = context()
+describe('Env', () => {
+  afterEach(() => {
+    sandbox.restore()
+  })
 
-//     setTimeout(() => {
-//       const ctx2 = context()
-//       expect(ctx1.id).to.eql(ctx2.id)
-//       done()
-//     }, 10)
-//   })
+  it('now', () => {
+    const env = createEnv()
 
-//   it('clock', () => {
-//     const ctx = context()
-//     const now = clock(ctx)
+    expect(env.now(0)).to.equal(0)
+    expect(env.now(0.01)).to.equal(0)
+    expect(env.now(0.03)).to.equal(0.03)
+    expect(env.now(0.05)).to.equal(0.05)
+  })
 
-//     expect(now(0)).to.equal(0)
-//     expect(now(0.01)).to.equal(0)
-//     expect(now(0.03)).to.equal(0.03)
-//     expect(now(0.05)).to.equal(0.05)
-//   })
+  it('connect', () => {
+    const { context, connect, master } = createEnv()
+    const gain = context.createGain()
+    const source = context.createBufferSource()
 
-//   it('connect', () => {
-//     const ctx = context()
-//     const master = ctx.destination
-//     const gain = ctx.createGain()
-//     const source = ctx.createBufferSource()
-
-//     // TODO: assert connect is called with correct arg
-//     expect(connect(master)).to.eql(master)
-//     expect(connect(gain, master)).to.eql(gain)
-//     expect(connect(source, gain, master)).to.eql(source)
-//   })
-
-//   it('master', () => {
-//     const ctx = context()
-
-//     expect(master(ctx)).to.eql(ctx.destination)
-//   })
-// })
+    // TODO: assert connect is called with correct arg
+    expect(connect(master)).to.eql(master)
+    expect(connect(gain, master)).to.eql(gain)
+    expect(connect(source, gain, master)).to.eql(source)
+  })
+})
