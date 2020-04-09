@@ -5,7 +5,7 @@ const isDev = process.env.NODE_ENV === 'development'
 const siteVariables = {
   PACKAGE_URL: isDev
     ? 'http://localhost:3001'
-    : 'https://unpkg.com/@meleyal/gen'
+    : 'https://unpkg.com/@meleyal/gen',
 }
 
 const siteConfig = {
@@ -25,17 +25,18 @@ const siteConfig = {
         {
           href: 'https://github.com/meleyal/gen',
           label: 'GitHub',
-          position: 'right'
-        }
-      ]
+          position: 'right',
+        },
+      ],
+      hideOnScroll: false,
     },
     footer: false,
     sidebarCollapsible: false,
     disableDarkMode: true,
     prism: {
       theme: require('prism-react-renderer/themes/github'),
-      defaultLanguage: 'javascript'
-    }
+      defaultLanguage: 'javascript',
+    },
   },
   presets: [
     [
@@ -43,15 +44,15 @@ const siteConfig = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          showLastUpdateTime: true
+          showLastUpdateTime: true,
           // remarkPlugins: [inject(siteVariables)]
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css')
-        }
-      }
-    ]
-  ]
+          customCss: require.resolve('./src/css/custom.css'),
+        },
+      },
+    ],
+  ],
 }
 
 module.exports = siteConfig
