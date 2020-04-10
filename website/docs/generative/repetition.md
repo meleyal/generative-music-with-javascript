@@ -4,5 +4,8 @@ title: Repetition
 
 TODO
 
-- Looping
-- Canons/Rounds
+- Looping / Rings
+- Alternating (ABBA, ABAB, etc.)
+- Round > Canon > Fugue
+- Phasing
+- Apply to: patterns, phrases, sequences

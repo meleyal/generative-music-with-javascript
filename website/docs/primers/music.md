@@ -20,6 +20,14 @@ Melody, harmony, rhythm, compare with functions + primitives.
 - Note lengths
 - Instruments
 
+## Scales
+
+- Western classical 12 note scale (do re me fa so la ti do)
+- Major, minor
+- Other scales (Dorian etc, church, jazz)
+- Non-western
+- Microtonal
+
 ## Definitions
 
 - Pitch: a pitch consists of a pitch class and an octave. For example, A4

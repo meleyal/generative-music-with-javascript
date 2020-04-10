@@ -8,7 +8,8 @@ in the data and appreciate their characteristics.
 
 TODO
 
+- Web of data, APIs
 - Harmonices Mundi
 - https://github.com/toddmotto/public-apis
-- NASA
-- Geo patterns
+- Space / NASA
+- Geo patterns (e.g. weather)

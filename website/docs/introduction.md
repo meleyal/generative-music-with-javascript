@@ -102,6 +102,6 @@ This book and the design of Gen.js take inspiration from the following:
 - [Sonic Pi](https://sonic-pi.net/) – a code-based music creation and
   performance tool.
 - [Tone.js](https://tonejs.github.io/) – a framework for creating interactive
-  music in the browser
-- [jMusic](https://explodingart.com/jmusic/jmDocumentation/index.html) - music
+  music in the browser.
+- [jMusic](https://explodingart.com/jmusic/jmDocumentation/index.html) – music
   composition in Java.

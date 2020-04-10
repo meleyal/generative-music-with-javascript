@@ -2,6 +2,16 @@
 title: Randomness
 ---
 
+Notes:
+
+- Pure randomness (seeds)
+- Range
+- Perlin, Gaussian
+- Random number generation
+- Apply to: pitch, velocity, timing
+
+"Mining the possibility space / unseen"
+
 Reference:
 
 - https://medium.com/@metalex9/randomizing-program-execution-with-random-number-generators-a7bb613861f9
@@ -65,7 +75,7 @@ const { interval } = rxjs
 const { map } = rxjs.operators
 
 const random = (min, max) => {
-  return map(x => min + Math.floor(Math.random() * (max - min + 1)))
+  return map((x) => min + Math.floor(Math.random() * (max - min + 1)))
 }
 
 const numbers$ = interval(1000).pipe(random(21, 108))
@@ -83,7 +93,7 @@ const { map } = rxjs.operators
 const { sampler, samples } = gen
 
 const random = (min, max) => {
-  return map(x => min + Math.floor(Math.random() * (max - min + 1)))
+  return map((x) => min + Math.floor(Math.random() * (max - min + 1)))
 }
 
 // TODO: our piano samples only support this range, should be 21, 108
@@ -93,7 +103,7 @@ const notes$ = interval(1000).pipe(random(24, 107))
   const context = new AudioContext()
   const piano = await sampler(context, samples.piano)
 
-  notes$.subscribe(note => {
+  notes$.subscribe((note) => {
     piano(note, { duration: 2 })
   })
 })()
@@ -108,22 +118,22 @@ const { program, sampler, samples, random } = gen
 
 const model = {
   note: null,
-  piano: null
+  piano: null,
 }
 
 const messages = (model, send) => ({
   note: () => {
-    const notes$ = interval(1000).pipe(map(x => random(21, 108)))
-    notes$.subscribe(note => send({ note }))
+    const notes$ = interval(1000).pipe(map((x) => random(21, 108)))
+    notes$.subscribe((note) => send({ note }))
   },
 
   piano: async () => {
     const piano = await sampler(model.context, samples.piano)
     send({ piano })
-  }
+  },
 })
 
-const render = model => {
+const render = (model) => {
   const { piano, note } = model
   piano(note, { duration: 2 })
 }
@@ -139,7 +149,7 @@ const {
   metronome,
   resolution,
   random,
-  noteName
+  noteName,
 } = gen
 
 // -- MODEL
@@ -148,7 +158,7 @@ const model = {
   bpm: 60,
   tick: 0,
   note: null,
-  sampler: null
+  sampler: null,
 }
 
 // -- MESSAGES
@@ -159,7 +169,7 @@ const messages = (model, send) => {
   const msgs = {
     tick: () => {
       const metro = resolution(metronome(context, bpm), 4)
-      metro.subscribe(tick => send({ tick, ...msgs.note() }))
+      metro.subscribe((tick) => send({ tick, ...msgs.note() }))
     },
 
     note: () => {
@@ -173,7 +183,7 @@ const messages = (model, send) => {
         '{{PACKAGE_URL}}/samples/piano/'
       )
       send({ sampler: sampler2(context, samples) })
-    }
+    },
   }
 
   return msgs
@@ -181,7 +191,7 @@ const messages = (model, send) => {
 
 // -- RENDER
 
-const render = model => {
+const render = (model) => {
   const { sampler, note } = model
 
   sampler(note, { duration: 2 })
@@ -208,7 +218,7 @@ const rand = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-midi().then(output => {
+midi().then((output) => {
   const metro = metronome(10)
   const inst = instrument({ output, metro })
 
@@ -235,7 +245,7 @@ Rather than choosing randomly, we can pick our next note relative to the current
 one.
 
 ```js
-navigator.requestMIDIAccess().then(midi => {
+navigator.requestMIDIAccess().then((midi) => {
   const outputs = midi.outputs.values()
   let output = outputs.next().value
 

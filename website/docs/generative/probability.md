@@ -4,8 +4,9 @@ title: Probability
 
 > TODO
 
-- Probability/Chance
-- Markov Models
+- Probability/Chance/Dice/Choices
+- Markov Models/Chains, State Machines
+- Apply to: notes, phrase choice
 
 ## Probability
 
@@ -19,7 +20,7 @@ of the pie we assign a given outcome, the more chance that outcome will occur.
 ![](/gen/img/walker/probability.svg)
 
 ```js
-navigator.requestMIDIAccess().then(midi => {
+navigator.requestMIDIAccess().then((midi) => {
   const outputs = midi.outputs.values()
   let output = outputs.next().value
 
@@ -87,7 +88,7 @@ import random from 'random'
 import clamp from 'lodash'
 import { instrument, metronome, midi } from 'gen'
 
-midi().then(output => {
+midi().then((output) => {
   function playNote(note, length, velocity) {
     let noteOn = 144
     let noteOff = 128
@@ -126,7 +127,7 @@ import tumult from 'tumult'
 
 import { inst, midi } from 'gen'
 
-midi().then(output => {
+midi().then((output) => {
   const perlin = new tumult.Perlin1(Math.random())
   const length = 100
   let xoff = 0.0
@@ -199,7 +200,7 @@ import {
   filter,
   includes,
   random,
-  sample
+  sample,
 } from 'lodash'
 import { inst, midi } from 'gen'
 
@@ -214,7 +215,7 @@ const octaves = chain(allNotes)
   .value()
 
 const notes = chain(octaves)
-  .map(o => {
+  .map((o) => {
     // select only the notes in the scale
     return filter(o, (n, idx) => {
       return includes(cmaj, idx)
@@ -223,7 +224,7 @@ const notes = chain(octaves)
   .flatten() // flatten the octaves
   .value()
 
-navigator.requestMIDIAccess().then(midi => {
+navigator.requestMIDIAccess().then((midi) => {
   const outputs = midi.outputs.values()
   const output = outputs.next().value
 
@@ -255,10 +256,10 @@ import { flow, sample, random, partition, identity } from 'lodash/fp'
 const [low, high] = flow(
   scale('cmaj'),
   limit2('piano'),
-  partition(n => n < 64)
+  partition((n) => n < 64)
 )([])
 
-navigator.requestMIDIAccess().then(midi => {
+navigator.requestMIDIAccess().then((midi) => {
   const outputs = midi.outputs.values()
   const output = outputs.next().value
 
@@ -305,13 +306,13 @@ With these in our toolbelt, we could rewrite our last example as follows:
 import { midi, send, metro, limit, scale } from 'gen'
 import { flow, sample, random, partition } from 'lodash/fp'
 
-midi.then(output => {
+midi.then((output) => {
   const ch1 = send(output, 0x90)
   const ch2 = send(output, 0x91)
   const [low, high] = flow(
     scale('cmaj'),
     limit('piano'),
-    partition(n => n < 64)
+    partition((n) => n < 64)
   )([])
 
   loop(() => ch1(sample(high), random(64, 96)), 400)
@@ -335,7 +336,7 @@ import {
   filter,
   includes,
   random,
-  sample
+  sample,
 } from 'lodash'
 import { inst, midi } from 'gen'
 
@@ -350,7 +351,7 @@ const octaves = chain(allNotes)
   .value()
 
 const notes = chain(octaves)
-  .map(o => {
+  .map((o) => {
     // select only the notes in the scale
     return filter(o, (n, idx) => {
       return includes(cmaj, idx)
@@ -359,7 +360,7 @@ const notes = chain(octaves)
   .flatten() // flatten the octaves
   .value()
 
-navigator.requestMIDIAccess().then(midi => {
+navigator.requestMIDIAccess().then((midi) => {
   const outputs = midi.outputs.values()
   const output = outputs.next().value
 
@@ -413,7 +414,7 @@ export default class {
 ```
 
 ```js
-navigator.requestMIDIAccess().then(midi => {
+navigator.requestMIDIAccess().then((midi) => {
   const outputs = midi.outputs.values()
   let output = outputs.next().value
 

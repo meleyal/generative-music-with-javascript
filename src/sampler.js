@@ -7,22 +7,22 @@ export default async (env, inst) => {
   const sampleMap = samples[inst]
 
   await Promise.all(
-    Object.keys(sampleMap).map(pitch =>
+    Object.keys(sampleMap).map((pitch) =>
       window
         .fetch(sampleMap[pitch].path)
-        .then(response => response.arrayBuffer())
-        .then(arrayBuffer => env.context.decodeAudioData(arrayBuffer))
-        .then(buffer => {
+        .then((response) => response.arrayBuffer())
+        .then((arrayBuffer) => env.context.decodeAudioData(arrayBuffer))
+        .then((buffer) => {
           buffers[pitch] = {
             buffer,
-            ...sampleMap[pitch]
+            ...sampleMap[pitch],
           }
         })
     )
   )
 
-  return note => {
-    return new Promise(resolve => {
+  return (note) => {
+    return new Promise((resolve) => {
       const now = env.now()
       const pitch = midiToPitch(note[0])
       const duration = note[1]
@@ -44,6 +44,8 @@ export default async (env, inst) => {
         let gainNode = env.context.createGain()
 
         sourceNode.buffer = buffer
+
+        // TODO: Scale sample duration by playback rate (buffer.duration * playbackRate)
         sourceNode.playbackRate.value = buffers[pitch].playbackRate
 
         const zero = 0.00001 // value must be positive for exponentialRamp
