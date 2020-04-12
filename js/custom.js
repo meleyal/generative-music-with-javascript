@@ -5,6 +5,7 @@ window.onload = () => {
     const btn = document.createElement('button')
     const code = block.innerText
 
+    btn.classList.add('btn-code-block-run')
     btn.innerHTML = 'Run'
     btn.onclick = () => {
       Function(code)()
