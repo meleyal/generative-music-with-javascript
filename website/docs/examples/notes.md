@@ -3,9 +3,9 @@ title: Notes Test
 ---
 
 ```js
-const { Score, Part, Phrase } = gen
-const { C4 } = gen.pitches
-const { WN } = gen.durations
+const { Score, Part, Phrase } = tuplet
+const { C4 } = tuplet.pitches
+const { WN } = tuplet.durations
 
 const score = new Score(60)
 const part = new Part('piano')

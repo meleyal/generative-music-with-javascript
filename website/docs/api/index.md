@@ -3,7 +3,7 @@ title: API Reference
 ---
 
 This page documents all of the functions available in the
-[`gen`](https://www.npmjs.com/package/@meleyal/gen) library.
+[Tuplet](https://www.npmjs.com/package/@meleyal/tuplet) library.
 
 ## context()
 
@@ -50,11 +50,11 @@ const context = new AudioContext()
 
 const metro = metronome(context, 60)
 
-metro.on('tick', tick => {
+metro.on('tick', (tick) => {
   console.log('tick', tick)
 })
 
-metro.on('tick/16', tick => {
+metro.on('tick/16', (tick) => {
   console.log('tick/16', tick)
 })
 
@@ -155,7 +155,7 @@ pattern() // => ['a', 'b', 'c', 'd']
 TODO: Summary
 
 ```js
-const { sample } = gen
+const { sample } = tuplet
 
 ;(async () => {
   const context = new AudioContext()
@@ -176,10 +176,10 @@ TODO: Example
 TODO: Summary
 
 ```js
-gen.run(async context => {
-  const piano = await gen.sampler(
+tuplet.run(async (context) => {
+  const piano = await tuplet.sampler(
     context,
-    gen.sampleMap('{{PACKAGE_URL}}/samples/piano/')
+    tuplet.sampleMap('{{PACKAGE_URL}}/samples/piano/')
   )
 
   // Single C note

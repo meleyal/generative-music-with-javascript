@@ -7,19 +7,19 @@ import sampler from './sampler'
 import reverb from './reverb'
 import compressor from './compressor'
 
-const gen = {
+const tuplet = {
   createEnv,
   fx: {
     reverb,
-    compressor
+    compressor,
   },
   inst: {
-    sampler
+    sampler,
   },
   seq,
   pattern,
-  music: constants
+  music: constants,
 }
 
-window.gen = gen
-export default gen
+window.tuplet = tuplet
+export default tuplet

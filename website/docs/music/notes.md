@@ -59,10 +59,10 @@ composition.
 > above.
 
 Most sample libraries are commercial products, often bundled with software
-samplers, but there are several libraries available for free use. **Gen.js**
+samplers, but there are several libraries available for free use. **Tuplet**
 includes a range of samples for different instruments, which we'll be using
 throughout this book. It includes a
-[piano](https://github.com/meleyal/gen/tree/master/src/samples/piano) sample
+[piano](https://github.com/meleyal/tuplet/tree/master/src/samples/piano) sample
 pack, which contains recordings of all the notes of a piano (A0–C8).
 
 ### Sampler v1
@@ -76,19 +76,19 @@ samples we want to load, and returns a function for playing them back:
 ```js
 const sampler = async (context, samples) => {
   const buffers = await Promise.all(
-    Object.keys(samples).map(note =>
+    Object.keys(samples).map((note) =>
       fetch(samples[note])
-        .then(response => response.arrayBuffer())
-        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
-        .then(buffer => Object.create({ note, buffer }))
+        .then((response) => response.arrayBuffer())
+        .then((arrayBuffer) => context.decodeAudioData(arrayBuffer))
+        .then((buffer) => Object.create({ note, buffer }))
     )
   )
 
-  return note => {
+  return (note) => {
     const notes = typeof note == 'string' ? [note] : note
     const now = context.currentTime
-    notes.map(n => {
-      const buffer = buffers.find(b => b.note == n).buffer
+    notes.map((n) => {
+      const buffer = buffers.find((b) => b.note == n).buffer
       const sourceNode = context.createBufferSource()
       sourceNode.buffer = buffer
       sourceNode.start(now)
@@ -104,7 +104,7 @@ const sampler = async (context, samples) => {
     D4: '{{PACKAGE_URL}}/samples/piano/d4.mp3',
     E4: '{{PACKAGE_URL}}/samples/piano/e4.mp3',
     F4: '{{PACKAGE_URL}}/samples/piano/f4.mp3',
-    G4: '{{PACKAGE_URL}}/samples/piano/g4.mp3'
+    G4: '{{PACKAGE_URL}}/samples/piano/g4.mp3',
     // ...etc.
   })
 
@@ -141,14 +141,14 @@ Recall from the [Music](../primers/music) chapter that some notes can be sharp
 (C#, half a semitone above C) or flat (Db, half a semitone below D). Looking at
 our keyboard, we can see that these are actually the same note:
 
-![](/gen/img/sampler/enharmonic.svg)
+![](/tuplet/img/sampler/enharmonic.svg)
 
 These are known as "enharmonic" notes, which just means they are the same note
 written in a different way. We can write a simple `enharmonic()` function to
 convert in either direction:
 
 ```js
-const enharmonic = note => {
+const enharmonic = (note) => {
   switch (note) {
     case 'A#':
       return 'Bb'
@@ -194,15 +194,15 @@ construct the final url to the sample.
 > implementation might allow for specifying a given range to map over.
 
 ```js
-const { enharmonic } = gen
+const { enharmonic } = tuplet
 
-const sampleMap = pathFn => {
+const sampleMap = (pathFn) => {
   const notes = 'C,C#,D,D#,E,F,F#,G,G#,A,A#,B'.split(',')
   const octaves = [1, 2, 3, 4, 5, 6, 7]
 
   return notes
-    .flatMap(note =>
-      octaves.map(octave => {
+    .flatMap((note) =>
+      octaves.map((octave) => {
         const name = `${note}${octave}`
         return { [name]: pathFn(note, octave) }
       })
@@ -246,10 +246,10 @@ Let's write two functions `noteNumber()` to get the MIDI note number given a
 note name, and `noteName()` to get the the note name from the MIDI note number.
 
 ```js
-const noteNumber = name => {
+const noteNumber = (name) => {
   const re = /(?<note>\w(\w|\W)?)(?<octave>\d{1})/u
   const {
-    groups: { note, octave }
+    groups: { note, octave },
   } = re.exec(name)
 
   const notes = {
@@ -269,7 +269,7 @@ const noteNumber = name => {
     A: 9,
     'A#': 10,
     Bb: 10,
-    B: 11
+    B: 11,
   }
 
   return notes[note] + 12 + 12 * octave
@@ -286,7 +286,7 @@ noteNumber('B4') // => 71
 ```
 
 ```js
-const noteName = num => {
+const noteName = (num) => {
   const numbers = {
     0: 'C',
     1: 'C#/Db',
@@ -299,7 +299,7 @@ const noteName = num => {
     8: 'G#/Ab',
     9: 'A',
     10: 'A#/Bb',
-    11: 'B'
+    11: 'B',
   }
 
   // Normalize the note number so it maps to our 0-indexed `numbers` map.
@@ -314,7 +314,7 @@ const noteName = num => {
 
   return numbers[note]
     .split('/')
-    .map(name => name + octave)
+    .map((name) => name + octave)
     .join('/')
 }
 
@@ -334,19 +334,19 @@ modified version of `sampler()` that can play notes given either a note name or
 note number:
 
 ```js
-const { noteName, enharmonic, sampleMap } = gen
+const { noteName, enharmonic, sampleMap } = tuplet
 
 const sampler = async (context, samples) => {
   const buffers = await Promise.all(
-    Object.keys(samples).map(note =>
+    Object.keys(samples).map((note) =>
       fetch(samples[note])
-        .then(response => response.arrayBuffer())
-        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
-        .then(buffer => Object.create({ note, buffer }))
+        .then((response) => response.arrayBuffer())
+        .then((arrayBuffer) => context.decodeAudioData(arrayBuffer))
+        .then((buffer) => Object.create({ note, buffer }))
     )
   )
 
-  const parseNote = note => {
+  const parseNote = (note) => {
     if (Array.isArray(note)) {
       return note.map(parseNote)
     } else if (typeof note === 'number') {
@@ -356,11 +356,11 @@ const sampler = async (context, samples) => {
     }
   }
 
-  return note => {
+  return (note) => {
     const notes = parseNote(note)
     const now = context.currentTime
-    notes.map(n => {
-      const buffer = buffers.find(b => b.note == n).buffer
+    notes.map((n) => {
+      const buffer = buffers.find((b) => b.note == n).buffer
       const sourceNode = context.createBufferSource()
       sourceNode.buffer = buffer
       sourceNode.start(now)
@@ -446,7 +446,7 @@ we can simplify this down to just the attack and release phases, which will
 allow us to control how a sound peaks, and how long it lasts, known as an _AR
 envelope_:
 
-![](/gen/img/notes/envelopes.svg)
+![](/tuplet/img/notes/envelopes.svg)
 
 Envelopes can be modelled with a `GainNode`, taking advantage of the fact that
 its `gain` property is an
@@ -581,11 +581,11 @@ Putting all of these concepts together, we can build a sampler.
 ```js
 const sampler = async (context, samples) => {
   const buffers = await Promise.all(
-    Object.keys(samples).map(note =>
+    Object.keys(samples).map((note) =>
       fetch(samples[note])
-        .then(response => response.arrayBuffer())
-        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
-        .then(buffer => Object.create({ note, buffer }))
+        .then((response) => response.arrayBuffer())
+        .then((arrayBuffer) => context.decodeAudioData(arrayBuffer))
+        .then((buffer) => Object.create({ note, buffer }))
     )
   )
 
@@ -604,8 +604,8 @@ const sampler = async (context, samples) => {
     const defaults = { volume: 1, duration: Infinity }
     const { volume, duration } = Object.assign(defaults, options)
 
-    notes.map(n => {
-      const buffer = buffers.find(b => b.note == n).buffer
+    notes.map((n) => {
+      const buffer = buffers.find((b) => b.note == n).buffer
       const sourceNode = context.createBufferSource()
       sourceNode.buffer = buffer
       sourceNode.start()
@@ -624,10 +624,10 @@ const sampler = async (context, samples) => {
   }
 }
 
-gen.run(async context => {
+tuplet.run(async (context) => {
   const piano = await sampler(
     context,
-    gen.sampleMap('{{PACKAGE_URL}}/samples/piano/')
+    tuplet.sampleMap('{{PACKAGE_URL}}/samples/piano/')
   )
 
   // Single C note
@@ -640,5 +640,5 @@ gen.run(async context => {
 
 ## Learning
 
-TODO: Mention that these functions are part of `gen`, and we'll use them going
+TODO: Mention that these functions are part of Tuplet, and we'll use them going
 forward.

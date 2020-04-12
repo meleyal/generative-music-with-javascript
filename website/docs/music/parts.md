@@ -30,7 +30,7 @@ sequencer found in Reason, which has all the features listed above. We're going
 to build a basic emulation of the Matrix sequencer in this chapter, so let's
 take a look at it:
 
-![](/gen/img/sequencer/matrix.png)
+![](/tuplet/img/sequencer/matrix.png)
 
 ## Sequencing
 
@@ -42,7 +42,7 @@ and we can use the same `ring()` trick.
 
 ```js
 ;(async () => {
-  // const metronome = await import('https://unpkg.com/@meleyal/gen/src/metro.js')
+  // const metronome = await import('https://unpkg.com/@meleyal/tuplet/src/metro.js')
   const { metronome, ring } = await import('http://localhost:8081/src/index.js')
   const context = new AudioContext()
 
@@ -52,8 +52,8 @@ and we can use the same `ring()` trick.
   const pattern2 = ring(['e', 'f', 'g', 'h'])
   const bankA = ring([pattern1, pattern2])
 
-  metro.on('tock', tock => {
-    metro.on('tick', tick => {
+  metro.on('tock', (tock) => {
+    metro.on('tick', (tick) => {
       console.log(bankA(tock)(tick)) // a, b, c, d, e, f, g, h, a, b...
     })
   })
@@ -76,7 +76,7 @@ We'll start simple, and reuse some of our learning from the previous chapter to
 generate a random pattern for our sequencer to play back.
 
 ```js
-import { limit, scale } from 'gen'
+import { limit, scale } from 'tuplet'
 import {
   flow,
   sample,
@@ -85,7 +85,7 @@ import {
   take,
   fill,
   map,
-  reverse
+  reverse,
 } from 'lodash/fp'
 
 const pattern1 = flow(
@@ -93,7 +93,7 @@ const pattern1 = flow(
   limit('piano'),
   shuffle,
   take(8),
-  map(n => [n, 127])
+  map((n) => [n, 127])
 )([])
 
 const bpm = 60
@@ -106,7 +106,7 @@ let pattern = 0
 let step = 0
 const patterns = [pattern1, reverse(pattern1)]
 
-navigator.requestMIDIAccess().then(midi => {
+navigator.requestMIDIAccess().then((midi) => {
   const outputs = midi.outputs.values()
   const output = outputs.next().value
 
@@ -209,7 +209,7 @@ const pattern = [
   'G#',
   'G#',
   'G#',
-  'G#'
+  'G#',
 ]
 
 const pattern2 = pattern.slice(0, 8).reverse()
@@ -237,7 +237,7 @@ const pattern = [
   ['G#', 127],
   ['G#', 127],
   ['G#', 127],
-  ['G#', 127]
+  ['G#', 127],
 ]
 ```
 
@@ -255,14 +255,14 @@ might play the same notes in a lower octave on a different instrument.
 We'll refer to this as "transforming" a pattern, and there are many ways we
 could do it:
 
-![](/gen/img/sequencer/transforms.svg)
+![](/tuplet/img/sequencer/transforms.svg)
 
 And here's how these transformations might look in code:
 
 ```js
 const original = [1, 2, 3, 4]
 
-const reverse = arr => [...arr].reverse()
+const reverse = (arr) => [...arr].reverse()
 
 // TODO: Handle positive and negative steps > 1
 const nudge = (arr, step = 1) => {
@@ -273,15 +273,15 @@ const nudge = (arr, step = 1) => {
 }
 
 // TODO
-const shuffle = arr => {
+const shuffle = (arr) => {
   return [...arr]
 }
 
 const transpose = (arr, step = 1) => {
-  return arr.map(n => n + step)
+  return arr.map((n) => n + step)
 }
 
-const swap = arr => {
+const swap = (arr) => {
   const a = arr.filter((n, idx) => idx % 2 == 0)
   const b = arr.filter((n, idx) => idx % 2 == 1)
   return a.map((n, idx) => [n, b[idx]].reverse())

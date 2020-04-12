@@ -79,21 +79,21 @@ bottom-right corner of each code snippet.
 
 To avoid repeating big chunks of code we've already seen, once a concept has
 been introduced, we'll import relevant functions from the
-[Gen.js](https://www.npmjs.com/package/@meleyal/gen) library (it's present on
-every page as the `gen` global). The actual implementation might differ from the
+[Tuplet](https://www.npmjs.com/package/@meleyal/tuplet) library (it's present on
+every page as the `tuplet` global). The actual implementation might differ from the
 presented examples as the library evolves, but the principles should remain
 similar.
 
-## Gen.js Library
+## Tuplet Library
 
-A lot of the ideas here are encapsulated in the Gen.js library. If you want to
+A lot of the ideas here are encapsulated in the Tuplet library. If you want to
 skip over how things are implemented and just make music, we'll cross-reference
-each of the code examples with their Gen.js counterpart. The full list of
+each of the code examples with their Tuplet counterpart. The full list of
 available functions can be found in the [API Reference](api/index).
 
 ## Prior Art
 
-This book and the design of Gen.js take inspiration from the following:
+This book and the design of Tuplet take inspiration from the following:
 
 - [The Nature of Code](https://natureofcode.com/) – simulations of natural
   systems.

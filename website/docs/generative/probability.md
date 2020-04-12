@@ -17,7 +17,7 @@ program behaves.
 An easy way to think about this is by visualizing a pie chart. The more pieces
 of the pie we assign a given outcome, the more chance that outcome will occur.
 
-![](/gen/img/walker/probability.svg)
+![](/tuplet/img/walker/probability.svg)
 
 ```js
 navigator.requestMIDIAccess().then((midi) => {
@@ -81,12 +81,12 @@ range, otherwise known as normal (or Gaussian) distribution (in contrast to pure
 randomness, which aims for uniform distribution). This maps well to music, where
 melodies tend to use a narrow range of notes and steps.
 
-![](/gen/img/walker/distributions.svg)
+![](/tuplet/img/walker/distributions.svg)
 
 ```js
 import random from 'random'
 import clamp from 'lodash'
-import { instrument, metronome, midi } from 'gen'
+import { instrument, metronome, midi } from 'tuplet'
 
 midi().then((output) => {
   function playNote(note, length, velocity) {
@@ -125,7 +125,7 @@ Describe what Perlin noise is.
 import rangeMap from 'range-map'
 import tumult from 'tumult'
 
-import { inst, midi } from 'gen'
+import { inst, midi } from 'tuplet'
 
 midi().then((output) => {
   const perlin = new tumult.Perlin1(Math.random())
@@ -158,7 +158,7 @@ details. These notes sound like they 'belong together'.
 
 C Major scale is just all the white notes, starting at C to next C.
 
-![](/gen/img/walker/scales.svg)
+![](/tuplet/img/walker/scales.svg)
 
 All notes:
 
@@ -202,7 +202,7 @@ import {
   random,
   sample,
 } from 'lodash'
-import { inst, midi } from 'gen'
+import { inst, midi } from 'tuplet'
 
 const allNotes = range(21, 109)
 
@@ -250,7 +250,7 @@ Now that we can play in key, we can introduce a second voice and know it will
 harmonize with the first.
 
 ```js
-import { metro, limit2, scale } from 'gen'
+import { metro, limit2, scale } from 'tuplet'
 import { flow, sample, random, partition, identity } from 'lodash/fp'
 
 const [low, high] = flow(
@@ -303,7 +303,7 @@ With that in mind, we can encapsulate our learning into two new utilities:
 With these in our toolbelt, we could rewrite our last example as follows:
 
 ```js
-import { midi, send, metro, limit, scale } from 'gen'
+import { midi, send, metro, limit, scale } from 'tuplet'
 import { flow, sample, random, partition } from 'lodash/fp'
 
 midi.then((output) => {
@@ -338,7 +338,7 @@ import {
   random,
   sample,
 } from 'lodash'
-import { inst, midi } from 'gen'
+import { inst, midi } from 'tuplet'
 
 const allNotes = range(21, 109)
 

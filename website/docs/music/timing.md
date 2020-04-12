@@ -155,7 +155,7 @@ const metronome = (bpm = 60, callback, currentBeat = 0) => {
   }
 }
 
-metronome(60, now => {
+metronome(60, (now) => {
   // Here we can trigger any audio we want
   console.log('boop!', now)
 })
@@ -187,7 +187,7 @@ triplet divisions which we'll ignore for now).
 If we presume a time signature of 4/4 (4 beats per bar), these resolutions break
 down as follows:
 
-![](/gen/img/sequencer/resolution.svg)
+![](/tuplet/img/sequencer/resolution.svg)
 
 Rather than passing in a callback to be triggered on the beat, we can instead
 extend our metronome to emit events at each subdivision and listen for those.
@@ -260,7 +260,7 @@ const metronome = (context, bpm = 60, options = { audible: false }) => {
     'beat/8': () => null,
     'beat/16': () => null,
     'beat/32': () => null,
-    'beat/64': () => null
+    'beat/64': () => null,
   }
 
   const on = (event, fn) => {
@@ -270,7 +270,7 @@ const metronome = (context, bpm = 60, options = { audible: false }) => {
   return {
     start: tick,
     stop,
-    on
+    on,
   }
 }
 
@@ -278,7 +278,7 @@ const context = new AudioContext()
 
 const metro = metronome(context, 60)
 
-metro.on('beat', beat => {
+metro.on('beat', (beat) => {
   console.log('beat', beat)
 })
 
@@ -350,7 +350,7 @@ bar / 128 // => 0.03125 seconds
 
 ## Learning
 
-TODO: `metronome` is part of `gen` package, see API docs.
+TODO: `metronome` is part of Tuplet package, see API docs.
 
 While the musical results are less than inspiring, we now have a way to generate
 two key aspects of music: notes/pitch and rhythm/time, which combined can give

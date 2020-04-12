@@ -4,7 +4,7 @@ title: Scales
 
 ```js
 ;(async () => {
-  const { sampler, range, toPitch } = gen
+  const { sampler, range, toPitch } = tuplet
 
   // load piano instrument
   const piano = await sampler('piano')

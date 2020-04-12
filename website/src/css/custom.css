@@ -3,7 +3,7 @@
  * Note: this is not a complete list of --ifm- variables.
  */
 :root {
-  --ifm-font-size-base: 16px;
+  --ifm-font-size-base: 17px;
   --ifm-color-primary: #b263f9;
   --ifm-color-primary-dark: #a141f8;
   --ifm-color-primary-darker: #9931f7;
@@ -11,15 +11,8 @@
   --ifm-color-primary-light: #c385fa;
   --ifm-color-primary-lighter: #cb95fb;
   --ifm-color-primary-lightest: #e4c8fd;
-  --ifm-navbar-background-color: var(--ifm-color-primary);
-  --ifm-navbar-link-color: #fff;
-  --ifm-navbar-link-hover-color: #fff;
-  --ifm-navbar-height: 3.2rem;
+  --ifm-navbar-height: 3.75rem;
   --ifm-code-font-size: 14px;
-}
-
-.navbar__brand {
-  font-size: 20px;
 }
 
 .menu > .menu__list > .menu__list-item > .menu__link {

@@ -5,7 +5,7 @@ title: Phasing
 ```js
 // "Piano Phase" by Steve Reich
 
-const { sampler, metronome, pattern } = gen
+const { sampler, metronome, pattern } = tuplet
 
 ;(async () => {
   const piano1 = await sampler('piano')
@@ -24,7 +24,7 @@ const { sampler, metronome, pattern } = gen
     'B4',
     'F#4',
     'D5',
-    'C#5'
+    'C#5',
   ]).ring()
 
   let phase = 0

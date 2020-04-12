@@ -1,12 +1,12 @@
 const VERSION = '0.0.1'
 
 console.log(`
-   _____             _
-  |   __|___ ___    |_|___
-  |  |  | -_|   |_  | |_ -|
-  |_____|___|_|_|_|_| |___|
-                  |___|
+ _____         _     _   
+|_   _|_ _ ___| |___| |_ 
+  | | | | | . | | -_|  _|
+  |_| |___|  _|_|___|_|  
+          |_|            
 
-  v${VERSION} – https://github.com/meleyal/gen
+  v${VERSION} – https://github.com/meleyal/tuplet
 
 `)

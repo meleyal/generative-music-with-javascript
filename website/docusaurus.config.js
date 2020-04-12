@@ -5,25 +5,29 @@ const isDev = process.env.NODE_ENV === 'development'
 const siteVariables = {
   PACKAGE_URL: isDev
     ? 'http://localhost:3001'
-    : 'https://unpkg.com/@meleyal/gen',
+    : 'https://unpkg.com/@meleyal/tuplet',
 }
 
 const siteConfig = {
-  title: 'Gen.js',
+  title: 'Tuplet',
   tagline: 'Generative music with JavaScript',
   url: 'https://meleyal.github.io',
-  baseUrl: '/gen/',
-  projectName: 'gen',
+  baseUrl: '/tuplet/',
+  projectName: 'tuplet',
   organizationName: 'meleyal',
   favicon: 'img/favicon.png',
-  scripts: ['/gen/js/custom.js', `${siteVariables.PACKAGE_URL}/gen.js`],
+  scripts: ['/tuplet/js/custom.js', `${siteVariables.PACKAGE_URL}/tuplet.js`],
   themeConfig: {
     navbar: {
-      title: 'Gen.js',
+      title: 'Tuplet',
+      logo: {
+        alt: 'Site Logo',
+        src: 'img/tuplet.svg',
+      },
       links: [
         { to: 'docs/introduction', label: 'Docs', position: 'right' },
         {
-          href: 'https://github.com/meleyal/gen',
+          href: 'https://github.com/meleyal/tuplet',
           label: 'GitHub',
           position: 'right',
         },
@@ -44,7 +48,6 @@ const siteConfig = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          showLastUpdateTime: true,
           // remarkPlugins: [inject(siteVariables)]
         },
         theme: {

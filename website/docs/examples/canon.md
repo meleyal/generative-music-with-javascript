@@ -9,7 +9,7 @@ title: Canon
  * Adapted from https://git.io/fjyri
  */
 
-const { createEnv, fx, inst, seq, music } = gen
+const { createEnv, fx, inst, seq, music } = tuplet
 const { c4, d4, e4, f4, g4, c5, rest } = music.pitches
 const { wn, qn, den, sn, hn, ent } = music.durations
 

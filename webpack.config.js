@@ -4,7 +4,7 @@ module.exports = {
   mode: 'development',
   entry: './src/index.js',
   output: {
-    filename: 'gen.js'
+    filename: 'tuplet.js',
   },
   devServer: {
     contentBase: 'src',
@@ -12,7 +12,7 @@ module.exports = {
     quiet: true,
     clientLogLevel: 'none',
     headers: {
-      'Access-Control-Allow-Origin': '*'
-    }
-  }
+      'Access-Control-Allow-Origin': '*',
+    },
+  },
 }

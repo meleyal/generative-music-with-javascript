@@ -65,10 +65,10 @@ We can make our own `ring()` function that takes a regular array and returns a
 function we can use to access the array like a ring:
 
 ```js
-const ring = arr => {
+const ring = (arr) => {
   const len = arr.length
 
-  return index => {
+  return (index) => {
     if (typeof index !== 'undefined') {
       return arr[index % len]
     } else {
@@ -88,12 +88,12 @@ We can now plug our newly ringed pattern into our metronome and it will loop
 back around:
 
 ```js
-const { metronome, ring } = gen
+const { metronome, ring } = tuplet
 
 const pattern = ring(['A4', 'B4', 'C4', 'D4'])
 const metro = metronome(60)
 
-metro.on('tick', tick => {
+metro.on('tick', (tick) => {
   pattern(tick) // => A4, B4, C4, D4, A4, B4...
 })
 
@@ -111,7 +111,7 @@ Our `metronome()` function already supports different resolutions. We can use
 this to sequence two patterns at different speeds:
 
 ```js
-const { sampler, metronome, ring } = gen
+const { sampler, metronome, ring } = tuplet
 
 ;(async () => {
   const piano = await sampler('piano')
@@ -119,11 +119,11 @@ const { sampler, metronome, ring } = gen
   const pattern1 = ring(['A4', 'B4', 'C4', 'D4'])
   const pattern2 = ring(['E4', 'F4', 'G4', 'A4'])
 
-  metro.on('tick', tick => {
+  metro.on('tick', (tick) => {
     piano(pattern1(tick)) // => A4, B4, C4, D4, A4, B4...
   })
 
-  metro.on('tick/16', tick => {
+  metro.on('tick/16', (tick) => {
     piano(pattern2(tick)) // => E4, F4, G4, A4, E4, F4...
   })
 
@@ -173,26 +173,21 @@ const {
   ring,
   transpose,
   take,
-  shuffle
-} = gen
+  shuffle,
+} = tuplet
 
 ;(async () => {
   const piano = await sampler('piano')
   const metro = metronome(120)
 
-  const pattern1 = pipe(
-    scale('cmaj'),
-    limit('piano'),
-    shuffle(),
-    take(8)
-  )([])
+  const pattern1 = pipe(scale('cmaj'), limit('piano'), shuffle(), take(8))([])
 
   const pattern2 = pipe(transpose(-5))(pattern1)
 
   const ring1 = ring(pattern1)
   const ring2 = ring(pattern2)
 
-  metro.on('tick', tick => {
+  metro.on('tick', (tick) => {
     piano(ring1(tick))
     piano(ring2(tick))
   })

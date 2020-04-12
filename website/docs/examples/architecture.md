@@ -17,7 +17,7 @@ and is borrowed from
 generates `messages` which are sent to an `update` function that updates a data
 `model` and passes it to a `render` function. It's as simple as that!
 
-![](/gen/img/architecture/one-way-data-flow.svg)
+![](/tuplet/img/architecture/one-way-data-flow.svg)
 
 ## Model
 
@@ -30,7 +30,7 @@ samples being loaded).
 const model = {
   tick: 0,
   bpm: 60,
-  samples: []
+  samples: [],
 }
 ```
 
@@ -48,7 +48,7 @@ const messages = (model, send) => {
       setInterval(() => {
         send({ tick: 1 })
       }, 1000)
-    }
+    },
   }
 }
 ```
@@ -92,7 +92,7 @@ and value of the `msg`.
 const update = (model, msg) => {
   return {
     ...model,
-    ...msg
+    ...msg,
   }
 }
 
@@ -119,7 +119,7 @@ This example shows how to setup a metronome to continually update the model with
 the current beat.
 
 ```js
-const { program, metronome, resolution } = gen
+const { program, metronome, resolution } = tuplet
 
 // -- MODEL
 

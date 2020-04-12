@@ -34,7 +34,7 @@ four directions: up, down, left, or right (plus a fifth choice if you include
 not moving as an option). Given a certain set of rules, this might look as
 follows:
 
-![](/gen/img/walker/walk.png)
+![](/tuplet/img/walker/walk.png)
 
 How might we apply this idea to music? As we've seen, a piano has 88 keys,
 giving it a range from A0 to C8, which map to the MIDI numbers 21–108. We can
@@ -43,7 +43,7 @@ a higher note; 2) play a min note; 3) play the same note; 4) play nothing. The
 range 21-108 and the 4 choices define the "possibility space" for our random
 walk.
 
-![](/gen/img/walker/piano.svg)
+![](/tuplet/img/walker/piano.svg)
 
 ## Random Notes
 
@@ -85,12 +85,12 @@ numbers$.subscribe(console.log) // => a random number between 21 and 108 every s
 
 ### Random Notes
 
-Now, let's plug in the `sampler()` function from Gen.js and hear some notes:
+Now, let's plug in the `sampler()` function from Tuplet and hear some notes:
 
 ```js
 const { interval } = rxjs
 const { map } = rxjs.operators
-const { sampler, samples } = gen
+const { sampler, samples } = tuplet
 
 const random = (min, max) => {
   return map((x) => min + Math.floor(Math.random() * (max - min + 1)))
@@ -109,12 +109,12 @@ const notes$ = interval(1000).pipe(random(24, 107))
 })()
 ```
 
-Let's refactor this using the `program()` structure from Gen.js:
+Let's refactor this using the `program()` structure from Tuplet:
 
 ```js
 const { interval } = rxjs
 const { map } = rxjs.operators
-const { program, sampler, samples, random } = gen
+const { program, sampler, samples, random } = tuplet
 
 const model = {
   note: null,
@@ -150,7 +150,7 @@ const {
   resolution,
   random,
   noteName,
-} = gen
+} = tuplet
 
 // -- MODEL
 
@@ -212,7 +212,7 @@ By also applying some randomness to the timing and velocity, we can add more
 nuance.
 
 ```js
-import { instrument, metronome, midi } from 'gen'
+import { instrument, metronome, midi } from 'tuplet'
 
 const rand = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min

@@ -104,7 +104,7 @@ _effect_ node (we'll cover what these nodes actually do shortly). We connect the
 of the `AudioContext` i.e. our speakers. Our graph looks as follows (rendered in
 Chrome with the [Web Audio Inspector](https://google.github.io/audion/)).
 
-![](/gen/img/primers/javascript/basic-graph.png)
+![](/tuplet/img/primers/javascript/basic-graph.png)
 
 ## Nodes
 

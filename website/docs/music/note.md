@@ -42,7 +42,7 @@ we're instead going to delegate that work to pre-recorded instrument samples.
 To play back samples we need a few elements:
 
 - A sample audio file: e.g.
-  [the middle C (C4) note played on a piano](https://unpkg.com/@meleyal/gen/samples/piano/c4.mp3)
+  [the middle C (C4) note played on a piano](https://unpkg.com/@meleyal/tuplet/samples/piano/c4.mp3)
 - A way to load the audio file:
   [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 - A way to decode the audio file for playback:
@@ -62,15 +62,15 @@ const context = new AudioContext()
 
 // Load a sample from the server.
 fetch('{{PACKAGE_URL}}/samples/piano/c4.mp3')
-  .then(response => {
+  .then((response) => {
     // Get the `arrayBuffer` representation of the sample.
     return response.arrayBuffer()
   })
-  .then(arrayBuffer => {
+  .then((arrayBuffer) => {
     // Decode the `arrayBuffer` into actual audio.
     return context.decodeAudioData(arrayBuffer)
   })
-  .then(audioBuffer => {
+  .then((audioBuffer) => {
     // Create an `AudioBufferSourceNode`.
     const sourceNode = context.createBufferSource()
 
@@ -88,11 +88,11 @@ fetch('{{PACKAGE_URL}}/samples/piano/c4.mp3')
 ## Learning
 
 We now know the steps involved in loading a sample, decoding it, and playing it
-back. **Gen.js** includes the [`sample()`](api/index.md#sample) function which
+back. **Tuplet** includes the [`sample()`](api/index.md#sample) function which
 abstracts away some of these details for us:
 
 ```js
-const { sample } = gen
+const { sample } = tuplet
 
 ;(async () => {
   const context = new AudioContext()
