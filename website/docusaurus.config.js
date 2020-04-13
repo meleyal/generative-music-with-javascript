@@ -3,20 +3,18 @@
 const isDev = process.env.NODE_ENV === 'development'
 
 const siteVariables = {
-  PACKAGE_URL: isDev
-    ? 'http://localhost:3001'
-    : 'https://unpkg.com/@meleyal/tuplet',
+  PACKAGE_URL: isDev ? 'http://localhost:3001' : 'https://unpkg.com/tuplet',
 }
 
 const siteConfig = {
   title: 'Tuplet',
   tagline: 'Generative music with JavaScript',
   url: 'https://meleyal.github.io',
-  baseUrl: '/tuplet/',
+  baseUrl: '/',
   projectName: 'tuplet',
   organizationName: 'meleyal',
   favicon: 'img/favicon.png',
-  scripts: ['/tuplet/js/custom.js', `${siteVariables.PACKAGE_URL}/tuplet.js`],
+  scripts: ['/js/custom.js', `${siteVariables.PACKAGE_URL}/tuplet.js`],
   themeConfig: {
     navbar: {
       title: 'Tuplet',

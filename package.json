@@ -1,5 +1,5 @@
 {
-  "name": "@meleyal/tuplet",
+  "name": "tuplet",
   "version": "0.0.1",
   "main": "src/index.js",
   "scripts": {
