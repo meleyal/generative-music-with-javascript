@@ -1,5 +1,3 @@
-// const { inject } = require('./plugins/markdown.js')
-
 const isDev = process.env.NODE_ENV === 'development'
 
 const siteVariables = {
@@ -46,7 +44,6 @@ const siteConfig = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // remarkPlugins: [inject(siteVariables)]
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
