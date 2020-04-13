@@ -10,7 +10,7 @@ npm install tuplet
 
 ## Documentation
 
-See https://meleyal.github.io/tuplet
+See https://tuplet.js.org/docs
 
 ## License
 
