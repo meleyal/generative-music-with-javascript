@@ -9,7 +9,7 @@ const siteVariables = {
 const siteConfig = {
   title: 'Tuplet',
   tagline: 'Generative music with JavaScript',
-  url: 'https://meleyal.github.io',
+  url: 'https://tuplet.js.org',
   baseUrl: '/',
   projectName: 'tuplet',
   organizationName: 'meleyal',
