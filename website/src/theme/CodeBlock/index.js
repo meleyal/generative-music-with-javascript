@@ -9,7 +9,8 @@ export default ({ children, className: languageClassName }) => {
   const target = useRef(null)
   const button = useRef(null)
 
-  const language = languageClassName.replace(/language-/, '')
+  const language =
+    languageClassName && languageClassName.replace(/language-/, '')
 
   const [isRunning, setIsRunning] = useState(false)
 
