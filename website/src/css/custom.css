@@ -1,16 +1,12 @@
-/**
- * You can override the default Infima variables here.
- * Note: this is not a complete list of --ifm- variables.
- */
 :root {
   --ifm-font-size-base: 17px;
   --ifm-color-primary: #8f1bf7;
-  --ifm-color-primary-dark: #a141f8;
-  --ifm-color-primary-darker: #9931f7;
-  --ifm-color-primary-darkest: #8009eb;
-  --ifm-color-primary-light: #c385fa;
-  --ifm-color-primary-lighter: #cb95fb;
-  --ifm-color-primary-lightest: #e4c8fd;
+  --ifm-color-primary-dark: #8208ee;
+  --ifm-color-primary-darker: #7a08e1;
+  --ifm-color-primary-darkest: #6507b9;
+  --ifm-color-primary-light: #9c35f8;
+  --ifm-color-primary-lighter: #c385fb;
+  --ifm-color-primary-lightest: #e4c7fd;
   --ifm-navbar-height: 3.75rem;
   --ifm-code-font-size: 14px;
 }
@@ -21,36 +17,4 @@
 
 .menu .menu__list-item {
   margin: 0.15rem 0;
-}
-
-.toggleNav h2 i {
-  display: none;
-}
-
-details {
-  background: #f8f8f8;
-  text-align: center;
-  padding: 10px;
-}
-
-details > img {
-  margin: 10px 0;
-}
-
-audio {
-  min-width: 500px;
-}
-
-blockquote {
-  background: none;
-}
-
-.prism-code {
-  position: relative;
-}
-
-.prism-code > .btn-code-block-run {
-  position: absolute;
-  bottom: 1.25rem;
-  right: 1.5rem;
 }

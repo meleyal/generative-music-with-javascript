@@ -12,7 +12,7 @@ const siteConfig = {
   projectName: 'tuplet',
   organizationName: 'meleyal',
   favicon: 'img/favicon.png',
-  scripts: ['/js/custom.js', `${siteVariables.PACKAGE_URL}/tuplet.js`],
+  scripts: [`${siteVariables.PACKAGE_URL}/tuplet.js`],
   themeConfig: {
     navbar: {
       title: 'Tuplet',
@@ -21,22 +21,18 @@ const siteConfig = {
         src: 'img/tuplet.svg',
       },
       links: [
-        { to: 'docs/introduction', label: 'Docs', position: 'right' },
+        { to: 'docs/introduction', label: 'Book', position: 'right' },
+        { to: 'docs/api/index', label: 'API', position: 'right' },
         {
           href: 'https://github.com/meleyal/tuplet',
           label: 'GitHub',
           position: 'right',
         },
       ],
-      hideOnScroll: false,
     },
     footer: false,
     sidebarCollapsible: false,
     disableDarkMode: true,
-    prism: {
-      theme: require('prism-react-renderer/themes/github'),
-      defaultLanguage: 'javascript',
-    },
   },
   presets: [
     [

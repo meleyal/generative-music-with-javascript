@@ -1,0 +1,38 @@
+.codeBlockContent {
+  position: relative;
+}
+
+.codeBlock {
+  overflow: auto;
+}
+
+.runButton {
+  border: 1px solid var(--ifm-color-primary-lightest);
+  border-radius: var(--ifm-global-radius);
+  background: none;
+  color: var(--ifm-color-primary-light);
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 12px;
+  outline: none;
+  padding: 4px 8px;
+  position: absolute;
+  right: var(--ifm-pre-padding);
+  top: var(--ifm-pre-padding);
+  transition: all 0.3s;
+}
+
+.runButton:hover {
+  color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary-lighter);
+}
+
+.codeBlockLines {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: inherit;
+  line-height: var(--ifm-pre-line-height);
+  white-space: pre;
+  float: left;
+  min-width: 100%;
+  padding: var(--ifm-pre-padding);
+}
