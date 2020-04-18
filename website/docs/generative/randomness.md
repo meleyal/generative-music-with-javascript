@@ -34,7 +34,7 @@ four directions: up, down, left, or right (plus a fifth choice if you include
 not moving as an option). Given a certain set of rules, this might look as
 follows:
 
-![](/tuplet/img/walker/walk.png)
+![](/img/walker/walk.png)
 
 How might we apply this idea to music? As we've seen, a piano has 88 keys,
 giving it a range from A0 to C8, which map to the MIDI numbers 21–108. We can
@@ -43,7 +43,7 @@ a higher note; 2) play a min note; 3) play the same note; 4) play nothing. The
 range 21-108 and the 4 choices define the "possibility space" for our random
 walk.
 
-![](/tuplet/img/walker/piano.svg)
+![](/img/walker/piano.svg)
 
 ## Random Notes
 

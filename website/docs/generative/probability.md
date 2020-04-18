@@ -17,7 +17,7 @@ program behaves.
 An easy way to think about this is by visualizing a pie chart. The more pieces
 of the pie we assign a given outcome, the more chance that outcome will occur.
 
-![](/tuplet/img/walker/probability.svg)
+![](/img/walker/probability.svg)
 
 ```js
 navigator.requestMIDIAccess().then((midi) => {
@@ -81,7 +81,7 @@ range, otherwise known as normal (or Gaussian) distribution (in contrast to pure
 randomness, which aims for uniform distribution). This maps well to music, where
 melodies tend to use a narrow range of notes and steps.
 
-![](/tuplet/img/walker/distributions.svg)
+![](/img/walker/distributions.svg)
 
 ```js
 import random from 'random'
@@ -158,7 +158,7 @@ details. These notes sound like they 'belong together'.
 
 C Major scale is just all the white notes, starting at C to next C.
 
-![](/tuplet/img/walker/scales.svg)
+![](/img/walker/scales.svg)
 
 All notes:
 

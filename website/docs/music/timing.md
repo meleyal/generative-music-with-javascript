@@ -187,7 +187,7 @@ triplet divisions which we'll ignore for now).
 If we presume a time signature of 4/4 (4 beats per bar), these resolutions break
 down as follows:
 
-![](/tuplet/img/sequencer/resolution.svg)
+![](/img/sequencer/resolution.svg)
 
 Rather than passing in a callback to be triggered on the beat, we can instead
 extend our metronome to emit events at each subdivision and listen for those.

@@ -10,7 +10,7 @@ The simplest graph is a single node with zero inputs:
 const context = new AudioContext()
 ```
 
-![](/tuplet/img/routing/routing-a.svg)
+![](/img/routing/routing-a.svg)
 
 New nodes are not connected by default:
 
@@ -19,7 +19,7 @@ const context = new AudioContext()
 const source = context.createBufferSource()
 ```
 
-![](/tuplet/img/routing/routing-b.svg)
+![](/img/routing/routing-b.svg)
 
 Nodes are connected by calling their `connect()` method, which connects the
 _output(s)_ of the first node to the _input(s)_ of the second:
@@ -30,7 +30,7 @@ const source = context.createBufferSource()
 source.connect(context.destination)
 ```
 
-![](/tuplet/img/routing/routing-c.svg)
+![](/img/routing/routing-c.svg)
 
 Multiple nodes can be connected to the same input:
 
@@ -44,7 +44,7 @@ source2.connect(context.destination)
 source3.connect(context.destination)
 ```
 
-![](/tuplet/img/routing/routing-d.svg)
+![](/img/routing/routing-d.svg)
 
 Nodes can be chained together to process audio as it passes through:
 
@@ -60,4 +60,4 @@ source3.connect(volume)
 volume.connect(context.destination)
 ```
 
-![](/tuplet/img/routing/routing-e.svg)
+![](/img/routing/routing-e.svg)
