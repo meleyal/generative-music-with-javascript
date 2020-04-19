@@ -1,6 +1,14 @@
 {
   "name": "tuplet",
+  "author": "William Meleyal <william.meleyal@gmail.com>",
+  "repository": "meleyal/tuplet",
   "version": "0.0.1",
+  "license": "MIT",
+  "keywords": [
+    "generative-music",
+    "music",
+    "web-audio"
+  ],
   "main": "dist/tuplet.js",
   "files": [
     "/dist",
@@ -15,9 +23,6 @@
     "deploy": "cd website && npm run deploy",
     "build": "webpack -p"
   },
-  "repository": "meleyal/tuplet",
-  "author": "William Meleyal <william.meleyal@gmail.com>",
-  "license": "MIT",
   "dependencies": {
     "lodash.clonedeep": "^4.5.0",
     "lodash.first": "^3.0.0",
