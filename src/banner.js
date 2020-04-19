@@ -1,4 +1,4 @@
-const VERSION = '0.0.1'
+import VERSION from './version'
 
 console.log(`
  _____         _     _   
@@ -7,6 +7,6 @@ console.log(`
   |_| |___|  _|_|___|_|  
           |_|            
 
-  v${VERSION} – https://github.com/meleyal/tuplet
+  v${VERSION} – https://tuplet.js.org
 
 `)
