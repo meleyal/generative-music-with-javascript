@@ -58,3 +58,4 @@ const fetch = url => {
 }
 
 global.window = { AudioContext, fetch }
+global.SAMPLES_URL = 'http://example.com'
