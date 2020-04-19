@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------
 
-File(s):    piano/files/*.mp3
+File(s):    piano/*.mp3
 
 Source:     https://freesound.org/people/neatonk/packs/9133/
 
@@ -8,7 +8,7 @@ License:    http://creativecommons.org/licenses/by/3.0/
 
 -----------------------------------------------------------------------------
 
-File(s):    reverbs/files/flat.mp3
+File(s):    reverbs/flat.mp3
 
 Source:     https://freesound.org/people/unfa/packs/13118/
 
@@ -16,8 +16,8 @@ License:    http://creativecommons.org/publicdomain/zero/1.0/
 
 -----------------------------------------------------------------------------
 
-File(s):    reverbs/files/block-inside.mp3
-            reverbs/files/bottle-hall.mp3
+File(s):    reverbs/block-inside.mp3
+            reverbs/bottle-hall.mp3
 
 Source:     https://www.voxengo.com/impulses/
 
