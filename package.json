@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "main": "src/index.js",
   "scripts": {
-    "start": "yarn run website & yarn run serve",
-    "website": "cd website && yarn run start",
-    "serve": "webpack-dev-server",
+    "start": "npm run website & npm run serve",
+    "website": "cd website && npm run start",
+    "serve": "NODE_ENV=development webpack-dev-server",
     "test": "mocha --require esm --require test/test-helper",
-    "publish-docs": "cd website && yarn run deploy",
+    "publish-docs": "cd website && npm run deploy",
     "build": "webpack -p"
   },
   "repository": {
