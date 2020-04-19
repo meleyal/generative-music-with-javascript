@@ -1,5 +1,5 @@
-import sampleMap from '../../sample-map'
-import { pitches } from '../../constants'
+import sampleMap from '../sample-map'
+import { pitches } from '../constants'
 
 const resolve = (filename) => `${SAMPLES_URL}/piano/${filename}`
 
