@@ -1,4 +1,5 @@
-import { first, last } from 'lodash'
+import first from 'lodash.first'
+import last from 'lodash.last'
 
 export const createEnv = () => {
   const context = new window.AudioContext()
@@ -38,6 +39,6 @@ export const createEnv = () => {
     connect,
     now: clock(),
     master: context.destination,
-    bus
+    bus,
   }
 }

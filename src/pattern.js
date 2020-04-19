@@ -1,12 +1,10 @@
-import {
-  take as _take,
-  shuffle as _shuffle,
-  range as _range,
-  head,
-  tail,
-  sample,
-  cloneDeep
-} from 'lodash'
+import _range from 'lodash.range'
+import _take from 'lodash.take'
+import _shuffle from 'lodash.shuffle'
+import head from 'lodash.head'
+import tail from 'lodash.tail'
+import sample from 'lodash.sample'
+import cloneDeep from 'lodash.clonedeep'
 import { pitches, durations, velocities } from './constants'
 
 export const loop = notes => {
