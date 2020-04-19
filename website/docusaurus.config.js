@@ -1,8 +1,7 @@
-const isDev = process.env.NODE_ENV === 'development'
-
-const siteVariables = {
-  PACKAGE_URL: isDev ? 'http://localhost:3001' : 'https://unpkg.com/tuplet',
-}
+const PACKAGE_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3001'
+    : 'https://unpkg.com/tuplet'
 
 const siteConfig = {
   title: 'Tuplet',
@@ -12,7 +11,7 @@ const siteConfig = {
   projectName: 'tuplet',
   organizationName: 'meleyal',
   favicon: 'img/favicon.png',
-  scripts: [`${siteVariables.PACKAGE_URL}/tuplet.js`],
+  scripts: [`${PACKAGE_URL}/tuplet.js`],
   themeConfig: {
     navbar: {
       title: 'Tuplet',

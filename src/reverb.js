@@ -1,6 +1,6 @@
 import samples from './samples'
 
-export default async (env, name) => {
+export default async (env, name = 'flat') => {
   const impulse = samples.reverbs[name]
   const res = await window.fetch(impulse)
   const arrayBuffer = await res.arrayBuffer()

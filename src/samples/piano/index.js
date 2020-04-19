@@ -1,7 +1,8 @@
 import sampleMap from '../../sample-map'
 import { pitches } from '../../constants'
 
-// TODO: Make baseUrl configurable
+const resolve = (filename) => `${SAMPLES_URL}/piano/${filename}`
+
 const {
   a0,
   a2,
@@ -28,10 +29,7 @@ const {
 } = pitches
 
 export default sampleMap(
-  (note, octave) => {
-    const baseUrl = 'http://localhost:3001'
-    return `${baseUrl}/samples/piano/files/${note}${octave}.mp3`
-  },
+  (note, octave) => resolve(`${note}${octave}.mp3`),
   [
     a0,
     a2,

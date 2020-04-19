@@ -100,11 +100,11 @@ const sampler = async (context, samples) => {
   const context = new AudioContext()
 
   const piano = await sampler(context, {
-    C4: '{{PACKAGE_URL}}/samples/piano/c4.mp3',
-    D4: '{{PACKAGE_URL}}/samples/piano/d4.mp3',
-    E4: '{{PACKAGE_URL}}/samples/piano/e4.mp3',
-    F4: '{{PACKAGE_URL}}/samples/piano/f4.mp3',
-    G4: '{{PACKAGE_URL}}/samples/piano/g4.mp3',
+    C4: 'samples/piano/c4.mp3',
+    D4: 'samples/piano/d4.mp3',
+    E4: 'samples/piano/e4.mp3',
+    F4: 'samples/piano/f4.mp3',
+    G4: 'samples/piano/g4.mp3',
     // ...etc.
   })
 
@@ -211,7 +211,7 @@ const sampleMap = (pathFn) => {
 }
 
 const samples = sampleMap((note, octave) => {
-  const baseUrl = '{{PACKAGE_URL}}'
+  const baseUrl = 'https://example.com'
   const noteName = enharmonic(note).toLowerCase()
   return `${baseUrl}/samples/piano/${noteName}${octave}.mp3`
 })
@@ -373,7 +373,7 @@ const sampler = async (context, samples) => {
   const context = new AudioContext()
 
   const samples = sampleMap((note, octave) => {
-    const baseUrl = '{{PACKAGE_URL}}'
+    const baseUrl = 'https://example.com'
     const noteName = enharmonic(note).toLowerCase()
     return `${baseUrl}/samples/piano/${noteName}${octave}.mp3`
   })
@@ -625,10 +625,7 @@ const sampler = async (context, samples) => {
 }
 
 tuplet.run(async (context) => {
-  const piano = await sampler(
-    context,
-    tuplet.sampleMap('{{PACKAGE_URL}}/samples/piano/')
-  )
+  const piano = await sampler(context, tuplet.sampleMap('samples/piano/'))
 
   // Single C note
   piano('C4', { volume: 0.5 })

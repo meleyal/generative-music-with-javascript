@@ -159,7 +159,7 @@ const { sample } = tuplet
 
 ;(async () => {
   const context = new AudioContext()
-  const s = await sample(context, '{{PACKAGE_URL}}/samples/piano/c4.mp3')
+  const s = await sample(context, 'sample.mp3')
   s.connect(context.destination)
   s.start()
 })()
@@ -179,7 +179,7 @@ TODO: Summary
 tuplet.run(async (context) => {
   const piano = await tuplet.sampler(
     context,
-    tuplet.sampleMap('{{PACKAGE_URL}}/samples/piano/')
+    tuplet.sampleMap('./samples/piano')
   )
 
   // Single C note

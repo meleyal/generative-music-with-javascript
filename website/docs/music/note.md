@@ -61,7 +61,7 @@ piano sample play from start to finish.
 const context = new AudioContext()
 
 // Load a sample from the server.
-fetch('{{PACKAGE_URL}}/samples/piano/c4.mp3')
+fetch('sample.mp3')
   .then((response) => {
     // Get the `arrayBuffer` representation of the sample.
     return response.arrayBuffer()
@@ -96,7 +96,7 @@ const { sample } = tuplet
 
 ;(async () => {
   const context = new AudioContext()
-  const s = await sample(context, '{{PACKAGE_URL}}/samples/piano/c4.mp3')
+  const s = await sample(context, 'sample.mp3')
   s.connect(context.destination)
   s.start()
 })()

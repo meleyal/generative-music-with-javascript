@@ -52,11 +52,7 @@ const { wn, qn, den, sn, hn, ent } = music.durations
   const bpm = 90.0
   const env = createEnv()
 
-  env.connect(
-    await fx.compressor(env),
-    await fx.reverb(env, 'bottle-hall'),
-    env.master
-  )
+  env.connect(await fx.compressor(env), await fx.reverb(env), env.master)
 
   const piano = await inst.sampler(env, 'piano')
 

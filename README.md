@@ -21,5 +21,5 @@ The Tuplet logo is
 based on ["rings" by aitor](https://thenounproject.com/term/rings/937450/) from
 the Noun Project.
 
-The samples included with Tuplet are individually licensed. See the LICENCE
-files in the [samples](src/samples) folder for details.
+The samples included with Tuplet are individually licensed. See the
+[LICENSE](./samples/LICENSE) file in the `samples` folder for details.

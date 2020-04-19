@@ -1,15 +1,12 @@
 # Editor
 .vscode
 
-# Yarn
+# npm
 node_modules
-yarn-error.log
 
 # Dist
 dist
 
 # Docusuarus
 .docusaurus
-.cache-loader
-website/build/
-website/i18n/
+website/build

@@ -180,7 +180,7 @@ const messages = (model, send) => {
     sampler: async () => {
       const samples = await sampleMap2(
         context,
-        '{{PACKAGE_URL}}/samples/piano/'
+        'samples/piano'
       )
       send({ sampler: sampler2(context, samples) })
     },

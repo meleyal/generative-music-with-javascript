@@ -1,7 +1,7 @@
-const baseUrl = 'http://localhost:3001/samples/reverbs/files'
+const resolve = (filename) => `${SAMPLES_URL}/reverbs/${filename}`
 
 export default {
-  flat: `${baseUrl}/flat.wav`,
-  'block-inside': `${baseUrl}/block-inside.wav`,
-  'bottle-hall': `${baseUrl}/bottle-hall.wav`
+  flat: resolve('flat.mp3'),
+  'block-inside': resolve('block-inside.mp3'),
+  'bottle-hall': resolve('bottle-hall.mp3'),
 }

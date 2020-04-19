@@ -1,19 +1,21 @@
 {
   "name": "tuplet",
   "version": "0.0.1",
-  "main": "src/index.js",
+  "main": "dist/tuplet.js",
+  "files": [
+    "/dist",
+    "/samples"
+  ],
   "scripts": {
-    "start": "npm run website & npm run serve",
+    "start": "npm run server & npm run samples & npm run website",
+    "server": "NODE_ENV=development webpack-dev-server",
+    "samples": "http-server --cors --silent",
     "website": "cd website && npm run start",
-    "serve": "NODE_ENV=development webpack-dev-server",
     "test": "mocha --require esm --require test/test-helper",
-    "publish-docs": "cd website && npm run deploy",
+    "deploy": "cd website && npm run deploy",
     "build": "webpack -p"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/meleyal/tuplet.git"
-  },
+  "repository": "meleyal/tuplet",
   "author": "William Meleyal <william.meleyal@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -23,6 +25,7 @@
     "chai": "^4.2.0",
     "chai-string": "^1.5.0",
     "esm": "^3.2.25",
+    "http-server": "^0.12.1",
     "mocha": "^6.2.2",
     "sinon": "^7.3.2",
     "sinon-chai": "^3.3.0",
