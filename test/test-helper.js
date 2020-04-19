@@ -19,17 +19,17 @@ class AudioContext {
       gain: {
         value: 0,
         setValueAtTime: () => null,
-        exponentialRampToValueAtTime: () => null
+        exponentialRampToValueAtTime: () => null,
       },
-      connect: () => null
+      connect: () => null,
     }
   }
   createOscillator() {}
   createDynamicsCompressor() {
     return {
       threshold: {
-        value: 0
-      }
+        value: 0,
+      },
     }
   }
   createBufferSource() {
@@ -38,21 +38,21 @@ class AudioContext {
       playbackRate: { value: 0 },
       connect: () => null,
       start: () => null,
-      stop: () => null
+      stop: () => null,
     }
   }
   createConvolver() {}
   decodeAudioData() {
     return {
-      duration: Math.random()
+      duration: Math.random(),
     }
   }
 }
 
-const fetch = url => {
+const fetch = (url) => {
   return Promise.resolve(
     Promise.resolve({
-      arrayBuffer: () => new ArrayBuffer()
+      arrayBuffer: () => new ArrayBuffer(),
     })
   )
 }

@@ -7,7 +7,7 @@ const { a0, g8 } = pitches
 
 export default (pathResolver, midiSamples, start = a0, end = g8) => {
   return Object.assign(
-    ...range(start, end).map(midi => {
+    ...range(start, end).map((midi) => {
       let pitch = midiToPitch(midi)
       let distance = 0
       let path

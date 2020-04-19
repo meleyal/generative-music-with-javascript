@@ -8,7 +8,7 @@ import {
   randomize,
   shuffle,
   quantize,
-  range
+  range,
 } from '../src/pattern'
 import { pitches, durations } from '../src/constants'
 
@@ -37,11 +37,11 @@ describe('Pattern', () => {
   it('transpose', () => {
     const arr = [
       [1, 0, 0],
-      [2, 0, 0]
+      [2, 0, 0],
     ]
     expect(transpose(arr, 1)).to.deep.equal([
       [2, 0, 0],
-      [3, 0, 0]
+      [3, 0, 0],
     ])
   })
 
@@ -78,31 +78,31 @@ describe('Pattern', () => {
     let notes = [
       [c4, sn],
       [c4, qn],
-      [c4, wn]
+      [c4, wn],
     ]
 
     expect(quantize(notes, 30.0)).to.deep.equal([
       [c4, 0.5],
       [c4, 2.0],
-      [c4, 8.0]
+      [c4, 8.0],
     ])
 
     expect(quantize(notes, 60.0)).to.deep.equal([
       [c4, 0.25],
       [c4, 1.0],
-      [c4, 4.0]
+      [c4, 4.0],
     ])
 
     expect(quantize(notes, 120.0)).to.deep.equal([
       [c4, 0.125],
       [c4, 0.5],
-      [c4, 2.0]
+      [c4, 2.0],
     ])
 
     expect(quantize(notes, 240.0)).to.deep.equal([
       [c4, 0.0625],
       [c4, 0.25],
-      [c4, 1.0]
+      [c4, 1.0],
     ])
   })
 })

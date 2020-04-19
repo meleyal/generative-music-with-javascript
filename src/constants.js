@@ -106,7 +106,7 @@ export const pitches = {
   e9: 124,
   f9: 125,
   fs9: 126,
-  g9: 127
+  g9: 127,
 }
 
 export const durations = {
@@ -130,7 +130,7 @@ export const durations = {
   dsn: 0.375,
   den: 0.75,
   dqn: 1.5,
-  dhn: 3.0
+  dhn: 3.0,
 }
 
 export const velocities = {
@@ -142,5 +142,5 @@ export const velocities = {
   p: 50, // piano (soft)
   pp: 25, // pianissimo (very soft)
   ppp: 10, // pianississimo (very very soft)
-  silent: 0
+  silent: 0,
 }

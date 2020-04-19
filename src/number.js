@@ -6,7 +6,7 @@ export const remap = (value, min, max, newMin, newMax) => {
   return newMin + (newMax - newMin) * ((value - min) / (max - min))
 }
 
-export const round = n => {
+export const round = (n) => {
   return Math.round(n * 1e2) / 1e2
 }
 

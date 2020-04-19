@@ -3,13 +3,13 @@ import { velocities } from './constants'
 
 const { fff, silent } = velocities
 
-export const pitchSplit = pitch => {
+export const pitchSplit = (pitch) => {
   const re = /(\w(?:\w|\W)?)(\d{1})/
   const m = re.exec(pitch)
   return [m[1], m[2]]
 }
 
-export const pitchToMidi = pitch => {
+export const pitchToMidi = (pitch) => {
   const [note, octave] = pitchSplit(pitch)
   const notes = {
     c: 0,
@@ -33,7 +33,7 @@ export const pitchToMidi = pitch => {
   return notes[note] + 12 + 12 * octave
 }
 
-export const midiToPitch = midi => {
+export const midiToPitch = (midi) => {
   const numbers = {
     0: 'c',
     1: 'cs',
@@ -61,15 +61,15 @@ export const midiToPitch = midi => {
 
   return numbers[note]
     .split('/')
-    .map(name => name + octave)
+    .map((name) => name + octave)
     .join('/')
 }
 
 // Shamelessly stolen from Tone.js
-export const intervalToFrequencyRatio = interval => {
+export const intervalToFrequencyRatio = (interval) => {
   return Math.pow(2, interval / 12)
 }
 
-export const volume = velocity => {
+export const volume = (velocity) => {
   return remap(velocity, silent, fff, 0, 1)
 }

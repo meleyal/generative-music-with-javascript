@@ -3,5 +3,5 @@ import reverbs from './reverbs'
 
 export default {
   piano,
-  reverbs
+  reverbs,
 }

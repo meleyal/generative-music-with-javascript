@@ -1,11 +1,11 @@
 import * as ptn from './pattern'
 
-const seq = notes => {
+const seq = (notes) => {
   return {
-    repeat: n => seq(ptn.repeat(notes, n)),
-    quantize: bpm => seq(ptn.quantize(notes, bpm)),
-    transpose: n => seq(ptn.transpose(notes, n)),
-    fold: () => notes
+    repeat: (n) => seq(ptn.repeat(notes, n)),
+    quantize: (bpm) => seq(ptn.quantize(notes, bpm)),
+    transpose: (n) => seq(ptn.transpose(notes, n)),
+    fold: () => notes,
   }
 }
 
