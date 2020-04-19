@@ -1,6 +1,6 @@
 const PACKAGE_URL =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3001'
+    ? 'http://localhost:3001/tuplet.js'
     : 'https://unpkg.com/tuplet'
 
 const siteConfig = {
@@ -11,7 +11,7 @@ const siteConfig = {
   projectName: 'tuplet',
   organizationName: 'meleyal',
   favicon: 'img/favicon.png',
-  scripts: [`${PACKAGE_URL}/tuplet.js`],
+  scripts: [PACKAGE_URL],
   themeConfig: {
     navbar: {
       title: 'Tuplet',
