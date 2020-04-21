@@ -1,8 +1,10 @@
 const webpack = require('webpack')
+const CopyPlugin = require('copy-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const SAMPLES_URL =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8080/samples'
+    ? 'http://localhost:3001/samples'
     : 'https://unpkg.com/tuplet/samples'
 
 module.exports = {
@@ -12,15 +14,18 @@ module.exports = {
     filename: 'tuplet.js',
   },
   plugins: [
+    new CleanWebpackPlugin(),
+    new CopyPlugin([{ from: 'samples', to: 'samples' }]),
     new webpack.DefinePlugin({
       SAMPLES_URL: JSON.stringify(SAMPLES_URL),
     }),
   ],
   devServer: {
-    contentBase: 'src',
+    contentBase: './',
     port: 3001,
     quiet: true,
     clientLogLevel: 'none',
+    writeToDisk: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },

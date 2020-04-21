@@ -9,17 +9,13 @@ import compressor from './compressor'
 
 const tuplet = {
   createEnv,
-  fx: {
-    reverb,
-    compressor,
-  },
-  inst: {
-    sampler,
-  },
   seq,
   pattern,
   music: constants,
+  inst: { sampler },
+  fx: { reverb, compressor },
 }
 
 window.tuplet = tuplet
 export default tuplet
+console.log('meatballs')

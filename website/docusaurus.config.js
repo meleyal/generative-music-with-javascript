@@ -1,6 +1,6 @@
 const PACKAGE_URL =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3001/tuplet.js'
+    ? 'http://localhost:3001/dist/tuplet.js'
     : 'https://unpkg.com/tuplet'
 
 const siteConfig = {
