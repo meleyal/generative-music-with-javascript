@@ -1,8 +1,6 @@
 import sampleMap from '../sample-map'
 import { pitches } from '../constants'
 
-const resolve = (filename) => `${SAMPLES_URL}/piano/${filename}`
-
 const {
   a0,
   a2,
@@ -27,6 +25,8 @@ const {
   f6,
   f7,
 } = pitches
+
+const resolve = (filename) => `${SAMPLES_URL}/piano/${filename}`
 
 export default sampleMap(
   (note, octave) => resolve(`${note}${octave}.mp3`),

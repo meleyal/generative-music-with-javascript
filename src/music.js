@@ -1,4 +1,4 @@
-import { round, remap } from './number'
+import { remap } from './number'
 import { velocities } from './constants'
 
 const { fff, silent } = velocities

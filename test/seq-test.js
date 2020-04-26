@@ -1,20 +1,20 @@
-import { expect } from 'chai'
 import seq from '../src/seq'
 
-// describe.only('Pattern', () => {
-//   it('works', () => {
-//     // console.log(
-//     //   seq([
-//     //     [1, 1],
-//     //     [2, 1],
-//     //     [3, 1]
-//     //   ])
-//     //     .repeat(2)
-//     //     .quantize(120.0)
-//     //     .transpose(1)
-//     //     .fold()
-//     // )
+describe('Seq', () => {
+  it('concat', () => {
+    const exp = [1, 2, 3, 4, 5, 6]
+    const a = seq([1, 2])
+    const b = seq([3, 4])
+    const c = seq([5, 6])
+    const act = seq.concat(a, b, c).fold()
+    expect(exp).to.eql(act)
+  })
 
-//     console.log(seq.concat(seq([1, 2, 3]), seq([4, 5, 6])).fold())
-//   })
-// })
+  it('play', async () => {
+    const spy = sinon.stub()
+    const ptn = seq([1, 2])
+    await seq.play(ptn, spy)
+    expect(spy).to.have.been.calledWith(1)
+    expect(spy).to.have.been.calledWith(2)
+  })
+})

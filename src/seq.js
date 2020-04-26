@@ -10,7 +10,7 @@ const seq = (notes) => {
 }
 
 seq.concat = (...seqs) => {
-  return seq([...seqs[0].fold(), ...seqs[1].fold()])
+  return seq(seqs.flatMap((s) => s.fold()))
 }
 
 seq.play = async (notes, inst) => {

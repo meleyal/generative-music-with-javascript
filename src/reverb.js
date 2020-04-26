@@ -2,8 +2,8 @@ import samples from './samples'
 
 export default async (env, name = 'flat') => {
   const impulse = samples.reverbs[name]
-  const res = await window.fetch(impulse)
-  const arrayBuffer = await res.arrayBuffer()
+  const sample = await window.fetch(impulse)
+  const arrayBuffer = await sample.arrayBuffer()
   const buffer = await env.context.decodeAudioData(arrayBuffer)
   const node = env.context.createConvolver()
   node.buffer = buffer
