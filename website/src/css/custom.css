@@ -7,14 +7,18 @@
   --ifm-color-primary-light: #9c35f8;
   --ifm-color-primary-lighter: #c385fb;
   --ifm-color-primary-lightest: #e4c7fd;
-  --ifm-navbar-height: 3.75rem;
+  --ifm-navbar-height: 3.3rem;
   --ifm-code-font-size: 14px;
+}
+
+.menu .menu__list-item {
+  margin: 0.1rem 0;
+}
+
+.menu .menu__list .menu__list .menu__link {
+  font-size: 0.85rem;
 }
 
 .menu > .menu__list > .menu__list-item > .menu__link {
   color: #000;
-}
-
-.menu .menu__list-item {
-  margin: 0.15rem 0;
 }
