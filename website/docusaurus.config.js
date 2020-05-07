@@ -20,8 +20,8 @@ const siteConfig = {
         src: 'img/tuplet.svg',
       },
       links: [
-        { to: 'docs/introduction', label: 'Book', position: 'right' },
-        { to: 'docs/api/index', label: 'API', position: 'right' },
+        { to: 'book/introduction', label: 'Book', position: 'right' },
+        { to: 'book/api/index', label: 'API', position: 'right' },
         {
           href: 'https://github.com/meleyal/tuplet',
           label: 'GitHub',
@@ -38,6 +38,8 @@ const siteConfig = {
       '@docusaurus/preset-classic',
       {
         docs: {
+          path: 'book',
+          routeBasePath: 'book',
           sidebarPath: require.resolve('./sidebars.js'),
         },
         theme: {

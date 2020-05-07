@@ -2,6 +2,8 @@
 title: JavaScript
 ---
 
+- https://github.com/markerikson/react-redux-links/blob/master/README.md#learning-core-javascript-es5
+
 This article is a general introduction to the Web Audio API aimed at web
 developers who are interested in extending their skills to work with audio and
 music applications.
