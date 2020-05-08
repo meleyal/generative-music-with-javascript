@@ -272,7 +272,13 @@ signatures etc. But that's for a future article!
 
 ## Aside: Autoplay Policy
 
-Needs interaction. Needs some hijinx.
+Needs interaction. Needs some hijinx:
+
+> To detect whether browser will require user interaction to play audio, you can
+> check the `state` of the `AudioContext` after you've created it. If you are
+> allowed to play, it should immediately switch to `running`. Otherwise it will
+> be `suspended`. If you listen to the `statechange` event, you can detect
+> changes asynchronously.
 
 - Chrome: `chrome://flags/#autoplay-policy` – no longer working as of v76
 - Firefox: enabled by default?
@@ -306,3 +312,7 @@ good foundation for working at a higher level and make cool stuff.
 - [JavaScript Systems Music](https://teropa.info/blog/2016/07/28/javascript-systems-music.html)
 - [What Is the Web Audio API?](http://teropa.info/blog/2016/08/19/what-is-the-web-audio-api.html)
 - [Making Generative Music in the Browser](https://medium.com/@metalex9/making-generative-music-in-the-browser-bfb552a26b0b)
+
+```
+
+```
