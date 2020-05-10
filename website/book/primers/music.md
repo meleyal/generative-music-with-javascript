@@ -2,52 +2,102 @@
 title: Music
 ---
 
-> TODO
+> Music is organized sound. –
+> [Edgard Varèse](https://en.wikipedia.org/wiki/Edgard_Var%C3%A8se)
 
 > Remember, music consists of sequences (i.e., lists) of events.
 
-Here we explain the building blocks of music: melody, harmony and rhythm.
+Here we explain the building blocks of music: notes + time..., and how they form
+melody, harmony and rhythm.
 
-Melody, harmony, rhythm, compare with functions + primitives.
+Sounds happening over time. All of the theory below are just ways of organizing
+and understanding sound.
 
-- Scales
-- Chords
-- Rhythm
-- Tempo/BPM/beat
-- Human heart beat
-- Signature BPMs (house 120, hip hop 90, dnb 140)
-- Time signature
+Preface by saying that its western classical system. It's the most prevalent and
+underpins most music, but it's not the only way of thinking.
+
+## Notes
+
+A musical note is the sound we hear when we play a key on the piano, or pluck a
+guitar string. More specifically, a note is a combination of three elements:
+pitch, duration, and dynamics.
+
+- Pitch: a pitch consists of a pitch class and an octave. For example, A4
+  represents the pitch class A in the fourth octave.
+- Pitch Class: the pitch class A consists of the As in all octaves.
+- Note: a note is a pitch combined with a duration
+
+### Pitch
+
+- Frequency, resonance, vibration
+- Harmonics, ratios
+
+### Duration
+
 - Note lengths
-- Instruments
+
+### Dynamics
+
+- Volume / velocity
+- Expression
+
+### Rests
+
+Just as important as sound is the absence of it.
 
 ## Scales
 
+- Octave, 12 notes above, double the frequency
+- Keys (pattern of steps)
+- Chromatic
 - Western classical 12 note scale (do re me fa so la ti do)
 - Major, minor
 - Other scales (Dorian etc, church, jazz)
 - Non-western
 - Microtonal
 
-## Definitions
+> The collection of notes from one pitch to the next one of the same name, say
+> C4 to C5, is an octave. All the notes within an octave (including sharps or
+> flats) make up the notes of the “chromatic” scale (12 notes).
 
-- Pitch: a pitch consists of a pitch class and an octave. For example, A4
-  represents the pitch class A in the fourth octave.
-- Pitch Class: the pitch class A consists of the As in all octaves.
-- Note: a note is a pitch combined with a duration
-- Rest:
-- Score:
-- Part:
-- Phrase:
-- Octave:
+## Melody
+
+- Intervals
+- Tonic / journey / resolution
+
+## Chords
+
+- More than 1 note played together
+- Major, minor + harmonics
+- Progressions, I-V-IV
+
+## Harmony
+
+## Tempo
+
+- Tempo/BPM/beat
+- Human heart beat
+- Signature BPMs (house 120, hip hop 90, dnb 140)
+
+## Rhythm
+
+- Time signature
+- Swing
+
+## Structure
+
+- Phrase
+- Part
+- Bar/Measure
+- Score
+- Forms (e.g. ABBA, rondo, canon, sonata)
+
+## Reference
 
 > where a piece of music is represented as a score, that score has several parts
 > (e.g., a flute part and a percussion part), each part contains phrases (e.g.,
 > melodies, riffs, grooves, sequences, patterns), and each phrase is made up of
 > a series of one or more notes (individual sound events).
-
-> The collection of notes from one pitch to the next one of the same name, say
-> C4 to C5, is an octave. All the notes within an octave (including sharps or
-> flats) make up the notes of the “chromatic” scale (12 notes).
 
 > A note in Python consists of pitch, duration, dynamic (volume), and panning
 > position
