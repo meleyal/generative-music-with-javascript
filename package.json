@@ -14,9 +14,9 @@
     "/dist"
   ],
   "scripts": {
-    "start": "yarn serve & yarn serve:website",
-    "serve": "NODE_ENV=development webpack-dev-server",
-    "serve:website": "cd website && yarn start",
+    "start": "yarn dev & yarn website",
+    "dev": "NODE_ENV=development webpack-dev-server",
+    "website": "cd website && yarn start",
     "test": "mocha --require esm --require test/test-helper",
     "build": "webpack --mode production",
     "deploy": "cd website && yarn deploy"
