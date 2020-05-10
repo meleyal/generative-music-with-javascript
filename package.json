@@ -31,6 +31,7 @@
     "copy-webpack-plugin": "^5.1.1",
     "esm": "^3.2.25",
     "mocha": "^6.2.2",
+    "prettier": "^2.0.5",
     "sinon": "^7.3.2",
     "sinon-chai": "^3.3.0",
     "webpack": "^4.32.2",
