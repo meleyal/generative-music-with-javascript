@@ -11,10 +11,10 @@ module.exports = {
       'generative/recursion',
       'generative/evolution',
       'generative/machine-learning',
-      'generative/sonification'
+      'generative/sonification',
     ],
-    Course: ['course/outline'],
     Examples: ['examples/scales', 'examples/phasing', 'examples/canon'],
-    API: ['api/index']
-  }
+    Course: ['course/outline'],
+    API: ['api/index'],
+  },
 }
