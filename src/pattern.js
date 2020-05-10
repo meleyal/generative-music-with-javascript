@@ -1,10 +1,4 @@
-import _range from 'lodash.range'
-import _take from 'lodash.take'
-import _shuffle from 'lodash.shuffle'
-import head from 'lodash.head'
-import tail from 'lodash.tail'
-import sample from 'lodash.sample'
-import cloneDeep from 'lodash.clonedeep'
+import _ from 'lodash'
 
 import { pitches, durations, velocities } from './constants'
 
@@ -27,13 +21,13 @@ export const ring = (arr) => {
 }
 
 export const range = (start = 0, end, step = 1) => {
-  return _range(start, end + 1, step)
+  return _.range(start, end + 1, step)
 }
 
 export const transpose = (arr, n) => {
   return arr.map((e) => {
-    const h = head(e) + n
-    return [h, ...tail(e)]
+    const h = _.head(e) + n
+    return [h, ..._.tail(e)]
   })
 }
 
@@ -46,21 +40,21 @@ export const repeat = (arr, n) => {
 }
 
 export const reverse = (arr) => {
-  return cloneDeep(arr).reverse()
+  return _.cloneDeep(arr).reverse()
 }
 
 export const randomize = (arr) => {
   return arr.map((n) => {
-    return [sample(pitches), sample(durations), sample(velocities)]
+    return [_.sample(pitches), _.sample(durations), _.sample(velocities)]
   })
 }
 
 export const shuffle = (arr) => {
-  return _shuffle(arr)
+  return _.shuffle(arr)
 }
 
 export const take = (arr, n) => {
-  return _take(arr, n)
+  return _.take(arr, n)
 }
 
 export const quantize = (arr, bpm) => {

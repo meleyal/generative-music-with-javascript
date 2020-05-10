@@ -1,5 +1,4 @@
-import first from 'lodash.first'
-import last from 'lodash.last'
+import _ from 'lodash'
 
 export const createEnv = () => {
   const context = new window.AudioContext()
@@ -17,10 +16,10 @@ export const createEnv = () => {
   }
 
   const connect = (...nodes) => {
-    const input = first(nodes)
+    const input = _.first(nodes)
     const output = nodes.pop()
     nodes.forEach((node, index) => {
-      if (node === last(nodes)) {
+      if (node === _.last(nodes)) {
         node.connect(output)
       } else {
         node.connect(nodes[index + 1])
