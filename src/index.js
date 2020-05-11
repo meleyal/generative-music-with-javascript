@@ -1,4 +1,3 @@
-import banner from './banner'
 import * as constants from './constants'
 import * as pattern from './pattern'
 import seq from './seq'
@@ -18,4 +17,3 @@ const tuplet = {
 
 window.tuplet = tuplet
 export default tuplet
-console.log('meatballs')
