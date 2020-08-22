@@ -11,7 +11,7 @@ const siteConfig = {
   projectName: 'tuplet',
   organizationName: 'meleyal',
   favicon: 'img/favicon.png',
-  scripts: [PACKAGE_URL],
+  scripts: [PACKAGE_URL, 'https://cdn.jsdelivr.net/npm/@magenta/music@^1.0.0'],
   themeConfig: {
     navbar: {
       title: 'Tuplet',

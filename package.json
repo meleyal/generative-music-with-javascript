@@ -17,7 +17,7 @@
     "start": "yarn dev & yarn website",
     "dev": "NODE_ENV=development webpack-dev-server",
     "website": "cd website && yarn start",
-    "test": "mocha --require esm --require test/test-helper",
+    "test": "mocha --recursive --require esm --require test/test-helper",
     "build": "webpack --mode production",
     "deploy": "cd website && yarn deploy"
   },

@@ -2,7 +2,7 @@
 title: Generative
 ---
 
-> I make art about what confuses me.
+> "I make art about what confuses me."
 >
 > – [Lauren McCarthy](https://lauren-mccarthy.com/)
 

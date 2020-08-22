@@ -94,6 +94,8 @@ Just as important as sound is the absence of it.
 
 ## Reference
 
+- https://github.com/aws-samples/aws-deepcomposer-samples/blob/master/Music-terminologies.md
+
 > where a piece of music is represented as a score, that score has several parts
 > (e.g., a flute part and a percussion part), each part contains phrases (e.g.,
 > melodies, riffs, grooves, sequences, patterns), and each phrase is made up of

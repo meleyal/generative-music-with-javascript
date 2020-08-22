@@ -2,6 +2,13 @@
 title: API Reference
 ---
 
+## Ideas
+
+- `setup()` and `run()` functions like p5.js
+- `Sequential([])` for graph like tf.keras
+- Consider using Tone.js under the hood
+- Alternatively, how to play nice with Tone, Magenta, Tonal, etc?
+
 This page documents all of the functions available in the
 [Tuplet](https://www.npmjs.com/package/@meleyal/tuplet) library.
 

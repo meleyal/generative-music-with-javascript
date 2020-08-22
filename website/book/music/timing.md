@@ -2,6 +2,8 @@
 title: Timing
 ---
 
+- Metronome / sync to beat vs. note duration
+
 The next step is to look at rhythm/tempo. Or how to play our notes over time. If
 we think of music in terms of axes, pitch is on the y axis, with time stretching
 out ahead on the x axis. This gives us the building block of rhythm, which is a
