@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "events": "^3.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "tone": "^14.7.39"
   },
   "devDependencies": {
