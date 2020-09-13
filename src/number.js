@@ -15,3 +15,9 @@ export const closest = (arr, n) => {
     return Math.abs(curr - n) < Math.abs(prev - n) ? curr : prev
   })
 }
+
+export const closestFloat = (arr, n) => {
+  return arr.reduce((prev, curr) => {
+    return curr - n < prev - n ? curr : prev
+  })
+}

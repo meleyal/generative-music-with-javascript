@@ -19,7 +19,7 @@ const siteConfig = {
         alt: 'Site Logo',
         src: 'img/tuplet.svg',
       },
-      links: [
+      items: [
         { to: 'book/introduction', label: 'Book', position: 'right' },
         { to: 'book/api/index', label: 'API', position: 'right' },
         {
@@ -29,9 +29,11 @@ const siteConfig = {
         },
       ],
     },
-    footer: false,
+    footer: {},
     sidebarCollapsible: false,
-    disableDarkMode: true,
+    colorMode: {
+      disableSwitch: true,
+    },
   },
   presets: [
     [

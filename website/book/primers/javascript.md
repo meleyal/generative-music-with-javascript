@@ -2,16 +2,14 @@
 title: JavaScript
 ---
 
-- https://github.com/markerikson/react-redux-links/blob/master/README.md#learning-core-javascript-es5
+This chapter will be an introduction to the parts of JavaScript relevant to
+making music, specifically the Web Audio API. There are already many good
+resources to learn JavaScript the language (see Further Reading), so we won't
+repeat them here.
 
-This article is a general introduction to the Web Audio API aimed at web
-developers who are interested in extending their skills to work with audio and
-music applications.
-
-We start by defining what the Web Audio API is and where it came from, then move
-on to cover two of its key concepts that may be unfamiliar to web developers:
-graphs and timing. Along the way we'll get a feel for the API and what it can
-do.
+We'll start by defining what the Web Audio API is and where it came from, then
+move on to cover two of its key concepts: graphs and timing. Along the way we'll
+get a feel for the API and what it can do.
 
 ## Background
 
@@ -312,7 +310,4 @@ good foundation for working at a higher level and make cool stuff.
 - [JavaScript Systems Music](https://teropa.info/blog/2016/07/28/javascript-systems-music.html)
 - [What Is the Web Audio API?](http://teropa.info/blog/2016/08/19/what-is-the-web-audio-api.html)
 - [Making Generative Music in the Browser](https://medium.com/@metalex9/making-generative-music-in-the-browser-bfb552a26b0b)
-
-```
-
-```
+- https://github.com/markerikson/react-redux-links/blob/master/README.md#learning-core-javascript-es5

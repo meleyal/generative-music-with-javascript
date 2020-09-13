@@ -47,53 +47,49 @@ subjects:
 
 - [**Generative:**](primers/generative) Here we define what we mean by
   "generative", and cover how generative processes can be applied to creating
-  art and music
+  music.
 
 - [**Music:**](primers/music) Here we explain the building blocks of music:
   melody, harmony and rhythm.
 
-- [**JavaScript:**](primers/javascript) Here we cover modern JavaScript, and
-  introduce the Web Audio API.
+- [**JavaScript:**](primers/javascript) Here we cover the music-focused features
+  available in JavaScript, namely the Web Audio API.
 
 ### Music
 
 Next, we move on to programming the basic building blocks of music:
 
-- Notes
-- Scales
-- Timing
-- Sequencing
+:::note TODO
+
+List chapters
+
+:::
 
 ### Generative
 
 Finally, we go on to develop systems that create music based on different
 generative ideas:
 
-- TODO: List chapters
+:::note TODO
+
+List chapters
+
+:::
 
 ## Code Examples
 
-All the code examples in this book are runnable. You should be able to hear the
-results (or see them in the console) when hitting the `Run` bottom in the
-bottom-right corner of each code snippet.
+All of the code examples in this book are runnable. You can hear the results by
+clicking the "Run" button in the corner of each code block.
 
-To avoid repeating big chunks of code we've already seen, once a concept has
-been introduced, we'll import relevant functions from the
-[Tuplet](https://www.npmjs.com/package/@meleyal/tuplet) library (it's present on
-every page as the `tuplet` global). The actual implementation might differ from the
-presented examples as the library evolves, but the principles should remain
-similar.
-
-## Tuplet Library
-
-A lot of the ideas here are encapsulated in the Tuplet library. If you want to
-skip over how things are implemented and just make music, we'll cross-reference
-each of the code examples with their Tuplet counterpart. The full list of
-available functions can be found in the [API Reference](api/index).
+A lot of the ideas in the book are encapsulated in the
+[Tuplet](https://www.npmjs.com/package/tuplet) library. If you want to skip over
+how things are implemented and just make music, we'll cross-reference each of
+the code examples with their Tuplet counterpart. The full list of available
+functions can be found in the [API Reference](api/index).
 
 ## Prior Art
 
-This book and the design of Tuplet take inspiration from the following:
+This book takes inspiration from the following:
 
 - [The Nature of Code](https://natureofcode.com/) – simulations of natural
   systems.

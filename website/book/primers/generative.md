@@ -7,23 +7,28 @@ title: Generative
 > – [Lauren McCarthy](https://lauren-mccarthy.com/)
 
 In this chapter, we'll attempt to pin down what we mean by the elusive term
-"generative", and specifically what it means in the context of creating music.
+"generative", and what it means in the context of creating music.
 
 ## Definition
 
 We probably have an intuitive sense of what "generative" means, which we might
-phrase as follows:
-
-> **Generative** – A process or system that produces something.
-
-We can refine this further with a trip to the dictionary:
+loosely define as "a process or system that produces something." We can refine
+this further with a trip to the dictionary:
 
 > **Generative** – Having the power of generating, originating, producing, or
 > reproducing.
+>
+> [– Merriam Webster Dictionary](https://www.merriam-webster.com/dictionary/generative)
 
 This suggests that something "generative" is able to create things, possibly
 with some degree of autonomy. The "things" produced may be copies, versions, or
 something entirely new.
+
+:::note IMG
+
+Process producing something
+
+:::
 
 In the context of this book, we can be more specific and say that:
 
@@ -40,153 +45,137 @@ With these in mind, our working definition of "generative" expands to:
 
 > **Generative music system** – A program that creates new music.
 
+:::note IMG
+
+Code in browser producing music
+
+:::
+
+As a side note, it's worth mentioning that you may also hear the terms
+_algorithmic music_, or _procedural music_. These are essentially the same
+thing. Generative music is preferred here as it emphasises _what_ is happening
+rather than _how_ it's implemented.
+
 ## Concepts
 
-With this working definition in hand, let's examine some of the concepts it
-encapsulates in more detail.
+With this definition in hand, let's examine some of the concepts it encapsulates
+in more detail.
 
-Let's imagine we've written a program that plays _Happy Birthday_.
+### Creativity
 
-In programming, we call the the "thing" produced by a program its _output_.
+Creativity is obviously a key ingredient in making any kind of art. In the
+context of generative art, the creative process is a collaboration between
+yourself and the computer. We play both the creator, defining the rules of the
+game, and the curator, evaluating the result.
 
-In that sense, we could say that a program that plays _Happy Birthday_ every
-time you run it, is generative.
-
-But something's missing. In a creative context, generative implies creative,
-some complex process that results in something novel or surprising.
-
-In an ideal (or dystopian?) world, we could click a button and the computer
-would give us (or generate) our desired outcome, or some unkown outcome that
-surprises or delights us.
-
-But, in the real world, we need to give computers rules, or procedures (machine
-learning is changing this, but we're getting ahead of ourselves) to tell them
-what we want to create. These procedures are known as algorithms, which is just
-a term to describe a sequence of steps we want the computer to perform, not
-dissimilar to a cooking recipe. Extracting variables from our code gives us a
-set of values (or heuristics) we can tweak to influence the output or satisfy
-some set of contraints.
-
-You might also come across the terms algorithmic music, or procedural music.
-These are essentially the same thing, though generative music is perhaps more
-expressive as it emphasises what is happening rather than how it's implemented.
-
-- the imitation of nature (mimesis), or Biomimicry
-
-Define Generative vs. algorithmic vs. procedural
-
-Generative: relating to or capable of production or reproduction. Having the
-power or function of generating, originating, producing, or reproducing.
-Denoting an approach to any field of linguistics that involves applying a finite
-set of rules to linguistic input in order to produce all and only the
-well-formed items of a language.
-
-Algorithmic: expressed as or using an algorithm or computational procedure. A
-set of rules for solving a problem in a finite number of steps. A sequence of
-instructions, typically to solve a class of problems or perform a computation.
-
-> Algorithmic composition is the process of designing an algorithm (or
-> heuristic) for generating music.
-
-> Another typical approach to algorithmic composition is to specify some
-> constraints on the solution space and then generate lots of solutions that
-> satisfy those constraints.
-
-> – The Haskell School of Music: From Signals to Symphonies
-
-For our purposes / working definition: A (predetermined?) process/rules we
-define to create, outcome is unknown?
-
-Different forms:
-
-- the imitation of nature (mimesis), or Biomimicry
-- Rules (e.g. Reas rules:
-  https://drive.google.com/file/d/0B9h469--G5OwOGVfVmUxZUQ5VzA/view)
-
-Genetic algorithms as a particular class of evolutionary algorithms, i.e.
-strategies modeled on natural systems, are stochastic search techniques.
-
-Artificial neural networks are used in numerous applications; depending on the
-type of ANN, they are often applied in pattern recognition, prediction,
-optimization and automatic classification.
-
-## In Music
-
-Musician as generator: The score is the rules, the performance is generative
-with infinite range of variables. Less restrictive rules = more options to
-explore the possiblity space.
-
-Not new!
-
-- Micrologus, 1026 –https://en.wikipedia.org/wiki/Micrologus
-- Ars Magna, 1305 – https://en.wikipedia.org/wiki/Ramon_Llull#Ars_Magna
-
-Processes
-
-> In general, procedures of algorithmic composition may be divided into
-> knowledge-based and non-knowledge-based methods. Knowledge-based approaches
-> generate their outputs often on the basis of a rule-based system which is
-> formulated by if then conditions and/or constraints. Non-knowledge-based
-> methods are able to autonomously derive rules from an underlying corpus and
-> produce outputs that, in supervised learning, are additionally evaluated by a
-> superior instance.
-
-- Minimalism: Minimalist music usually employs repetition and layering of simple
-  musical patterns to generating intricate musical textures and structures.
-
-- Chance music, also known as aleatoric music, is a compositional technique that
-  introduces elements of randomness (or indeterminism) into the compositional
-  process.
-
-- Serialism: Serialism involves using deterministic rules to control choices
-  within the compositional process.
-
-- Stochastic music refers to music whose various aspects are guided by
-  probability.
-
-Minimalism: Minimalist music usually employs repetition and layering of simple
-musical patterns to generating intricate musical textures and structures.
-
-Chance music, also known as aleatoric music, is a compositional technique that
-introduces elements of randomness (or indeterminism) into the compositional
-process. Essential parts of chaos theory include the behavior of complex
-systems, their attractors as well as different forms of self-similar structures,
-above all of fractals. In a mathematical and physical context, particular states
-of a system that are difficult to predict are called “chaotic.”
-
-Serialism: Serialism involves using deterministic rules to control choices
-within the compositional process.
-
-Stochastic music refers to music whose various aspects are guided by
-probability. The field of stochastics comprises probability calculus and
-statistics. Stochastic processes are used to describe a sequence of random
-events dependent on the time parameter (t).
-
-## Evaluating
-
-It's worth taking a moment to think about how to evaluate the output of
-generative systems. What makes good generative art? Is the process important, or
-just the result? If we can generate something at the push of a button, what
-value does it have?
-
-Unlike most programs, there are no real 'correct' answers if we're making art.
-We're constantly evaluating and making choices about the results, and tweaking
-the program to nudge it closer to what we desire, or confound it to produce
+Unlike most programming tasks, there are no real "correct" answers here. We're
+constantly evaluating and making choices about the results, and tweaking the
+program to nudge it closer to what we desire, or confound it to produce
 something unexpected.
 
-One way to think about this is the idea of exploring a 'possiblity space'.
+One way to think about this is the idea of exploring a "possiblity space".
 Without any rules, the possiblities are infinite (i.e. chaos). By defining rules
-(heuristics), we can constrain and expore this space. A computer can draw many
-millions of circles in the time it takes us to draw one. In this way, the
-computer can 'explore' the possiblity space much faster, guided by our
-selection/curation in a feedback loop.
+and heuristics, we can constrain and expore this space. In the time it takes us
+to draw a single circle, the computer can draw many millions. In this way, the
+computer can "explore" the possiblity space much more quickly, guided by our
+selection / curation in a continuous feedback loop.
 
-This seeking is a worthy goal in and of itself, but part of our process might be
-to try and express the internal logic of our programs, or the data we're working
-with, making it possible to understand and connect with on a deeper level.
+:::note IMG
 
-In the end, this is both the draw and the value of generative art, exploring the
+Infinity vs. contrained space
+
+:::
+
+Exploring is a worthy goal in and of itself, but part of our process might be to
+try and express the internal logic of our programs, or the data we're working
+with, making it possible to understand or connect with on a deeper level. How we
+evaluate our work is entirely up to us. Is the process important, or just the
+result?
+
+This interplay is both the draw and the value of generative art, exploring the
 unknown, and hopefully finding something illuminating along the way.
+
+### Process
+
+A generative system implies some kind of driving process.
+
+In an ideal (or dystopian?) world, we could click a button and the computer
+would generate our desired outcome, or some unkown outcome that surprises or
+delights us.
+
+In the real world, we need to give computers explicit instructions to tell them
+what to create (machine learning is changing this somewhat, but we're getting
+ahead of ourselves!) These procedures are known as _algorithms_, a sequence of
+steps for the computer to perform, similar to a cooking recipe.
+
+:::note IMG
+
+Algorithm
+
+:::
+
+As we write our program, we can define _variables_ that influence how the
+program behaves (e.g. the likelihood of performing a given step). These
+variables give us a set of values we can tweak to influence the output of our
+program.
+
+The rules and values we choose define our system. We may choose intuitively, use
+a rigorous set of mathematical rules, or model an existing system such as those
+found in nature (memesis / biomimicry). We may define a starting state, run our
+program, and see what emerges. Or we may specify a desired outcome, and task our
+program with creating solutions to achieve that outcome.
+
+In programming, we usually aim to solve a problem in the most precise,
+effecient, and reproducible way. In a generative system, on the other hand, it
+can be helpful to think of it as a more organic process. How can we inject
+chance, autonomy, or interactions to breath life into our programs? This need
+not seem daunting, as we'll see, simple rules can produce surprising complexity.
+
+### Music
+
+The output of a generative music system can take many forms, but generally
+depends on if we're working at the "sample" or "note" level. At the sample
+level, we're dealing with sound itself: signals, frequencies, and actual audio
+waveforms. At the note level, we're concerned more with structure, composition,
+and symbolic representations of music (e.g. MIDI). We can of course combine
+these approaches and they often overlap, but it's a useful distinction to think
+in terms of music at the micro or macro level.
+
+:::note IMG
+
+Audio vs. notes
+
+:::
+
+The use of generative / algorithmic processes in music (and art generally) is
+nothing new. As far back as the
+[Micrologus](https://en.wikipedia.org/wiki/Micrologus) in 1026, people have used
+rule-based systems to aid in the composition process. More recently, movements
+such as Serialism, Minimalism, and Stochastic music have explored new ground
+with similar techniques.
+
+Music could itself be seen as a generative process, with the score as the
+algorithm, and the interpretation and skill of the performer as variables. Less
+restrictive rules such as those of jazz or improv provide more freedom for
+exploration and self expression.
+
+:::note IMG
+
+Bach vs. Cardew
+
+:::
+
+The rules of what constitutes "music" are constantly evolving. While there are
+well-established conventions for how music is constructed (which we'll cover in
+the next chapter), they should be seen as just that, rules we can accept,
+subvert, or reject in pursuit of something that sounds like music to us.
+
+## Conclusion
+
+Hopefully this chapter has given you a feel for what a generative system is, and
+how it might be applied to music. In the next chapter, we'll take a tour of
+music theory to understand the building blocks and how they combine to form
+musical works.
 
 ## Further Reading
 

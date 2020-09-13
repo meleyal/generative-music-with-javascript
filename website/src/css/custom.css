@@ -22,3 +22,7 @@
 .menu > .menu__list > .menu__list-item > .menu__link {
   color: #000;
 }
+
+.footer {
+  display: none;
+}

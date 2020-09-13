@@ -30,4 +30,5 @@ module.exports = {
       'Access-Control-Allow-Origin': '*',
     },
   },
+  devtool: 'inline-source-map',
 }

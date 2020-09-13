@@ -1,5 +1,13 @@
 import seq from '../seq'
 
+export const fromNoteSequence = (ns) => {
+  return ns.notes.map((n) => {
+    const { pitch, startTime, endTime } = n
+    const dur = endTime - startTime
+    return [pitch, dur]
+  })
+}
+
 export const toNoteSequence = (notes) => {
   let startTime = 0
   let endTime = 0
@@ -17,14 +25,19 @@ export const toNoteSequence = (notes) => {
   }
 }
 
-export const fromQuantizedNoteSequence = (qns) => {
-  return qns.notes.map((n) => {
-    const { pitch, quantizedStartStep, quantizedEndStep } = n
-    // const dur = quantizedStartStep + quantizedEndStep
-    const dur = quantizedEndStep - quantizedStartStep
-    // console.log(pitch, quantizedStartStep, quantizedEndStep)
-    return [pitch, dur]
-  })
+export const fromQuantizedNoteSequence = (qns, options) => {
+  const { notes, quantizationInfo } = qns
+
+  return seq(
+    notes.map((n) => {
+      const { pitch, quantizedStartStep, quantizedEndStep } = n
+      const dur =
+        (quantizedEndStep - quantizedStartStep) /
+        quantizationInfo.stepsPerQuarter
+      return [pitch, dur]
+    }),
+    options
+  )
 }
 
 let rnn
@@ -39,18 +52,27 @@ export default {
     rnn = new mm.MusicRNN(
       'https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn'
     )
-    // rnn.initialize()
   },
   seq: {
-    viz: (notes, id) => {
-      const ns = toNoteSequence(notes)
-      return new mm.Visualizer(ns, document.getElementById(id))
+    static: {
+      from: (ns, options) => {
+        return seq(fromNoteSequence(ns), options)
+      },
     },
-    continue: async (notes) => {
-      const ns = toNoteSequence(notes)
-      const qns = mm.sequences.quantizeNoteSequence(ns, 16)
-      const continued = await rnn.continueSequence(qns, 32, 1.5)
-      return fromQuantizedNoteSequence(continued)
+    methods: {
+      viz: (notes, id) => {
+        const ns = toNoteSequence(notes)
+        return new mm.Visualizer(ns, document.getElementById(id))
+      },
+      toNs: (notes) => {
+        return toNoteSequence(notes)
+      },
+      continue: async (notes, options) => {
+        const ns = toNoteSequence(notes)
+        const qns = mm.sequences.quantizeNoteSequence(ns, 4)
+        const continued = await rnn.continueSequence(qns, 16, 1.5)
+        return fromQuantizedNoteSequence(continued, options)
+      },
     },
   },
 }

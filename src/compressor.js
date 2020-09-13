@@ -1,5 +1,4 @@
-export default (
-  env,
+export default (env) => (
   threshold = -50,
   knee = 40,
   ratio = 12,

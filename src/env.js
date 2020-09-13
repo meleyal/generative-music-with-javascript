@@ -2,6 +2,9 @@ import _ from 'lodash'
 
 export const createEnv = () => {
   const context = new window.AudioContext()
+
+  console.log('createEnv', context.currentTime)
+
   let _input = context.destination
 
   const clock = () => {
@@ -33,10 +36,14 @@ export const createEnv = () => {
     return _input
   }
 
+  const now = () => {
+    return context.currentTime
+  }
+
   return {
     context,
     connect,
-    now: clock(),
+    now,
     master: context.destination,
     bus,
   }
