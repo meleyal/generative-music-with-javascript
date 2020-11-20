@@ -2,22 +2,26 @@
 title: JavaScript
 ---
 
-This chapter will be an introduction to the parts of JavaScript relevant to
-making music, specifically the Web Audio API. There are already many good
-resources to learn JavaScript the language (see Further Reading), so we won't
-repeat them here.
+In this chapter, we'll look at the features available in JavaScript for working
+with audio, namely the Web Audio API. Technically, the Web Audio API is not part
+of the JavaScript language itself, but is a standard part of the web platform
+implemented by modern browsers.
+
+We won't cover JavaScript itself here as it's already well documented elsewhere.
+If it's your first time using the language or you need a refresher, refer to the
+[Further Reading](#further-reading) section at the end of this chapter for some
+recommendations.
 
 We'll start by defining what the Web Audio API is and where it came from, then
-move on to cover two of its key concepts: graphs and timing. Along the way we'll
-get a feel for the API and what it can do.
+move on to cover two of it's key concepts: graphs and timing. Along the way
+we'll get a feel for the API and what it can do.
 
 ## Background
 
 The Web Audio API is a set of APIs for generating and processing audio in the
 browser. It's designed by the
-[W3C Audio Working Group](https://www.w3.org/2011/audio/), steered by Google,
-Mozilla, and the BBC, and chartered to "add advanced sound and music synthesis
-capabilities to the Open Web Platform."
+[W3C Audio Working Group](https://www.w3.org/2011/audio/) and chartered to "add
+advanced sound and music synthesis capabilities to the Open Web Platform."
 
 It has been in development
 [since 2011](https://www.w3.org/TR/2011/WD-webaudio-20111215/), with the spec
@@ -25,7 +29,7 @@ recently reaching v1.0 (with
 [v2.0 in the works](https://github.com/WebAudio/web-audio-api-v2)) and becoming
 a [W3C Candidate Recomendation](https://www.w3.org/TR/webaudio/). Despite its
 candiditate status, it's already well supported in browsers,
-[reaching 94% of users](https://caniuse.com/#feat=audio-api) at time of writing.
+[reaching 96% of users](https://caniuse.com/#feat=audio-api) at time of writing.
 
 Common use-cases cited for the Web Audio API are to bring music composition and
 audio editing tools (e.g. Ableton Live, Logic Pro) to the browser, as well as
@@ -52,37 +56,47 @@ representing a hierarchy of nodes that we traverse via parent, sibling and child
 relationships. The Web Audio API, on the other hand (and audio apps in general),
 organizes nodes in a _graph_ data structure.
 
-[ILLUSTRATION]
+:::note IMG
+
+Tree vs. graph
+
+:::
 
 _Source_ nodes generate signals and are the inputs of our system. These signals
 are routed through _effect_ nodes to modify them in various ways. Everything
 ends up at a single _destination_ node, i.e. your speakers, producing the
 audible output of our system. This is digital signal processing 101.
 
+:::note IMG
+
+Graph
+
+:::
+
 It's worth taking a moment to understand the fundamental differences between
 tree and graph data structures.
 [Graph theory](<https://en.wikipedia.org/wiki/Graph_(abstract_data_type)>) is
 it's own rich topic, but a key point to note is that a graph is not a heirarchy,
-but is instead like a flow chart or electrical circuit. Each node is 'equal' and
+but is instead like a flow chart or electrical circuit. Each node is "equal" and
 can be connected to any (and many) other nodes, and connections can be circular
-(in fact this is essential to produce certain types of effects).
+(in fact this is essential to produce certain types of effects). Specifically,
+the Web Audio API uses a _directed graph_, that is, signals flow in a single
+direction, from source to destination.
 
 If we think about it, this is not such a new concept. We build pages (nodes)
 which we link together to form websites and apps (graphs), which together form
 the internet, itself a graph of servers, routers, etc.
 
-You might come across graphs described in more technical terms. Graph nodes are
-also know as _vertices_, with the connections between them known as _edges_.
-Traversing a graph is done by following its edges. A graph data structure
-generally has ways to find which vertices are connected (either directly or via
-other vertices), and insert and remove vertices and edges at given points in the
-graph. Specifically, the Web Audio API uses a _directed graph_, that is, the
-signals flow in a defined direction.
+:::note IMG
+
+Internet network
+
+:::
 
 A big part of working with the Web Audio API involves creating nodes and making
 sure they are wired up correctly in our graph. So let's see how this works...
 
-### Creating Our Graph
+### Creating Our Graph
 
 Our graph exists in an `AudioContext`. Everything we do via the Web Audio API
 happens in this context, similar to how a `<canvas>` element creates its own
@@ -110,12 +124,14 @@ Chrome with the [Web Audio Inspector](https://google.github.io/audion/)).
 
 Everything we create in our graph is a node. All nodes implement the
 [`AudioNode`](https://developer.mozilla.org/en-US/docs/Web/API/AudioNode)
-interface, with additional properties and methods specific to their type.
+interface, extended with additional properties and methods specific to their
+type.
 
 A node's properties can be get and set as you'd expect, but with an additional
 super-power: they implement the
 [`AudioParam`](https://developer.mozilla.org/en-US/docs/Web/API/AudioParam)
-interface, meaning changes to them can be scheduled over time:
+interface, meaning changes to them can be scheduled over time (`currentTime` is
+covered in more detail in the next section):
 
 ```js
 const context = new AudioContext()
@@ -128,12 +144,25 @@ osc.frequency = 440
 oscillator.frequency.setValueAtTime(880, context.currentTime + 1)
 ```
 
-Nodes all implement the `connect()` method, which is how you connect the output
+All nodes implement the `connect()` method, which is how you connect the output
 of one node to the input of others. This chaining is what creates our graph.
 
-Nodes themselves can be grouped into two types: Source Nodes and Effect Nodes.
+:::note IMG
+
+Connected nodes showing signal flow
+
+:::
+
+Nodes themselves can be grouped into two types: _source nodes_ and _effect
+nodes_.
 
 ### Source Nodes
+
+:::note IMG
+
+**Source** > Effect > Destination
+
+:::
 
 Source nodes are anything that produce an audio signal and are the inputs of our
 system. There are several types of source node, but we'll cover just the two
@@ -147,19 +176,24 @@ most common here:
 All source nodes have a `start()` and `stop()` method, which as you might guess,
 start and stop them producing their audio signal.
 
-**Note:** Source nodes are single use only, or 'fire and forget'. Once a node
-has stopped (either by manually calling `stop()`, or by reaching the end of the
-sample it was playing), it cannot be restarted. In creating a piano instrument,
-our instinct might be to create 88 nodes, one for each key. Instead, we actually
-need to create a new node each time a key is pressed. In this way, our audio
-graph is not something fixed that we define ahead of time, but is instead a
-dynamic structure that changes as new nodes are created and discarded. Source
-nodes are intentionally cheap to create and stopped nodes are automatically
-garbage-collected for us.
+:::note Source nodes are single use only
+
+An important aspect of source nodes is that they are single use only, or "fire
+and forget". Once a node has stopped (either by manually calling `stop()`, or by
+reaching the end of the sample it was playing), it cannot be restarted.
+
+In creating a piano instrument, our instinct might be to create 88 nodes, one
+for each key. Instead, we actually need to create a new node each time a key is
+pressed. In this way, our audio graph is not something fixed that we define
+ahead of time, but is instead a dynamic structure that changes as new nodes are
+created and discarded. Source nodes are intentionally cheap to create and
+stopped nodes are automatically garbage-collected for us.
+
+:::
 
 #### OscillatorNode
 
-To synthesize our own sounds, we'd use an `OscillatorNode`. This produces a
+To synthesize our own sounds we can use an `OscillatorNode`. This produces a
 waveform (sine, square, triangle, etc.) oscillating at a given frequency
 (specified in hertz). By combining different types of oscillators and effects,
 we can produce an infinite range of sounds.
@@ -186,7 +220,7 @@ hi.start()
 
 #### AudioBufferSourceNode
 
-To play back recorded sounds (samples), we'd use an `AudioBufferSourceNode`.
+To play back recorded sounds (samples) we can use an `AudioBufferSourceNode`.
 This node is responsible for playing back and controlling the sample, but the
 sample itself is stored in an `AudioBuffer`. In this way we can load a sample
 once, and use it many times.
@@ -212,6 +246,12 @@ sourceNode.start()
 
 ### Effect Nodes
 
+:::note IMG
+
+Source > **Effect** > Destination
+
+:::
+
 We can route an audio signal (coming from a source node) through a wide range of
 effect nodes. These modify the incoming signal in some way, producing a new
 signal as output. The Web Audio API defines some basic primitives, which can be
@@ -219,95 +259,168 @@ combined to create all sorts of effects. The most common ones are:
 
 - [`GainNode`](https://developer.mozilla.org/en-US/docs/Web/API/GainNode) –
   adjusts the volume of a signal. By applying this over time we can also model
-  ADSR envelopes (e.g. if a sound starts abruptly or fades in slowly).
-- [`BiquadFilterNode`](https://developer.mozilla.org/en-US/docs/Web/API/BiquadFilterNode) -
-  cut or boost certain frequencies of a signal
-- ConvolverNode - apply reverb to a signal so it sounds like it's in a certain
-  physical space e.g. a small room or large hall.
-- DelayNode - apply a delay the the outgoing signal, used for all sorts of
-  effects from echoes to phasing.
-- DynamicsCompressorNode – applies compression to a signal to control its
-  dynamic range (e.g. to avoid distortion)
-- WaveShaperNode – applies distortion to the signal.
-- PannerNode – places the audio in the stereo field (i.e. to the left or right
-  in stereo output).
+  ADSR envelopes (e.g. if a sound should start abruptly or fade in slowly).
+- [`BiquadFilterNode`](https://developer.mozilla.org/en-US/docs/Web/API/BiquadFilterNode)
+  – cut or boost certain frequencies of a signal
+- [`ConvolverNode`](https://developer.mozilla.org/en-US/docs/Web/API/ConvolverNode)
+  – apply reverb to a signal so it sounds like it's in a certain physical space
+  (e.g. a small room or large hall).
+- [`DelayNode`](https://developer.mozilla.org/en-US/docs/Web/API/DelayNode) -
+  apply a delay to the outgoing signal, used for all sorts of effects from
+  echoes to phasing.
+- [`DynamicsCompressorNode`](https://developer.mozilla.org/en-US/docs/Web/API/DynamicsCompressorNode)
+  – applies compression to a signal to control its dynamic range (e.g. to avoid
+  distortion)
+- [`WaveShaperNode`](https://developer.mozilla.org/en-US/docs/Web/API/WaveShaperNode)
+  – applies distortion to the signal.
+- [`PannerNode`](https://developer.mozilla.org/en-US/docs/Web/API/PannerNode) –
+  places the audio in the stereo field (i.e. to the left or right in stereo
+  output).
 
-### Destination Node
+### Destination Node
 
-The detination node is the final node in the chain and represents our audio
-output device (i.e. our sound card). This is provided for us as the
-`destination` node of our AudioContext. In addition, there's also an
-offlineAudioContext with its own destination if we want to render our audio to
-disk, for example.
+:::note IMG
+
+Source > Effect > **Destination**
+
+:::
+
+The
+[`AudioDestinationNode`](https://developer.mozilla.org/en-US/docs/Web/API/AudioDestinationNode)
+is the final node in the chain and represents our audio output device (i.e. our
+sound card). This is provided for us as the `destination` node of our
+`AudioContext`. In addition, there's also an
+[`OfflineAudioContext`](https://developer.mozilla.org/en-US/docs/Web/API/OfflineAudioContext)
+with its own `destination` if we want to render our audio to disk, for example.
 
 ## Timing Model
 
-To understand the timing model, we need to understand under the hood, control
-thread = your code, rendering thread = where audio is actually computed.
+Timing, as we'll see, is probably the trickiest aspect of working with audio.
+Understanding how the Web Audio API handles timing, and how this differs from
+traditional JavaScript timing, will be essential for writing our own scheduling
+functions later in the book.
 
-Timing: has it's own internal clock. Separate from JS clock. JS clock can be
-thought of as lazy/relative/imprecise. Usually we'd schedule a callback in
-2000ms. JS will schedule this and run when it's done with other tasks, in
-roughly 2 seconds.
+### JavaScript Timing
 
-Web Audio clock is absolute time. Precise. Seconds, not milliseconds! Relative
-to the current time.
+In regular JavaScript, we can think of the browser as running our code in a
+single process. When we schedule something to happen in two seconds (using
+`setTimeout` or `setInterval`), the browser doesn't guarantee that it will
+happen in _exactly_ two seconds, rather that it will run in _about_ two seconds,
+depending on the priority of other tasks in the queue.
 
-ILLUSTRATION?
+:::note IMG
 
-Current time is defined by the AudioContext. It starts counting up from the
-moment the AudioContext is created. We can't change it, we can only get it and
-schedule things relative to it:
+`setInterval` example and JS fuzzy timing diagram
+
+:::
+
+### Web Audio API Timing
+
+JavaScript's loose timing model is fine (and usually desirable) for most
+applications, where millisecond delays in e.g. updating the UI would be
+imperceptable. But for music, any imprecision is immediately obvious and tends
+to get worse over time as things drift out of sync.
+
+For this reason, the Web Audio API has it's own internal clock. Under the hood,
+our calls to the Web Audio API are sent to a seperate "rendering" thread that
+performs the audio computation and returns the results to the main "control"
+thread (i.e. our code). It's in this rendering thread that the Web Audio API
+clock runs, and is the reason it can maintain highly accurate time, regardless
+of the work being performed in the main thread.
+
+We can access the Web Audio API clock via the `currentTime` attribute of the
+`AudioContext`:
 
 ```js
 const context = new AudioContext()
 context.currentTime // => 0.1234
 ```
 
-As you can see, the Web Audio API doesn't give us much to work with here. We
-need to invent our own timing abstraction to work with beats, bars, time
-signatures etc. But that's for a future article!
+`currentTime` starts counting from the moment the `AudioContext` is created.
+Note that unlike in regular JavaScript, time is represented in seconds as a
+floating point number.
+
+We can't change `currentTime`, we can only schedule things relative to it:
+
+```js
+const context = new AudioContext()
+const osc = context.createOscillator()
+
+osc.connect(context.destination)
+
+// Start playing in 1 second
+osc.start(context.currentTime + 1.0)
+```
+
+:::note IMG
+
+Timeline from init + relative timing
+
+:::
+
+Beyond getting and scheduling relative to `currentTime`, the Web Audio API gives
+us very little else to work with. Later in the book we'll create our own timing
+abstractions to handle beats, bars, and time signatures.
 
 ## Aside: Autoplay Policy
 
-Needs interaction. Needs some hijinx:
+Browsers generally require some interaction from the user before playing sound.
+This
+["Autoplay Policy"](https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide)
+differs between browsers, but generally means we need to check for permission
+before we can use the Web Audio API.
 
-> To detect whether browser will require user interaction to play audio, you can
-> check the `state` of the `AudioContext` after you've created it. If you are
-> allowed to play, it should immediately switch to `running`. Otherwise it will
-> be `suspended`. If you listen to the `statechange` event, you can detect
-> changes asynchronously.
+To detect if we're allowed to play, we can check the `state` of the
+`AudioContext`:
 
-- Chrome: `chrome://flags/#autoplay-policy` – no longer working as of v76
-- Firefox: enabled by default?
-- Safari: ?
-- Edge: ?
+```js
+const context = new AudioContext()
+console.log(context.state) // => running | suspended | closed
+```
 
-Can be allowed for specific domains:
+If the `state` is `running`, it means we're allowed to play without any further
+interaction from the user. If it's `suspended`, we need to do a bit more work to
+prompt the user to interact with the page, usually in the form of clicking a
+"play" button:
 
-- Chrome: chrome://settings/content/sound
+```js
+const context = new AudioContext()
+console.log(context.state) // => suspended
 
-References:
+document.querySelector('#play').addEventListener('click', async () => {
+  await context.resume()
+  console.log(context.state) // => running
+})
+```
 
-- https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide#Autoplay_using_the_Web_Audio_API
-- https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+For development, it can be useful to always allow autoplay on specific domains
+(e.g. `localhost`). This can be configured in your browser settings (search for
+"sound" or "autoplay").
 
 ## Conclusion
 
-The WAA is a well defined and adopted/supported technology that's actively
-developed. It is and will continue to enable a whole range of previously
-native-tethered apps to move to the web.
+As we've seen in this chapter, the Web Audio API (and audio programming in
+general) introduces some concepts that may be new to web developers, namely the
+audio graph and a different timing model. We've also seen that the Web Audio API
+provides only basic primitives for working with audio.
 
-The WAA provides only the basic primitives. Because it's use-cases are wide.
-Depending on what we want to do, we have to build our own abstractions. There
-are already a range of libraries for music, game audio, VR?, machine learning.
-
-If we understand two basic concepts: graph/nodes and timing model, we have a
-good foundation for working at a higher level and make cool stuff.
+With this in mind, the next section of the book dives deep into building
+abstractions on top of the Web Audio API to express the building blocks of
+music.
 
 ## Further Reading
 
-- [JavaScript Systems Music](https://teropa.info/blog/2016/07/28/javascript-systems-music.html)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) –
+  Mozilla Developer Network
+- [Eloquent Javascript](https://eloquentjavascript.net/) – Marijn Haverbeke
+- [JavaScript: The Definitive Guide](https://www.oreilly.com/library/view/javascript-the-definitive/9781491952016/)
+  – David Flanagan
+- [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS) – Kyle Simpson
+- [JavaScript Allongé](https://leanpub.com/javascriptallongesix) – Reg
+  Braithwaite
 - [What Is the Web Audio API?](http://teropa.info/blog/2016/08/19/what-is-the-web-audio-api.html)
+  – Tero Parviainen
+- [JavaScript Systems Music](https://teropa.info/blog/2016/07/28/javascript-systems-music.html)
+  – Tero Parviainen
 - [Making Generative Music in the Browser](https://medium.com/@metalex9/making-generative-music-in-the-browser-bfb552a26b0b)
-- https://github.com/markerikson/react-redux-links/blob/master/README.md#learning-core-javascript-es5
+  – Alex Bainter

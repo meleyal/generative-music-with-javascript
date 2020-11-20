@@ -19,8 +19,7 @@ Through the course students will learn:
 - Headphones
 - A web browser that supports the
   [Web Audio API](https://caniuse.com/#feat=audio-api)
-- A code editor such as [Atom](https://atom.io/) or
-  [VS Code](https://code.visualstudio.com)
+- A code editor such as [VS Code](https://code.visualstudio.com)
 
 ## Lesson Plan (Workshop)
 

@@ -76,6 +76,15 @@ List chapters
 
 :::
 
+## Who This Book Is For
+
+This book is primarily aimed at web developers interested in using their
+existing skills to make music. There's nothing truly web-specific about what
+we'll learn, we're essentially just using the browser as our development
+platform. With that said, it will be useful to have a working knowledge of
+JavaScript and related tooling (e.g. Node.js, npm) to get the most of out of
+this book.
+
 ## Code Examples
 
 All of the code examples in this book are runnable. You can hear the results by

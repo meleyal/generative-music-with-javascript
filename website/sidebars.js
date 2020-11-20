@@ -2,7 +2,7 @@ module.exports = {
   main: {
     Welcome: ['introduction'],
     Primers: ['primers/generative', 'primers/music', 'primers/javascript'],
-    Music: ['music/notes', 'music/scales', 'music/timing', 'music/sequencing'],
+    Music: ['music/notes', 'music/timing'],
     Generative: [
       'generative/repetition',
       'generative/randomness',
@@ -13,7 +13,7 @@ module.exports = {
       'generative/machine-learning',
       'generative/sonification',
     ],
-    Examples: ['examples/scales', 'examples/phasing', 'examples/canon'],
+    Examples: ['examples/canon'],
     Course: ['course/outline'],
     API: ['api/index'],
   },
