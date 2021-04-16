@@ -64,8 +64,8 @@ title: Canon (Elm v2)
     const piano = await sampler('piano')
 
     return (model) => {
-      console.log(model.parts.piano.note)
-      // piano.play(model.parts.piano.note)
+      // console.log(model.parts.piano.note)
+      piano.play(model.parts.piano.note)
     }
     //   console.log(model)
   }

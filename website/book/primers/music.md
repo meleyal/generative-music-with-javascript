@@ -2,8 +2,61 @@
 title: Music
 ---
 
-> Music is organized sound. –
-> [Edgard Varèse](https://en.wikipedia.org/wiki/Edgard_Var%C3%A8se)
+> Music is organized sound.
+>
+> – [Edgard Varèse](https://en.wikipedia.org/wiki/Edgard_Var%C3%A8se)
+
+This chapter covers the fundamentals of music theory: pitch and rhythm and how
+they combine to form music. Whilst this is a deep topic, the basics are easy to
+grasp, and give us the language to talk about music, which will be helpful as we
+try to model it in our programs.
+
+Remember that music is just sound + time. The theory presented below is one way
+to organize and understand sound. Note also that the theory comes from western
+classical music. This is the most prevalent system and underpins most music, but
+there are other musical systems that conceptualize music in different ways.
+
+## Pitch
+
+Pitch describes how high or low a sound is.
+
+The piano keyboard helps understand pitch, everything is in front of you. We'll
+use it here, but the concept of pitch applies to any instrument.
+
+Each key on a piano keyboard creates a different pitch. Moving down the keys (to
+the left) produces sounds with a lower pitch, while moving up the keys (to the
+right) produces sounds with a higher pitch.
+
+Each of these pitches has a different name.
+
+Pitches are named using the musical alphabet C D E F G A B.
+
+This pattern repeats on the keyboard. Each repeat defines a new octave. Octaves
+are numbered. To uniquely identify each pitch, name and number, e.g. A4, this is
+the musical definition of **pitch**.
+
+### Frequency
+
+Knowing a bit of the science behind pitch is helpful. What does it mean for a
+sound to be high or low? Sound travels in waves. We perceive sound as these
+waves hitting and vibrating our ear drums. What we perceive as pitch is the
+frequency of these waves. The higher the frequency of the wave, the higher we
+perceive the pitch.
+
+The pitches on the keyboard are not arbitrary. They are related by frequency /
+ratios.
+
+### Scales
+
+## Rhythm
+
+Rhythm describes how sounds are organized in time.
+
+## Form
+
+---
+
+## Draft--------------
 
 > Remember, music consists of sequences (i.e., lists) of events.
 
@@ -95,6 +148,7 @@ Just as important as sound is the absence of it.
 ## Reference
 
 - https://github.com/aws-samples/aws-deepcomposer-samples/blob/master/Music-terminologies.md
+- https://smile.amazon.co.uk/Understand-Music-Theory-Teach-Yourself/dp/1473614872
 
 > where a piece of music is represented as a score, that score has several parts
 > (e.g., a flute part and a percussion part), each part contains phrases (e.g.,

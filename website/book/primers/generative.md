@@ -2,7 +2,7 @@
 title: Generative
 ---
 
-> "I make art about what confuses me."
+> I make art about what confuses me.
 >
 > – [Lauren McCarthy](https://lauren-mccarthy.com/)
 
@@ -183,3 +183,5 @@ musical works.
 - [The Nature of Code – Daniel Shiffman](https://natureofcode.com/)
 - [Why Love Generative Art? – Artnome](https://www.artnome.com/news/2018/8/8/why-love-generative-art)
 - [Algorithmic Composition – Gerhard Nierhaus](https://www.springer.com/gp/book/9783211755396)
+- [The Machine as Art/ The Machine as Artist](https://www.mdpi.com/books/pdfview/selection/3013)
+- [The Artist in the Machine](https://www.amazon.co.uk/Artist-Machine-World-AI-Powered-Creativity-ebook/dp/B08BSZQ2SX)

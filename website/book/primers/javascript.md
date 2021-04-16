@@ -2,7 +2,7 @@
 title: JavaScript
 ---
 
-In this chapter, we'll look at the features available in JavaScript for working
+In this chapter we'll look at the features available in JavaScript for working
 with audio, namely the Web Audio API. Technically, the Web Audio API is not part
 of the JavaScript language itself, but is a standard part of the web platform
 implemented by modern browsers.
@@ -34,8 +34,8 @@ candiditate status, it's already well supported in browsers,
 Common use-cases cited for the Web Audio API are to bring music composition and
 audio editing tools (e.g. Ableton Live, Logic Pro) to the browser, as well as
 enabling real-time audio for games and VR. Beyond these obvious applications,
-bringing sound to the mix opens up another dimension for building a richer, more
-sensory web.
+bringing sound to the mix opens up another dimension for building a more sensory
+web.
 
 ## The Web Audio API
 
@@ -51,6 +51,12 @@ enough of the API to get up and running creating our own bleeps and bloops.
 
 ## Graphs & Nodes
 
+:::note RETHINK
+
+Trees are not their own thing, they are a type of graph.
+
+:::
+
 As web developers, we're used to working with the DOM, a tree data structure
 representing a hierarchy of nodes that we traverse via parent, sibling and child
 relationships. The Web Audio API, on the other hand (and audio apps in general),
@@ -64,8 +70,8 @@ Tree vs. graph
 
 _Source_ nodes generate signals and are the inputs of our system. These signals
 are routed through _effect_ nodes to modify them in various ways. Everything
-ends up at a single _destination_ node, i.e. your speakers, producing the
-audible output of our system. This is digital signal processing 101.
+ends up at a single _destination_ node, i.e. our speakers, producing the audible
+output of our system. This is digital signal processing 101.
 
 :::note IMG
 
