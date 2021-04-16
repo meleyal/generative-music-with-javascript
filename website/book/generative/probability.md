@@ -295,10 +295,10 @@ With that in mind, we can encapsulate our learning into two new utilities:
 
 - **Generative:** Functions for generating data we can use in our programs,
   either algorithms we write ourselves, or ones we might use from other
-  libraries → [`gen`](../api/gen).
+  libraries → [`gen`](api/index.md).
 
 - **Music:** A place to wrap up our musical knowledge and handle the details of
-  mapping that to midi → [`music`](../api/music).
+  mapping that to midi → [`music`](api/index.md).
 
 With these in our toolbelt, we could rewrite our last example as follows:
 
