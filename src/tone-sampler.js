@@ -1,4 +1,4 @@
-import { Sampler } from 'tone'
+// import { Sampler } from 'tone'
 
 import samples from './samples'
 

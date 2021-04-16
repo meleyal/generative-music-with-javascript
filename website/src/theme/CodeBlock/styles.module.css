@@ -4,6 +4,7 @@
 
 .codeBlock {
   overflow: auto;
+  margin-bottom: var(--ifm-paragraph-margin-bottom);
 }
 
 .runButton {
@@ -12,6 +13,7 @@
   background: none;
   color: var(--ifm-color-primary-light);
   font-weight: bold;
+  font-size: 11px;
   cursor: pointer;
   line-height: 12px;
   outline: none;
@@ -29,7 +31,7 @@
 
 .codeBlockLines {
   font-family: var(--ifm-font-family-monospace);
-  font-size: inherit;
+  font-size: var(--ifm-code-font-size);
   line-height: var(--ifm-pre-line-height);
   white-space: pre;
   float: left;

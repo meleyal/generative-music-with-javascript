@@ -4,7 +4,7 @@ const PACKAGE_URL =
     : 'https://unpkg.com/tuplet'
 
 const siteConfig = {
-  title: 'Tuplet',
+  title: 'Tuplet.js',
   tagline: 'Generative music with JavaScript',
   url: 'https://tuplet.js.org',
   baseUrl: '/',
@@ -14,7 +14,7 @@ const siteConfig = {
   scripts: [PACKAGE_URL, 'https://cdn.jsdelivr.net/npm/@magenta/music@^1.0.0'],
   themeConfig: {
     navbar: {
-      title: 'Tuplet',
+      title: 'Tuplet.js',
       logo: {
         alt: 'Site Logo',
         src: 'img/tuplet.svg',

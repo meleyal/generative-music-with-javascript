@@ -2,6 +2,10 @@ import _ from 'lodash'
 import * as ptn from './pattern'
 
 const seq = (notes, { loop = false } = {}) => {
+  // const notes = phrases.reduce((prev, curr) => {
+  //   return prev.concat(curr)
+  // })
+
   const curriedPluginMethods = seq.plugins.flatMap((m) => {
     return Object.keys(m).flatMap((key) => {
       return {
@@ -17,6 +21,7 @@ const seq = (notes, { loop = false } = {}) => {
     repeat: (n) => seq(ptn.repeat(notes, n)),
     quantize: (bpm) => seq(ptn.quantize(notes, bpm)),
     transpose: (n) => seq(ptn.transpose(notes, n)),
+    concat: (other) => seq(notes.concat(other.fold())),
     at: (time) => {
       const window = 1 / 190
 
@@ -54,7 +59,7 @@ const seq = (notes, { loop = false } = {}) => {
   }
 }
 
-seq.concat = (seqs, options) => {
+seq.join = (seqs, options) => {
   return seq(
     seqs.flatMap((s) => s.fold()),
     options

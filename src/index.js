@@ -16,7 +16,7 @@ const env = createEnv()
 const tuplet = {
   app,
   metronome: metronome(env),
-  pattern: seq,
+  phrase: seq,
   music: constants,
   sampler: sampler(env),
   fx: { reverb: reverb(env), compressor: compressor(env) },

@@ -1,5 +1,4 @@
 :root {
-  --ifm-font-size-base: 17px;
   --ifm-color-primary: #8f1bf7;
   --ifm-color-primary-dark: #8208ee;
   --ifm-color-primary-darker: #7a08e1;
@@ -8,7 +7,7 @@
   --ifm-color-primary-lighter: #c385fb;
   --ifm-color-primary-lightest: #e4c7fd;
   --ifm-navbar-height: 3.3rem;
-  --ifm-code-font-size: 14px;
+  --ifm-code-font-size: 85%;
 }
 
 .menu .menu__list-item {
