@@ -2,6 +2,18 @@
 title: Randomness
 ---
 
+Randomness is a first step to generating music. With it we can generate whole
+pieces of music, introduce variation and surprise. Knowing how to harness
+randomness is an interplay between us and the computer. If we think of all
+posibilities, randomness gives us a way to "sample" the possibility space /
+unseen.
+
+> Music that relies at least to some degree on randomness is said to be
+> stochastic, or aleatoric.
+
+This guide shows how to use randomness to introduce variation to our music,
+specifically through the idea of a random walk.
+
 Notes:
 
 - Pure randomness (seeds)
@@ -10,23 +22,7 @@ Notes:
 - Random number generation
 - Apply to: pitch, velocity, timing
 
-"Mining the possibility space / unseen"
-
-Reference:
-
-- https://medium.com/@metalex9/randomizing-program-execution-with-random-number-generators-a7bb613861f9
-
-This guide shows how to use randomness to introduce variation to our music,
-specifically through the idea of a random walk.
-
-> Music that relies at least to some degree on randomness is said to be
-> stochastic, or aleatoric.
-
 ## Random Walk
-
-> Another approach to generating a melody is sometimes called a random walk. The
-> idea is to start on a particular note and treat the sequence of random numbers
-> as intervals, rather than as pitches.
 
 In 2D graphics, a random walk involves drawing a path by repeatedly choosing a
 random direction in which to move. On this 2D plane, each step can be one of
@@ -178,10 +174,7 @@ const messages = (model, send) => {
     },
 
     sampler: async () => {
-      const samples = await sampleMap2(
-        context,
-        'samples/piano'
-      )
+      const samples = await sampleMap2(context, 'samples/piano')
       send({ sampler: sampler2(context, samples) })
     },
   }
@@ -289,3 +282,8 @@ This gives us something that has more of a flow and sense of direction. We've
 constrained the options from all possible notes, to just those that are 5 notes
 (a 5th) either up or down from the current note. This gives us some control, but
 we're still very much at the whim of chaos to determine our path.
+
+## Further Reading
+
+- [Aleatoric music - Wikipedia](https://en.wikipedia.org/wiki/Aleatoric_music)
+- [Randomizing Program Execution with Random Number Generators – Alex Bainter](https://medium.com/@metalex9/randomizing-program-execution-with-random-number-generators-a7bb613861f9)

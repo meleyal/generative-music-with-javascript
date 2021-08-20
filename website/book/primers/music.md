@@ -6,6 +6,12 @@ title: Music
 >
 > – [Edgard Varèse](https://en.wikipedia.org/wiki/Edgard_Var%C3%A8se)
 
+---
+
+https://www.mvanga.com/blog/basic-music-theory-in-200-lines-of-python
+
+---
+
 This chapter covers the fundamentals of music theory: pitch and rhythm and how
 they combine to form music. Whilst this is a deep topic, the basics are easy to
 grasp, and give us the language to talk about music, which will be helpful as we
