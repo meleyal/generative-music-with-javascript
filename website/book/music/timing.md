@@ -352,7 +352,7 @@ bar / 128 // => 0.03125 seconds
 
 ## Learning
 
-TODO: `metronome` is part of Tuplet package, see API docs.
+TODO: `metronome` is part of **TODO** package, see API docs.
 
 While the musical results are less than inspiring, we now have a way to generate
 two key aspects of music: notes/pitch and rhythm/time, which combined can give

@@ -28,7 +28,7 @@ describe('Plugins', () => {
       })
     })
 
-    it.only('fromQuantizedNoteSequence', () => {
+    it('fromQuantizedNoteSequence', () => {
       const qns = {
         notes: [
           { pitch: 62, quantizedStartStep: 0, quantizedEndStep: 4 },

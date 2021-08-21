@@ -330,11 +330,8 @@ const celloSeq = sequencer(metro, cello)
 
 Before proceeding, let's encapsulate our learning so far.
 
-- **Generating patterns:** Functions for generating new patterns →
-  [`gen`](api/index.md).
+- **Generating patterns:** Functions for generating new patterns → TODO.
 
-- **Transforming patterns:** Functions for transforming patterns →
-  [`array/collection/transform/pattern`](api/index.md).
+- **Transforming patterns:** Functions for transforming patterns → TODO.
 
-- **Sequencing patterns:** Functions for sequencing patterns →
-  [`seq`](api/index.md).
+- **Sequencing patterns:** Functions for sequencing patterns → TODO.

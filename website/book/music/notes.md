@@ -88,8 +88,8 @@ fetch('sample.mp3')
 ## Learning
 
 We now know the steps involved in loading a sample, decoding it, and playing it
-back. **Tuplet** includes the [`sample()`](api/index.md#sample) function which
-abstracts away some of these details for us:
+back. **TODO** includes the `sample()` function which abstracts away some of
+these details for us:
 
 ```js
 const { sample } = tuplet

@@ -90,12 +90,6 @@ this book.
 All of the code examples in this book are runnable. You can hear the results by
 clicking the "Run" button in the corner of each code block.
 
-A lot of the ideas in the book are encapsulated in the
-[Tuplet](https://www.npmjs.com/package/tuplet) library. If you want to skip over
-how things are implemented and just make music, we'll cross-reference each of
-the code examples with their Tuplet counterpart. The full list of available
-functions can be found in the [API Reference](api/index).
-
 ## Prior Art
 
 This book takes inspiration from the following:

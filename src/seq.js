@@ -21,6 +21,7 @@ const seq = (notes, { loop = false } = {}) => {
     repeat: (n) => seq(ptn.repeat(notes, n)),
     quantize: (bpm) => seq(ptn.quantize(notes, bpm)),
     transpose: (n) => seq(ptn.transpose(notes, n)),
+    loop: () => seq(notes, { loop: true }),
     concat: (other) => seq(notes.concat(other.fold())),
     at: (time) => {
       const window = 1 / 190

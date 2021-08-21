@@ -17,6 +17,7 @@ const tuplet = {
   app,
   metronome: metronome(env),
   phrase: seq,
+  pattern: seq,
   music: constants,
   sampler: sampler(env),
   fx: { reverb: reverb(env), compressor: compressor(env) },

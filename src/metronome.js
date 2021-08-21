@@ -18,7 +18,7 @@ export default (env) => ({ bpm = 120 } = {}) => {
     osc.start(now)
 
     for (const [event, fn] of Object.entries(callbacks)) {
-      fn(now)
+      fn({ now })
     }
     osc.stop(end)
 

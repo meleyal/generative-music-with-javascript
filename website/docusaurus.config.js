@@ -4,33 +4,26 @@ const PACKAGE_URL =
     : 'https://unpkg.com/tuplet'
 
 const siteConfig = {
-  title: 'Tuplet.js',
-  tagline: 'Generative music with JavaScript',
-  url: 'https://tuplet.js.org',
-  baseUrl: '/',
-  projectName: 'tuplet',
+  title: 'Generative Music with JavaScript',
+  url: 'https://meleyal.github.io',
+  baseUrl: '/generative-music-with-javascript/',
+  projectName: 'generative-music-with-javascript',
   organizationName: 'meleyal',
   favicon: 'img/favicon.png',
   scripts: [PACKAGE_URL, 'https://cdn.jsdelivr.net/npm/@magenta/music@^1.0.0'],
   themeConfig: {
     navbar: {
-      title: 'Tuplet.js',
-      logo: {
-        alt: 'Site Logo',
-        src: 'img/tuplet.svg',
-      },
+      title: 'Generative Music with JavaScript',
       items: [
         { to: 'book/introduction', label: 'Book', position: 'right' },
-        { to: 'book/api/index', label: 'API', position: 'right' },
         {
-          href: 'https://github.com/meleyal/tuplet',
+          href: 'https://github.com/meleyal/generative-music-with-javascript',
           label: 'GitHub',
           position: 'right',
         },
       ],
     },
     footer: {},
-    sidebarCollapsible: false,
     colorMode: {
       disableSwitch: true,
     },
@@ -43,6 +36,7 @@ const siteConfig = {
           path: 'book',
           routeBasePath: 'book',
           sidebarPath: require.resolve('./sidebars.js'),
+          sidebarCollapsible: false,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

@@ -15,6 +15,5 @@ module.exports = {
     ],
     Examples: ['examples/canon'],
     Course: ['course/outline'],
-    API: ['api/index'],
   },
 }
