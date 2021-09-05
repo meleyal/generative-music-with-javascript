@@ -4,7 +4,7 @@ import { Redirect } from '@docusaurus/router'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 
 function Home() {
-  return <Redirect to={useBaseUrl('/book/introduction')} />
+  return <Redirect to={useBaseUrl('/introduction')} />
 }
 
 export default Home

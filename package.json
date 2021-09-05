@@ -1,42 +1,27 @@
 {
-  "name": "genrative-music-with-javascript",
-  "author": "William Meleyal <william.meleyal@gmail.com>",
-  "repository": "meleyal/genrative-music-with-javascript",
-  "version": "0.0.1",
-  "license": "MIT",
-  "keywords": [
-    "generative-music",
-    "music",
-    "web-audio"
-  ],
-  "main": "dist/tuplet.js",
-  "files": [
-    "/dist"
-  ],
   "scripts": {
-    "start": "yarn dev & yarn website",
-    "dev": "NODE_ENV=development webpack-dev-server",
-    "website": "cd website && yarn start",
-    "test": "mocha --recursive --require esm --require test/test-helper",
-    "build": "webpack --mode production",
-    "deploy": "cd website && yarn deploy"
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "USE_SSH=true docusaurus deploy"
   },
   "dependencies": {
-    "events": "^3.2.0",
-    "lodash": "^4.17.19"
+    "@docusaurus/core": "^2.0.0-beta.6",
+    "@docusaurus/preset-classic": "^2.0.0-beta.6",
+    "classnames": "^2.2.6",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
   },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-string": "^1.5.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^5.1.1",
-    "esm": "^3.2.25",
-    "mocha": "^6.2.2",
-    "prettier": "^2.0.5",
-    "sinon": "^7.3.2",
-    "sinon-chai": "^3.3.0",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.4.1"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

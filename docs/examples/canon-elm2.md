@@ -53,11 +53,7 @@ const model = async () => {
 
 const update = async () => {
   return (model, time) => {
-    const { piano, trumpet, bass } = model.parts
-    piano.note = piano.at(time.now)
-    // TODO: play when time.beat = x
-    trumpet.note = trumpet.at(time.now)
-    bass.note = bass.at(time.now)
+    model.now = time.now
     return model
   }
 }
@@ -66,10 +62,12 @@ const view = async () => {
   const $piano = await sampler('piano')
 
   return (model) => {
-    const { piano, trumpet, bass } = model.parts
-    $piano.play(piano.note)
-    $piano.play(trumpet.note)
-    $piano.play(bass.note)
+    const { parts, now } = model
+    const { piano, trumpet, bass } = parts
+    $piano.play(piano.at(now))
+    // TODO: play when time.beat = x
+    $piano.play(trumpet.at(now))
+    $piano.play(bass.at(now))
   }
 }
 

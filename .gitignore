@@ -4,9 +4,6 @@
 # npm
 node_modules
 
-# Dist
-dist
-
 # Docusuarus
 .docusaurus
-website/build
+build
