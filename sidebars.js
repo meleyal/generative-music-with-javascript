@@ -2,7 +2,13 @@ module.exports = {
   main: {
     Welcome: ['introduction'],
     Primers: ['primers/generative', 'primers/music', 'primers/javascript'],
-    Music: ['music/notes', 'music/timing'],
+    Music: [
+      'music/notes',
+      'music/timing',
+      'music/rhythm',
+      'music/melody',
+      'music/harmony',
+    ],
     Generative: [
       'generative/repetition',
       'generative/randomness',
