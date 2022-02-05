@@ -7,6 +7,7 @@ const siteConfig = {
   title: 'Generative Music with JavaScript',
   url: 'https://meleyal.github.io',
   baseUrl: BASE_URL,
+  trailingSlash: false,
   projectName: 'generative-music-with-javascript',
   organizationName: 'meleyal',
   favicon: 'img/favicon.png',
