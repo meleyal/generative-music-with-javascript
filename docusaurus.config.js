@@ -14,7 +14,6 @@ const siteConfig = {
     navbar: {
       title: 'Generative Music with JavaScript',
       items: [
-        { to: 'introduction', label: 'Book', position: 'right' },
         {
           href: 'https://github.com/meleyal/generative-music-with-javascript',
           label: 'GitHub',
