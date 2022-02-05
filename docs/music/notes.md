@@ -34,7 +34,7 @@ With an understanding of sound synthesis you can generate an infinite range of
 sounds. As mentioned in the introduction, however, it's not the focus of this
 book, so we won't delve much deeper into synthesis here.
 
-## Sample
+## Sample
 
 Our focus is music composition, so rather than synthesising our own sounds,
 we're instead going to delegate that work to pre-recorded instrument samples.
@@ -42,7 +42,7 @@ we're instead going to delegate that work to pre-recorded instrument samples.
 To play back samples we need a few elements:
 
 - A sample audio file: e.g.
-  [the middle C (C4) note played on a piano](https://unpkg.com/@meleyal/tuplet/samples/piano/c4.mp3)
+  [the middle C (C4) note played on a piano](/samples/piano-c4.mp3)
 - A way to load the audio file:
   [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 - A way to decode the audio file for playback:
@@ -85,7 +85,7 @@ fetch('sample.mp3')
   })
 ```
 
-## Learning
+## Learning
 
 We now know the steps involved in loading a sample, decoding it, and playing it
 back. **TODO** includes the `sample()` function which abstracts away some of
@@ -165,7 +165,7 @@ throughout this book. It includes a
 [piano](https://github.com/meleyal/tuplet/tree/master/src/samples/piano) sample
 pack, which contains recordings of all the notes of a piano (A0–C8).
 
-### Sampler v1
+### Sampler v1
 
 We've already seen how we can load and play back a single sample. We can use the
 same principles to load and play back an entire set of samples.
@@ -330,7 +330,7 @@ console.log(samples)
 //  }
 ```
 
-### Note Numbers
+### Note Numbers
 
 When we get into generating notes and patterns later in the book, it will be
 useful to be able to translate between note names and numbers. MIDI, which we
@@ -574,7 +574,7 @@ envelope.connect(context.destination)
 osc.start()
 ```
 
-### Panning
+### Panning
 
 Panning describes where a sound is placed in the stereo field, and emulates the
 effect of sounds coming from different physical spaces. When mixing different
